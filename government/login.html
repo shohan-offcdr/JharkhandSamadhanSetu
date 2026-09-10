@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="light" lang="hi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>झारखंड समाधान सेतु | Government Administration Login</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container": "#F1ECE0",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "secondary": "#A6742A",
+            "inverse-surface": "#17213A",
+            "on-tertiary": "#FFFFFF",
+            "error": "#B3261E",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "background": "#FBF9F4",
+            "tertiary-fixed-dim": "#6FA98A",
+            "on-primary": "#FBF9F4",
+            "on-error-container": "#5F1712",
+            "on-surface": "#17213A",
+            "secondary-container": "#F1E4C7",
+            "surface-container-lowest": "#FFFFFF",
+            "on-surface-variant": "#5B5847",
+            "primary-fixed-dim": "#C7B37E",
+            "surface-container-high": "#EAE4D4",
+            "on-background": "#17213A",
+            "surface-variant": "#F1ECE0",
+            "outline": "#C7C0AC",
+            "tertiary": "#2F6F4E",
+            "secondary-fixed": "#F1E4C7",
+            "on-secondary": "#FFFFFF",
+            "on-tertiary-container": "#1F4A34",
+            "outline-variant": "#E4DFD0",
+            "surface-container-low": "#F6F3EA",
+            "primary-container": "#232F4E",
+            "on-secondary-fixed": "#4A3B1F",
+            "inverse-on-surface": "#FBF9F4",
+            "tertiary-fixed": "#8FC7A8",
+            "secondary-fixed-dim": "#D9B876",
+            "on-primary-fixed": "#17213A",
+            "on-secondary-container": "#6B4A17",
+            "inverse-primary": "#D9CBA3",
+            "surface-tint": "#A6742A",
+            "surface-container-highest": "#E2DBC7",
+            "primary-fixed": "#D9CBA3",
+            "tertiary-container": "#E3EEE6",
+            "on-error": "#FFFFFF",
+            "surface": "#FBF9F4",
+            "error-container": "#F9DEDC",
+            "primary": "#17213A",
+            "surface-dim": "#E8E3D3",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "surface-bright": "#FBF9F4",
+            "on-primary-container": "#FBF9F4",
+            "on-tertiary-fixed": "#12281E"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "3rem",
+            "gutter-desktop": "2rem",
+            "space-md": "1rem",
+            "space-3xl": "4rem",
+            "gutter-mobile": "1rem",
+            "space-sm": "0.75rem",
+            "space-lg": "1.5rem",
+            "gutter-tablet": "1.5rem",
+            "container-max": "72rem",
+            "space-xxs": "0.25rem",
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "min-touch-target": "3rem"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col font-body-md selection:bg-surface-variant selection:text-primary">
+<!-- Top Institutional Government Banner -->
+<header class="bg-surface-container-lowest border-b border-outline-variant w-full">
+<!-- Super-header: Tricolor Stripe Accent -->
+<div class="h-1 w-full bg-gradient-to-r from-[#FF9933] via-white to-[#138808]"></div>
+<div class="max-w-container-max mx-auto px-gutter-mobile md:px-gutter-desktop py-space-sm flex flex-col md:flex-row md:items-center md:justify-between gap-space-xs">
+<div class="flex items-center space-x-space-sm">
+<div class="w-12 h-12 flex-shrink-0 bg-surface-container-low rounded-lg p-1.5 border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[2rem]" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">झारखंड सरकार | Government of Jharkhand</h1>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-surface-container-high text-primary border border-outline-variant">Gov.in</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Department of Personnel, Administrative Reforms &amp; Rajbhasha</p>
+</div>
+</div>
+<div class="flex items-center flex-wrap gap-space-sm md:gap-space-md text-on-surface-variant pt-2 md:pt-0">
+<div class="flex items-center space-x-1.5 px-2.5 py-1 bg-surface-container-low rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="verified_user">verified_user</span>
+<span class="font-label-sm text-label-sm text-primary">e-Pramaan / Jan Samarth Integrated</span>
+</div>
+<div class="flex items-center space-x-1 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="call">call</span>
+<span class="font-label-sm text-label-sm font-semibold">Helpdesk: 181</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 flex items-center justify-center py-space-xl px-gutter-mobile md:px-gutter-desktop">
+<div class="w-full max-w-lg">
+<!-- Institutional Breadcrumb & Purpose Stamp -->
+<div class="mb-space-md flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span>
+<span>Restricted Administrative Intranet</span>
+</div>
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#166534]"></span>
+<span>SSL 256-Bit Encrypted</span>
+</div>
+</div>
+<!-- Government Login Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg md:p-space-xl">
+<!-- Header & Emblem Seal -->
+<div class="text-center pb-space-lg border-b border-outline-variant">
+<div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-surface-container-low border border-outline-variant mb-space-sm text-primary">
+<span class="material-symbols-outlined text-[32px]" data-icon="security" data-weight="fill" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">अधिकारी लॉगिन / Government Official Portal</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xxs max-w-md mx-auto">
+            Authorized administrative access for District Magistrates, Nodal Officers, and Municipal Commissioners.
+          </p>
+</div>
+<!-- Form Area -->
+<form class="mt-space-lg space-y-space-md" id="gov-login-form" onsubmit="event.preventDefault();">
+<!-- Field 1: Department / Directorate Dropdown -->
+<div>
+<label class="block mb-space-xs" for="dept-select">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">विभाग एवं निदेशालय / Department &amp; Directorate</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Select assigned nodal administrative body</span>
+</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">
+<span class="material-symbols-outlined text-[20px]" data-icon="apartment">apartment</span>
+</span>
+<select class="w-full h-min-touch-target pl-10 pr-10 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface font-body-md focus:border-primary-container focus:ring-2 focus:ring-primary-container/20" id="dept-select">
+<option disabled="" selected="" value="">विभाग का चयन करें / Select Department</option>
+<option value="phed">Department of Drinking Water &amp; Sanitation (PHED)</option>
+<option value="agri">Department of Agriculture, Animal Husbandry &amp; Co-operative</option>
+<option value="energy">Energy Department / JBVNL</option>
+<option value="health">Department of Health, Medical Education &amp; Family Welfare</option>
+<option value="rcd">Road Construction Department (RCD)</option>
+<option value="higher-edu">Department of Higher &amp; Technical Education</option>
+<option value="dm-office">District Magistrate &amp; Collectorate (DC Office)</option>
+</select>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">
+<span class="material-symbols-outlined text-[20px]" data-icon="expand_more">expand_more</span>
+</span>
+</div>
+</div>
+<!-- Field 2: Gov Email ID / Officer ID -->
+<div>
+<label class="block mb-space-xs" for="officer-id">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">अधिकारी पहचान पत्र / Official Gov Email ID / Officer ID</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Use @jharkhand.gov.in or State Cadre Civil ID</span>
+</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">
+<span class="material-symbols-outlined text-[20px]" data-icon="badge">badge</span>
+</span>
+<input class="w-full h-min-touch-target pl-10 pr-4 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface placeholder:text-outline font-body-md focus:border-primary-container focus:ring-2 focus:ring-primary-container/20" id="officer-id" placeholder="nodal.phed@jharkhand.gov.in or IAS/JH-1049" type="text"/>
+</div>
+</div>
+<!-- Field 3: Secure Password -->
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<label class="block" for="gov-password">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">सुरक्षित पासवर्ड / Secure Password</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">NIC e-Pramaan Single Sign-On credentials</span>
+</label>
+</div>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">
+<span class="material-symbols-outlined text-[20px]" data-icon="key">key</span>
+</span>
+<input class="w-full h-min-touch-target pl-10 pr-12 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface placeholder:text-outline font-body-md focus:border-primary-container focus:ring-2 focus:ring-primary-container/20" id="gov-password" placeholder="••••••••••••" type="password"/>
+<button aria-label="Toggle password visibility" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-container" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Field 4: Two-Factor Authentication token / NIC OTP -->
+<div class="p-space-sm bg-surface-container-low border border-outline-variant rounded-lg">
+<div class="flex items-center justify-between mb-space-xs">
+<label class="font-label-md text-label-md text-primary font-semibold flex items-center gap-1.5" for="otp-token">
+<span class="material-symbols-outlined text-[16px]" data-icon="lock_clock">lock_clock</span>
+<span>2FA प्रमाणीकरण / 6-digit OTP or NIC Token Key</span>
+</label>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mandatory for L1/L2 Clearance</span>
+</div>
+<div class="flex gap-2">
+<div class="relative flex-1">
+<input class="w-full h-min-touch-target px-3 tracking-widest text-center font-mono bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface placeholder:text-outline font-body-md focus:border-primary-container focus:ring-2 focus:ring-primary-container/20" id="otp-token" maxlength="6" placeholder="000000" type="text"/>
+</div>
+<button class="h-min-touch-target px-4 bg-primary-container text-on-primary font-label-md text-label-md rounded-lg hover:bg-primary transition-colors duration-150 flex items-center gap-1.5 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary-container" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
+<span>Generate NIC OTP</span>
+</button>
+</div>
+</div>
+<!-- Remember officer session -->
+<div class="flex items-center justify-between pt-space-xxs">
+<label class="flex items-center space-x-2.5 cursor-pointer">
+<input class="w-5 h-5 rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface">Remember officer session for 12 hours</span>
+</label>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded border border-outline-variant">Designated Workstation</span>
+</div>
+<!-- Primary CTA Button -->
+<div class="pt-space-xs">
+<button class="w-full h-min-touch-target bg-secondary text-on-secondary font-label-lg text-label-lg font-bold rounded-lg hover:bg-[#8C5F1F] active:scale-[0.99] transition-all duration-150 flex items-center justify-center space-x-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary" id="btn-gov-login" type="submit">
+<span class="material-symbols-outlined text-[20px]" data-icon="login">login</span>
+<span>Login with e-Pramaan / पोर्टल में प्रवेश करें</span>
+</button>
+</div>
+<!-- Administrative Clearance Notice Link -->
+<div class="text-center pt-space-xs">
+<a class="inline-flex items-center gap-1 font-body-sm text-body-sm text-primary font-semibold hover:underline underline-offset-4 focus:outline-none focus:ring-1 focus:ring-primary-container" href="#admin-contact">
+<span class="material-symbols-outlined text-[16px]" data-icon="contact_support">contact_support</span>
+<span>Contact System Administrator for Access Clearance</span>
+</a>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Direct public self-registration is strictly disabled for administrative integrity.</p>
+</div>
+</form>
+<!-- Reassuring Security Footer Note inside Card -->
+<div class="mt-space-lg pt-space-sm border-t border-outline-variant flex items-start gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-primary flex-shrink-0 mt-0.5" data-icon="gavel">gavel</span>
+<p class="font-label-sm text-label-sm leading-relaxed">
+            Secured via National Informatics Centre (NIC) VPN &amp; STQC Audit Standards. Unauthorized access attempts are monitored and punishable under Section 43 &amp; 66 of the Information Technology Act 2000.
+          </p>
+</div>
+</div>
+<!-- Quick Trust Indicators below Card -->
+<div class="mt-space-md grid grid-cols-3 gap-space-sm text-center">
+<div class="p-2 bg-surface-container-lowest border border-outline-variant rounded-lg">
+<p class="font-label-sm text-label-sm text-on-surface-variant">ISO 27001</p>
+<p class="font-label-md text-label-md font-semibold text-primary">Certified Center</p>
+</div>
+<div class="p-2 bg-surface-container-lowest border border-outline-variant rounded-lg">
+<p class="font-label-sm text-label-sm text-on-surface-variant">NIC Gateway</p>
+<p class="font-label-md text-label-md font-semibold text-primary">99.98% Uptime</p>
+</div>
+<div class="p-2 bg-surface-container-lowest border border-outline-variant rounded-lg">
+<p class="font-label-sm text-label-sm text-on-surface-variant">State Data Centre</p>
+<p class="font-label-md text-label-md font-semibold text-primary">Ranchi Tier-III</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Standard Institutional Footer -->
+<footer class="bg-primary text-on-primary border-t border-primary-container w-full mt-auto">
+<div class="max-w-container-max mx-auto px-gutter-mobile md:px-gutter-desktop py-space-md flex flex-col md:flex-row justify-between items-center gap-space-sm text-center md:text-left">
+<div>
+<p class="font-body-sm text-body-sm text-surface-container-high">
+          © 2024 Government of Jharkhand. Designed, Developed and Hosted by National Informatics Centre (NIC). All Rights Reserved.
+        </p>
+<p class="font-label-sm text-label-sm text-on-primary-container mt-0.5">
+          Jharkhand Samadhan Setu — Unified Grievance Redressal &amp; Inter-Departmental Monitoring Engine
+        </p>
+</div>
+<div class="flex flex-wrap justify-center items-center gap-x-space-md gap-y-1 font-label-sm text-label-sm text-surface-container-high">
+<a class="hover:text-secondary-fixed transition-colors duration-150" href="#citizen-charter">Citizen Charter</a>
+<span class="text-on-primary-container">|</span>
+<a class="hover:text-secondary-fixed transition-colors duration-150" href="#rti">RTI Disclosures</a>
+<span class="text-on-primary-container">|</span>
+<a class="hover:text-secondary-fixed transition-colors duration-150" href="#security">Security STQC Certified</a>
+<span class="text-on-primary-container">|</span>
+<a class="hover:text-secondary-fixed transition-colors duration-150 font-semibold text-secondary-fixed" href="tel:181">Toll-Free Helpline: 181</a>
+<span class="text-on-primary-container">|</span>
+<a class="hover:text-secondary-fixed transition-colors duration-150" href="#privacy">Privacy Policy</a>
+<span class="text-on-primary-container">|</span>
+<a class="hover:text-secondary-fixed transition-colors duration-150" href="#terms">Terms of Service</a>
+</div>
+</div>
+</footer>
+<script>
+  document.getElementById('gov-login-form').addEventListener('submit', () => {
+    const officerId = document.getElementById('officer-id').value.trim();
+    const password = document.getElementById('gov-password').value;
+    if (!officerId || !password) {
+      showToast('कृपया सभी फ़ील्ड भरें / Please fill all fields');
+      return;
+    }
+    API.login('government', officerId);
+    showToast('Login successful / लॉगिन सफल');
+    setTimeout(() => { window.location.href = 'overview-dashboard.html'; }, 500);
+  });
+</script>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+</body></html>

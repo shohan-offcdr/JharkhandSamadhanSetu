@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jharkhand Samadhan Setu - Civic Innovation Impact &amp; CSR Outcomes</title>
+<!-- Noto Sans & Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed": "#17213A",
+            "surface-bright": "#FBF9F4",
+            "tertiary-fixed": "#8FC7A8",
+            "on-surface-variant": "#5B5847",
+            "primary-container": "#232F4E",
+            "surface-variant": "#F1ECE0",
+            "on-background": "#17213A",
+            "error": "#B3261E",
+            "error-container": "#F9DEDC",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "tertiary-container": "#E3EEE6",
+            "surface-container-low": "#F6F3EA",
+            "on-primary-container": "#FBF9F4",
+            "surface-container-lowest": "#FFFFFF",
+            "primary-fixed-dim": "#C7B37E",
+            "inverse-on-surface": "#FBF9F4",
+            "on-secondary-fixed": "#4A3B1F",
+            "on-tertiary-fixed": "#12281E",
+            "on-error": "#FFFFFF",
+            "on-error-container": "#5F1712",
+            "on-tertiary-container": "#1F4A34",
+            "surface-container-high": "#EAE4D4",
+            "on-primary": "#FBF9F4",
+            "surface-container": "#F1ECE0",
+            "secondary": "#A6742A",
+            "inverse-primary": "#D9CBA3",
+            "outline": "#C7C0AC",
+            "background": "#FBF9F4",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "tertiary-fixed-dim": "#6FA98A",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "primary-fixed": "#D9CBA3",
+            "primary": "#17213A",
+            "secondary-fixed-dim": "#D9B876",
+            "on-tertiary": "#FFFFFF",
+            "on-secondary": "#FFFFFF",
+            "on-surface": "#17213A",
+            "surface-tint": "#A6742A",
+            "surface": "#FBF9F4",
+            "secondary-fixed": "#F1E4C7",
+            "surface-container-highest": "#E2DBC7",
+            "on-secondary-container": "#6B4A17",
+            "surface-dim": "#E8E3D3",
+            "outline-variant": "#E4DFD0",
+            "inverse-surface": "#17213A",
+            "tertiary": "#2F6F4E",
+            "secondary-container": "#F1E4C7"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "3rem",
+            "min-touch-target": "3rem",
+            "space-xxs": "0.25rem",
+            "gutter-desktop": "2rem",
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "space-sm": "0.75rem",
+            "gutter-mobile": "1rem",
+            "space-lg": "1.5rem",
+            "gutter-tablet": "1.5rem",
+            "container-max": "72rem",
+            "space-md": "1rem",
+            "space-3xl": "4rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"]
+          },
+          "fontSize": {
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-map-node {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .custom-map-node:hover {
+      transform: scale(1.08);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col font-body-md text-body-md">
+<!-- TopNavBar (Shared Component from JSON) -->
+<header class="w-full border-b border-outline-variant bg-surface-container-lowest sticky top-0 z-50">
+<div class="max-w-container-max mx-auto px-gutter-desktop flex items-center justify-between min-h-min-touch-target">
+<!-- Brand Logo / Product Name -->
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<a class="text-headline-sm font-headline-sm text-primary tracking-tight" href="#">
+          Jharkhand Samadhan Setu
+        </a>
+</div>
+<!-- Navigation Links (Active: Impact) -->
+<nav class="hidden md:flex items-center space-x-space-lg h-full">
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-all duration-150" href="#">
+          Dashboard
+        </a>
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-all duration-150" href="#">
+          Browse Problems
+        </a>
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-all duration-150" href="#">
+          Collaborations
+        </a>
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-all duration-150" href="#">
+          Funding
+        </a>
+<!-- ACTIVE TAB: Impact -->
+<a aria-current="page" class="border-b-2 border-secondary text-secondary font-label-lg text-label-lg pb-1 transition-all duration-150" href="#">
+          Impact
+        </a>
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-all duration-150" href="#">
+          Profile
+        </a>
+</nav>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-space-sm">
+<button aria-label="Notifications" class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors duration-150 min-h-[44px] min-w-[44px] flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="Help" class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors duration-150 min-h-[44px] min-w-[44px] flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="bg-secondary hover:bg-on-secondary-fixed-variant text-on-secondary font-label-lg text-label-lg px-space-md py-2 rounded-lg transition-all duration-150 active:scale-[0.99] flex items-center gap-space-xs">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span>Post Solution</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-1 hidden sm:block"></div>
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant text-primary font-label-md text-label-md" title="Organization profile avatar">
+          JS
+        </div>
+</div>
+</div>
+</header>
+<!-- Sub-Header Verification / Status Ribbon -->
+<div class="w-full bg-surface-container-low border-b border-outline-variant py-space-xs px-gutter-desktop">
+<div class="max-w-container-max mx-auto flex flex-wrap items-center justify-between gap-space-sm text-label-sm font-label-sm text-on-surface-variant">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0]">
+<span class="material-symbols-outlined text-[14px] mr-1" data-icon="verified">verified</span>
+          NIC Public Audit Certified
+        </span>
+<span>Audit Period: FY 2024-2025 (Q3 Assessment)</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span>State Digital Infrastructure: Jharkhand State Data Center (JSDC)</span>
+<span class="text-primary font-bold">Live Synced</span>
+</div>
+</div>
+</div>
+<!-- Main Canvas -->
+<main class="flex-grow max-w-container-max w-full mx-auto px-gutter-mobile md:px-gutter-desktop py-space-xl">
+<!-- Title & Action Bar -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between pb-space-lg border-b border-outline-variant mb-space-lg gap-space-md">
+<div>
+<div class="flex items-center gap-2 mb-space-xs">
+<span class="text-label-md font-label-md text-primary bg-primary-fixed px-2 py-0.5 rounded">
+            DPI Impact Assessment
+          </span>
+<span class="text-label-sm font-label-sm text-outline">State Redressal &amp; Innovation Wing</span>
+</div>
+<h1 class="text-headline-lg font-headline-lg text-primary tracking-tight">
+          Civic Innovation Impact &amp; CSR Outcomes / जन समाधान प्रभाव
+        </h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1 max-w-3xl">
+          Measurable civic outcomes, resource savings, and district footprints delivered through enterprise-academic partnerships.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm self-start lg:self-end">
+<!-- Download CTA -->
+<button class="min-h-min-touch-target bg-primary-container hover:bg-primary text-on-primary px-space-lg py-space-xs rounded-lg border border-primary transition-all duration-150 flex items-center gap-space-xs active:scale-[0.99]" title="Download Certified State CSR Audit Dossier in PDF">
+<span class="material-symbols-outlined" data-icon="download_for_offline">download_for_offline</span>
+<span class="font-label-lg text-label-lg">Download Certified State CSR Audit Dossier (PDF)</span>
+</button>
+</div>
+</div>
+<!-- Top 3 Metric KPI Cards -->
+<section aria-label="Primary Key Performance Indicators" class="grid grid-cols-1 md:grid-cols-3 gap-space-md mb-space-xl">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg flex flex-col justify-between relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-secondary"></div>
+<div class="flex justify-between items-start">
+<span class="text-label-md font-label-md text-on-surface-variant">Validated Deployments</span>
+<span class="material-symbols-outlined text-secondary" data-icon="deployed_code">deployed_code</span>
+</div>
+<div class="mt-space-md mb-space-xs">
+<div class="text-display-lg font-display-lg text-primary">18 Solutions Deployed</div>
+</div>
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-on-surface-variant">
+<span class="inline-flex items-center text-[#166534] bg-[#DCFCE7] px-1.5 py-0.5 rounded text-label-sm font-label-sm border border-[#BBF7D0]">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span>
+            +5
+          </span>
+<span>this fiscal year under CSR Section 135</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg flex flex-col justify-between relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-primary"></div>
+<div class="flex justify-between items-start">
+<span class="text-label-md font-label-md text-on-surface-variant">Geographic Coverage</span>
+<span class="material-symbols-outlined text-primary" data-icon="map">map</span>
+</div>
+<div class="mt-space-md mb-space-xs">
+<div class="text-display-lg font-display-lg text-primary">14 Districts Covered</div>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-outline text-[16px]" data-icon="location_on">location_on</span>
+<span>Across 24 administrative districts of Jharkhand</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg flex flex-col justify-between relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-tertiary-container"></div>
+<div class="flex justify-between items-start">
+<span class="text-label-md font-label-md text-on-surface-variant">Community Scale</span>
+<span class="material-symbols-outlined text-tertiary-container" data-icon="groups">groups</span>
+</div>
+<div class="mt-space-md mb-space-xs">
+<div class="text-display-lg font-display-lg text-primary">284,000+ Beneficiaries</div>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="inline-flex items-center text-primary-container font-label-sm text-label-sm">
+            Citizens served by water, clean energy, &amp; agritech
+          </span>
+</div>
+</div>
+</section>
+<!-- Main Content Section: Left 70% Regional Map / Right 30% Deployed Projects -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left Column (approx 70% -> 8 of 12 columns in desktop) -->
+<section class="lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-md border-b border-outline-variant mb-space-md gap-2">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="pin_drop">pin_drop</span>
+              District Deployment Density &amp; Regional Impact
+            </h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+              Interactive geographic cluster breakdown for industrial CSR accountability
+            </p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-label-sm font-label-sm text-outline">Legend:</span>
+<span class="flex items-center text-label-sm font-label-sm gap-1">
+<span class="w-3 h-3 rounded-full bg-secondary"></span> High Density
+            </span>
+<span class="flex items-center text-label-sm font-label-sm gap-1">
+<span class="w-3 h-3 rounded-full bg-primary-container"></span> Moderate
+            </span>
+</div>
+</div>
+<!-- Geographic Blueprint Canvas -->
+<div class="relative bg-surface-container-low border border-outline-variant rounded-lg p-space-lg min-h-[460px] flex flex-col justify-between overflow-hidden">
+<!-- Background Cadastral Vector Grid / Watermark -->
+<div class="absolute inset-0 opacity-[0.07] pointer-events-none" style="background-image: radial-gradient(#17213A 1px, transparent 1px); background-size: 24px 24px;"></div>
+<!-- Top Indicator Badges -->
+<div class="relative z-10 flex flex-wrap gap-space-xs">
+<span class="bg-surface-container-lowest border border-outline-variant text-on-surface px-space-xs py-1 rounded text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="hub">hub</span>
+              Plateau Geographic Topology Active
+            </span>
+<span class="bg-surface-container-lowest border border-outline-variant text-on-surface px-space-xs py-1 rounded text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-[#166534]" data-icon="nest_eco_leaf">nest_eco_leaf</span>
+              7 Tribal Priority Blocks
+            </span>
+</div>
+<!-- District Map Nodes / Cluster Visualization -->
+<div class="relative z-10 w-full my-auto py-space-lg grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Ranchi Cluster -->
+<div class="custom-map-node bg-surface-container-lowest border-2 border-secondary rounded-lg p-space-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="text-headline-sm font-headline-sm text-primary">Ranchi (Capital)</span>
+<span class="bg-secondary text-on-secondary px-1.5 py-0.5 rounded text-label-sm font-label-sm">Central Hub</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant mb-space-xs">
+                Urban sanitation &amp; lake telemetry
+              </div>
+<div class="bg-surface-container-low p-space-xs rounded border border-outline-variant space-y-1">
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-outline">Active Projects:</span>
+<span class="text-primary font-bold">6 Projects</span>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-outline">Citizen Reach:</span>
+<span class="text-secondary font-bold">120,000 Citizens</span>
+</div>
+</div>
+</div>
+<!-- Khunti Cluster -->
+<div class="custom-map-node bg-surface-container-lowest border border-primary-container rounded-lg p-space-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="text-headline-sm font-headline-sm text-primary">Khunti</span>
+<span class="bg-primary-container text-on-primary px-1.5 py-0.5 rounded text-label-sm font-label-sm">Tribal Focus</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant mb-space-xs">
+                Solar microgrids &amp; lac agroforestry
+              </div>
+<div class="bg-surface-container-low p-space-xs rounded border border-outline-variant space-y-1">
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-outline">Active Projects:</span>
+<span class="text-primary font-bold">4 Projects</span>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-outline">Beneficiaries:</span>
+<span class="text-[#166534] font-bold">45,000 Tribal</span>
+</div>
+</div>
+</div>
+<!-- Dhanbad Cluster -->
+<div class="custom-map-node bg-surface-container-lowest border border-outline-variant rounded-lg p-space-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="text-headline-sm font-headline-sm text-primary">Dhanbad</span>
+<span class="bg-surface-container-high text-primary px-1.5 py-0.5 rounded text-label-sm font-label-sm">Mining Belt</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant mb-space-xs">
+                Mine runoff purification &amp; particulate IoT
+              </div>
+<div class="bg-surface-container-low p-space-xs rounded border border-outline-variant space-y-1">
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-outline">Active Projects:</span>
+<span class="text-primary font-bold">3 Projects</span>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-outline">Citizen Reach:</span>
+<span class="text-primary font-bold">58,000 Citizens</span>
+</div>
+</div>
+</div>
+<!-- Palamu Cluster -->
+<div class="custom-map-node bg-surface-container-lowest border border-outline-variant rounded-lg p-space-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="text-headline-sm font-headline-sm text-primary">Palamu</span>
+<span class="bg-surface-container-high text-primary px-1.5 py-0.5 rounded text-label-sm font-label-sm">Arid Zone</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant mb-space-xs">
+                Check-dam silt redirection &amp; bore telemetry
+              </div>
+<div class="bg-surface-container-low p-space-xs rounded border border-outline-variant space-y-1">
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-outline">Active Projects:</span>
+<span class="text-primary font-bold">2 Projects</span>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-outline">Farming Families:</span>
+<span class="text-[#166534] font-bold">24,000 Reached</span>
+</div>
+</div>
+</div>
+<!-- Bokaro Cluster -->
+<div class="custom-map-node bg-surface-container-lowest border border-outline-variant rounded-lg p-space-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="text-headline-sm font-headline-sm text-primary">Bokaro</span>
+<span class="bg-surface-container-high text-primary px-1.5 py-0.5 rounded text-label-sm font-label-sm">Industrial</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant mb-space-xs">
+                Slag water neutralizer &amp; clean kiln pilots
+              </div>
+<div class="bg-surface-container-low p-space-xs rounded border border-outline-variant space-y-1">
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-outline">Active Projects:</span>
+<span class="text-primary font-bold">2 Projects</span>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-outline">Citizen Reach:</span>
+<span class="text-primary font-bold">22,000 Citizens</span>
+</div>
+</div>
+</div>
+<!-- Hazaribagh Cluster -->
+<div class="custom-map-node bg-surface-container-lowest border border-outline-variant rounded-lg p-space-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="text-headline-sm font-headline-sm text-primary">Hazaribagh</span>
+<span class="bg-surface-container-high text-primary px-1.5 py-0.5 rounded text-label-sm font-label-sm">Forest Corridor</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant mb-space-xs">
+                Cold chain sensors &amp; solar cold storages
+              </div>
+<div class="bg-surface-container-low p-space-xs rounded border border-outline-variant space-y-1">
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-outline">Active Projects:</span>
+<span class="text-primary font-bold">1 Project</span>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-outline">Rural PHCs:</span>
+<span class="text-primary font-bold">15,000 Beneficiaries</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Micro-Data Bar -->
+<div class="relative z-10 bg-surface-container-lowest border border-outline-variant rounded-lg p-space-xs flex flex-col sm:flex-row items-center justify-between text-body-sm font-body-sm gap-2">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="info">info</span>
+<span>All 14 deployment zones undergo weekly IoT sensor telemetry upload via NIC State Gateway.</span>
+</div>
+<a class="text-primary hover:underline font-label-md text-label-md flex items-center gap-1" href="#">
+<span>View District Nodal Contacts</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- Regional Aggregations Table Below Map -->
+<div class="mt-space-lg overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container-low text-label-sm font-label-sm text-on-surface-variant">
+<th class="py-2.5 px-3">Administrative Division</th>
+<th class="py-2.5 px-3">Key Focus Area</th>
+<th class="py-2.5 px-3">Deploying Partner Entities</th>
+<th class="py-2.5 px-3">Audit Rating</th>
+<th class="py-2.5 px-3 text-right">Fund Allocation</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant text-body-sm font-body-sm">
+<tr class="hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-3 px-3 font-semibold text-primary">South Chota Nagpur</td>
+<td class="py-3 px-3">Potable Water Security &amp; Hydro-monitoring</td>
+<td class="py-3 px-3">BIT Mesra, Tata Steel Foundation</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0]">Grade A1 (98%)</span>
+</td>
+<td class="py-3 px-3 text-right font-medium">₹ 2.45 Cr</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-3 px-3 font-semibold text-primary">Palamu Division</td>
+<td class="py-3 px-3">Silt Diverters &amp; Rabi Canal Automation</td>
+<td class="py-3 px-3">IIT (ISM) Dhanbad, JSLPS Nodal SHGs</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0]">Grade A (94%)</span>
+</td>
+<td class="py-3 px-3 text-right font-medium">₹ 1.80 Cr</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-3 px-3 font-semibold text-primary">North Chota Nagpur</td>
+<td class="py-3 px-3">Industrial Effluent &amp; Bio-Char Agritech</td>
+<td class="py-3 px-3">SAIL CSR, Central University of Jharkhand</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-[#FEF3C7] text-[#92400E] border border-[#FDE68A]">In Review</span>
+</td>
+<td class="py-3 px-3 text-right font-medium">₹ 1.15 Cr</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Right Column (approx 30% -> 4 of 12 columns in desktop) -->
+<section class="lg:col-span-4 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg">
+<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant mb-space-md">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary">
+                Deployed Projects
+              </h2>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Direct measurable outcomes</span>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="task_alt">task_alt</span>
+</div>
+<!-- Direct Outcomes Cards Stack -->
+<div class="space-y-space-md">
+<!-- Project 1 -->
+<article class="p-space-sm rounded-lg border border-outline-variant hover:border-primary transition-all duration-150 bg-surface-container-lowest">
+<div class="flex items-start justify-between gap-2 mb-1">
+<h3 class="text-label-lg font-label-lg text-primary leading-tight">
+                  Kanke Smart Water Pipeline
+                </h3>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] whitespace-nowrap">
+                  Operational
+                </span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-2">
+                Ultrasonic non-invasive acoustic sensors deployed on mainline distribution grid.
+              </p>
+<div class="bg-surface-container-low p-2 rounded border border-outline-variant">
+<div class="text-body-sm font-body-sm font-semibold text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="water_drop">water_drop</span>
+                  42,000 L/day conserved
+                </div>
+<div class="text-label-sm font-label-sm text-on-surface-variant mt-0.5">
+                  120 households stabilized with 24/7 pressurized supply.
+                </div>
+</div>
+<div class="mt-2 pt-2 border-t border-outline-variant flex items-center justify-between text-label-sm font-label-sm text-outline">
+<span>Location: Ranchi Urban</span>
+<span>Partner: Jal Sahiya Samiti</span>
+</div>
+</article>
+<!-- Project 2 -->
+<article class="p-space-sm rounded-lg border border-outline-variant hover:border-primary transition-all duration-150 bg-surface-container-lowest">
+<div class="flex items-start justify-between gap-2 mb-1">
+<h3 class="text-label-lg font-label-lg text-primary leading-tight">
+                  Netarhat Microgrid Battery Balancer
+                </h3>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] whitespace-nowrap">
+                  Operational
+                </span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-2">
+                Active thermal balancing nodes on community LiFePO4 battery banks.
+              </p>
+<div class="bg-surface-container-low p-2 rounded border border-outline-variant">
+<div class="text-body-sm font-body-sm font-semibold text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="bolt">bolt</span>
+                  3 tribal hamlets electrified 24x7
+                </div>
+<div class="text-label-sm font-label-sm text-on-surface-variant mt-0.5">
+                  Zero monsoon blackouts recorded across 180 continuous days.
+                </div>
+</div>
+<div class="mt-2 pt-2 border-t border-outline-variant flex items-center justify-between text-label-sm font-label-sm text-outline">
+<span>Location: Latehar / Netarhat</span>
+<span>Partner: JREDA Clean Tech</span>
+</div>
+</article>
+<!-- Project 3 -->
+<article class="p-space-sm rounded-lg border border-outline-variant hover:border-primary transition-all duration-150 bg-surface-container-lowest">
+<div class="flex items-start justify-between gap-2 mb-1">
+<h3 class="text-label-lg font-label-lg text-primary leading-tight">
+                  Palamu Check-dam Silt Diverter
+                </h3>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] whitespace-nowrap">
+                  Operational
+                </span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-2">
+                Hydrodynamic self-scouring sluice gates installed across Koel tributaries.
+              </p>
+<div class="bg-surface-container-low p-2 rounded border border-outline-variant">
+<div class="text-body-sm font-body-sm font-semibold text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="agriculture">agriculture</span>
+                  1,800 farmers enabled
+                </div>
+<div class="text-label-sm font-label-sm text-on-surface-variant mt-0.5">
+                  Uninterrupted winter rabi irrigation enabled across 420 hectares.
+                </div>
+</div>
+<div class="mt-2 pt-2 border-t border-outline-variant flex items-center justify-between text-label-sm font-label-sm text-outline">
+<span>Location: Palamu Basin</span>
+<span>Partner: Minor Irrigation Dept</span>
+</div>
+</article>
+<!-- Project 4 -->
+<article class="p-space-sm rounded-lg border border-outline-variant hover:border-primary transition-all duration-150 bg-surface-container-lowest">
+<div class="flex items-start justify-between gap-2 mb-1">
+<h3 class="text-label-lg font-label-lg text-primary leading-tight">
+                  Torpa Vaccine Cold-chain Telemetry
+                </h3>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] whitespace-nowrap">
+                  Operational
+                </span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-2">
+                LoRaWAN continuous cryogenic monitoring with automatic SMS excursion alarms.
+              </p>
+<div class="bg-surface-container-low p-2 rounded border border-outline-variant">
+<div class="text-body-sm font-body-sm font-semibold text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="vaccines">vaccines</span>
+                  100% vaccine integrity preserved
+                </div>
+<div class="text-label-sm font-label-sm text-on-surface-variant mt-0.5">
+                  Across 12 Primary Health Centers (PHCs) with zero vial wastage.
+                </div>
+</div>
+<div class="mt-2 pt-2 border-t border-outline-variant flex items-center justify-between text-label-sm font-label-sm text-outline">
+<span>Location: Khunti District</span>
+<span>Partner: NHM Jharkhand</span>
+</div>
+</article>
+</div>
+<!-- Verification Stamp Box -->
+<div class="mt-space-md pt-space-md border-t border-outline-variant bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="verified_user">verified_user</span>
+<div>
+<div class="text-label-md font-label-md text-primary">Statutory CSR 80G Certified</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">All project outcomes are eligible for mandatory MCA corporate social responsibility credit.</div>
+</div>
+</div>
+</div>
+<!-- Secondary Informational Widget -->
+<div class="bg-primary text-on-primary rounded-xl p-space-lg border border-primary">
+<div class="flex items-center gap-space-xs text-secondary-fixed mb-space-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="policy">policy</span>
+<span class="font-label-md text-label-md">State Collaboration Framework</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-primary mb-space-xs">
+            Submit an Enterprise Deployment Proposal
+          </h3>
+<p class="text-body-sm font-body-sm text-primary-fixed-dim mb-space-md">
+            Enterprises and startups with validated prototypes can apply for district lab testbeds, government grant matches, and Fast-Track clearances.
+          </p>
+<a class="inline-flex items-center justify-center w-full min-h-min-touch-target bg-on-primary text-primary hover:bg-surface-container-low font-label-lg text-label-lg px-space-md rounded-lg transition-colors duration-150" href="#">
+            Apply for District Testbed Access
+          </a>
+</div>
+</section>
+</div>
+<!-- Grievance Timeline Tracker Section: Public Audit Verification Lifecycle -->
+<section class="mt-space-xl bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-md border-b border-outline-variant mb-space-lg gap-2">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="history_toggle_off">history_toggle_off</span>
+            CSR Redressal &amp; Audit Milestone Sequence
+          </h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            Standardized verification protocol for public civic outcomes (Rule 12B compliance)
+          </p>
+</div>
+<span class="text-label-sm font-label-sm bg-surface-container-high text-primary px-3 py-1 rounded">
+          Cycle: Q3 FY25
+        </span>
+</div>
+<!-- Timeline Process Track -->
+<div class="relative pl-6 sm:pl-8 border-l-2 border-outline-variant space-y-space-lg py-2">
+<!-- Step 1: Completed -->
+<div class="relative">
+<div class="absolute -left-[31px] sm:-left-[39px] top-0 w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="check">check</span>
+</div>
+<div class="ml-2">
+<div class="flex items-center gap-space-xs">
+<span class="text-label-md font-label-md text-primary">Step 1: Baseline District Registry Validation</span>
+<span class="text-label-sm font-label-sm bg-[#DCFCE7] text-[#166534] px-1.5 py-0.2 rounded">Completed (Oct 2024)</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+              Field baseline verification by respective Deputy Commissioner offices across Ranchi, Khunti, and Palamu.
+            </p>
+</div>
+</div>
+<!-- Step 2: Completed -->
+<div class="relative">
+<div class="absolute -left-[31px] sm:-left-[39px] top-0 w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="check">check</span>
+</div>
+<div class="ml-2">
+<div class="flex items-center gap-space-xs">
+<span class="text-label-md font-label-md text-primary">Step 2: IoT Telemetry &amp; Independent Sensor Calibration</span>
+<span class="text-label-sm font-label-sm bg-[#DCFCE7] text-[#166534] px-1.5 py-0.2 rounded">Completed (Nov 2024)</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+              Automated data streams ingested via Jharkhand State WAN into National Informatics Centre cloud analytics servers.
+            </p>
+</div>
+</div>
+<!-- Step 3: Current Node -->
+<div class="relative">
+<div class="absolute -left-[31px] sm:-left-[39px] top-0 w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center ring-4 ring-secondary-fixed">
+<span class="w-2.5 h-2.5 rounded-full bg-on-secondary"></span>
+</div>
+<div class="ml-2">
+<div class="flex items-center gap-space-xs">
+<span class="text-label-md font-label-md text-secondary font-bold">Step 3: State Level Tripartite Audit Review (In Progress)</span>
+<span class="text-label-sm font-label-sm bg-[#FEF3C7] text-[#92400E] px-1.5 py-0.2 rounded">Current Step</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+              Joint physical audit by Social Audit Unit (SAU Jharkhand), partner industry auditors, and Gram Panchayat representatives.
+            </p>
+</div>
+</div>
+<!-- Step 4: Upcoming -->
+<div class="relative">
+<div class="absolute -left-[31px] sm:-left-[39px] top-0 w-6 h-6 rounded-full bg-surface-container-lowest border-2 border-outline flex items-center justify-center">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+</div>
+<div class="ml-2">
+<div class="flex items-center gap-space-xs">
+<span class="text-label-md font-label-md text-outline">Step 4: Gazette Publication &amp; Statutory Credit Release</span>
+<span class="text-label-sm font-label-sm text-outline">Upcoming (Jan 2025)</span>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-1">
+              Issuance of digitally countersigned CSR certificates for corporate balance sheet filings with Ministry of Corporate Affairs.
+            </p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component from JSON) -->
+<footer class="w-full bg-primary text-on-primary px-gutter-desktop py-space-xl border-t border-outline-variant mt-space-2xl">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center justify-between gap-space-md">
+<!-- Brand & Copyright -->
+<div class="flex flex-col gap-1 text-center md:text-left">
+<div class="text-headline-sm font-headline-sm text-on-primary">
+          Jharkhand Samadhan Setu
+        </div>
+<p class="text-body-sm font-body-sm text-primary-fixed-dim">
+          © 2025 Jharkhand Samadhan Setu. Government of Jharkhand Digital Public Infrastructure. All rights reserved.
+        </p>
+</div>
+<!-- Links Cluster -->
+<nav aria-label="Footer Quick Links" class="flex flex-wrap items-center justify-center md:justify-end gap-x-space-md gap-y-space-xs">
+<a class="text-primary-fixed-dim font-body-sm text-body-sm hover:underline hover:text-on-primary transition-colors duration-150" href="#">
+          Toll-Free Helpline 181
+        </a>
+<a class="text-primary-fixed-dim font-body-sm text-body-sm hover:underline hover:text-on-primary transition-colors duration-150" href="#">
+          National Informatics Centre (NIC)
+        </a>
+<a class="text-primary-fixed-dim font-body-sm text-body-sm hover:underline hover:text-on-primary transition-colors duration-150" href="#">
+          Citizen Charter
+        </a>
+<a class="text-primary-fixed-dim font-body-sm text-body-sm hover:underline hover:text-on-primary transition-colors duration-150" href="#">
+          Terms of Service
+        </a>
+<a class="text-primary-fixed-dim font-body-sm text-body-sm hover:underline hover:text-on-primary transition-colors duration-150" href="#">
+          Privacy Policy
+        </a>
+<a class="text-primary-fixed-dim font-body-sm text-body-sm hover:underline hover:text-on-primary transition-colors duration-150" href="#">
+          Nodal Officer Contact
+        </a>
+</nav>
+</div>
+</footer>
+<!-- Notification Banner Micro-Script -->
+<script>
+    // Micro-interaction for feedback when clicking PDF download
+    document.addEventListener('DOMContentLoaded', () => {
+      const downloadBtn = document.querySelector('button[title*="Download Certified"]');
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const originalText = downloadBtn.innerHTML;
+          downloadBtn.innerHTML = `
+            <span class="material-symbols-outlined animate-spin" data-icon="sync">sync</span>
+            <span class="font-label-lg text-label-lg">Generating NIC Dossier...</span>
+          `;
+          downloadBtn.classList.add('opacity-90');
+          
+          setTimeout(() => {
+            downloadBtn.innerHTML = `
+              <span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+              <span class="font-label-lg text-label-lg">Dossier Downloaded</span>
+            `;
+            setTimeout(() => {
+              downloadBtn.innerHTML = originalText;
+              downloadBtn.classList.remove('opacity-90');
+            }, 2500);
+          }, 1200);
+        });
+      }
+    });
+  </script>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+  requireRole('startup', 'login.html');
+</script>
+</body></html>

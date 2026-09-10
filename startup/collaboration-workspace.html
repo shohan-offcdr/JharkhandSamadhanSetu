@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Collaboration Workspace | Jharkhand Samadhan Setu</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed": "#17213A",
+            "surface-bright": "#FBF9F4",
+            "tertiary-fixed": "#8FC7A8",
+            "on-surface-variant": "#5B5847",
+            "primary-container": "#232F4E",
+            "surface-variant": "#F1ECE0",
+            "on-background": "#17213A",
+            "error": "#B3261E",
+            "error-container": "#F9DEDC",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "tertiary-container": "#E3EEE6",
+            "surface-container-low": "#F6F3EA",
+            "on-primary-container": "#FBF9F4",
+            "surface-container-lowest": "#FFFFFF",
+            "primary-fixed-dim": "#C7B37E",
+            "inverse-on-surface": "#FBF9F4",
+            "on-secondary-fixed": "#4A3B1F",
+            "on-tertiary-fixed": "#12281E",
+            "on-error": "#FFFFFF",
+            "on-error-container": "#5F1712",
+            "on-tertiary-container": "#1F4A34",
+            "surface-container-high": "#EAE4D4",
+            "on-primary": "#FBF9F4",
+            "surface-container": "#F1ECE0",
+            "secondary": "#A6742A",
+            "inverse-primary": "#D9CBA3",
+            "outline": "#C7C0AC",
+            "background": "#FBF9F4",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "tertiary-fixed-dim": "#6FA98A",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "primary-fixed": "#D9CBA3",
+            "primary": "#17213A",
+            "secondary-fixed-dim": "#D9B876",
+            "on-tertiary": "#FFFFFF",
+            "on-secondary": "#FFFFFF",
+            "on-surface": "#17213A",
+            "surface-tint": "#A6742A",
+            "surface": "#FBF9F4",
+            "secondary-fixed": "#F1E4C7",
+            "surface-container-highest": "#E2DBC7",
+            "on-secondary-container": "#6B4A17",
+            "surface-dim": "#E8E3D3",
+            "outline-variant": "#E4DFD0",
+            "inverse-surface": "#17213A",
+            "tertiary": "#2F6F4E",
+            "secondary-container": "#F1E4C7"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "3rem",
+            "min-touch-target": "3rem",
+            "space-xxs": "0.25rem",
+            "gutter-desktop": "2rem",
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "space-sm": "0.75rem",
+            "gutter-mobile": "1rem",
+            "space-lg": "1.5rem",
+            "gutter-tablet": "1.5rem",
+            "container-max": "72rem",
+            "space-md": "1rem",
+            "space-3xl": "4rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"]
+          },
+          "fontSize": {
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased selection:bg-secondary selection:text-on-secondary">
+<!-- TOP APP BAR (Shared Component) -->
+<header class="w-full border-b border-outline-variant bg-surface-container-lowest sticky top-0 z-50">
+<div class="max-w-container-max mx-auto px-gutter-mobile md:px-gutter-desktop flex items-center justify-between min-h-min-touch-target">
+<!-- Brand Anchor -->
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">Jharkhand Samadhan Setu</span>
+<span class="font-label-sm text-label-sm text-outline">Government of Jharkhand DPI Portal</span>
+</div>
+</div>
+<!-- Navigation Links (Collaborations is ACTIVE) -->
+<nav class="hidden md:flex items-center gap-space-lg">
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-colors duration-150" href="dashboard.html">Dashboard</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-colors duration-150" href="browse-problems.html">Browse Problems</a>
+<a class="border-b-2 border-secondary text-secondary font-label-lg text-label-lg pb-1" href="collaboration-workspace.html">Collaborations</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-colors duration-150" href="collaboration-workspace.html">Funding</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-colors duration-150" href="impact-dashboard.html">Impact</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-colors duration-150" href="company-profile.html">Profile</a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-space-xs">
+<button aria-label="Notifications" class="p-space-xs text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-all duration-150 active:scale-[0.99] flex items-center justify-center" type="button">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="Help &amp; Documentation" class="p-space-xs text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-all duration-150 active:scale-[0.99] flex items-center justify-center" type="button">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-6 w-[1px] bg-outline-variant mx-space-xs"></div>
+<button class="hidden sm:inline-flex items-center gap-space-xs px-space-md py-2 bg-secondary text-on-secondary rounded-lg font-label-lg text-label-lg hover:bg-[#8C5F1F] transition-colors active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+          Post Solution
+        </button>
+<div class="ml-space-xs w-9 h-9 rounded-full border border-outline-variant overflow-hidden bg-surface-container-high flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A portrait shot of an Indian corporate innovation officer in formal attire looking confident in an institutional high-tech boardroom setting. The room features balanced, natural daylight illumination with calm architectural neutrals of deep blues, slate grays, and warm terracotta accents that align with professional civic government aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7yaLi5wtdvFADX0EgGgSmO2KeNDXIu2jpf8sDxF4Fjh841Ha-5rWNVT0l5GrTcszWiiR2R1Uel3gGaFxez6GbDjnDh32jbk0NHr_EKBWzusQ_HNMjJivLWOGonoHALOyYj4fUViwBElvB1mI0Ri8QuTQhLpO216d1cgwFue7WlykCf8UvFn44sSHIEzqizeYlyrRh0IlZkJqMn1Lz4rnrUmQ2D73fm6lPfzf1npi1CdvzTYscFMIo"/>
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN WORKSPACE CONTAINER -->
+<main class="flex-grow max-w-container-max mx-auto w-full px-gutter-mobile md:px-gutter-desktop py-space-xl">
+<!-- Institutional Context Breadcrumb & Status Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-md text-body-sm font-body-sm">
+<div class="flex items-center gap-2 text-outline">
+<a class="hover:text-primary transition-colors" href="collaboration-workspace.html">Collaborations</a>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface font-semibold">Workspace #WS-2025-KANKE-04</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#166534]"></span>
+          Active Agreement • DPI Verified
+        </span>
+<span class="text-outline font-label-sm text-label-sm">ID: CCL-BITM-JSS-771</span>
+</div>
+</div>
+<!-- HEADER BLOCK: Project Title & Partners -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg md:p-space-xl mb-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md">
+<div class="space-y-space-xs max-w-3xl">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-2.5 py-0.5 rounded-full bg-[#FEF3C7] text-[#92400E] border border-[#FDE68A] font-label-sm text-label-sm">
+              Phase 2 Prototyping
+            </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant border border-outline-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="water_drop">water_drop</span>
+              PHED Department Redressal
+            </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+            IoT Acoustic Water Leak Telemetry System (Kanke Block)
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-base text-primary" data-icon="handshake">handshake</span>
+            Joint Industry-Academia Consortium: 
+            <strong class="text-on-surface font-semibold">Central Coalfields Limited (CCL) Innovation Lab</strong> &amp; 
+            <strong class="text-on-surface font-semibold">BIT Mesra</strong>
+</p>
+</div>
+<!-- Quick Action CTAs -->
+<div class="flex flex-wrap items-center gap-space-xs pt-space-xs lg:pt-0">
+<button class="h-12 px-space-md inline-flex items-center justify-center gap-2 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface hover:bg-surface-container-low transition-all duration-150 font-label-lg text-label-lg active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-base" data-icon="download">download</span>
+            Export Dossier
+          </button>
+<button class="h-12 px-space-md inline-flex items-center justify-center gap-2 rounded-lg bg-secondary text-on-secondary hover:bg-[#8C5F1F] transition-all duration-150 font-label-lg text-label-lg active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-base" data-icon="calendar_month">calendar_month</span>
+            Schedule Review Meeting
+          </button>
+</div>
+</div>
+<!-- HORIZONTAL TABS NAVIGATION BAR -->
+<nav aria-label="Workspace Tabs" class="mt-space-lg border-t border-outline-variant pt-space-xs flex overflow-x-auto gap-space-md no-scrollbar">
+<!-- Overview (Active) -->
+<button class="inline-flex items-center gap-2 py-3 px-1 border-b-2 border-secondary text-secondary font-label-lg text-label-lg whitespace-nowrap focus:outline-none" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="space_dashboard">space_dashboard</span>
+          Overview
+        </button>
+<!-- Communication (3 unread) -->
+<button class="inline-flex items-center gap-2 py-3 px-1 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg whitespace-nowrap transition-colors" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="chat">chat</span>
+          Communication
+          <span class="ml-1 inline-flex items-center justify-center px-1.5 py-0.2 bg-secondary text-on-secondary rounded-full font-label-sm text-label-sm font-bold">3 unread</span>
+</button>
+<!-- Funding & Grants -->
+<button class="inline-flex items-center gap-2 py-3 px-1 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg whitespace-nowrap transition-colors" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="payments">payments</span>
+          Funding &amp; Grants
+        </button>
+<!-- Documents & Blueprints -->
+<button class="inline-flex items-center gap-2 py-3 px-1 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg whitespace-nowrap transition-colors" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="folder_open">folder_open</span>
+          Documents &amp; Blueprints
+        </button>
+<!-- IP & Legal Agreements -->
+<button class="inline-flex items-center gap-2 py-3 px-1 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg whitespace-nowrap transition-colors" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="policy">policy</span>
+          IP &amp; Legal Agreements
+        </button>
+</nav>
+</section>
+<!-- TAB 1: OVERVIEW TAB CONTENT (Bento Structure) -->
+<div class="space-y-space-lg">
+<!-- Top Row: Progress Milestone + Funding Escrow Highlight -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- PROJECT SUMMARY & PROGRESS (Col 7) -->
+<div class="lg:col-span-7 bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<h2 class="font-headline-sm text-headline-sm text-primary">Active Sprint &amp; Milestone Track</h2>
+</div>
+<span class="font-label-md text-label-md text-outline">Q2 Target Deployment</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Deployment of 18 non-invasive acoustic sensors along the Kanke reservoir main feedline to isolate subterranean pressure loss and identify illicit tap pipelines in real-time.
+            </p>
+<!-- Milestone Progress Bar -->
+<div class="bg-surface-container-low rounded-lg p-space-md border border-outline-variant mb-space-md">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">
+                  Milestone 2: Prototyping
+                </span>
+<span class="font-label-lg text-label-lg text-secondary font-bold">65% Complete</span>
+</div>
+<div class="w-full bg-surface-container-high h-3 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-300" style="width: 65%;"></div>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-outline-variant/60 text-body-sm font-body-sm text-outline">
+<div>
+<span class="block text-on-surface font-semibold">Phase 1: Lab Test</span>
+<span>100% Completed</span>
+</div>
+<div>
+<span class="block text-secondary font-semibold">Phase 2: Kanke Field</span>
+<span>In Progress (12/18 nodes)</span>
+</div>
+<div>
+<span class="block text-on-surface-variant font-semibold">Phase 3: SCADA Sync</span>
+<span>Pending Validation</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Mini Node -->
+<div class="flex items-center gap-space-sm pt-2 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-lg" data-icon="event_available">event_available</span>
+<span>Next inspection scheduled: <strong>Nov 04, 2025</strong> at Kanke Water Filtration Complex with PHED Nodal Squad.</span>
+</div>
+</div>
+<!-- FUNDING OFFER & ESCROW STATUS (Col 5) -->
+<div class="lg:col-span-5 bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<h2 class="font-headline-sm text-headline-sm text-primary">Funding &amp; Escrow Vault</h2>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs" data-icon="lock">lock</span>
+                Jharkhand DPI Escrow
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Corporate Social Innovation Grant allocated by Central Coalfields Limited under Jharkhand State CSR Redressal Framework.
+            </p>
+<div class="border border-outline-variant rounded-lg p-space-md bg-surface-bright mb-space-md">
+<div class="text-outline font-label-sm text-label-sm mb-1">TOTAL COMMITTED GRANT</div>
+<div class="font-display-lg text-display-lg text-primary font-bold">₹1,50,000</div>
+<div class="mt-3 grid grid-cols-2 gap-space-sm pt-3 border-t border-outline-variant">
+<div>
+<div class="text-outline font-label-sm text-label-sm">TRANCHE 1 (RELEASED)</div>
+<div class="font-headline-sm text-headline-sm text-[#166534] font-bold">₹63,000</div>
+<span class="font-label-sm text-label-sm text-outline">Sensor fabrication</span>
+</div>
+<div>
+<div class="text-outline font-label-sm text-label-sm">TRANCHE 2 (PENDING)</div>
+<div class="font-headline-sm text-headline-sm text-[#92400E] font-bold">₹45,000</div>
+<span class="font-label-sm text-label-sm text-outline">Field pilot redline</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-body-sm font-body-sm text-outline">Tranche 3: ₹42,000 upon SCADA approval</span>
+<button class="text-secondary hover:underline font-label-md text-label-md inline-flex items-center gap-1" type="button">
+              Escrow Ledger
+              <span class="material-symbols-outlined text-sm" data-icon="arrow_outward">arrow_outward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Stakeholders / Key Collaborator Cards (3 Column Grid) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- CARD 1: CONNECTED UNIVERSITY TEAM -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg flex flex-col justify-between hover:border-outline transition-colors">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-semibold">Student Innovator Squad</span>
+<span class="material-symbols-outlined text-outline" data-icon="groups">groups</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-1">Team Jal-Drishti</h3>
+<p class="font-body-sm text-body-sm text-outline mb-space-md">Department of Electronics &amp; Telecommunications, BIT Mesra</p>
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low border border-outline-variant/60">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-xs">AS</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface block font-bold">Aryan Sharma</span>
+<span class="font-body-sm text-body-sm text-outline">Team Lead &amp; Embedded Architect</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[#166534] text-base" data-icon="check_circle">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-bright border border-outline-variant/40">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-primary flex items-center justify-center font-bold text-xs">PM</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface block">Priya Murmu</span>
+<span class="font-body-sm text-body-sm text-outline">Acoustic Signal Processing</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-bright border border-outline-variant/40">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-primary flex items-center justify-center font-bold text-xs">RM</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface block">Rohit Mahato</span>
+<span class="font-body-sm text-body-sm text-outline">Telemetry &amp; LoRaWAN Hardware</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant flex items-center justify-between">
+<span class="text-body-sm font-body-sm text-outline">3 Members Active</span>
+<button class="text-secondary hover:underline font-label-md text-label-md" type="button">Direct Ping</button>
+</div>
+</div>
+<!-- CARD 2: CONNECTED FACULTY MENTOR -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg flex flex-col justify-between hover:border-outline transition-colors">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-semibold">Institutional Mentor</span>
+<span class="material-symbols-outlined text-outline" data-icon="school">school</span>
+</div>
+<div class="flex items-center gap-space-sm mb-space-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant bg-surface-container-high flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close up portrait photograph of an Indian engineering professor with glasses in an academic computer science faculty office at Birla Institute of Technology Mesra. The workspace is filled with textbooks and scientific schematics under calm natural window illumination with a restrained institutional color scheme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnsrgdYGe3a0gutgjj4QI0e490J1uYr8h2u97oEcK-Da_DkiUmG-sQ0ltc7_BDD451Nle8fDLJJVq_crc29fpu3nsNI-DvS_DYRpXFyZuCW1kQM05tQfJVq_1LoX2O7MDfmscVV0fRnOlhZaMR22zGlaPJt0r69Xw6QWaRwriU0EUCvnCA6G5ksr8vP7_03dUKh7xoSS4OQu8FPYKNLcZ35Daa3SqiEPGUyF7FwoVkEouAdkFIJv8D"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Dr. S. K. Roy</h3>
+<span class="font-body-sm text-body-sm text-outline">Professor &amp; Dean of R&amp;D, BIT Mesra</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Specializes in Wireless Sensor Networks &amp; Subsurface Acoustic Reflection Analysis.
+            </p>
+<!-- Digital Signature Badge -->
+<div class="rounded-lg p-space-sm bg-[#DCFCE7] border border-[#BBF7D0] flex items-start gap-2">
+<span class="material-symbols-outlined text-[#166534] text-lg mt-0.5" data-icon="verified_user">verified_user</span>
+<div>
+<span class="font-label-md text-label-md text-[#166534] block font-bold">Institutional Digital Sign Verified</span>
+<span class="font-label-sm text-label-sm text-[#166534]/80">BitMesra-eID: #FAC-DEAN-4492-PKI</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant flex items-center justify-between">
+<span class="text-body-sm font-body-sm text-outline">Endorsement Level: Full</span>
+<button class="text-secondary hover:underline font-label-md text-label-md" type="button">View Validation</button>
+</div>
+</div>
+<!-- CARD 3: NODAL OFFICER CARD -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg flex flex-col justify-between hover:border-outline transition-colors">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-semibold">Government Nodal Authority</span>
+<span class="material-symbols-outlined text-outline" data-icon="shield">shield</span>
+</div>
+<div class="flex items-center gap-space-sm mb-space-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant bg-surface-container-high flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="An executive portrait of an experienced Indian civil public health engineer wearing official government attire in a Ranchi government engineering headquarters. The setting contains district water infrastructure wall charts and official state emblems under cool white functional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSv5jcf8Gnf2YIjqrbVvBFwj8LZpCDviRSkIC5JgJEaLPNJdCFDhlLABM_7jyENZvaK-ciIfB84LzwIsj2tk_sOWvxOscLT79J8-5pqJa2a0nybQCTlgT8fsWJLY9BQtHfAp1lVl9CTOAGddGtSlLJlHyUmPbTfcHRprY0lsEvHx5UfSoej5jtQTUpFJXcswzREREKwKzRsULJVnqxy4c5nBXYN9yIHX23MFh4wlUxkiJXrV7HnFxx"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Er. Rajesh Linda</h3>
+<span class="font-body-sm text-body-sm text-outline">Executive Engineer, PHED Ranchi</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Public Health Engineering Department, Kanke Sub-Division. Sanctioning officer for ground installation.
+            </p>
+<div class="rounded-lg p-space-sm bg-surface-container-low border border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span class="font-label-sm text-label-sm text-on-surface">Right-of-Way Permit</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-[#DCFCE7] text-[#166534] font-label-sm text-label-sm">Cleared</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant flex items-center justify-between">
+<span class="text-body-sm font-body-sm text-outline">Official Govt Contact</span>
+<button class="text-secondary hover:underline font-label-md text-label-md" type="button">Nodal Channel</button>
+</div>
+</div>
+</div>
+<!-- Bottom Split: Communication Module Preview & Legal / IP Tracker Checklist -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- SECTION 2: COMMUNICATION MODULE PREVIEW (Col 7) -->
+<div class="lg:col-span-7 bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="forum">forum</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">Consortium Communication Thread</h2>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                Live Channel
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Audit-logged tri-party communication between CCL Industry Sponsors, BIT Mesra Innovators, and PHED Authorities.
+            </p>
+<!-- Exchange Feed -->
+<div class="space-y-space-sm">
+<!-- Message 1: Industry Lead -->
+<div class="p-space-sm rounded-lg bg-surface-bright border border-outline-variant">
+<div class="flex items-center justify-between mb-1">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-primary font-bold">Vikramaditya Rao (CCL Innovation Lab)</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">Industry Sponsor</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Today, 09:30 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+                  "Team Jal-Drishti, we reviewed the spectrum frequency data for node #07. Has the calibration mitigated false positives caused by pump station vibrations?"
+                </p>
+</div>
+<!-- Message 2: Student Innovator -->
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant">
+<div class="flex items-center justify-between mb-1">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-secondary font-bold">Aryan Sharma (Team Jal-Drishti)</span>
+<span class="px-1.5 py-0.2 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">Student Lead</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Today, 10:14 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+                  "Yes, Sir. Priya updated the dynamic bandpass filter (150Hz–1.2kHz). Signal attenuation drops by 32dB during continuous pump cycling. We are uploading the revised firmware binary."
+                </p>
+</div>
+<!-- Message 3: PHED Nodal Officer -->
+<div class="p-space-sm rounded-lg bg-surface-bright border border-outline-variant">
+<div class="flex items-center justify-between mb-1">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-primary font-bold">Er. Rajesh Linda (PHED Ranchi)</span>
+<span class="px-1.5 py-0.2 rounded bg-primary/10 text-primary font-label-sm text-label-sm">Nodal Officer</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Today, 11:05 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+                  "Acknowledged. The valve isolation corridor along Sector 4 will remain depressurized between 02:00 PM and 04:00 PM tomorrow for sensor sleeve retrofitting."
+                </p>
+</div>
+</div>
+</div>
+<!-- Bottom Action Input Trigger -->
+<div class="pt-space-md mt-space-md border-t border-outline-variant flex items-center justify-between gap-space-sm">
+<div class="relative flex-grow">
+<input class="w-full h-11 px-3 text-body-sm rounded-lg border border-outline-variant bg-surface-container-lowest focus:border-primary-container focus:ring-1 focus:ring-primary-container" placeholder="Write an authenticated update or raise query..." type="text"/>
+</div>
+<button class="h-11 px-space-md bg-primary text-on-primary font-label-lg text-label-lg rounded-lg hover:bg-primary-container transition-colors flex items-center gap-1.5 active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-base" data-icon="send">send</span>
+              Post
+            </button>
+</div>
+</div>
+<!-- SECTION 4: DOCUMENTS, IP & LEGAL AGREEMENTS TRACKER (Col 5) -->
+<div class="lg:col-span-5 bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="gavel">gavel</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">IP &amp; Agreements Tracker</h2>
+</div>
+<span class="font-label-sm text-label-sm text-outline">DPI Framework v2.4</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Legal pacts established under the Government of Jharkhand Digital Public Infrastructure policy for academic innovations.
+            </p>
+<!-- Checklist Items -->
+<div class="space-y-space-sm">
+<!-- Item 1: MoU Signed -->
+<div class="p-space-sm rounded-lg border border-outline-variant bg-surface-bright flex items-start gap-space-sm">
+<div class="w-6 h-6 rounded-full bg-[#DCFCE7] text-[#166534] flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base" data-icon="check">check</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">MoU Signed</span>
+<span class="px-2 py-0.2 rounded-full bg-[#DCFCE7] text-[#166534] font-label-sm text-label-sm">Completed</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">
+                    Executed with Dept of IT &amp; e-Gov, CCL, and BIT Mesra. Document hash registered on state repository.
+                  </p>
+<a class="mt-1 inline-flex items-center gap-1 font-label-sm text-label-sm text-primary hover:underline" href="#">
+<span>View signed_mou_kanke_2025.pdf</span>
+<span class="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Item 2: IP Ownership -->
+<div class="p-space-sm rounded-lg border border-outline-variant bg-surface-bright flex items-start gap-space-sm">
+<div class="w-6 h-6 rounded-full bg-[#DCFCE7] text-[#166534] flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base" data-icon="check">check</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">IP Ownership Defined</span>
+<span class="px-2 py-0.2 rounded-full bg-[#DCFCE7] text-[#166534] font-label-sm text-label-sm">Completed</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">
+                    50-50 Academic-Enterprise Co-ownership under Jharkhand DPI Policy. Patent draft jointly prepared.
+                  </p>
+<span class="mt-1 inline-block font-label-sm text-label-sm text-on-surface-variant font-semibold">
+                    State Patent Docket: #JH-PAT-WTR-2025-098
+                  </span>
+</div>
+</div>
+<!-- Item 3: Commercial Licensing Rights -->
+<div class="p-space-sm rounded-lg border border-[#FDE68A] bg-[#FEF3C7]/40 flex items-start gap-space-sm">
+<div class="w-6 h-6 rounded-full bg-[#FEF3C7] text-[#92400E] flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base" data-icon="pending">pending</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Commercial Licensing Rights</span>
+<span class="px-2 py-0.2 rounded-full bg-[#FEF3C7] text-[#92400E] font-label-sm text-label-sm">Pending Field Test</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">
+                    First right of commercial transfer reserved for Central Coalfields for mine de-watering utilities upon 90-day leak-free proof.
+                  </p>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant flex items-center justify-between">
+<span class="text-body-sm font-body-sm text-outline">3 of 3 Primary Instruments Logged</span>
+<button class="text-secondary hover:underline font-label-md text-label-md inline-flex items-center gap-1" type="button">
+              Legal Repository
+              <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FOOTER (Shared Component) -->
+<footer class="w-full bg-primary text-on-primary px-gutter-mobile md:px-gutter-desktop py-space-xl border-t border-outline-variant mt-space-2xl">
+<div class="max-w-container-max mx-auto space-y-space-lg">
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-space-md border-b border-outline-variant/30 pb-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container-lowest text-primary flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm text-on-primary block font-bold">Jharkhand Samadhan Setu</span>
+<span class="font-body-sm text-body-sm text-primary-fixed-dim">Integrated Digital Public Infrastructure for Innovation Redressal</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-md font-label-md text-label-md">
+<a class="text-primary-fixed-dim hover:text-on-primary hover:underline transition-colors duration-150" href="#">Toll-Free Helpline 181</a>
+<span class="text-outline-variant">•</span>
+<a class="text-primary-fixed-dim hover:text-on-primary hover:underline transition-colors duration-150" href="#">National Informatics Centre (NIC)</a>
+<span class="text-outline-variant">•</span>
+<a class="text-primary-fixed-dim hover:text-on-primary hover:underline transition-colors duration-150" href="#">Citizen Charter</a>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm font-body-sm text-body-sm text-primary-fixed-dim">
+<p>© 2025 Jharkhand Samadhan Setu. Government of Jharkhand Digital Public Infrastructure. All rights reserved.</p>
+<div class="flex items-center gap-space-md">
+<a class="text-primary-fixed-dim hover:text-on-primary hover:underline transition-colors duration-150" href="#">Terms of Service</a>
+<a class="text-primary-fixed-dim hover:text-on-primary hover:underline transition-colors duration-150" href="#">Privacy Policy</a>
+<a class="text-primary-fixed-dim hover:text-on-primary hover:underline transition-colors duration-150" href="#">Nodal Officer Contact</a>
+</div>
+</div>
+</div>
+</footer>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+  requireRole('startup', 'login.html');
+</script>
+</body></html>

@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Problem Management &amp; Verification Console | झारखंड समाधान सेतु</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Font: Noto Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container": "#F1ECE0",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "secondary": "#A6742A",
+            "inverse-surface": "#17213A",
+            "on-tertiary": "#FFFFFF",
+            "error": "#B3261E",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "background": "#FBF9F4",
+            "tertiary-fixed-dim": "#6FA98A",
+            "on-primary": "#FBF9F4",
+            "on-error-container": "#5F1712",
+            "on-surface": "#17213A",
+            "secondary-container": "#F1E4C7",
+            "surface-container-lowest": "#FFFFFF",
+            "on-surface-variant": "#5B5847",
+            "primary-fixed-dim": "#C7B37E",
+            "surface-container-high": "#EAE4D4",
+            "on-background": "#17213A",
+            "surface-variant": "#F1ECE0",
+            "outline": "#C7C0AC",
+            "tertiary": "#2F6F4E",
+            "secondary-fixed": "#F1E4C7",
+            "on-secondary": "#FFFFFF",
+            "on-tertiary-container": "#1F4A34",
+            "outline-variant": "#E4DFD0",
+            "surface-container-low": "#F6F3EA",
+            "primary-container": "#232F4E",
+            "on-secondary-fixed": "#4A3B1F",
+            "inverse-on-surface": "#FBF9F4",
+            "tertiary-fixed": "#8FC7A8",
+            "secondary-fixed-dim": "#D9B876",
+            "on-primary-fixed": "#17213A",
+            "on-secondary-container": "#6B4A17",
+            "inverse-primary": "#D9CBA3",
+            "surface-tint": "#A6742A",
+            "surface-container-highest": "#E2DBC7",
+            "primary-fixed": "#D9CBA3",
+            "tertiary-container": "#E3EEE6",
+            "on-error": "#FFFFFF",
+            "surface": "#FBF9F4",
+            "error-container": "#F9DEDC",
+            "primary": "#17213A",
+            "surface-dim": "#E8E3D3",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "surface-bright": "#FBF9F4",
+            "on-primary-container": "#FBF9F4",
+            "on-tertiary-fixed": "#12281E"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "3rem",
+            "gutter-desktop": "2rem",
+            "space-md": "1rem",
+            "space-3xl": "4rem",
+            "gutter-mobile": "1rem",
+            "space-sm": "0.75rem",
+            "space-lg": "1.5rem",
+            "gutter-tablet": "1.5rem",
+            "container-max": "72rem",
+            "space-xxs": "0.25rem",
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "min-touch-target": "3rem"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600"}],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600"}],
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600"}],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600"}],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400"}],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background-color: #FBF9F4;
+      color: #17213A;
+      -webkit-font-smoothing: antialiased;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 1.25rem;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #F6F3EA;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #E4DFD0;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-background text-on-surface">
+<!-- Top Navigation Bar from Shared Components JSON -->
+<header class="w-full bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
+<!-- Brand & Emblem Anchor -->
+<div class="flex items-center gap-space-sm py-space-xs">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-headline-sm font-bold">
+<span class="text-xs font-bold tracking-tight">JH</span>
+</div>
+<div>
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight block">
+            झारखंड समाधान सेतु | Government Administration
+          </span>
+<span class="text-label-sm font-label-sm text-on-surface-variant block -mt-1">
+            Department of Administrative Reforms &amp; Public Grievances
+          </span>
+</div>
+</div>
+<!-- Action & Profile Cluster -->
+<div class="flex items-center gap-space-md">
+<div class="hidden lg:flex flex-col text-right">
+<span class="text-label-md font-label-md text-primary font-semibold">Department of Administrative Reforms</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Nodal Officer (IAS)</span>
+</div>
+<div class="h-6 w-px bg-outline-variant hidden lg:block"></div>
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<button class="w-10 h-10 flex items-center justify-center rounded hover:bg-surface-container-low transition-colors duration-150 relative" title="Notifications">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded hover:bg-surface-container-low transition-colors duration-150" title="Help Center">
+<span class="material-symbols-outlined">help_center</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded hover:bg-surface-container-low transition-colors duration-150 text-primary" title="Officer Account">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Horizontal Navigation Link Sub-tier (Active: Problems) -->
+<nav class="w-full bg-surface-container-lowest border-t border-outline-variant/50 overflow-x-auto custom-scrollbar">
+<div class="flex items-center space-x-space-md px-gutter-desktop max-w-container-max mx-auto text-label-md font-label-md">
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150 whitespace-nowrap" href="overview-dashboard.html">Overview</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150 whitespace-nowrap" href="overview-dashboard.html">Problem Map</a>
+<a class="py-2.5 border-b-2 border-secondary text-secondary font-semibold whitespace-nowrap" href="problem-management.html">Problems</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150 whitespace-nowrap" href="ai-analysis.html">AI Analysis</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150 whitespace-nowrap" href="priority-queue.html">Priority Queue</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150 whitespace-nowrap" href="university-management.html">Universities</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150 whitespace-nowrap" href="industry-csr-management.html">Industry-CSR</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150 whitespace-nowrap" href="overview-dashboard.html">Projects</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150 whitespace-nowrap" href="overview-dashboard.html">Alerts</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150 whitespace-nowrap" href="overview-dashboard.html">Impact</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150 whitespace-nowrap" href="overview-dashboard.html">Audit</a>
+</div>
+</nav>
+</header>
+<!-- Main Workstation Viewport -->
+<main class="flex-1 max-w-container-max w-full mx-auto px-gutter-desktop py-space-md flex flex-col gap-space-md">
+<!-- Section Header & Dual CTAs -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pt-space-xs">
+<div>
+<div class="flex items-center gap-space-xs mb-1">
+<span class="text-label-sm font-label-sm bg-surface-container-high text-primary px-2 py-0.5 rounded border border-outline-variant font-medium">State Level Triage Console</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span> Live Sync: State DPI Server
+          </span>
+</div>
+<h1 class="text-headline-md font-headline-md text-primary font-bold tracking-tight">
+          Problem Management &amp; Verification Console / समस्या प्रबंधन एवं सत्यापन
+        </h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+          Triage, verify, escalate, and match citizen grievances with university R&amp;D consortia and line departments.
+        </p>
+</div>
+<!-- Action Buttons Top Right -->
+<div class="flex items-center gap-space-xs shrink-0">
+<button class="h-10 px-4 bg-surface-container-lowest border border-outline-variant rounded text-on-surface text-label-md font-label-md hover:bg-surface-container-low transition-colors duration-150 flex items-center gap-2 focus:ring-2 focus:ring-primary-container focus:outline-none">
+<span class="material-symbols-outlined text-base">download</span>
+<span>Download Master CSV / Excel</span>
+</button>
+<button class="h-10 px-4 bg-secondary hover:bg-[#8C5F1F] text-on-secondary rounded text-label-md font-label-md transition-colors duration-150 flex items-center gap-2 focus:ring-2 focus:ring-secondary focus:outline-none">
+<span class="material-symbols-outlined text-base">add_circle</span>
+<span>+ Add Administrative Problem Statement</span>
+</button>
+</div>
+</div>
+<!-- Multi-Parameter Filter & Search Toolbar -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-sm items-end">
+<!-- Search Input -->
+<div class="lg:col-span-4 flex flex-col gap-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-semibold flex items-center gap-1">
+<span>Universal Search</span>
+<span class="text-xs text-outline font-normal">(शीघ्र खोज)</span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline pointer-events-none">search</span>
+<input class="w-full h-10 pl-10 pr-4 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container" placeholder="Search by Title, Grievance ID, Citizen Name, or Keyword..." type="text"/>
+</div>
+</div>
+<!-- Department / Category Dropdown -->
+<div class="lg:col-span-2 flex flex-col gap-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-semibold">Department / Category</label>
+<select class="w-full h-10 px-3 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container">
+<option selected="">All Categories</option>
+<option>Water Resources (PHED)</option>
+<option>Energy &amp; Microgrids</option>
+<option>Agriculture &amp; Irrigation</option>
+<option>Health &amp; Cold Chain</option>
+<option>Roads &amp; Infrastructure</option>
+<option>Forestry &amp; Ecology</option>
+</select>
+</div>
+<!-- District Dropdown -->
+<div class="lg:col-span-2 flex flex-col gap-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-semibold">District / जिला</label>
+<select class="w-full h-10 px-3 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container">
+<option selected="">All 24 Districts</option>
+<option>Ranchi</option>
+<option>Dhanbad</option>
+<option>Palamu</option>
+<option>Khunti (Torpa)</option>
+<option>West Singhbhum (Chaibasa)</option>
+<option>Bokaro</option>
+<option>Latehar (Netarhat)</option>
+</select>
+</div>
+<!-- Status Dropdown -->
+<div class="lg:col-span-2 flex flex-col gap-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-semibold">Verification Status</label>
+<select class="w-full h-10 px-3 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container">
+<option selected="">All Statuses</option>
+<option>Pending Verification</option>
+<option>Verified &amp; Dispatched</option>
+<option>Under R&amp;D Pilot</option>
+<option>Escalated to DC</option>
+<option>Rejected</option>
+<option>Resolved</option>
+</select>
+</div>
+<!-- Date Range Filter -->
+<div class="lg:col-span-2 flex flex-col gap-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-semibold">Date Range</label>
+<select class="w-full h-10 px-3 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container">
+<option selected="">Last 7 Days</option>
+<option>Current Month Q3</option>
+<option>Last 30 Days</option>
+<option>Financial Year 2024-25</option>
+<option>Custom Date Window</option>
+</select>
+</div>
+</div>
+<!-- Second Filter Row: Priority Range & Reset -->
+<div class="flex flex-wrap items-center justify-between border-t border-outline-variant/60 mt-space-sm pt-space-xs text-body-sm font-body-sm gap-2">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="text-label-sm font-label-sm text-on-surface-variant font-semibold">Priority Triage Threshold:</span>
+<div class="inline-flex rounded border border-outline-variant bg-surface-container-low p-0.5">
+<button class="px-2.5 py-1 text-label-sm font-label-sm rounded bg-surface-container-lowest text-primary font-bold">All Scores</button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm text-on-surface-variant hover:text-primary">High Priority (&gt;80)</button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm text-on-surface-variant hover:text-primary">Medium (50-80)</button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm text-on-surface-variant hover:text-primary">Low (&lt;50)</button>
+</div>
+<span class="text-xs text-outline">|</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Active Filter: <strong class="text-primary font-semibold">Pending Triage (184 records)</strong></span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="text-label-sm font-label-sm text-primary hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">filter_alt_off</span> Reset Filters
+          </button>
+</div>
+</div>
+</section>
+<!-- Bulk Action Alert Bar (State: 3 rows selected) -->
+<div class="bg-primary-container text-on-primary rounded-lg px-space-md py-space-xs flex flex-wrap items-center justify-between gap-space-sm border border-primary">
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center justify-center w-6 h-6 rounded bg-secondary text-on-secondary text-xs font-bold">
+          3
+        </div>
+<span class="text-label-md font-label-md font-semibold text-white">
+          3 problems selected across Ranchi &amp; Palamu divisions
+        </span>
+<span class="text-xs text-on-primary-container hidden sm:inline">
+          (Quick actions will apply to all 3 grievances concurrently)
+        </span>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-space-xs flex-wrap">
+<button class="h-8 px-3 bg-emerald-700 hover:bg-emerald-800 text-white rounded text-label-sm font-label-sm flex items-center gap-1.5 transition-colors duration-150">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span>✓ Bulk Verify</span>
+</button>
+<button class="h-8 px-3 bg-secondary hover:bg-[#8C5F1F] text-white rounded text-label-sm font-label-sm flex items-center gap-1.5 transition-colors duration-150">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span>⚠ Escalate to District Magistrate</span>
+</button>
+<button class="h-8 px-3 bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 text-white border border-white/30 rounded text-label-sm font-label-sm flex items-center gap-1.5 transition-colors duration-150">
+<span class="material-symbols-outlined text-sm">call_merge</span>
+<span>⇄ Mark as Duplicate / Merge</span>
+</button>
+<button class="h-8 px-3 bg-red-900/80 hover:bg-red-900 text-white rounded text-label-sm font-label-sm flex items-center gap-1.5 transition-colors duration-150">
+<span class="material-symbols-outlined text-sm">cancel</span>
+<span>✕ Reject with Notice</span>
+</button>
+<button class="h-8 px-2.5 bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 text-white rounded text-label-sm font-label-sm flex items-center gap-1 transition-colors duration-150" title="Export Selected">
+<span class="material-symbols-outlined text-sm">file_download</span>
+<span>Export</span>
+</button>
+</div>
+</div>
+<!-- Master Enterprise Data Table Container -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse min-w-[1100px]">
+<!-- Table Header -->
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">
+<th class="py-3 px-4 w-10 text-center" scope="col">
+<input checked="" class="rounded border-outline text-primary-container focus:ring-primary-container w-4 h-4" title="Select All On Page" type="checkbox"/>
+</th>
+<th class="py-3 px-4 w-32 font-bold text-primary" scope="col">Grievance ID &amp; Date</th>
+<th class="py-3 px-4 min-w-[280px] font-bold text-primary" scope="col">Title &amp; Ground Excerpt</th>
+<th class="py-3 px-4 w-44 font-bold text-primary" scope="col">Category &amp; District</th>
+<th class="py-3 px-4 w-36 text-center font-bold text-primary" scope="col">AI Priority Score</th>
+<th class="py-3 px-4 w-36 font-bold text-primary" scope="col">Reports / Scale</th>
+<th class="py-3 px-4 w-40 font-bold text-primary" scope="col">Status</th>
+<th class="py-3 px-4 w-44 font-bold text-primary" scope="col">Matched Consortium</th>
+<th class="py-3 px-4 w-36 text-right font-bold text-primary" scope="col">Row Actions</th>
+</tr>
+</thead>
+<!-- Table Body (6 Authentic Jharkhand Case Rows) -->
+<tbody class="divide-y divide-outline-variant/60 text-body-sm font-body-sm" id="problems-tbody">
+<!-- Row 1: Kanke Block (Selected) -->
+<tr class="bg-surface-container-low/40 hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="rounded border-outline text-primary-container focus:ring-primary-container w-4 h-4" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-bold text-primary font-label-md">JH-WTR-0419</div>
+<div class="text-xs text-outline">24 Oct 2024 • 09:14 AM</div>
+<span class="inline-block mt-0.5 text-[10px] bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-semibold border border-amber-300">Block Feeder</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-bold text-on-surface hover:text-primary cursor-pointer flex items-center gap-1.5">
+<span>Sub-surface Pipeline Leakage in Kanke Block</span>
+<span class="material-symbols-outlined text-xs text-primary-container">open_in_new</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-1 mt-0.5">
+                  Loss of 42,000 L/day across feeder line 4B near Arsande junction; low pressure affecting 4 wards.
+                </p>
+<div class="flex items-center gap-2 mt-1 text-[11px] text-outline">
+<span>Reported by: Gram Panchayat Secretary</span>
+<span>• GPS: 23.4312° N, 85.3219° E</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-semibold text-on-surface">Drinking Water (PHED)</div>
+<div class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">location_on</span> Ranchi (Kanke)
+                </div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-red-100 border border-red-300 text-red-900 font-bold text-xs">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+<span>94/100 Urgent</span>
+</div>
+<div class="text-[10px] text-outline mt-0.5">Critical Supply Impact</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface">14 Citizen Reports</div>
+<div class="text-xs text-outline">Ward Level Cluster</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-900 border border-amber-300">
+                  Pending Verification
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-primary text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-outline">school</span> BIT Mesra + PHED
+                </div>
+<span class="text-[10px] text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200">Sensor Pilot Ready</span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded hover:bg-emerald-100 text-emerald-800 flex items-center justify-center transition-colors" title="Verify Problem">
+<span class="material-symbols-outlined text-base">check</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-red-100 text-red-700 flex items-center justify-center transition-colors" title="Reject">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Request Clarification">
+<span class="material-symbols-outlined text-base">help_outline</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Merge Duplicates">
+<span class="material-symbols-outlined text-base">call_split</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-primary flex items-center justify-center transition-colors" title="View Full Dossier">
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Netarhat Solar Microgrid (Selected) -->
+<tr class="bg-surface-container-low/40 hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="rounded border-outline text-primary-container focus:ring-primary-container w-4 h-4" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-bold text-primary font-label-md">JH-ENG-1102</div>
+<div class="text-xs text-outline">23 Oct 2024 • 04:30 PM</div>
+<span class="inline-block mt-0.5 text-[10px] bg-blue-100 text-blue-900 px-1.5 py-0.2 rounded font-semibold border border-blue-200">Tribal Hamlets</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-bold text-on-surface hover:text-primary cursor-pointer flex items-center gap-1.5">
+<span>Netarhat Solar Microgrid Inverter Battery Failure</span>
+<span class="material-symbols-outlined text-xs text-primary-container">open_in_new</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-1 mt-0.5">
+                  Total power outage across 3 Part-Time Primitive Tribal (PVTG) villages for 6 consecutive days.
+                </p>
+<div class="flex items-center gap-2 mt-1 text-[11px] text-outline">
+<span>Reported by: BDO Netarhat</span>
+<span>• 35 kW Isolated Microgrid</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-semibold text-on-surface">Energy &amp; JREDA</div>
+<div class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">location_on</span> Latehar (Netarhat)
+                </div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-bold text-xs">
+<span>88/100 High</span>
+</div>
+<div class="text-[10px] text-outline mt-0.5">Essential Lifeline</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface">28 Citizen Reports</div>
+<div class="text-xs text-outline">Panchayat Scale</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-900 border border-red-300">
+                  Escalated to DC
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-primary text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-outline">school</span> NIT Jamshedpur (EE)
+                </div>
+<span class="text-[10px] text-outline">Assessment In Progress</span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded hover:bg-emerald-100 text-emerald-800 flex items-center justify-center transition-colors" title="Verify Problem">
+<span class="material-symbols-outlined text-base">check</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-red-100 text-red-700 flex items-center justify-center transition-colors" title="Reject">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Request Clarification">
+<span class="material-symbols-outlined text-base">help_outline</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Merge Duplicates">
+<span class="material-symbols-outlined text-base">call_split</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-primary flex items-center justify-center transition-colors" title="View Full Dossier">
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Palamu Check-dam (Selected) -->
+<tr class="bg-surface-container-low/40 hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="rounded border-outline text-primary-container focus:ring-primary-container w-4 h-4" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-bold text-primary font-label-md">JH-AGR-8831</div>
+<div class="text-xs text-outline">22 Oct 2024 • 11:45 AM</div>
+<span class="inline-block mt-0.5 text-[10px] bg-purple-100 text-purple-900 px-1.5 py-0.2 rounded font-semibold border border-purple-200">Rabi Sowing</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-bold text-on-surface hover:text-primary cursor-pointer flex items-center gap-1.5">
+<span>Severe Siltation &amp; Sluice Gate Choke in Palamu Check-Dam</span>
+<span class="material-symbols-outlined text-xs text-primary-container">open_in_new</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-1 mt-0.5">
+                  Sediment blockage has reduced water retention by 70%; downstream Rabi irrigation compromised for 320 hectares.
+                </p>
+<div class="flex items-center gap-2 mt-1 text-[11px] text-outline">
+<span>Verified via Drone Survey: JSLPS</span>
+<span>• 320 Ha Impact</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-semibold text-on-surface">Agriculture &amp; Irrigation</div>
+<div class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">location_on</span> Palamu (Daltonganj)
+                </div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-bold text-xs">
+<span>84/100 High</span>
+</div>
+<div class="text-[10px] text-outline mt-0.5">Seasonal Risk Window</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface">19 Farmer Collectives</div>
+<div class="text-xs text-outline">Multi-Panchayat</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-900 border border-blue-300">
+                  Under R&amp;D Pilot
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-primary text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-outline">school</span> BAU Ranchi (Agronomy)
+                </div>
+<span class="text-[10px] text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200">Desilt Action Approved</span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded hover:bg-emerald-100 text-emerald-800 flex items-center justify-center transition-colors" title="Verify Problem">
+<span class="material-symbols-outlined text-base">check</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-red-100 text-red-700 flex items-center justify-center transition-colors" title="Reject">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Request Clarification">
+<span class="material-symbols-outlined text-base">help_outline</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Merge Duplicates">
+<span class="material-symbols-outlined text-base">call_split</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-primary flex items-center justify-center transition-colors" title="View Full Dossier">
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Torpa Cold Chain -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-3.5 px-4 text-center">
+<input class="rounded border-outline text-primary-container focus:ring-primary-container w-4 h-4" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-bold text-primary font-label-md">JH-HLT-0761</div>
+<div class="text-xs text-outline">21 Oct 2024 • 02:10 PM</div>
+<span class="inline-block mt-0.5 text-[10px] bg-slate-100 text-slate-800 px-1.5 py-0.2 rounded font-semibold border border-slate-300">Vaccine Depo</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-bold text-on-surface hover:text-primary cursor-pointer flex items-center gap-1.5">
+<span>Torpa Sub-divisional Hospital Vaccine Cold Chain Temperature Spikes</span>
+<span class="material-symbols-outlined text-xs text-primary-container">open_in_new</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-1 mt-0.5">
+                  ILR backup diesel generator governor breakdown causing thermal excursions (+8°C threshold crossed).
+                </p>
+<div class="flex items-center gap-2 mt-1 text-[11px] text-outline">
+<span>IoT Telemetry Triggered</span>
+<span>• 1,200 Pediatric Doses</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-semibold text-on-surface">Health &amp; Family Welfare</div>
+<div class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">location_on</span> Khunti (Torpa)
+                </div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-red-100 border border-red-300 text-red-900 font-bold text-xs">
+<span>91/100 Urgent</span>
+</div>
+<div class="text-[10px] text-outline mt-0.5">Biological Asset Risk</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface">8 Facility Alerts</div>
+<div class="text-xs text-outline">Sub-district Hub</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-900 border border-emerald-300">
+                  Verified &amp; Dispatched
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-primary text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-outline">school</span> RIMS Ranchi + NHM
+                </div>
+<span class="text-[10px] text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200">Mobile Cold Van Dispatched</span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded hover:bg-emerald-100 text-emerald-800 flex items-center justify-center transition-colors" title="Verify Problem">
+<span class="material-symbols-outlined text-base">check</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-red-100 text-red-700 flex items-center justify-center transition-colors" title="Reject">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Request Clarification">
+<span class="material-symbols-outlined text-base">help_outline</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Merge Duplicates">
+<span class="material-symbols-outlined text-base">call_split</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-primary flex items-center justify-center transition-colors" title="View Full Dossier">
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Bokaro Industrial Runoff -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-3.5 px-4 text-center">
+<input class="rounded border-outline text-primary-container focus:ring-primary-container w-4 h-4" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-bold text-primary font-label-md">JH-ENV-3390</div>
+<div class="text-xs text-outline">20 Oct 2024 • 06:20 PM</div>
+<span class="inline-block mt-0.5 text-[10px] bg-slate-100 text-slate-800 px-1.5 py-0.2 rounded font-semibold border border-slate-300">Pollution Alert</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-bold text-on-surface hover:text-primary cursor-pointer flex items-center gap-1.5">
+<span>Effluent Runoff into Damodar Tributary near Chas Industrial Zone</span>
+<span class="material-symbols-outlined text-xs text-primary-container">open_in_new</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-1 mt-0.5">
+                  High chemical oxygen demand (COD) &amp; heavy metal leachate detected in water samples by local Fishermen Cooperative.
+                </p>
+<div class="flex items-center gap-2 mt-1 text-[11px] text-outline">
+<span>JSPCB Sample Ref #882</span>
+<span>• River Segment 12</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-semibold text-on-surface">Forest &amp; Environment</div>
+<div class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">location_on</span> Bokaro (Chas)
+                </div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high border border-outline-variant text-primary font-bold text-xs">
+<span>72/100 Moderate</span>
+</div>
+<div class="text-[10px] text-outline mt-0.5">Ecological Hazard</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface">36 Citizen Reports</div>
+<div class="text-xs text-outline">Riparian Zone</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-900 border border-amber-300">
+                  Pending Verification
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-primary text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-outline">school</span> IIT ISM Dhanbad (Env Engg)
+                </div>
+<span class="text-[10px] text-outline">CSR Remediation Proposal</span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded hover:bg-emerald-100 text-emerald-800 flex items-center justify-center transition-colors" title="Verify Problem">
+<span class="material-symbols-outlined text-base">check</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-red-100 text-red-700 flex items-center justify-center transition-colors" title="Reject">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Request Clarification">
+<span class="material-symbols-outlined text-base">help_outline</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Merge Duplicates">
+<span class="material-symbols-outlined text-base">call_split</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-primary flex items-center justify-center transition-colors" title="View Full Dossier">
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 6: Chaibasa Culvert Washout -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-3.5 px-4 text-center">
+<input class="rounded border-outline text-primary-container focus:ring-primary-container w-4 h-4" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-bold text-primary font-label-md">JH-RDS-9204</div>
+<div class="text-xs text-outline">19 Oct 2024 • 08:05 AM</div>
+<span class="inline-block mt-0.5 text-[10px] bg-slate-100 text-slate-800 px-1.5 py-0.2 rounded font-semibold border border-slate-300">PMGSY Rural Road</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-bold text-on-surface hover:text-primary cursor-pointer flex items-center gap-1.5">
+<span>Box Culvert Flash Washout on Chaibasa-Jhinkpani Rural Arterial</span>
+<span class="material-symbols-outlined text-xs text-primary-container">open_in_new</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-1 mt-0.5">
+                  Post-monsoon foundation scour severed direct road connectivity for 9 tribal revenue villages to weekly haat.
+                </p>
+<div class="flex items-center gap-2 mt-1 text-[11px] text-outline">
+<span>PWD Field Executive Engg</span>
+<span>• Critical Ambulance Route</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-semibold text-on-surface">Rural Works (RWD)</div>
+<div class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">location_on</span> W. Singhbhum (Chaibasa)
+                </div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-red-100 border border-red-300 text-red-900 font-bold text-xs">
+<span>96/100 Urgent</span>
+</div>
+<div class="text-[10px] text-outline mt-0.5">Zero Road Access</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface">43 Citizen Reports</div>
+<div class="text-xs text-outline">Block Arterial Corridor</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-900 border border-emerald-300">
+                  Resolved
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-primary text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-outline">domain</span> RWD + Bailey Bridge Unit
+                </div>
+<span class="text-[10px] text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200">Temporary Crossing Live</span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded hover:bg-emerald-100 text-emerald-800 flex items-center justify-center transition-colors" title="Verify Problem">
+<span class="material-symbols-outlined text-base">check</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-red-100 text-red-700 flex items-center justify-center transition-colors" title="Reject">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Request Clarification">
+<span class="material-symbols-outlined text-base">help_outline</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Merge Duplicates">
+<span class="material-symbols-outlined text-base">call_split</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-primary flex items-center justify-center transition-colors" title="View Full Dossier">
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination & Ledger Summary Footer -->
+<div class="border-t border-outline-variant px-space-md py-3 bg-surface-container-low/30 flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<!-- Summary Text -->
+<div class="text-body-sm font-body-sm text-on-surface-variant">
+          Showing <span class="font-bold text-primary">1 - 6</span> of <span class="font-bold text-primary">184</span> Pending Verifications <span class="text-outline">(Total Registry 14,820 Problems)</span>
+</div>
+<!-- Controls: Page Selector & Rows Count -->
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span>Items per page:</span>
+<select class="h-8 px-2 bg-surface-container-lowest border border-outline-variant rounded text-body-sm focus:outline-none focus:ring-1 focus:ring-primary-container">
+<option selected="">25</option>
+<option>50</option>
+<option>100</option>
+</select>
+</div>
+<!-- Pagination Button Row -->
+<div class="inline-flex rounded border border-outline-variant bg-surface-container-lowest">
+<button class="px-2.5 py-1 text-label-sm font-label-sm border-r border-outline-variant text-outline hover:bg-surface-container-low transition-colors duration-150 flex items-center gap-1 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span> Previous
+            </button>
+<button class="px-3 py-1 text-label-sm font-label-sm bg-primary text-on-primary font-bold">1</button>
+<button class="px-3 py-1 text-label-sm font-label-sm text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150 border-r border-outline-variant">2</button>
+<button class="px-3 py-1 text-label-sm font-label-sm text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150 border-r border-outline-variant">3</button>
+<span class="px-2.5 py-1 text-label-sm font-label-sm text-outline border-r border-outline-variant">...</span>
+<button class="px-3 py-1 text-label-sm font-label-sm text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150 border-r border-outline-variant">31</button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150 flex items-center gap-1">
+              Next <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Collapsible Quick Peek Drawer for Active Selection -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md border-l-4 border-l-primary flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded bg-primary-container text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">dataset</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-label-sm font-label-sm font-bold bg-primary text-on-primary px-2 py-0.5 rounded">Selected Context Docket</span>
+<span class="text-label-md font-label-md font-bold text-primary">JH-WTR-0419 • Sub-surface Pipeline Leakage in Kanke Block</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+            Suggested Action: Match with <strong>BIT Mesra Department of Civil Engineering (Acoustic Sensor Group)</strong> for non-invasive ground leak triage under State R&amp;D Scheme 2024.
+          </p>
+</div>
+</div>
+<!-- Quick Action Buttons -->
+<div class="flex items-center gap-space-xs shrink-0 w-full md:w-auto justify-end">
+<button class="h-9 px-3 border border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low text-on-surface rounded text-label-sm font-label-sm transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">assignment</span>
+<span>Assign Inspector</span>
+</button>
+<button class="h-9 px-3 border border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low text-on-surface rounded text-label-sm font-label-sm transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">hub</span>
+<span>Match University Consortium</span>
+</button>
+<button class="h-9 px-4 bg-primary text-on-primary hover:bg-[#17213A] rounded text-label-sm font-label-sm transition-colors font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span>Issue Field Sanction</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Institutional Footer from Shared Components JSON -->
+<footer class="w-full bg-primary border-t border-primary-container text-on-primary mt-space-2xl">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-gutter-desktop py-space-md max-w-container-max mx-auto gap-space-sm text-center md:text-left">
+<!-- Brand & Copyright -->
+<div>
+<span class="text-label-lg font-label-lg font-bold text-on-primary block">
+          झारखंड समाधान सेतु | Government of Jharkhand
+        </span>
+<p class="text-body-sm font-body-sm text-surface-container-high mt-1">
+          © 2024 Government of Jharkhand. Designed, Developed and Hosted by National Informatics Centre (NIC). All Rights Reserved.
+        </p>
+</div>
+<!-- Mandatory Institutional Links -->
+<div class="flex flex-wrap items-center justify-center gap-x-space-md gap-y-1 text-label-sm font-label-sm text-surface-container-high">
+<a class="hover:text-secondary-fixed transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-fixed" href="#">Citizen Charter</a>
+<a class="hover:text-secondary-fixed transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-fixed" href="#">RTI Disclosures</a>
+<a class="hover:text-secondary-fixed transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-fixed" href="#">Security STQC Certified</a>
+<a class="hover:text-secondary-fixed transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-fixed font-semibold text-secondary-fixed" href="#">Toll-Free Helpline: 181</a>
+<a class="hover:text-secondary-fixed transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-fixed" href="#">Privacy Policy</a>
+<a class="hover:text-secondary-fixed transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-fixed" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+  requireRole('government', 'login.html');
+
+  // ---- Render real citizen-submitted problems into the triage table ----
+  function statusBadgeClasses(status) {
+    switch (status) {
+      case 'Verified': return 'bg-emerald-100 text-emerald-900 border-emerald-300';
+      case 'Escalated': return 'bg-red-100 text-red-900 border-red-300';
+      case 'Rejected': return 'bg-surface-container-high text-on-surface-variant border-outline-variant';
+      default: return 'bg-amber-100 text-amber-900 border-amber-300'; // Pending Verification
+    }
+  }
+
+  function priorityBadgeClasses(score) {
+    if (score >= 80) return { box: 'bg-red-100 border-red-300 text-red-900', dot: 'bg-red-600', label: 'Urgent' };
+    if (score >= 50) return { box: 'bg-amber-100 border-amber-300 text-amber-900', dot: 'bg-amber-600', label: 'High' };
+    return { box: 'bg-surface-container-high border-outline-variant text-on-surface-variant', dot: 'bg-outline', label: 'Normal' };
+  }
+
+  function renderProblemRow(p) {
+    const pr = priorityBadgeClasses(p.priorityScore);
+    return `
+      <tr class="bg-surface-container-low/40 hover:bg-surface-container-low transition-colors duration-150" data-problem-id="${p.id}">
+        <td class="py-3.5 px-4 text-center">
+          <input class="rounded border-outline text-primary-container focus:ring-primary-container w-4 h-4" type="checkbox"/>
+        </td>
+        <td class="py-3.5 px-4 whitespace-nowrap">
+          <div class="font-bold text-primary font-label-md">${p.id}</div>
+          <div class="text-xs text-outline">${p.createdAt}</div>
+          <span class="inline-block mt-0.5 text-[10px] bg-primary-container text-on-primary px-1.5 py-0.2 rounded font-semibold">Citizen Submitted</span>
+        </td>
+        <td class="py-3.5 px-4">
+          <div class="font-bold text-on-surface flex items-center gap-1.5">
+            <span>${p.title || '(untitled)'}</span>
+          </div>
+          <p class="text-xs text-on-surface-variant line-clamp-1 mt-0.5">${p.description || ''}</p>
+        </td>
+        <td class="py-3.5 px-4">
+          <div class="font-semibold text-on-surface">${p.category || 'Uncategorized'}</div>
+          <div class="text-xs text-on-surface-variant flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs">location_on</span> ${p.district || '-'} ${p.block ? '(' + p.block + ')' : ''}
+          </div>
+        </td>
+        <td class="py-3.5 px-4 text-center">
+          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full ${pr.box} border font-bold text-xs">
+            <span class="w-2 h-2 rounded-full ${pr.dot} animate-pulse"></span>
+            <span>${p.priorityScore}/100 ${pr.label}</span>
+          </div>
+        </td>
+        <td class="py-3.5 px-4">
+          <div class="font-medium text-on-surface">${p.reportCount} Citizen Report${p.reportCount === 1 ? '' : 's'}</div>
+          <div class="text-xs text-outline">${p.scaleOfImpact || '-'}</div>
+        </td>
+        <td class="py-3.5 px-4 whitespace-nowrap">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${statusBadgeClasses(p.status)} border">
+            ${p.status}
+          </span>
+        </td>
+        <td class="py-3.5 px-4">
+          <div class="font-medium text-on-surface-variant text-xs">Not yet matched</div>
+        </td>
+        <td class="py-3.5 px-4 text-right whitespace-nowrap">
+          <div class="inline-flex items-center gap-1">
+            <button class="w-8 h-8 rounded hover:bg-emerald-100 text-emerald-800 flex items-center justify-center transition-colors btn-verify" title="Verify Problem">
+              <span class="material-symbols-outlined text-base">check</span>
+            </button>
+            <button class="w-8 h-8 rounded hover:bg-red-100 text-red-700 flex items-center justify-center transition-colors btn-reject" title="Reject">
+              <span class="material-symbols-outlined text-base">close</span>
+            </button>
+            <button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors btn-escalate" title="Escalate">
+              <span class="material-symbols-outlined text-base">priority_high</span>
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }
+
+  function renderAllProblems() {
+    const tbody = document.getElementById('problems-tbody');
+    const problems = API.getProblemsByPriority();
+    tbody.innerHTML = problems.map(renderProblemRow).join('');
+
+    tbody.querySelectorAll('.btn-verify').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = e.target.closest('tr').dataset.problemId;
+        API.updateProblemStatus(id, 'Verified');
+        showToast('Problem verified / समस्या सत्यापित');
+        renderAllProblems();
+      });
+    });
+    tbody.querySelectorAll('.btn-reject').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = e.target.closest('tr').dataset.problemId;
+        API.updateProblemStatus(id, 'Rejected');
+        showToast('Problem rejected');
+        renderAllProblems();
+      });
+    });
+    tbody.querySelectorAll('.btn-escalate').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = e.target.closest('tr').dataset.problemId;
+        API.updateProblemStatus(id, 'Escalated');
+        showToast('Problem escalated');
+        renderAllProblems();
+      });
+    });
+  }
+
+  renderAllProblems();
+</script>
+</body></html>

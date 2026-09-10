@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>झारखंड समाधान सेतु | Problem JH-2024-GW-89421</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#FFFFFF",
+            "on-primary-fixed": "#17213A",
+            "primary": "#17213A",
+            "on-secondary-fixed": "#4A3B1F",
+            "surface-container": "#F1ECE0",
+            "inverse-surface": "#17213A",
+            "secondary": "#A6742A",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "surface-variant": "#F1ECE0",
+            "surface-container-low": "#F6F3EA",
+            "surface-bright": "#FBF9F4",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "background": "#FBF9F4",
+            "secondary-fixed": "#F1E4C7",
+            "on-error-container": "#5F1712",
+            "surface-container-highest": "#E2DBC7",
+            "tertiary": "#2F6F4E",
+            "tertiary-container": "#E3EEE6",
+            "on-tertiary-fixed": "#12281E",
+            "secondary-fixed-dim": "#D9B876",
+            "on-background": "#17213A",
+            "surface-dim": "#E8E3D3",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "on-tertiary-container": "#1F4A34",
+            "on-surface": "#17213A",
+            "on-primary-container": "#FBF9F4",
+            "outline": "#C7C0AC",
+            "outline-variant": "#E4DFD0",
+            "tertiary-fixed": "#8FC7A8",
+            "on-secondary-container": "#6B4A17",
+            "on-primary": "#FBF9F4",
+            "surface": "#FBF9F4",
+            "surface-container-lowest": "#FFFFFF",
+            "surface-container-high": "#EAE4D4",
+            "error-container": "#F9DEDC",
+            "inverse-on-surface": "#FBF9F4",
+            "on-surface-variant": "#5B5847",
+            "on-tertiary": "#FFFFFF",
+            "on-error": "#FFFFFF",
+            "primary-fixed-dim": "#C7B37E",
+            "primary-fixed": "#D9CBA3",
+            "primary-container": "#232F4E",
+            "inverse-primary": "#D9CBA3",
+            "error": "#B3261E",
+            "tertiary-fixed-dim": "#6FA98A",
+            "secondary-container": "#F1E4C7",
+            "surface-tint": "#A6742A"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-xxs": "0.25rem",
+            "gutter-mobile": "1rem",
+            "gutter-tablet": "1.5rem",
+            "space-2xl": "3rem",
+            "space-sm": "0.75rem",
+            "min-touch-target": "3rem",
+            "space-xl": "2rem",
+            "gutter-desktop": "2rem",
+            "container-max": "72rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"]
+          },
+          "fontSize": {
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- Top Navigation Bar from JSON Anchor -->
+<header class="bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
+<!-- Brand & Search cluster -->
+<div class="flex items-center gap-space-md">
+<a class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight flex items-center gap-space-xs" href="#">
+<span class="material-symbols-outlined text-secondary text-headline-lg" data-icon="account_balance">account_balance</span>
+<span>झारखंड समाधान सेतु | Student Innovation Hub</span>
+</a>
+<div class="relative hidden lg:block ml-space-xs">
+<span class="absolute inset-y-0 left-0 flex items-center pl-space-xs text-outline pointer-events-none">
+<span class="material-symbols-outlined text-body-lg" data-icon="search">search</span>
+</span>
+<input class="pl-9 pr-space-md py-1.5 bg-surface-bright border border-outline-variant text-body-sm font-body-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary w-64 text-on-surface" placeholder="Search problems, wards, tech tags..." type="text"/>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-space-lg">
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal transition-colors duration-150 ease-in-out" href="dashboard.html">Dashboard</a>
+<!-- Active Tab: Browse Problems maps closest to the problem exploration intent -->
+<a class="border-b-2 border-secondary text-secondary font-label-md font-semibold pb-1 transition-colors duration-150 ease-in-out" href="dashboard.html#recommended">Browse Problems</a>
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal transition-colors duration-150 ease-in-out" href="team-formation.html">My Teams</a>
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal transition-colors duration-150 ease-in-out" href="milestone-tracker.html">My Projects</a>
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal transition-colors duration-150 ease-in-out" href="#">Grants &amp; Funding</a>
+</nav>
+<!-- Trailing actions: Notifications and User Profile -->
+<div class="flex items-center gap-space-md">
+<button aria-label="Notifications" class="text-on-surface-variant hover:text-primary transition-colors p-1.5 rounded-full hover:bg-surface-container-low" title="Notifications">
+<span class="material-symbols-outlined text-headline-sm" data-icon="notifications">notifications</span>
+</button>
+<div class="flex items-center gap-space-xs border-l border-outline-variant pl-space-md">
+<div class="relative">
+<img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="Close up portrait photograph of an Indian engineering student wearing a crisp institutional navy blazer with an official gold embroidered crest badge representing BIT Mesra Ranchi, against a calm institutional background with natural daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6whID1aQhcV3W30kS5jD4m79OyyF5H1xuJblLbmRYqZs0rYvFnKe_NInquPLActsVxzL3tRsQYjBT8s7sW0fvLQs-X1w_wyANdzTIITRclZGsYZ1VwTU_BwjbjYRouWMXwtdX4s9NTpeCXdx7TtH8-VBzTxZUZwOAYWFYhvePAlISjlUxQyxPUrVEKsUY1WyYqJbtQ7BOXYwspxNSuHqRtVFeap0AEEFhY10fIEKNrGJQxsnLT0yF"/>
+<span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-600 rounded-full border-2 border-surface-container-lowest"></span>
+</div>
+<div class="hidden xl:flex flex-col text-left">
+<span class="font-label-md text-label-md text-on-surface leading-tight">Rohit Soren</span>
+<span class="font-label-sm text-label-sm text-outline leading-tight">BIT Mesra · Team Lead</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas Content -->
+<main class="flex-1 w-full max-w-container-max mx-auto px-gutter-desktop py-space-md">
+<!-- Breadcrumb Header -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs text-body-sm font-body-sm text-outline mb-space-sm">
+<a class="hover:text-primary transition-colors" href="dashboard.html">Dashboard</a>
+<span class="material-symbols-outlined text-label-md" data-icon="chevron_right">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Recommended Challenges</a>
+<span class="material-symbols-outlined text-label-md" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface font-semibold truncate">JH-2024-GW-89421 (Drinking Water Pipeline Leakage)</span>
+</nav>
+<!-- Top Action Ribbon -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md mb-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex flex-wrap items-center gap-space-xs">
+<div class="bg-surface-container text-primary font-mono text-label-md font-label-md px-2.5 py-1 rounded-lg border border-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-label-md" data-icon="tag">tag</span>
+          JH-2024-GW-89421
+        </div>
+<span class="inline-flex items-center gap-1.5 bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] px-3 py-1 rounded-full text-label-sm font-label-sm">
+<span class="w-2 h-2 rounded-full bg-[#166534] animate-pulse"></span>
+          Open for Proposals
+        </span>
+<span class="inline-flex items-center gap-1 bg-surface-container-low text-on-surface-variant border border-outline-variant px-2.5 py-1 rounded-full text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-label-sm" data-icon="verified_user">verified_user</span>
+          DigiLocker Verified Citizen
+        </span>
+<span class="text-outline text-body-sm font-body-sm flex items-center gap-1 ml-1">
+<span class="material-symbols-outlined text-label-md" data-icon="schedule">schedule</span>
+          Lodged 4 days ago (24 Oct 2024)
+        </span>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<button class="h-min-touch-target px-space-md rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container-low text-label-md font-label-md transition-colors flex items-center gap-1.5 focus:ring-2 focus:ring-primary focus:outline-none">
+<span class="material-symbols-outlined text-body-lg" data-icon="bookmark_border">bookmark_border</span>
+          Save for Later
+        </button>
+<button class="h-min-touch-target px-space-md rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container-low text-label-md font-label-md transition-colors flex items-center gap-1.5 focus:ring-2 focus:ring-primary focus:outline-none">
+<span class="material-symbols-outlined text-body-lg" data-icon="forum">forum</span>
+          Ask Citizen / Nodal Officer Follow-up
+        </button>
+<button class="h-min-touch-target px-space-lg rounded-lg bg-secondary text-on-secondary hover:bg-secondary-container text-label-md font-label-md transition-colors flex items-center gap-2 focus:ring-2 focus:ring-secondary focus:outline-none">
+<span class="material-symbols-outlined text-body-lg" data-icon="send">send</span>
+          Submit Proposal / प्रस्ताव प्रस्तुत करें
+        </button>
+</div>
+</div>
+<!-- Main Workspace Two Columns Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left Column: 65% (8 Columns) -->
+<section class="lg:col-span-8 space-y-space-lg">
+<!-- Title & Executive Overview Card -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg">
+<div class="flex items-center gap-2 text-secondary font-semibold text-label-sm font-label-sm tracking-wider uppercase mb-space-xxs">
+<span class="material-symbols-outlined text-label-md" data-icon="water_drop">water_drop</span>
+            Jal Prabhandhan &amp; Civic Infrastructure · Kanke Division
+          </div>
+<h1 class="text-headline-lg font-headline-lg text-on-surface mb-space-xs">
+            Sub-surface Pipeline Leakage &amp; Contamination in Kanke Block, Ranchi
+          </h1>
+<p class="text-on-surface-variant text-body-md font-body-md leading-relaxed mb-space-md">
+            Continuous underground main burst along the primary distribution feeder causing 38% potable water loss, road surface subsidence, and sewage cross-contamination affecting 120 residential units in Kanke Chowk.
+          </p>
+<!-- Citizen Description Box -->
+<div class="bg-surface-container-low border-l-4 border-secondary p-space-md rounded-r-lg mb-space-md">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="record_voice_over">record_voice_over</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Original Grievance Lodged by Citizen</span>
+<span class="text-outline text-label-sm font-label-sm">· Ward 03, House #142/B</span>
+</div>
+<span class="text-outline text-label-sm font-label-sm bg-surface-container-lowest px-2 py-0.5 rounded border border-outline-variant">
+                Audio &amp; Hindi Transcription Verified
+              </span>
+</div>
+<blockquote class="italic text-on-surface font-body-md text-body-md leading-relaxed mb-2 bg-surface-container-lowest p-space-sm rounded border border-outline-variant">
+              "हमारे घर के सामने मुख्य सड़क के नीचे पिछले 4 दिनों से पानी की पाइपलाइन फटी हुई है। पीने के पानी में गंदा नाले का पानी रिस कर आ रहा है और सड़क पर बड़ा जलभराव हो गया है। बच्चों को स्कूल जाने में परेशानी हो रही है। कृपया इसे जल्द ठीक करवाएं।"
+            </blockquote>
+<div class="flex items-start gap-2 text-body-sm font-body-sm text-on-surface-variant pt-1 border-t border-outline-variant">
+<span class="font-semibold text-primary shrink-0">Official Translated Summary:</span>
+<span>Drinking water underground line ruptured 4 days ago near Kanke road. Severe back-siphonage suspected due to adjacent open drain infiltration. Potable tap water supplies are turbid and emitting odor in 120 neighboring households.</span>
+</div>
+</div>
+<!-- Quick Parameters Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-xs border-t border-outline-variant text-body-sm font-body-sm">
+<div>
+<span class="text-outline text-label-sm font-label-sm block">Grievance Category</span>
+<span class="font-semibold text-on-surface">Potable Water / Leakage</span>
+</div>
+<div>
+<span class="text-outline text-label-sm font-label-sm block">Ward / Assembly</span>
+<span class="font-semibold text-on-surface">Ward 03, Kanke AC</span>
+</div>
+<div>
+<span class="text-outline text-label-sm font-label-sm block">Est. Daily Water Loss</span>
+<span class="font-semibold text-error">~42,000 Liters / day</span>
+</div>
+<div>
+<span class="text-outline text-label-sm font-label-sm block">Verified By</span>
+<span class="font-semibold text-on-surface">Pragya Kendra Nodal Desk</span>
+</div>
+</div>
+</article>
+<!-- Evidence Gallery -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg">
+<div class="flex items-center justify-between mb-space-sm">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="photo_library">photo_library</span>
+                Ground Photographic Evidence
+              </h2>
+<p class="text-outline text-body-sm font-body-sm">Citizen submitted field imagery with verifiable GPS timestamp &amp; EXIF tags</p>
+</div>
+<div class="text-label-sm font-label-sm text-outline flex items-center gap-1 font-mono">
+<span class="material-symbols-outlined text-body-md" data-icon="location_searching">location_searching</span>
+              GPS: 23.3441° N, 85.3096° E
+            </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Evidence Card 1 -->
+<div class="border border-outline-variant rounded-lg overflow-hidden group bg-surface-container-low flex flex-col">
+<div class="relative h-44 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A documentary photo captured under overcast outdoor lighting showing dirty pooled water and severe puddle ponding over a cracked municipal asphalt road in a residential Indian neighborhood in Ranchi Jharkhand, with mud runoff and traffic cones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPo9Uau8E7ijVlCA-OErYRTmi1qn3GNy6fd8d813yYWPAb4yY4wzD703cJeza7mIzKn7aExPxRkzwXYldi5SIJ69fEIBQVHI0gDOjlPiOAwUraFSAAwCpPMzXgJ_6jgNv9zI3XlZr4OBxECgwHSbkp8FFwzLJ6L5JlWlr-TYuBaIKssAqH0BkHMV2AZtNsrgnN-wZuFWz2qGOPRLX7QqDeD8W9_iqVQtzH9NW82hLsOMyYRi_Wf4U6"/>
+<span class="absolute top-2 right-2 bg-inverse-surface/80 backdrop-blur-none text-inverse-on-surface text-label-sm font-label-sm px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-label-sm" data-icon="zoom_in">zoom_in</span> Evidence #1
+                </span>
+</div>
+<div class="p-space-sm flex-1 flex flex-col justify-between">
+<div>
+<h4 class="font-label-md text-label-md font-semibold text-on-surface">Asphalt Ponding &amp; Runoff</h4>
+<p class="text-outline text-label-sm font-label-sm mt-0.5">Heavy surface pooling over 35 meters road stretch.</p>
+</div>
+<div class="mt-space-xs pt-space-xs border-t border-outline-variant text-[10px] font-mono text-outline flex justify-between">
+<span>EXIF: f/1.8 · 1/250s</span>
+<span>24-OCT 08:24 IST</span>
+</div>
+</div>
+</div>
+<!-- Evidence Card 2 -->
+<div class="border border-outline-variant rounded-lg overflow-hidden group bg-surface-container-low flex flex-col">
+<div class="relative h-44 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Close up sharp street photography of deeply fractured tar asphalt and buckled road foundation where pressurized clean drinking water bubbles up from an underground fissure into the dusty roadside dirt in Ranchi." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA81Ar4Ae8EQzoIvYNJdaepxVJU3nt0DB2VqI2c4BnHrdnyrIhuwic0KlC4s7gcH2T5iwlV5wxuB2fvJHdta2UcJreeI0bzPrr9_qc2qfHomii9ngEdzf7zB6SYYwgn8N6r8i5J5CL1UrkAh3MOUciIy5PNFU2X1oNini5R0alZJmAefINhIZfd--YEIhsTS2BS6dYinYFBe_jnCcLyzrFoB22mys4HGVPgHFA4sBWc5B3FHnYs5wke"/>
+<span class="absolute top-2 right-2 bg-inverse-surface/80 backdrop-blur-none text-inverse-on-surface text-label-sm font-label-sm px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-label-sm" data-icon="zoom_in">zoom_in</span> Evidence #2
+                </span>
+</div>
+<div class="p-space-sm flex-1 flex flex-col justify-between">
+<div>
+<h4 class="font-label-md text-label-md font-semibold text-on-surface">Sub-base Fissure Eruption</h4>
+<p class="text-outline text-label-sm font-label-sm mt-0.5">Pressurized water breach breaching concrete sub-slab.</p>
+</div>
+<div class="mt-space-xs pt-space-xs border-t border-outline-variant text-[10px] font-mono text-outline flex justify-between">
+<span>EXIF: 26mm · ISO 64</span>
+<span>24-OCT 08:26 IST</span>
+</div>
+</div>
+</div>
+<!-- Evidence Card 3 -->
+<div class="border border-outline-variant rounded-lg overflow-hidden group bg-surface-container-low flex flex-col">
+<div class="relative h-44 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Clear detailed documentary close-up of a rusted industrial water utility dial meter and adjacent turbid yellowish sediment water sample collected in a transparent laboratory test bottle placed on an Indian municipal road border." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH_BitJh2amqYN154rIjS4F1iATtRkB7uLN2Cf5HRRZaQNrb4NaSvxJ2RS7A_gwiwhbiY7XM_DxWlMWhq4BpdEBdCcUzdFCJ2GbsSXEIGKDM83DwWxuMtE50OVwHOydYdM3tKYjIXPAxjB0lS0Bwxz2RKwtSuHlodkvenbpo97rP0HS5hUIQVET5uoMTDgrkC821cVNlA3Dqth79o7BdWJMSZNReWEFXB6nBciIBt19DNfhg--e7pp"/>
+<span class="absolute top-2 right-2 bg-inverse-surface/80 backdrop-blur-none text-inverse-on-surface text-label-sm font-label-sm px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-label-sm" data-icon="zoom_in">zoom_in</span> Evidence #3
+                </span>
+</div>
+<div class="p-space-sm flex-1 flex flex-col justify-between">
+<div>
+<h4 class="font-label-md text-label-md font-semibold text-on-surface">Turbidity &amp; Flow Drop</h4>
+<p class="text-outline text-label-sm font-label-sm mt-0.5">Terminal pressure dropped from 2.4 bar to 0.6 bar.</p>
+</div>
+<div class="mt-space-xs pt-space-xs border-t border-outline-variant text-[10px] font-mono text-outline flex justify-between">
+<span>EXIF: Tele · NTU &gt; 45</span>
+<span>24-OCT 08:31 IST</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Embedded Location Map Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg">
+<div class="flex items-center justify-between mb-space-sm">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="map">map</span>
+                GIS Spatial Infrastructure &amp; Pipeline Corridor
+              </h2>
+<p class="text-outline text-body-sm font-body-sm">Hydraulic network node map showing feeder lines, valves, and nearby civic telemetry</p>
+</div>
+<span class="text-label-sm font-label-sm text-primary font-semibold bg-surface-container px-2.5 py-1 rounded">
+              Kanke Chowk Grid · Ward 03
+            </span>
+</div>
+<!-- Simulated High-Res Map View Canvas -->
+<div class="relative w-full h-80 rounded-lg overflow-hidden border border-outline-variant bg-[#F6F3EA]" data-location="Ranchi" style="">
+<!-- Stylized Civic Map SVG / Grid -->
+<div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(#232F4E 1px, transparent 1px); background-size: 24px 24px;"></div>
+<!-- Road & Pipeline Corridors (Simulated vector rendering) -->
+<svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+<!-- Primary Highway Road -->
+<path d="M 0 160 Q 300 150 500 180 T 1000 140" fill="none" stroke="#CBD5E1" stroke-width="24"></path>
+<path d="M 0 160 Q 300 150 500 180 T 1000 140" fill="none" stroke="#ffffff" stroke-width="20"></path>
+<!-- Feeder Roads -->
+<path d="M 380 0 L 420 320" fill="none" stroke="#ffffff" stroke-width="14"></path>
+<!-- Municipal Water Main Corridor (Blue dashed) -->
+<path d="M 10 155 Q 310 145 510 175 T 990 135" fill="none" stroke="#232F4E" stroke-dasharray="8 4" stroke-width="4"></path>
+<!-- Branching connection to contamination risk zone -->
+<path d="M 460 170 L 470 230" fill="none" stroke="#DC2626" stroke-dasharray="4 2" stroke-width="3"></path>
+</svg>
+<!-- Map Overlays and Badges -->
+<!-- Incident Pin Marker -->
+<div class="absolute top-[48%] left-[46%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer z-20">
+<div class="bg-error text-on-error text-label-sm font-semibold px-2 py-0.5 rounded border border-white flex items-center gap-1 mb-1 animate-bounce">
+<span class="material-symbols-outlined text-label-sm" data-icon="warning">warning</span>
+                Leakage Point (JH-89421)
+              </div>
+<div class="w-6 h-6 rounded-full bg-error flex items-center justify-center border-2 border-white text-white">
+<span class="w-2 h-2 rounded-full bg-white"></span>
+</div>
+<div class="w-8 h-8 rounded-full bg-error/20 absolute -bottom-1 animate-ping pointer-events-none"></div>
+</div>
+<!-- Nearby Municipal Pump Station -->
+<div class="absolute top-10 right-20 bg-surface-container-lowest/95 border border-outline-variant p-2 rounded flex items-center gap-2 z-10">
+<span class="material-symbols-outlined text-primary text-body-lg" data-icon="water_ph">water_ph</span>
+<div>
+<span class="block text-label-sm font-label-sm font-semibold text-on-surface">Kanke Central Booster Station</span>
+<span class="block text-[10px] text-outline">Feeder Valve #04 · 850m North</span>
+</div>
+</div>
+<!-- Nearby Pragya Kendra Service Node -->
+<div class="absolute bottom-6 left-12 bg-surface-container-lowest/95 border border-outline-variant p-2 rounded flex items-center gap-2 z-10">
+<span class="material-symbols-outlined text-secondary text-body-lg" data-icon="storefront">storefront</span>
+<div>
+<span class="block text-label-sm font-label-sm font-semibold text-on-surface">Pragya Kendra (CSC Ward 03)</span>
+<span class="block text-[10px] text-outline">Citizen Verification Anchor · 320m</span>
+</div>
+</div>
+<!-- Scale & Map Controls UI -->
+<div class="absolute bottom-3 right-3 flex items-center gap-2 bg-surface-container-lowest/90 px-2 py-1 rounded border border-outline-variant text-[11px] font-mono text-outline">
+<span>50m</span>
+<div class="w-12 h-1 bg-outline rounded"></div>
+<span>GIS EPSG:4326</span>
+</div>
+</div>
+<!-- Metadata row under map -->
+<div class="mt-space-sm flex flex-wrap items-center justify-between text-body-sm font-body-sm text-outline pt-space-xs border-t border-outline-variant">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-label-md text-primary" data-icon="route">route</span>
+              Main Line Diameter: <strong>250mm Cast Iron (Vintage: 1994)</strong>
+</span>
+<span>Estimated Soil Infiltration Depth: <strong>1.4m Sub-pavement</strong></span>
+<button class="text-primary font-semibold hover:underline flex items-center gap-0.5 text-label-sm font-label-sm">
+              Download Shapefile / GeoJSON
+              <span class="material-symbols-outlined text-label-sm" data-icon="download">download</span>
+</button>
+</div>
+</section>
+<!-- Discussion & Student-Nodal Q&A Thread -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="question_answer">question_answer</span>
+                Public Technical Inquiry &amp; Nodal Dialogue
+              </h2>
+<p class="text-outline text-body-sm font-body-sm">Direct clarification thread between university teams and PHED Field Engineers</p>
+</div>
+<button class="text-primary hover:bg-surface-container-low px-3 py-1.5 rounded-lg border border-outline-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-body-sm" data-icon="add_comment">add_comment</span>
+              Post Question
+            </button>
+</div>
+<!-- Conversation items -->
+<div class="space-y-space-md">
+<!-- Query 1 -->
+<div class="border border-outline-variant rounded-lg p-space-md bg-surface-bright">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-2">
+<span class="font-label-md font-semibold text-on-surface">Aniket Verma (Team Jal-Drishti, IIT ISM Dhanbad)</span>
+<span class="bg-surface-container px-2 py-0.2 text-[11px] font-semibold text-primary rounded">Student Researcher</span>
+</div>
+<span class="text-outline text-label-sm font-label-sm">3 days ago</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant mb-space-sm">
+                "What is the average operating line pressure of the Kanke booster branch during the morning supply cycle (06:00 to 09:00 AM)? We are designing an acoustic correlation sensor harness to isolate pinhole leaks."
+              </p>
+<!-- Official Response -->
+<div class="bg-surface-container-lowest border-l-2 border-primary p-space-sm rounded-r-lg mt-2">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-body-md" data-icon="verified">verified</span>
+<span class="font-label-sm font-semibold text-primary">Er. Rajesh Kumar Jha</span>
+<span class="text-outline text-label-sm font-label-sm">· Junior Engineer, PHED Ranchi Urban Division</span>
+<span class="ml-auto text-outline text-[11px]">2 days ago</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">
+                  "Nominal morning supply operates at 2.8 Bar. However, due to this rupture at Kanke Chowk, terminal head pressure currently reads below 0.7 Bar. Acoustic and low-power telemetry prototypes are urgently required for validation."
+                </p>
+</div>
+</div>
+<!-- Query 2 -->
+<div class="border border-outline-variant rounded-lg p-space-md bg-surface-bright">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-2">
+<span class="font-label-md font-semibold text-on-surface">Pooja Kumari (IoT Lab, NIT Jamshedpur)</span>
+<span class="bg-surface-container px-2 py-0.2 text-[11px] font-semibold text-primary rounded">Student Researcher</span>
+</div>
+<span class="text-outline text-label-sm font-label-sm">1 day ago</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant mb-space-sm">
+                "Can student teams install clamp-on ultrasonic sensors at the inspection valve pit near Pragya Kendra without disrupting road traffic?"
+              </p>
+<!-- Official Response -->
+<div class="bg-surface-container-lowest border-l-2 border-primary p-space-sm rounded-r-lg mt-2">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-body-md" data-icon="verified">verified</span>
+<span class="font-label-sm font-semibold text-primary">Er. Rajesh Kumar Jha</span>
+<span class="text-outline text-label-sm font-label-sm">· Junior Engineer, PHED Ranchi Urban Division</span>
+<span class="ml-auto text-outline text-[11px]">18 hours ago</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">
+                  "Yes, the Municipal Ward office will provide an institutional escort pass once your proposal is endorsed by the Student Innovation Hub. Clamp-on non-invasive metering is permitted."
+                </p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<!-- Right Column: 35% (4 Columns Sidebar) -->
+<aside class="lg:col-span-4 space-y-space-lg">
+<!-- AI Technical Breakdown Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-surface-container -mr-8 -mt-8 rounded-full pointer-events-none opacity-40"></div>
+<div class="flex items-center gap-2 mb-space-sm text-primary font-semibold">
+<span class="material-symbols-outlined text-headline-sm" data-icon="psychology">psychology</span>
+<h3 class="text-headline-sm font-headline-sm">AI Technical Breakdown / तकनीकी विश्लेषण</h3>
+</div>
+<div class="space-y-space-md text-body-sm font-body-sm">
+<!-- Identified Problem Type -->
+<div class="p-space-sm bg-surface-container-low rounded-lg border border-outline-variant">
+<span class="text-outline text-label-sm font-label-sm block uppercase tracking-wider mb-1">Identified Problem Type</span>
+<div class="flex items-center gap-1.5 font-semibold text-on-surface">
+<span class="material-symbols-outlined text-secondary text-body-md" data-icon="warning_amber">warning_amber</span>
+                Non-Revenue Water (NRW) Loss &amp; Microbial Contamination
+              </div>
+</div>
+<!-- Recommended Disciplines -->
+<div>
+<span class="text-outline text-label-sm font-label-sm block uppercase tracking-wider mb-1.5">Recommended Engineering Fields</span>
+<div class="flex flex-wrap gap-1.5">
+<span class="bg-surface-container px-2.5 py-1 rounded text-primary font-semibold text-label-sm font-label-sm border border-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-label-sm" data-icon="architecture">architecture</span>
+                  Civil Engg. (Hydraulics)
+                </span>
+<span class="bg-surface-container px-2.5 py-1 rounded text-primary font-semibold text-label-sm font-label-sm border border-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-label-sm" data-icon="sensors">sensors</span>
+                  ECE / Embedded IoT
+                </span>
+<span class="bg-surface-container px-2.5 py-1 rounded text-primary font-semibold text-label-sm font-label-sm border border-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-label-sm" data-icon="gis">qr_code_2</span>
+                  Geoinformatics / GIS
+                </span>
+</div>
+</div>
+<!-- Suggested Tech Stack -->
+<div>
+<span class="text-outline text-label-sm font-label-sm block uppercase tracking-wider mb-1.5">Suggested Tech Stack for Proposal</span>
+<ul class="space-y-1.5 text-on-surface">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-body-sm text-secondary" data-icon="check_circle">check_circle</span>
+<span>IoT Ultrasonic Flowmeters (Transit-time)</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-body-sm text-secondary" data-icon="check_circle">check_circle</span>
+<span>LoRaWAN 865 MHz Telemetry Transmitter</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-body-sm text-secondary" data-icon="check_circle">check_circle</span>
+<span>Low-cost Turbidity &amp; TDS Probe Array</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-body-sm text-secondary" data-icon="check_circle">check_circle</span>
+<span>GIS OpenStreetMap Pipe Anomaly Layer</span>
+</li>
+</ul>
+</div>
+<!-- Grant Eligibility Box -->
+<div class="bg-[#EFF6FF] border border-[#BFDBFE] p-space-sm rounded-lg">
+<div class="flex items-center justify-between mb-1">
+<span class="text-[#1E40AF] font-label-sm font-semibold uppercase">Prototype Grant Eligibility</span>
+<span class="material-symbols-outlined text-[#1E40AF] text-body-lg" data-icon="payments">payments</span>
+</div>
+<div class="text-headline-sm font-headline-sm font-bold text-[#1E3A8A] mb-0.5">
+                Up to ₹1,50,000
+              </div>
+<p class="text-[12px] text-[#1D4ED8]">
+                Govt. Innovation Seed Fund (Tier-1 Quick-Disbursal upon Nodal Validation).
+              </p>
+</div>
+</div>
+</div>
+<!-- Civic Context & SLA Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg">
+<div class="flex items-center gap-2 mb-space-sm text-on-surface font-semibold">
+<span class="material-symbols-outlined text-primary text-headline-sm" data-icon="assignment">assignment</span>
+<h3 class="text-headline-sm font-headline-sm">Civic Context &amp; SLA</h3>
+</div>
+<div class="space-y-space-sm text-body-sm font-body-sm divide-y divide-outline-variant">
+<div class="pt-space-xxs flex justify-between items-center">
+<span class="text-outline">Scale of Impact:</span>
+<span class="font-semibold text-on-surface">Specific Ward · 120 Households</span>
+</div>
+<div class="pt-space-xs flex justify-between items-center">
+<span class="text-outline">Reported On:</span>
+<span class="font-semibold text-on-surface">24 Oct 2024 (4 Days Ago)</span>
+</div>
+<div class="pt-space-xs flex justify-between items-center">
+<span class="text-outline">Mandatory SLA Clock:</span>
+<span class="inline-flex items-center gap-1 font-semibold text-[#991B1B] bg-[#FEE2E2] px-2 py-0.5 rounded border border-[#FECACA]">
+<span class="material-symbols-outlined text-label-sm" data-icon="timer">timer</span>
+                3 Days Left (7-Day Limit)
+              </span>
+</div>
+<div class="pt-space-xs flex justify-between items-center">
+<span class="text-outline">Nodal Department:</span>
+<span class="font-semibold text-right text-on-surface">Drinking Water &amp; Sanitation (PHED), Ranchi</span>
+</div>
+<div class="pt-space-xs flex justify-between items-center">
+<span class="text-outline">Citizen Verification:</span>
+<span class="text-green-700 font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-label-sm" data-icon="check_circle">check_circle</span>
+                Aadhaar Authenticated
+              </span>
+</div>
+</div>
+</div>
+<!-- Faculty Mentor Recommendation Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg">
+<div class="flex items-center justify-between mb-space-sm">
+<h3 class="text-headline-sm font-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="school">school</span>
+              Faculty Mentor Match
+            </h3>
+<span class="text-label-sm font-label-sm text-outline">State Network</span>
+</div>
+<p class="text-outline text-body-sm font-body-sm mb-space-md">
+            Approved mentors holding government pilot sponsorship privileges for this technical domain:
+          </p>
+<div class="space-y-space-md">
+<!-- Mentor 1 -->
+<div class="p-space-sm border border-outline-variant rounded-lg bg-surface-bright flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-full border border-outline-variant object-cover" data-alt="Professional studio headshot portrait of an experienced senior Indian male professor wearing spectacles and a formal Nehru jacket, professor of hydraulic engineering with neutral university library background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5u5NbNizDmsb79gxVF9m_oFJVSkH1RHwb1S7dp9nPV6PqTwd_n91zSGCF74RIMxkIA3anU22LZh_ugAWZeoll3UdWXttQnJJKlKEYHFctiP6O6gw5-fTlCuiMZOsKQ2toJsix6TGJCU-6JLpNEfm_N4UsDNWqhdEvU_MhqSubHrQLJ0uLXocwwO-Axo--EY8p2gffafap-HSL8BH2W0NMpKPDbJpl1zu8brvqSmxL8yXSYtXtUNuX"/>
+<div>
+<h4 class="font-label-md text-label-md font-bold text-on-surface">Dr. S. K. Roy</h4>
+<p class="text-outline text-[12px]">Hydraulics &amp; Fluid Dynamics Lab</p>
+<span class="inline-block text-[11px] font-semibold text-primary">BIT Mesra, Ranchi</span>
+</div>
+</div>
+<button class="h-8 px-2.5 rounded bg-surface-container text-primary hover:bg-surface-variant text-label-sm font-label-sm transition-colors" title="Request Mentorship">
+                Invite
+              </button>
+</div>
+<!-- Mentor 2 -->
+<div class="p-space-sm border border-outline-variant rounded-lg bg-surface-bright flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-full border border-outline-variant object-cover" data-alt="Professional warm corporate headshot portrait of an accomplished Indian female professor of electronics and IoT sensors wearing an elegant formal sari against a warm bright academic institution backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjCBTUQdyXu-zXnP5IoAmBc-b3XSI1lTF_Mh6_Zrb6hO9HWyAs6vsATs5CHewv9s_zD7OpPm8pLAA4iyXkcpd4hxkpVI-hT501YUy7E8Bkn_oi289C7OoeOdIlkjN5gFiAzgXivZVMajVrKEr7mg1WN6sfURSMQp1GWOQTXBoh5Vm0i0j2sc4sp--8pXfAZJVuKMAjnjFd9C5LXvNxcCNjyszS0aeWj6QNsCmDyTUh1gYySR9-G43g"/>
+<div>
+<h4 class="font-label-md text-label-md font-bold text-on-surface">Dr. Ananya Sen</h4>
+<p class="text-outline text-[12px]">Smart Sensors &amp; Embedded IoT</p>
+<span class="inline-block text-[11px] font-semibold text-primary">NIT Jamshedpur</span>
+</div>
+</div>
+<button class="h-8 px-2.5 rounded bg-surface-container text-primary hover:bg-surface-variant text-label-sm font-label-sm transition-colors" title="Request Mentorship">
+                Invite
+              </button>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-outline-variant text-center">
+<a class="text-body-sm font-body-sm text-primary font-semibold hover:underline inline-flex items-center gap-1" href="#">
+              Browse All 18 Affiliated Jharkhand Faculty
+              <span class="material-symbols-outlined text-label-md" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Sticky Quick Action Banner -->
+<div class="bg-primary text-on-primary rounded-lg p-space-md text-center">
+<h4 class="font-label-lg text-label-lg font-bold mb-1">Ready to Deploy a Solution?</h4>
+<p class="text-surface-variant text-body-sm font-body-sm mb-space-md">
+            Collaborate with student teammates and submit your architectural blueprint before the SLA expiry.
+          </p>
+<button class="w-full h-min-touch-target bg-secondary text-on-secondary hover:bg-secondary-container rounded-lg font-label-md text-label-md font-semibold transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-body-lg" data-icon="draw">draw</span>
+            Begin Proposal Draft
+          </button>
+</div>
+</aside>
+</div>
+</main>
+<!-- Institutional Footer from Shared Component JSON Anchor -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant mt-space-3xl">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-gutter-desktop py-space-md max-w-container-max mx-auto text-body-sm font-body-sm">
+<div class="flex items-center gap-space-xs text-primary mb-space-sm md:mb-0">
+<span class="material-symbols-outlined text-headline-sm" data-icon="verified">verified</span>
+<span class="text-label-sm font-label-sm text-outline">
+          © 2025 Department of Higher, Technical Education &amp; Skill Development, Govt. of Jharkhand. All rights reserved.
+        </span>
+</div>
+<!-- Footer navigation links -->
+<div class="flex flex-wrap items-center gap-space-md text-label-sm font-label-sm">
+<a class="text-on-surface-variant hover:text-primary transition-colors focus:ring-2 focus:ring-primary focus:outline-none" href="#">Citizen Charter</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors focus:ring-2 focus:ring-primary focus:outline-none" href="#">Helpline: 181</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors focus:ring-2 focus:ring-primary focus:outline-none" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors focus:ring-2 focus:ring-primary focus:outline-none" href="#">Terms of Service</a>
+<a class="text-primary font-semibold transition-colors focus:ring-2 focus:ring-primary focus:outline-none flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-label-sm" data-icon="lock">lock</span>
+          DigiLocker Verification
+        </a>
+</div>
+</div>
+</footer>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+  requireRole('student', 'login.html');
+</script>
+</body></html>

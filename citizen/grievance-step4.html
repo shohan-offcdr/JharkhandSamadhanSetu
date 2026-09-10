@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface" lang="hi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>झारखंड समाधान सेतु | Jharkhand Samadhan Setu</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Noto Sans font for bilingual UI clarity -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-container": "#1F4A34",
+            "inverse-surface": "#17213A",
+            "tertiary-fixed": "#8FC7A8",
+            "on-secondary-fixed": "#4A3B1F",
+            "on-tertiary-fixed": "#12281E",
+            "surface-variant": "#F1ECE0",
+            "primary-container": "#232F4E",
+            "outline-variant": "#E4DFD0",
+            "primary": "#17213A",
+            "outline": "#C7C0AC",
+            "on-primary-fixed": "#17213A",
+            "on-surface-variant": "#5B5847",
+            "tertiary-container": "#E3EEE6",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "surface-tint": "#A6742A",
+            "surface-dim": "#E8E3D3",
+            "tertiary-fixed-dim": "#6FA98A",
+            "surface": "#FBF9F4",
+            "inverse-primary": "#D9CBA3",
+            "surface-container-high": "#EAE4D4",
+            "secondary-container": "#F1E4C7",
+            "primary-fixed": "#D9CBA3",
+            "inverse-on-surface": "#FBF9F4",
+            "surface-container-lowest": "#FFFFFF",
+            "on-error-container": "#5F1712",
+            "error": "#B3261E",
+            "surface-container-low": "#F6F3EA",
+            "secondary": "#A6742A",
+            "on-tertiary": "#FFFFFF",
+            "on-secondary-container": "#6B4A17",
+            "on-surface": "#17213A",
+            "surface-container-highest": "#E2DBC7",
+            "background": "#FBF9F4",
+            "surface-container": "#F1ECE0",
+            "surface-bright": "#FBF9F4",
+            "primary-fixed-dim": "#C7B37E",
+            "on-secondary": "#FFFFFF",
+            "on-primary": "#FBF9F4",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "on-primary-container": "#FBF9F4",
+            "secondary-fixed-dim": "#D9B876",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "error-container": "#F9DEDC",
+            "on-error": "#FFFFFF",
+            "secondary-fixed": "#F1E4C7",
+            "tertiary": "#2F6F4E",
+            "on-background": "#17213A"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-desktop": "2rem",
+            "container-max": "72rem",
+            "space-3xl": "4rem",
+            "min-touch-target": "3rem",
+            "space-xl": "2rem",
+            "space-xxs": "0.25rem",
+            "gutter-tablet": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-sm": "0.75rem",
+            "gutter-mobile": "1rem",
+            "space-xs": "0.5rem",
+            "space-2xl": "3rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-lg": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "display-lg": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.05em", fontWeight: "600" }],
+            "body-sm": ["13px", { lineHeight: "18px", letterSpacing: "0.02em", fontWeight: "400" }],
+            "display-lg-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "700" }],
+            "body-md": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "400" }],
+            "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "0.01em", fontWeight: "400" }],
+            "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "600" }],
+            "headline-lg-mobile": ["22px", { lineHeight: "30px", letterSpacing: "0em", fontWeight: "600" }],
+            "headline-sm": ["18px", { lineHeight: "26px", letterSpacing: "0em", fontWeight: "600" }],
+            "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "0em", fontWeight: "600" }],
+            "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "600" }]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="min-h-full flex flex-col font-body-md text-on-surface bg-surface antialiased selection:bg-surface-container-high selection:text-primary">
+<!-- TOP APP BAR -->
+<header class="w-full bg-surface z-40 border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
+<!-- Portal Brand Anchor -->
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="account_balance">account_balance</span>
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">झारखंड समाधान सेतु | Jharkhand Samadhan Setu</span>
+</div>
+<!-- Navigation Links (Web Desktop) -->
+<nav class="hidden md:flex items-center gap-space-lg">
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors duration-150 py-1" href="#">गृह / Home</a>
+<a class="border-b-2 border-secondary text-primary font-label-lg text-label-lg pb-1" href="#">शिकायत दर्ज करें / File Grievance</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors duration-150 py-1" href="#">स्थिति जांचें / Track Status</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors duration-150 py-1" href="#">अक्सर पूछे जाने वाले प्रश्न / FAQs</a>
+</nav>
+<!-- Trailing Action Badges & Icons -->
+<div class="flex items-center gap-space-sm">
+<button class="hidden sm:inline-flex items-center gap-1 text-label-sm font-label-sm text-primary-container bg-surface-container hover:bg-surface-container-high px-3 py-1.5 rounded border border-outline-variant transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="translate">translate</span>
+          हिन्दी / English
+        </button>
+<button aria-label="Notifications" class="p-2 text-primary hover:bg-surface-container rounded transition-colors duration-150" type="button">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="Citizen Profile" class="p-2 text-primary hover:bg-surface-container rounded transition-colors duration-150" type="button">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- MAIN WORKSPACE CONTENT -->
+<main class="flex-grow py-space-xl px-gutter-mobile md:px-gutter-tablet max-w-container-max mx-auto w-full">
+<!-- STEP PROGRESS TRACKER -->
+<div class="max-w-xl mx-auto mb-space-lg">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-high text-primary border border-surface-variant">
+            Step 4 of 4 (Final Step)
+          </span>
+<span class="text-body-sm font-body-sm text-on-surface-variant font-medium">चरण 4 का 4 (अंतिम चरण)</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary font-bold tracking-wide">100% COMPLETE</span>
+</div>
+<!-- Linear Step Visuals -->
+<div class="grid grid-cols-4 gap-2 items-center">
+<!-- Step 1: Completed -->
+<div class="flex flex-col gap-1">
+<div class="h-1.5 w-full bg-primary-container rounded-full"></div>
+<div class="flex items-center gap-1 text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-label-sm font-label-sm truncate">1. श्रेणी / Dept</span>
+</div>
+</div>
+<!-- Step 2: Completed -->
+<div class="flex flex-col gap-1">
+<div class="h-1.5 w-full bg-primary-container rounded-full"></div>
+<div class="flex items-center gap-1 text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-label-sm font-label-sm truncate">2. स्थान / Area</span>
+</div>
+</div>
+<!-- Step 3: Completed -->
+<div class="flex flex-col gap-1">
+<div class="h-1.5 w-full bg-primary-container rounded-full"></div>
+<div class="flex items-center gap-1 text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-label-sm font-label-sm truncate">3. प्रमाण / Media</span>
+</div>
+</div>
+<!-- Step 4: Active -->
+<div class="flex flex-col gap-1">
+<div class="h-1.5 w-full bg-secondary rounded-full"></div>
+<div class="flex items-center gap-1 text-primary font-bold">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="radio_button_checked">radio_button_checked</span>
+<span class="text-label-sm font-label-sm truncate text-secondary">4. विवरण / Details</span>
+</div>
+</div>
+</div>
+</div>
+<!-- MAIN FORM CARD -->
+<div class="max-w-xl mx-auto bg-surface-container-lowest border border-outline-variant rounded-xl p-6 md:p-8">
+<!-- Heading Block -->
+<div class="border-b border-surface-container pb-space-sm mb-space-md">
+<h1 class="text-headline-md font-headline-md text-primary mb-1">
+          Describe the problem in detail / समस्या का विस्तृत विवरण दें
+        </h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+          Please mention exact landmarks, frequency of the issue, and previous attempts to resolve it with local authorities.
+        </p>
+</div>
+<!-- Context Reminder Banner / Information Chip -->
+<div class="bg-surface-container-low border border-surface-variant rounded-lg p-space-sm mb-space-lg flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary-container mt-0.5 text-lg" data-icon="info">info</span>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block uppercase tracking-wider">Grievance Target Snapshot / पूर्व चयनित विवरण</span>
+<p class="text-body-sm font-body-sm text-primary font-medium mt-0.5">
+            Location: <span class="font-bold">Kanke, Ranchi</span> • Category: <span class="font-bold">Drinking Water</span> • Impact: <span class="font-bold">Specific Neighborhood</span>
+</p>
+</div>
+</div>
+<!-- Multi-line Text Area Container -->
+<div class="space-y-space-xs mb-space-lg">
+<label class="block" for="grievance-description">
+<span class="text-label-lg font-label-lg text-primary block">विस्तृत विवरण / Detailed Grievance Description *</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Clear descriptions ensure faster dispatch of field inspection engineers.</span>
+</label>
+<div class="relative border border-outline rounded-lg focus-within:border-primary-container focus-within:ring-2 focus-within:ring-primary-container/20 transition-all bg-surface-container-lowest overflow-hidden">
+<textarea class="w-full border-0 focus:ring-0 p-4 text-body-md font-body-md text-on-surface placeholder:text-outline resize-y min-h-[180px] leading-relaxed" id="grievance-description" maxlength="1000" name="description" placeholder="कृपया समस्या के संबंध में सभी आवश्यक विवरण लिखें... / Write any additional context or specific details here..." rows="7"></textarea>
+<!-- Bottom Toolbar Inside/Under Textarea -->
+<div class="flex flex-wrap items-center justify-between gap-2 px-3 py-2.5 bg-surface-container-low border-t border-surface-container">
+<!-- Left: Character Counter -->
+<div class="flex items-center gap-1.5 text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="edit_note">edit_note</span>
+<span class="font-semibold text-primary" id="char-count">0</span>
+<span>/ 1000 characters (अक्षर)</span>
+</div>
+<!-- Right: Prominent Voice Recording Button -->
+<div class="relative group">
+<button aria-label="Voice Input in regional languages" class="inline-flex items-center gap-2 bg-surface-container-lowest hover:bg-surface-container text-primary border border-outline-variant hover:border-primary px-3 py-1.5 rounded text-label-sm font-label-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary-container" id="btn-voice" type="button">
+<span class="material-symbols-outlined text-secondary text-base" data-icon="mic" data-weight="fill" id="mic-icon" style="font-variation-settings: 'FILL' 1;">mic</span>
+<span class="font-bold" id="voice-label">🎤 Speak / बोलकर दर्ज करें</span>
+</button>
+<!-- Speech recognition regional badge tooltip -->
+<div class="hidden sm:block absolute bottom-full right-0 mb-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-20 pointer-events-none">
+<div class="bg-inverse-surface text-inverse-on-surface text-label-sm font-label-sm py-1 px-2.5 rounded whitespace-nowrap">
+                  Speech-to-text in Hindi, Nagpuri, Santhali, English
+                </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Verification & Consent Checkbox -->
+<div class="mb-space-xl p-3.5 bg-surface rounded-lg border border-outline-variant">
+<label class="flex items-start gap-3 cursor-pointer select-none">
+<div class="flex items-center h-min-touch-target -mt-2">
+<input checked="" class="w-5 h-5 rounded text-primary-container border-outline focus:ring-primary-container focus:ring-offset-1 focus:ring-2" id="declaration-consent" name="declaration_consent" type="checkbox"/>
+</div>
+<div class="pt-1">
+<span class="text-body-sm font-body-sm text-on-surface font-medium block">
+              I declare that the information provided is true to the best of my knowledge. / मैं प्रमाणित करता/करती हूँ कि उपरोक्त विवरण सत्य है।
+            </span>
+<span class="text-label-sm font-label-sm text-on-surface-variant block mt-0.5">
+              False reporting is liable under the Jharkhand Public Grievances Redressal Act.
+            </span>
+</div>
+</label>
+</div>
+<!-- Action Navigation Buttons -->
+<div class="flex flex-col-reverse sm:flex-row items-center justify-between gap-space-sm pt-space-xs border-t border-surface-container">
+<!-- Back Button -->
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 h-min-touch-target rounded bg-transparent border border-outline-variant text-on-surface hover:bg-surface-container font-label-lg text-label-lg transition-colors focus:ring-2 focus:ring-primary-container" id="btn-back-step" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="arrow_back">arrow_back</span>
+<span>Back / पीछे जाएं</span>
+</button>
+<!-- Submit Button: Terracotta / Warm Amber CTA -->
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 h-min-touch-target rounded bg-secondary hover:bg-[#8C5F1F] text-on-primary font-label-lg text-label-lg active:scale-98 transition-all focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2" id="btn-submit-grievance" type="button">
+<span>Submit Grievance / शिकायत दर्ज करें</span>
+<span class="material-symbols-outlined text-lg" data-icon="send">send</span>
+</button>
+</div>
+</div>
+<!-- Quick Help Guidance Note -->
+<div class="max-w-xl mx-auto mt-space-md text-center">
+<p class="text-body-sm font-body-sm text-on-surface-variant inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="support_agent">support_agent</span>
+        Need assistance drafting this grievance? Call CM Helpline <strong>181</strong> (Toll-free 24x7)
+      </p>
+</div>
+</main>
+<!-- FOOTER -->
+<footer class="w-full bg-primary text-on-primary border-t border-outline mt-space-3xl">
+<div class="w-full py-space-xl px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-space-md">
+<!-- Legal / Department Copyright -->
+<div class="text-center md:text-left max-w-2xl">
+<p class="text-body-sm font-body-sm text-surface-variant leading-relaxed">
+          © 2024 सूचना प्रौद्योगिकी एवं ई-गवर्नेंस विभाग, झारखंड सरकार | Department of Information Technology &amp; e-Governance, Government of Jharkhand. All Rights Reserved.
+        </p>
+</div>
+<!-- Auxiliary Civic Links -->
+<nav class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-label-sm font-label-sm">
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#">गोपनीयता नीति / Privacy Policy</a>
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#">उपयोग की शर्तें / Terms of Service</a>
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#">नागरिक चार्टर / Citizen Charter</a>
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#">संपर्क करें / Contact Us</a>
+</nav>
+</div>
+</footer>
+<!-- DOCKED MOBILE BOTTOM NAVIGATION (Destination rule: Sub-journey suppression overrides general screen, but for consistency if required by shell mandate) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter-mobile h-min-touch-target md:hidden bg-surface border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm">मुख्य / Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary rounded-lg px-space-sm py-space-xxs min-h-min-touch-target" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit_document">edit_document</span>
+<span class="text-label-sm font-label-sm">शिकायत / File</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="timeline">timeline</span>
+<span class="text-label-sm font-label-sm">स्थिति / Track</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+<span class="text-label-sm font-label-sm">सहायता / Help</span>
+</a>
+</nav>
+<!-- Interactive Character Counter Script -->
+<script>
+    const textarea = document.getElementById('grievance-description');
+    const charCount = document.getElementById('char-count');
+
+    if (textarea && charCount) {
+      const updateCount = () => {
+        const count = textarea.value.length;
+        charCount.textContent = count;
+        if (count > 1000) {
+          charCount.classList.add('text-error');
+        } else {
+          charCount.classList.remove('text-error');
+        }
+      };
+      textarea.addEventListener('input', updateCount);
+      updateCount();
+    }
+  </script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const textarea = document.getElementById('grievance-description');
+    const charCount = document.getElementById('char-count');
+
+    // Restore draft text if user came back
+    const draft = API.getDraft();
+    if (draft.description) {
+      textarea.value = draft.description;
+      charCount.textContent = draft.description.length;
+    }
+
+    textarea.addEventListener('input', () => {
+      charCount.textContent = textarea.value.length;
+    });
+
+    // ---- Voice input (Web Speech API where supported) ----
+    const voiceBtn = document.getElementById('btn-voice');
+    const voiceLabel = document.getElementById('voice-label');
+    const micIcon = document.getElementById('mic-icon');
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognizing = false;
+    let recognizer = null;
+
+    if (SpeechRecognition) {
+      recognizer = new SpeechRecognition();
+      recognizer.lang = 'hi-IN';
+      recognizer.interimResults = false;
+      recognizer.continuous = true;
+
+      recognizer.onresult = (event) => {
+        let transcript = '';
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          transcript += event.results[i][0].transcript;
+        }
+        textarea.value = (textarea.value + ' ' + transcript).trim();
+        charCount.textContent = textarea.value.length;
+      };
+
+      recognizer.onerror = () => {
+        showToast('आवाज़ पहचान में समस्या / Voice recognition issue');
+      };
+    }
+
+    voiceBtn.addEventListener('click', () => {
+      if (!SpeechRecognition) {
+        showToast('यह ब्राउज़र वॉइस इनपुट सपोर्ट नहीं करता / Voice input not supported in this browser');
+        return;
+      }
+      if (!recognizing) {
+        recognizer.start();
+        recognizing = true;
+        micIcon.classList.add('animate-pulse');
+        voiceLabel.textContent = '🔴 Listening... / सुन रहा है...';
+      } else {
+        recognizer.stop();
+        recognizing = false;
+        micIcon.classList.remove('animate-pulse');
+        voiceLabel.textContent = '🎤 Speak / बोलकर दर्ज करें';
+      }
+    });
+
+    // ---- Navigation ----
+    document.getElementById('btn-back-step').addEventListener('click', () => {
+      API.saveDraft({ description: textarea.value });
+      window.location.href = 'grievance-step3.html';
+    });
+
+    document.getElementById('btn-submit-grievance').addEventListener('click', () => {
+      const description = textarea.value.trim();
+      const consent = document.getElementById('declaration-consent').checked;
+
+      if (description.length < 10) {
+        showToast('कृपया विवरण लिखें (कम से कम 10 अक्षर) / Please write a description (min 10 characters)');
+        return;
+      }
+      if (!consent) {
+        showToast('कृपया घोषणा स्वीकार करें / Please accept the declaration');
+        return;
+      }
+
+      const draft = API.getDraft();
+      const problem = {
+        title: draft.title,
+        district: draft.district,
+        block: draft.block,
+        ward: draft.ward,
+        pincode: draft.pincode,
+        landmark: draft.landmark,
+        gpsLat: draft.gpsLat,
+        gpsLng: draft.gpsLng,
+        evidenceFileName: draft.evidenceFileName,
+        durationDays: draft.durationDays,
+        scaleOfImpact: draft.scaleOfImpact,
+        description,
+      };
+
+      // This is the moment where, once your backend is connected,
+      // API.submitProblem() will call your real /api/problems route
+      // (AI categorization + duplicate detection) instead of the
+      // local demo logic in js/api.js.
+      const saved = API.submitProblem(problem);
+      API.clearDraft();
+
+      sessionStorage.setItem('jss_last_submitted_id', saved.id);
+      window.location.href = 'confirmation.html';
+    });
+  });
+</script>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+</body></html>

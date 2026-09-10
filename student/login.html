@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>छात्र लॉगिन | झारखंड समाधान सेतु | Student Innovation Hub</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Noto Sans Typography Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Design System Tailwind Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#FFFFFF",
+            "on-primary-fixed": "#17213A",
+            "primary": "#17213A",
+            "on-secondary-fixed": "#4A3B1F",
+            "surface-container": "#F1ECE0",
+            "inverse-surface": "#17213A",
+            "secondary": "#A6742A",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "surface-variant": "#F1ECE0",
+            "surface-container-low": "#F6F3EA",
+            "surface-bright": "#FBF9F4",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "background": "#FBF9F4",
+            "secondary-fixed": "#F1E4C7",
+            "on-error-container": "#5F1712",
+            "surface-container-highest": "#E2DBC7",
+            "tertiary": "#2F6F4E",
+            "tertiary-container": "#E3EEE6",
+            "on-tertiary-fixed": "#12281E",
+            "secondary-fixed-dim": "#D9B876",
+            "on-background": "#17213A",
+            "surface-dim": "#E8E3D3",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "on-tertiary-container": "#1F4A34",
+            "on-surface": "#17213A",
+            "on-primary-container": "#FBF9F4",
+            "outline": "#C7C0AC",
+            "outline-variant": "#E4DFD0",
+            "tertiary-fixed": "#8FC7A8",
+            "on-secondary-container": "#6B4A17",
+            "on-primary": "#FBF9F4",
+            "surface": "#FBF9F4",
+            "surface-container-lowest": "#FFFFFF",
+            "surface-container-high": "#EAE4D4",
+            "error-container": "#F9DEDC",
+            "inverse-on-surface": "#FBF9F4",
+            "on-surface-variant": "#5B5847",
+            "on-tertiary": "#FFFFFF",
+            "on-error": "#FFFFFF",
+            "primary-fixed-dim": "#C7B37E",
+            "primary-fixed": "#D9CBA3",
+            "primary-container": "#232F4E",
+            "inverse-primary": "#D9CBA3",
+            "error": "#B3261E",
+            "tertiary-fixed-dim": "#6FA98A",
+            "secondary-container": "#F1E4C7",
+            "surface-tint": "#A6742A"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-xxs": "0.25rem",
+            "gutter-mobile": "1rem",
+            "gutter-tablet": "1.5rem",
+            "space-2xl": "3rem",
+            "space-sm": "0.75rem",
+            "min-touch-target": "3rem",
+            "space-xl": "2rem",
+            "gutter-desktop": "2rem",
+            "container-max": "72rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg-mobile": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"]
+          },
+          "fontSize": {
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col justify-between font-body-md text-body-md selection:bg-primary-fixed selection:text-primary">
+<!-- Top Institutional Bar (State Government Identity) -->
+<div class="bg-primary text-on-primary py-space-xxs px-gutter-desktop border-b border-outline-variant/30">
+<div class="max-w-container-max mx-auto flex items-center justify-between text-label-sm font-label-sm">
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary-container inline-block"></span>
+<span>झारखण्ड सरकार | Government of Jharkhand</span>
+</span>
+<span class="text-outline-variant/60">|</span>
+<span class="hidden sm:inline text-primary-fixed-dim">उच्च, तकनीकी शिक्षा एवं कौशल विकास विभाग</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="text-primary-fixed-dim hidden md:inline">Citizen Helpline: 181</span>
+<div class="flex items-center gap-1 bg-primary-container px-2 py-0.5 rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-[14px]" data-icon="language">language</span>
+<button class="font-bold underline text-on-primary" title="English Interface">EN</button>
+<span class="text-outline-variant/60">|</span>
+<button class="text-primary-fixed-dim hover:text-on-primary" title="हिंदी इंटरफ़ेस">हिन्दी</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Shared Component Anchor: TopNavBar (Login View Focus - Suppressing inner tabs for transactional page) -->
+<header class="bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-30">
+<div class="flex justify-between items-center w-full px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
+<!-- Brand & Emblem -->
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-low border border-outline-variant flex items-center justify-center text-primary font-bold text-headline-sm">
+<span class="material-symbols-outlined text-primary" data-icon="account_balance">account_balance</span>
+</div>
+<div class="flex flex-col">
+<a class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight leading-tight" href="#">
+            झारखंड समाधान सेतु | Student Innovation Hub
+          </a>
+<span class="text-label-sm font-label-sm text-on-surface-variant leading-none">State University &amp; Engineering College Research Portal</span>
+</div>
+</div>
+<!-- Quick Context Actions -->
+<div class="flex items-center gap-space-sm">
+<a class="hidden md:inline-flex items-center gap-1 text-label-md font-label-md text-primary hover:text-secondary py-1 px-3 rounded-lg border border-outline-variant transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="help_outline">help_outline</span>
+<span>Helpdesk &amp; FAQ</span>
+</a>
+<a class="inline-flex items-center gap-1 text-label-md font-label-md bg-surface-container-low text-primary hover:bg-surface-container py-1.5 px-3 rounded-lg border border-outline-variant transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="school">school</span>
+<span>Colleges Directory</span>
+</a>
+</div>
+</div>
+</header>
+<!-- Main Login Work Canvas -->
+<main class="flex-grow flex items-center justify-center px-gutter-mobile md:px-gutter-desktop py-space-xl">
+<div class="w-full max-w-[480px]">
+<!-- Central Civic Login Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg md:p-space-xl">
+<!-- Institutional Badge Header -->
+<div class="flex flex-col items-center text-center mb-space-lg">
+<div class="w-14 h-14 rounded-full bg-primary/5 border border-primary/20 flex items-center justify-center text-primary mb-space-sm">
+<span class="material-symbols-outlined text-[32px] text-primary" data-icon="school">school</span>
+</div>
+<span class="inline-flex items-center gap-1.5 py-0.5 px-2.5 rounded-full text-label-sm font-label-sm bg-surface-container text-primary border border-surface-variant mb-space-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="verified_user">verified_user</span>
+<span>Government Verified Portal</span>
+</span>
+<h1 class="text-headline-md font-headline-md text-primary mb-space-xxs">
+            छात्र लॉगिन / Student Workspace Login
+          </h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant max-w-sm">
+            Access civic problem statements, submit engineering proposals, and collaborate with mentors across Jharkhand colleges.
+          </p>
+</div>
+<!-- Segmented Toggle Control -->
+<div class="mb-space-lg">
+<div class="grid grid-cols-2 p-1 bg-surface-container-low rounded-lg border border-outline-variant text-label-md font-label-md">
+<button class="py-2.5 px-2 text-center rounded-lg bg-surface-container-lowest text-primary font-semibold border border-outline-variant transition-all" id="toggle-email" type="button">
+<span class="block leading-tight">College Email ID</span>
+<span class="text-[10px] text-on-surface-variant font-normal">(@ac.in / @edu.in)</span>
+</button>
+<button class="py-2.5 px-2 text-center rounded-lg text-on-surface-variant hover:text-primary transition-all" id="toggle-reg" type="button">
+<span class="block leading-tight">University Reg No.</span>
+<span class="text-[10px] text-on-surface-variant font-normal">(JUT / BIT / NIT / RU)</span>
+</button>
+</div>
+</div>
+<!-- Login Form -->
+<form class="space-y-space-md" id="student-login-form" onsubmit="event.preventDefault();">
+<!-- Dynamic Identifier Field -->
+<div id="field-container-identifier">
+<div class="flex justify-between items-baseline mb-space-xxs">
+<label class="text-label-md font-label-md text-on-surface" for="identifier-input">
+                संस्थान ईमेल आईडी / College Email ID <span class="text-secondary">*</span>
+</label>
+<span class="text-label-sm font-label-sm text-on-surface-variant">BIT / NIT / JUT / BBMKU</span>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="alternate_email">alternate_email</span>
+</div>
+<input class="w-full pl-11 pr-10 py-3 bg-surface-container-lowest text-on-surface text-body-md font-body-md border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none placeholder:text-outline/70 transition-colors" id="identifier-input" placeholder="e.g. rahul.ece21@bitmesra.ac.in" required="" type="email"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-tertiary-container" title="Recognized Academic Domain">
+<span class="material-symbols-outlined text-[20px] text-primary" data-icon="domain_verification">domain_verification</span>
+</div>
+</div>
+<p class="mt-1 text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]" data-icon="info">info</span>
+              Institutional domain will be automatically matched to your college.
+            </p>
+</div>
+<!-- Password Field with Reveal Toggle -->
+<div>
+<div class="flex justify-between items-baseline mb-space-xxs">
+<label class="text-label-md font-label-md text-on-surface" for="password-input">
+                पासवर्ड / Password <span class="text-secondary">*</span>
+</label>
+<a class="text-label-sm font-label-sm text-secondary hover:text-on-secondary-fixed-variant underline transition-colors" href="#">
+                Forgot password?
+              </a>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="lock">lock</span>
+</div>
+<input class="w-full pl-11 pr-11 py-3 bg-surface-container-lowest text-on-surface text-body-md font-body-md border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none placeholder:text-outline/70 transition-colors" id="password-input" placeholder="Enter your workspace password" required="" type="password"/>
+<button aria-label="Toggle password visibility" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-outline hover:text-on-surface cursor-pointer" id="toggle-password-btn" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility" id="password-visibility-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Institutional Trust Checkbox -->
+<div class="flex items-start gap-2 pt-1">
+<input class="mt-1 w-4 h-4 text-primary rounded border-outline-variant focus:ring-primary focus:ring-2" id="remember-device" type="checkbox"/>
+<label class="text-body-sm font-body-sm text-on-surface cursor-pointer" for="remember-device">
+              Remember this secure institutional terminal for 30 days
+            </label>
+</div>
+<!-- Primary CTA Button (Warm Accent #8C5F1F / secondary) -->
+<div class="pt-space-xs">
+<button class="w-full h-min-touch-target bg-secondary hover:bg-on-secondary-fixed-variant active:scale-[0.99] text-on-secondary font-label-lg text-label-lg rounded-lg flex items-center justify-center gap-space-xs transition-all focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2" id="btn-student-login" type="submit">
+<span>Login to Student Portal / पोर्टल में प्रवेश करें</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+<!-- Secondary Navigation Links -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant flex flex-col sm:flex-row items-center justify-between text-label-sm font-label-sm text-on-surface-variant gap-2">
+<span>New student or campus unit?</span>
+<a class="inline-flex items-center gap-1 text-primary hover:text-secondary font-semibold underline transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="domain_add">domain_add</span>
+<span>Register your institution / New College Onboarding</span>
+</a>
+</div>
+<!-- Trust & Verification Pill Footer -->
+<div class="mt-space-md p-space-sm bg-surface-container-low border border-surface-variant rounded-lg flex items-start gap-space-xs text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5" data-icon="verified">verified</span>
+<span>
+            Affiliated with Department of Higher &amp; Technical Education, Govt. of Jharkhand • DigiLocker / ABC ID integration enabled
+          </span>
+</div>
+</div>
+<!-- Quick Institutional Help Links Below Card -->
+<div class="mt-space-md flex justify-center items-center gap-space-md text-label-sm font-label-sm text-on-surface-variant">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[15px]" data-icon="lock_reset">lock_reset</span>
+<span>Password Help</span>
+</a>
+<span>•</span>
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[15px]" data-icon="assignment_ind">assignment_ind</span>
+<span>Faculty Coordinator Login</span>
+</a>
+<span>•</span>
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[15px]" data-icon="call">call</span>
+<span>Dial 181 Support</span>
+</a>
+</div>
+</div>
+</main>
+<!-- Shared Component Anchor: Institutional Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant w-full mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-gutter-desktop py-space-md max-w-container-max mx-auto gap-space-sm text-label-sm font-label-sm text-on-surface-variant">
+<!-- Brand Copyright -->
+<div class="flex items-center gap-space-sm">
+<span class="text-label-lg font-label-lg font-bold text-primary">
+          झारखंड समाधान सेतु
+        </span>
+<span class="hidden md:inline text-outline-variant">|</span>
+<span class="text-center md:text-left">
+          © 2025 Department of Higher, Technical Education &amp; Skill Development, Govt. of Jharkhand. All rights reserved.
+        </span>
+</div>
+<!-- Footer Mandatory Institutional Links -->
+<div class="flex flex-wrap justify-center items-center gap-space-md">
+<a class="hover:text-secondary transition-colors focus:ring-2 focus:ring-primary focus:outline-none rounded" href="#">
+          Citizen Charter
+        </a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-secondary transition-colors focus:ring-2 focus:ring-primary focus:outline-none rounded font-semibold text-primary" href="#">
+          Helpline: 181
+        </a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-secondary transition-colors focus:ring-2 focus:ring-primary focus:outline-none rounded" href="#">
+          Privacy Policy
+        </a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-secondary transition-colors focus:ring-2 focus:ring-primary focus:outline-none rounded" href="#">
+          Terms of Service
+        </a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-secondary transition-colors focus:ring-2 focus:ring-primary focus:outline-none rounded inline-flex items-center gap-0.5" href="#">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="badge">badge</span>
+          DigiLocker Verification
+        </a>
+</div>
+</div>
+</footer>
+<!-- Micro-interactions: Toggle Modes & Password Reveal -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleEmail = document.getElementById('toggle-email');
+      const toggleReg = document.getElementById('toggle-reg');
+      const identifierInput = document.getElementById('identifier-input');
+      const passwordInput = document.getElementById('password-input');
+      const togglePasswordBtn = document.getElementById('toggle-password-btn');
+      const passwordVisibilityIcon = document.getElementById('password-visibility-icon');
+
+      // Segmented Toggle Behavior
+      toggleEmail.addEventListener('click', () => {
+        toggleEmail.className = "py-2.5 px-2 text-center rounded-lg bg-surface-container-lowest text-primary font-semibold border border-outline-variant transition-all";
+        toggleReg.className = "py-2.5 px-2 text-center rounded-lg text-on-surface-variant hover:text-primary transition-all";
+        identifierInput.placeholder = "e.g. rahul.ece21@bitmesra.ac.in";
+        identifierInput.type = "email";
+      });
+
+      toggleReg.addEventListener('click', () => {
+        toggleReg.className = "py-2.5 px-2 text-center rounded-lg bg-surface-container-lowest text-primary font-semibold border border-outline-variant transition-all";
+        toggleEmail.className = "py-2.5 px-2 text-center rounded-lg text-on-surface-variant hover:text-primary transition-all";
+        identifierInput.placeholder = "e.g. 21JUT048291 or BIT/2021/BTECH/092";
+        identifierInput.type = "text";
+      });
+
+      // Password Visibility Toggle
+      togglePasswordBtn.addEventListener('click', () => {
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          passwordVisibilityIcon.textContent = 'visibility_off';
+        } else {
+          passwordInput.type = 'password';
+          passwordVisibilityIcon.textContent = 'visibility';
+        }
+      });
+    });
+  </script>
+<script>
+  document.getElementById('student-login-form').addEventListener('submit', () => {
+    const identifier = document.getElementById('identifier-input').value.trim();
+    const password = document.getElementById('password-input').value;
+    if (!identifier || !password) {
+      showToast('कृपया सभी फ़ील्ड भरें / Please fill all fields');
+      return;
+    }
+    API.login('student', identifier);
+    showToast('Login successful / लॉगिन सफल');
+    setTimeout(() => { window.location.href = 'dashboard.html'; }, 500);
+  });
+</script>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+</body></html>

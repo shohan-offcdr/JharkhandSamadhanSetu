@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface" lang="hi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>झारखंड समाधान सेतु | Jharkhand Samadhan Setu</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-container": "#1F4A34",
+            "inverse-surface": "#17213A",
+            "tertiary-fixed": "#8FC7A8",
+            "on-secondary-fixed": "#4A3B1F",
+            "on-tertiary-fixed": "#12281E",
+            "surface-variant": "#F1ECE0",
+            "primary-container": "#232F4E",
+            "outline-variant": "#E4DFD0",
+            "primary": "#17213A",
+            "outline": "#C7C0AC",
+            "on-primary-fixed": "#17213A",
+            "on-surface-variant": "#5B5847",
+            "tertiary-container": "#E3EEE6",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "surface-tint": "#A6742A",
+            "surface-dim": "#E8E3D3",
+            "tertiary-fixed-dim": "#6FA98A",
+            "surface": "#FBF9F4",
+            "inverse-primary": "#D9CBA3",
+            "surface-container-high": "#EAE4D4",
+            "secondary-container": "#F1E4C7",
+            "primary-fixed": "#D9CBA3",
+            "inverse-on-surface": "#FBF9F4",
+            "surface-container-lowest": "#FFFFFF",
+            "on-error-container": "#5F1712",
+            "error": "#B3261E",
+            "surface-container-low": "#F6F3EA",
+            "secondary": "#A6742A",
+            "on-tertiary": "#FFFFFF",
+            "on-secondary-container": "#6B4A17",
+            "on-surface": "#17213A",
+            "surface-container-highest": "#E2DBC7",
+            "background": "#FBF9F4",
+            "surface-container": "#F1ECE0",
+            "surface-bright": "#FBF9F4",
+            "primary-fixed-dim": "#C7B37E",
+            "on-secondary": "#FFFFFF",
+            "on-primary": "#FBF9F4",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "on-primary-container": "#FBF9F4",
+            "secondary-fixed-dim": "#D9B876",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "error-container": "#F9DEDC",
+            "on-error": "#FFFFFF",
+            "secondary-fixed": "#F1E4C7",
+            "tertiary": "#2F6F4E",
+            "on-background": "#17213A"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-desktop": "2rem",
+            "container-max": "72rem",
+            "space-3xl": "4rem",
+            "min-touch-target": "3rem",
+            "space-xl": "2rem",
+            "space-xxs": "0.25rem",
+            "gutter-tablet": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-sm": "0.75rem",
+            "gutter-mobile": "1rem",
+            "space-xs": "0.5rem",
+            "space-2xl": "3rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400"}],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600"}],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600"}],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600"}],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600"}],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="min-h-full flex flex-col bg-surface text-on-surface font-body-md text-body-md antialiased selection:bg-primary selection:text-on-primary">
+<!-- TOP APP BAR -->
+<header class="w-full bg-surface border-b border-outline-variant sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
+<!-- Brand Logo / Identity -->
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_balance">account_balance</span>
+</div>
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight line-clamp-1">
+          झारखंड समाधान सेतु | Jharkhand Samadhan Setu
+        </span>
+</div>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-space-lg">
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors duration-150 py-1" href="../index.html">
+          गृह / Home
+        </a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors duration-150 py-1" href="grievance-step1.html">
+          शिकायत दर्ज करें / File Grievance
+        </a>
+<a class="border-b-2 border-secondary text-primary font-label-lg text-label-lg pb-1" href="../index.html">
+          स्थिति जांचें / Track Status
+        </a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors duration-150 py-1" href="#faqs">
+          अक्सर पूछे जाने वाले प्रश्न / FAQs
+        </a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-space-xs md:gap-space-sm">
+<button class="px-space-sm py-space-xxs rounded-lg border border-outline-variant text-primary font-label-sm text-label-sm hover:bg-surface-container transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-container" type="button">
+          हिन्दी / English
+        </button>
+<button aria-label="Notifications" class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-150 flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="Account Profile" class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-150 flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- MAIN CANVAS: CONFIRMATION RECEIPT -->
+<main class="flex-grow flex items-center justify-center py-space-xl md:py-space-2xl px-gutter-mobile md:px-gutter-tablet">
+<div class="w-full max-w-xl mx-auto">
+<!-- Success Receipt Container Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 sm:p-8 md:p-10 text-center relative overflow-hidden">
+<!-- Institutional Top Accent Bar -->
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-primary"></div>
+<!-- Success Circle Badge -->
+<div class="mx-auto w-16 h-16 rounded-full bg-surface-container-low border border-[#BBF7D0] flex items-center justify-center mb-space-md text-[#166534]">
+<span class="material-symbols-outlined text-[36px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<!-- Primary Feedback Headline -->
+<h1 class="text-headline-sm md:text-headline-md font-headline-sm md:font-headline-md text-on-surface text-balance">
+          शिकायत सफलतापूर्वक दर्ज की गई / Grievance Submitted Successfully
+        </h1>
+<!-- Explanatory Subtext -->
+<p class="mt-space-xs text-body-sm md:text-body-md font-body-sm md:font-body-md text-on-surface-variant max-w-md mx-auto text-balance">
+          Your complaint has been registered with the Government of Jharkhand and dispatched to the concerned District Nodal Officer.
+        </p>
+<!-- Reference / Tracking ID Highlight Box -->
+<div class="mt-space-lg bg-surface-container-low border border-dashed border-primary-container/30 rounded-lg p-space-md text-left">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs pb-space-xs border-b border-outline-variant/40">
+<span class="text-label-sm font-label-sm text-on-surface-variant">
+              Your Grievance Tracking ID / शिकायत क्रमांक संख्या
+            </span>
+<span class="inline-flex items-center gap-1 text-[11px] font-label-sm text-[#166534] bg-[#DCFCE7] border border-[#BBF7D0] px-2 py-0.5 rounded-full w-fit">
+<span class="w-1.5 h-1.5 rounded-full bg-[#166534]"></span>
+              सक्रिय / Active
+            </span>
+</div>
+<!-- Tracking ID and Copy Action -->
+<div class="flex items-center justify-between mt-space-sm">
+<span class="text-headline-sm font-headline-sm font-bold tracking-wider text-primary select-all" id="trackingId">
+              --
+            </span>
+<button class="inline-flex items-center gap-1 px-space-sm py-1.5 bg-surface-container-lowest border border-outline-variant text-primary rounded-lg text-label-md font-label-md hover:bg-surface-container active:scale-95 transition-all focus:outline-none focus:ring-2 focus:ring-primary" id="copyBtn" onclick="copyTrackingCode()" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="content_copy">content_copy</span>
+<span>Copy / कॉपी करें</span>
+</button>
+</div>
+<!-- Meta Information Details -->
+<div class="mt-space-sm pt-space-xs border-t border-outline-variant/40 flex items-start gap-2 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary shrink-0 mt-0.5" data-icon="info">info</span>
+<p class="leading-tight text-[12px]">
+              Date: <span class="font-semibold text-on-surface">24 Oct 2024</span> • Expected Resolution Time: <span class="font-semibold text-on-surface">7 Working Days</span> (Jharkhand Right to Public Services Act)
+            </p>
+</div>
+</div>
+<!-- Next Steps Roadmap / Timeline Tracker -->
+<div class="mt-space-xl text-left">
+<h2 class="text-label-md font-label-md text-on-surface mb-space-md flex items-center justify-between">
+<span>आगामी चरण / Roadmap of Resolution</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Standard SLA Protocol</span>
+</h2>
+<div class="relative pl-6 space-y-space-md before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant/60">
+<!-- Step 1: Active -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-6 top-0.5 w-[22px] h-[22px] rounded-full bg-[#166534] border-2 border-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[14px]" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div>
+<p class="text-label-md font-label-lg text-on-surface">1. Registered &amp; Assigned (Today)</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Forwarded to Department of Public Works, Ranchi Sub-Division.</p>
+</div>
+</div>
+<!-- Step 2: Upcoming -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-6 top-0.5 w-[22px] h-[22px] rounded-full bg-surface-container-lowest border-2 border-outline-variant flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+<div>
+<p class="text-label-md font-label-lg text-on-surface-variant">2. Inspection by Field Officer (Day 2-3)</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant/80">Site verification and initial audit by designated engineer.</p>
+</div>
+</div>
+<!-- Step 3: Upcoming -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-6 top-0.5 w-[22px] h-[22px] rounded-full bg-surface-container-lowest border-2 border-outline-variant flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+<div>
+<p class="text-label-md font-label-lg text-on-surface-variant">3. Corrective Action &amp; Report (Day 4-6)</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant/80">Execution of resolution works and photographic documentation.</p>
+</div>
+</div>
+<!-- Step 4: Upcoming -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-6 top-0.5 w-[22px] h-[22px] rounded-full bg-surface-container-lowest border-2 border-outline-variant flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+<div>
+<p class="text-label-md font-label-lg text-on-surface-variant">4. Citizen Feedback &amp; Closure (Day 7)</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant/80">Confirmation call and official case closure with verification OTP.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- SMS / WhatsApp Notification Note -->
+<div class="mt-space-lg p-space-sm bg-surface-container rounded-lg flex items-center gap-space-sm text-left">
+<div class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="mark_chat_read">mark_chat_read</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            An acknowledgement SMS with tracking link has been sent to <span class="font-bold text-on-surface">+91 98765 43210</span>.
+          </p>
+</div>
+<!-- Primary Action CTAs -->
+<div class="mt-space-xl flex flex-col gap-space-sm">
+<!-- Primary CTA Button (Warm Terracotta/Amber) -->
+<a class="w-full h-min-touch-target flex items-center justify-center px-space-lg bg-secondary text-on-primary rounded-lg font-label-lg text-label-lg hover:bg-[#8C5F1F] active:scale-[0.99] transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container" href="#my-reports">
+            View Your Reports / अपनी शिकायतें देखें
+          </a>
+<!-- Secondary Action (Clean Institutional Outline Button) -->
+<a class="w-full h-min-touch-target flex items-center justify-center px-space-lg bg-transparent border border-outline-variant text-on-surface font-label-lg text-label-lg rounded-lg hover:bg-surface-container active:scale-[0.99] transition-all focus:outline-none focus:ring-2 focus:ring-primary-container" href="#file-new">
+            Submit Another Grievance / नई शिकायत दर्ज करें
+          </a>
+</div>
+</section>
+<!-- Minimal Civic Help Desk & Toll-Free Section -->
+<div class="mt-space-md text-center">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-container-lowest rounded-full border border-outline-variant text-on-surface-variant text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="support_agent">support_agent</span>
+<span>झारखंड मुख्यमंत्री जनसंवाद हेल्पलाइन: <strong class="text-primary font-bold">181</strong> (टोल-फ्री / Toll-Free 24x7)</span>
+</div>
+</div>
+</div>
+</main>
+<!-- BOTTOM NAVIGATION BAR (Mobile Destination Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter-mobile h-min-touch-target md:hidden bg-surface border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" href="../index.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm">मुख्य / Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" href="grievance-step1.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit_document">edit_document</span>
+<span class="text-label-sm font-label-sm">शिकायत / File</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary rounded-lg px-space-sm py-space-xxs min-h-min-touch-target" href="../index.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="timeline" style="font-variation-settings: 'FILL' 1;">timeline</span>
+<span class="text-label-sm font-label-sm">स्थिति / Track</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" href="tel:181">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+<span class="text-label-sm font-label-sm">सहायता / Help</span>
+</a>
+</nav>
+<!-- SHARED FOOTER -->
+<footer class="w-full bg-primary border-t border-outline text-on-primary mt-auto pb-16 md:pb-0">
+<div class="w-full py-space-xl px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-space-md">
+<!-- Brand & Copyright -->
+<div class="flex flex-col gap-1 text-center md:text-left">
+<span class="text-headline-sm font-headline-sm font-bold text-on-primary">
+          झारखंड समाधान सेतु | Jharkhand Samadhan Setu
+        </span>
+<p class="text-body-sm font-body-sm opacity-90 max-w-2xl">
+          © 2024 सूचना प्रौद्योगिकी एवं ई-गवर्नेंस विभाग, झारखंड सरकार | Department of Information Technology &amp; e-Governance, Government of Jharkhand. All Rights Reserved.
+        </p>
+</div>
+<!-- Links -->
+<nav class="flex flex-wrap items-center justify-center gap-x-space-md gap-y-space-xs text-label-sm font-label-sm">
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#privacy">
+          गोपनीयता नीति / Privacy Policy
+        </a>
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#terms">
+          उपयोग की शर्तें / Terms of Service
+        </a>
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#charter">
+          नागरिक चार्टर / Citizen Charter
+        </a>
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#contact">
+          संपर्क करें / Contact Us
+        </a>
+</nav>
+</div>
+</footer>
+<!-- LIGHTWEIGHT INTERACTION JAVASCRIPT -->
+<script>
+    function copyTrackingCode() {
+      const trackingCode = document.getElementById('trackingId').innerText.trim();
+      navigator.clipboard.writeText(trackingCode).then(() => {
+        const btn = document.getElementById('copyBtn');
+        const originalContent = btn.innerHTML;
+        btn.innerHTML = `
+          <span class="material-symbols-outlined text-[16px] text-[#166534]" style="font-variation-settings: 'FILL' 1;">check</span>
+          <span class="text-[#166534] font-semibold">Copied!</span>
+        `;
+        setTimeout(() => {
+          btn.innerHTML = originalContent;
+        }, 2000);
+      }).catch(err => {
+        console.error('Clipboard copy error:', err);
+      });
+    }
+
+    // Fill in the real tracking ID from the grievance just submitted.
+    document.addEventListener('DOMContentLoaded', () => {
+      const lastId = sessionStorage.getItem('jss_last_submitted_id');
+      if (lastId) {
+        document.getElementById('trackingId').textContent = lastId;
+      } else {
+        // No submission found in this session - send back to start of the flow.
+        document.getElementById('trackingId').textContent = 'N/A';
+      }
+    });
+  </script>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+</body></html>

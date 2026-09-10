@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>झारखंड समाधान सेतु | Student Innovation Hub - Dashboard</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Noto Sans font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#FFFFFF",
+            "on-primary-fixed": "#17213A",
+            "primary": "#17213A",
+            "on-secondary-fixed": "#4A3B1F",
+            "surface-container": "#F1ECE0",
+            "inverse-surface": "#17213A",
+            "secondary": "#A6742A",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "surface-variant": "#F1ECE0",
+            "surface-container-low": "#F6F3EA",
+            "surface-bright": "#FBF9F4",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "background": "#FBF9F4",
+            "secondary-fixed": "#F1E4C7",
+            "on-error-container": "#5F1712",
+            "surface-container-highest": "#E2DBC7",
+            "tertiary": "#2F6F4E",
+            "tertiary-container": "#E3EEE6",
+            "on-tertiary-fixed": "#12281E",
+            "secondary-fixed-dim": "#D9B876",
+            "on-background": "#17213A",
+            "surface-dim": "#E8E3D3",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "on-tertiary-container": "#1F4A34",
+            "on-surface": "#17213A",
+            "on-primary-container": "#FBF9F4",
+            "outline": "#C7C0AC",
+            "outline-variant": "#E4DFD0",
+            "tertiary-fixed": "#8FC7A8",
+            "on-secondary-container": "#6B4A17",
+            "on-primary": "#FBF9F4",
+            "surface": "#FBF9F4",
+            "surface-container-lowest": "#FFFFFF",
+            "surface-container-high": "#EAE4D4",
+            "error-container": "#F9DEDC",
+            "inverse-on-surface": "#FBF9F4",
+            "on-surface-variant": "#5B5847",
+            "on-tertiary": "#FFFFFF",
+            "on-error": "#FFFFFF",
+            "primary-fixed-dim": "#C7B37E",
+            "primary-fixed": "#D9CBA3",
+            "primary-container": "#232F4E",
+            "inverse-primary": "#D9CBA3",
+            "error": "#B3261E",
+            "tertiary-fixed-dim": "#6FA98A",
+            "secondary-container": "#F1E4C7",
+            "surface-tint": "#A6742A"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-xxs": "0.25rem",
+            "gutter-mobile": "1rem",
+            "gutter-tablet": "1.5rem",
+            "space-2xl": "3rem",
+            "space-sm": "0.75rem",
+            "min-touch-target": "3rem",
+            "space-xl": "2rem",
+            "gutter-desktop": "2rem",
+            "container-max": "72rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"]
+          },
+          "fontSize": {
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col antialiased selection:bg-surface-variant selection:text-primary">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
+<!-- Brand & Search Cluster -->
+<div class="flex items-center space-x-space-lg">
+<a class="text-headline-sm font-headline-sm font-bold text-primary flex items-center gap-space-xs tracking-tight" href="../index.html">
+<span class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center font-display-lg text-lg text-white">झ</span>
+<span class="truncate">झारखंड समाधान सेतु | Student Innovation Hub</span>
+</a>
+<!-- Search Bar (on_left) -->
+<div class="hidden lg:flex items-center relative w-72">
+<span class="material-symbols-outlined absolute left-3 text-outline text-[18px] pointer-events-none" data-icon="search">search</span>
+<input class="w-full pl-9 pr-3 py-1.5 text-body-sm font-body-sm bg-surface-container-low border border-outline-variant rounded-lg text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:bg-surface-container-lowest transition-colors" placeholder="Search problems, blocks, or tech stack..." type="text"/>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center space-x-space-md">
+<!-- Dashboard (Active) -->
+<a class="border-b-2 border-secondary text-secondary font-label-md font-semibold pb-1 transition-colors duration-150 ease-in-out" href="dashboard.html">
+          Dashboard
+        </a>
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal transition-colors duration-150 ease-in-out" href="dashboard.html#recommended">
+          Browse Problems
+        </a>
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal transition-colors duration-150 ease-in-out" href="team-formation.html">
+          My Teams
+        </a>
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal transition-colors duration-150 ease-in-out" href="milestone-tracker.html">
+          My Projects
+        </a>
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal transition-colors duration-150 ease-in-out" href="#">
+          Grants &amp; Funding
+        </a>
+</nav>
+<!-- Trailing Action: Notifications & Profile -->
+<div class="flex items-center space-x-space-sm">
+<button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" title="Notifications">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full ring-2 ring-surface-container-lowest"></span>
+</button>
+<div class="h-6 w-px bg-outline-variant mx-1"></div>
+<!-- Student Profile Cluster -->
+<div class="flex items-center space-x-space-xs pl-1">
+<img class="w-9 h-9 rounded-full border border-outline-variant object-cover" data-alt="Photorealistic institutional portrait badge of Aryan Sharma, a male Indian engineering student wearing a smart collared shirt with an authentic BIT Mesra identity credential card clearly pinned to his chest. High key natural campus library background with soft lighting and pristine clean institutional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt-idxtGoc8kZ7WRucJZc7EnFtdzWwCXZVGMMZE1c3aWhZBo1AhU0JQkKpAngfwRto0KGF9KMJv9rgcnMvbz-35dF7AMhVJON4n1b23zewptOQwG_Zq58z0HCh7JGxF92EvGXTQt4VgwoJNcSrT6JBTs_wRsB72ur2nVEoTyUR3a6BqTF5Ynnm2oBX-8UlETIV4hVQMMmXH9cGrBvqnh5Uo_W5_Vzcixt53XXg0QBGjzaUTzEcWbd-"/>
+<div class="hidden xl:flex flex-col text-left">
+<span class="text-label-sm font-label-sm font-semibold text-primary leading-tight" data-session-name="">Aryan Sharma</span>
+<span class="text-[10px] text-outline font-medium tracking-tight">BIT Mesra • Civil Engg</span>
+</div>
+</div>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" data-logout="../index.html" title="Logout">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Sub-Header: Student Profile & Live KPI Metrics -->
+<section class="bg-surface-container-lowest border-b border-outline-variant">
+<div class="max-w-container-max mx-auto px-gutter-desktop py-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<!-- Greeting & Institutional Credentials -->
+<div class="flex items-start md:items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-container text-on-primary flex items-center justify-center font-bold text-headline-sm flex-shrink-0">
+          AS
+        </div>
+<div>
+<div class="flex items-center gap-space-xs flex-wrap">
+<h1 class="text-headline-md font-headline-md text-primary tracking-tight font-bold">
+              Welcome back, Aryan Sharma
+            </h1>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-low text-primary-container border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]" data-icon="verified">verified</span>
+              DigiLocker Verified
+            </span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            B.Tech Civil Engineering &amp; Water Resources • Birla Institute of Technology, Mesra (Roll: 2021-BCIV-042)
+          </p>
+</div>
+</div>
+<!-- Quick Stats Ticker -->
+<div class="flex items-center gap-space-sm sm:gap-space-md overflow-x-auto pb-1 md:pb-0">
+<!-- Stat 1 -->
+<div class="px-space-md py-2 rounded-lg bg-surface-container-low border border-outline-variant min-w-[130px]">
+<div class="text-label-sm font-label-sm text-on-surface-variant font-medium">Active Proposals</div>
+<div class="text-headline-sm font-headline-sm font-bold text-primary mt-0.5">2</div>
+</div>
+<!-- Stat 2 -->
+<div class="px-space-md py-2 rounded-lg bg-surface-container-low border border-outline-variant min-w-[130px]">
+<div class="text-label-sm font-label-sm text-on-surface-variant font-medium">Saved Problems</div>
+<div class="text-headline-sm font-headline-sm font-bold text-primary mt-0.5">7</div>
+</div>
+<!-- Stat 3 -->
+<div class="px-space-md py-2 rounded-lg bg-surface-container-low border border-outline-variant min-w-[240px]">
+<div class="text-label-sm font-label-sm text-on-surface-variant font-medium flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block animate-pulse"></span>
+            Ongoing Projects
+          </div>
+<div class="text-label-md font-label-md font-semibold text-primary truncate mt-0.5" title="Smart Water Distribution (Hatia Block)">
+            1 (Smart Water Distribution)
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Canvas: Two-Column Density Grid -->
+<main class="flex-1 max-w-container-max mx-auto w-full px-gutter-desktop py-space-lg">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left Sidebar: Filter Panel (~260px / 3 cols) -->
+<aside class="lg:col-span-3 bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md sticky top-[80px]">
+<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant mb-space-md">
+<div class="flex items-center gap-1.5 text-primary font-headline-sm text-[16px] font-bold">
+<span class="material-symbols-outlined text-[18px]" data-icon="tune">tune</span>
+<span>Filter Problems</span>
+</div>
+<button class="text-label-sm font-label-sm text-secondary hover:text-on-secondary-container font-semibold transition-colors" type="button">
+            Reset All
+          </button>
+</div>
+<form class="space-y-space-md text-left" onsubmit="event.preventDefault();">
+<!-- Filter 1: Discipline Filter -->
+<div>
+<label class="block text-label-md font-label-md font-semibold text-on-surface mb-1">
+              Engineering Discipline
+            </label>
+<div class="relative">
+<select class="w-full text-body-sm font-body-sm bg-surface-container-lowest border border-outline-variant rounded-lg py-2 px-3 text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container cursor-pointer">
+<option selected="">Civil Engineering &amp; Water Resources</option>
+<option>Computer Science &amp; IT</option>
+<option>Electronics &amp; Comm. (ECE)</option>
+<option>Mechanical Engineering</option>
+<option>Agriculture &amp; Food Tech</option>
+<option>Mining &amp; Metallurgy</option>
+</select>
+</div>
+<p class="text-[11px] text-outline mt-1">Filtered by your BIT Mesra major</p>
+</div>
+<!-- Filter 2: District Selection (Jharkhand 24 Districts) -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="text-label-md font-label-md font-semibold text-on-surface">
+                Target District (24)
+              </label>
+<span class="text-label-sm text-secondary font-semibold">2 Selected</span>
+</div>
+<div class="border border-outline-variant rounded-lg p-2 max-h-40 overflow-y-auto space-y-1.5 bg-surface-container-low">
+<label class="flex items-center space-x-2 text-body-sm font-body-sm text-on-surface cursor-pointer hover:bg-surface-container-lowest p-1 rounded">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-primary-container h-4 w-4" type="checkbox"/>
+<span class="font-medium">Ranchi</span>
+<span class="ml-auto text-[11px] text-outline">18</span>
+</label>
+<label class="flex items-center space-x-2 text-body-sm font-body-sm text-on-surface cursor-pointer hover:bg-surface-container-lowest p-1 rounded">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-primary-container h-4 w-4" type="checkbox"/>
+<span class="font-medium">Dhanbad</span>
+<span class="ml-auto text-[11px] text-outline">11</span>
+</label>
+<label class="flex items-center space-x-2 text-body-sm font-body-sm text-on-surface cursor-pointer hover:bg-surface-container-lowest p-1 rounded">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container h-4 w-4" type="checkbox"/>
+<span>Khunti</span>
+<span class="ml-auto text-[11px] text-outline">6</span>
+</label>
+<label class="flex items-center space-x-2 text-body-sm font-body-sm text-on-surface cursor-pointer hover:bg-surface-container-lowest p-1 rounded">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container h-4 w-4" type="checkbox"/>
+<span>Latehar</span>
+<span class="ml-auto text-[11px] text-outline">4</span>
+</label>
+<label class="flex items-center space-x-2 text-body-sm font-body-sm text-on-surface cursor-pointer hover:bg-surface-container-lowest p-1 rounded">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container h-4 w-4" type="checkbox"/>
+<span>Palamu</span>
+<span class="ml-auto text-[11px] text-outline">5</span>
+</label>
+<label class="flex items-center space-x-2 text-body-sm font-body-sm text-on-surface cursor-pointer hover:bg-surface-container-lowest p-1 rounded">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container h-4 w-4" type="checkbox"/>
+<span>Hazaribagh</span>
+<span class="ml-auto text-[11px] text-outline">3</span>
+</label>
+<label class="flex items-center space-x-2 text-body-sm font-body-sm text-on-surface cursor-pointer hover:bg-surface-container-lowest p-1 rounded">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container h-4 w-4" type="checkbox"/>
+<span>East Singhbhum (Jamshedpur)</span>
+<span class="ml-auto text-[11px] text-outline">8</span>
+</label>
+</div>
+</div>
+<!-- Filter 3: Skillset Tags -->
+<div>
+<label class="block text-label-md font-label-md font-semibold text-on-surface mb-1.5">
+              Skillset Tags
+            </label>
+<div class="flex flex-wrap gap-1.5">
+<button class="px-2 py-1 rounded text-label-sm font-label-sm bg-primary-container text-on-primary font-medium flex items-center gap-1" type="button">
+                IoT
+                <span class="material-symbols-outlined text-[12px]" data-icon="close">close</span>
+</button>
+<button class="px-2 py-1 rounded text-label-sm font-label-sm bg-primary-container text-on-primary font-medium flex items-center gap-1" type="button">
+                Water Quality Testing
+                <span class="material-symbols-outlined text-[12px]" data-icon="close">close</span>
+</button>
+<button class="px-2 py-1 rounded text-label-sm font-label-sm bg-surface-container-low border border-outline-variant text-on-surface hover:border-primary-container" type="button">
+                + Geospatial GIS
+              </button>
+<button class="px-2 py-1 rounded text-label-sm font-label-sm bg-surface-container-low border border-outline-variant text-on-surface hover:border-primary-container" type="button">
+                + Structural Design
+              </button>
+<button class="px-2 py-1 rounded text-label-sm font-label-sm bg-surface-container-low border border-outline-variant text-on-surface hover:border-primary-container" type="button">
+                + Solar Microgrids
+              </button>
+<button class="px-2 py-1 rounded text-label-sm font-label-sm bg-surface-container-low border border-outline-variant text-on-surface hover:border-primary-container" type="button">
+                + Drone Survey
+              </button>
+</div>
+</div>
+<!-- Filter 4: Impact Scale -->
+<div>
+<label class="block text-label-md font-label-md font-semibold text-on-surface mb-1.5">
+              Impact Scale
+            </label>
+<div class="space-y-1">
+<label class="flex items-center text-body-sm font-body-sm text-on-surface cursor-pointer">
+<input class="text-primary-container focus:ring-primary-container h-3.5 w-3.5 mr-2" name="impact_scale" type="radio"/>
+<span>Specific Neighborhood</span>
+</label>
+<label class="flex items-center text-body-sm font-body-sm text-on-surface cursor-pointer">
+<input checked="" class="text-primary-container focus:ring-primary-container h-3.5 w-3.5 mr-2" name="impact_scale" type="radio"/>
+<span class="font-medium">Village / Panchayat</span>
+</label>
+<label class="flex items-center text-body-sm font-body-sm text-on-surface cursor-pointer">
+<input class="text-primary-container focus:ring-primary-container h-3.5 w-3.5 mr-2" name="impact_scale" type="radio"/>
+<span>District-wide Infrastructure</span>
+</label>
+</div>
+</div>
+<button class="w-full h-10 bg-surface-container-low hover:bg-surface-container text-primary text-label-md font-label-md font-semibold rounded-lg border border-outline-variant flex items-center justify-center gap-1.5 transition-colors pt-1" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="refresh">refresh</span>
+            Apply Filters
+          </button>
+</form>
+</aside>
+<!-- Right Main Content Area: Problem Challenges Grid (9 cols) -->
+<section class="lg:col-span-9 space-y-space-md" id="recommended">
+<!-- Header Controls & Tally -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">
+                Recommended Challenges for You
+              </h2>
+<span class="text-label-sm font-label-sm font-normal text-outline">/ आपके लिए अनुशंसित समस्याएं</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+              Showing <span class="font-semibold text-primary">48 Active Citizen Challenges</span> matched to your academic portfolio
+            </p>
+</div>
+<!-- Sort Dropdown -->
+<div class="flex items-center gap-space-xs self-end sm:self-center">
+<span class="text-label-sm font-label-sm text-outline whitespace-nowrap">Sort by:</span>
+<select class="text-body-sm font-body-sm bg-surface-container-lowest border border-outline-variant rounded-lg py-1.5 px-3 text-on-surface font-medium focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container cursor-pointer">
+<option selected="">AI Match Score (High to Low)</option>
+<option>Most Urgent</option>
+<option>Highest Impact</option>
+<option>Recently Submitted</option>
+</select>
+</div>
+</div>
+<!-- Problem Challenges Bento/Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Card 1: Drinking Water & Sanitation (High Match: 98%) -->
+<article class="bg-surface-container-lowest border border-outline-variant hover:border-outline rounded-xl p-space-md flex flex-col justify-between transition-all relative">
+<div>
+<!-- Category & AI Match Pill -->
+<div class="flex items-center justify-between gap-2 mb-space-sm">
+<span class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-primary font-semibold border border-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="water_drop">water_drop</span>
+                  Drinking Water &amp; Sanitation
+                </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] font-bold">
+<span class="material-symbols-outlined text-[13px]" data-icon="auto_awesome">auto_awesome</span>
+                  98% Match
+                </span>
+</div>
+<!-- Title -->
+<h3 class="text-headline-sm font-headline-sm font-bold text-primary mb-space-xs leading-snug">
+                Sub-surface Pipeline Leakage &amp; Contamination in Kanke Block, Ranchi
+              </h3>
+<!-- Description -->
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-space-md line-clamp-3">
+                Continuous water loss reported for 4 days affecting 120 households; requires acoustic leak detection, IoT pressure sensor telemetry, and immediate structural containment.
+              </p>
+<!-- Meta specs & badges -->
+<div class="grid grid-cols-2 gap-2 pt-space-xs border-t border-outline-variant/60 text-body-sm font-body-sm mb-space-md">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="location_on">location_on</span>
+<span class="font-medium truncate">Ranchi (Kanke)</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="groups">groups</span>
+<span class="font-medium truncate">Neighborhood (500+ citizens)</span>
+</div>
+</div>
+</div>
+<!-- Card Footer CTA & Actions -->
+<div class="flex items-center justify-between pt-space-xs">
+<button class="p-2 text-outline hover:text-primary transition-colors" title="Bookmark Challenge" type="button">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+<a class="px-space-md py-2.5 bg-secondary hover:bg-[#8C5F1F] text-on-secondary rounded-lg font-label-md font-label-md font-semibold transition-all flex items-center gap-1.5" href="problem-view.html">
+<span>View Challenge &amp; Propose</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Card 2: Rural Road & Bridge Infrastructure (Match: 94%) -->
+<article class="bg-surface-container-lowest border border-outline-variant hover:border-outline rounded-xl p-space-md flex flex-col justify-between transition-all relative">
+<div>
+<!-- Category & AI Match Pill -->
+<div class="flex items-center justify-between gap-2 mb-space-sm">
+<span class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-primary font-semibold border border-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="commute">commute</span>
+                  Rural Road &amp; Bridge Infra
+                </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] font-bold">
+<span class="material-symbols-outlined text-[13px]" data-icon="auto_awesome">auto_awesome</span>
+                  94% Match
+                </span>
+</div>
+<!-- Title -->
+<h3 class="text-headline-sm font-headline-sm font-bold text-primary mb-space-xs leading-snug">
+                Culvert Washout on Torpa-Murhu Link Road, Khunti
+              </h3>
+<!-- Description -->
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-space-md line-clamp-3">
+                Monsoon flash flood damaged concrete pipe culvert causing isolation of 3 tribal villages; low-cost rapid modular precast culvert solution needed for heavy agricultural transport.
+              </p>
+<!-- Meta specs & badges -->
+<div class="grid grid-cols-2 gap-2 pt-space-xs border-t border-outline-variant/60 text-body-sm font-body-sm mb-space-md">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="location_on">location_on</span>
+<span class="font-medium truncate">Khunti (Torpa)</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="groups">groups</span>
+<span class="font-medium truncate">Multiple Villages (4,200)</span>
+</div>
+</div>
+</div>
+<!-- Card Footer CTA & Actions -->
+<div class="flex items-center justify-between pt-space-xs">
+<button class="p-2 text-outline hover:text-primary transition-colors" title="Bookmark Challenge" type="button">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+<a class="px-space-md py-2.5 bg-secondary hover:bg-[#8C5F1F] text-on-secondary rounded-lg font-label-md font-label-md font-semibold transition-all flex items-center gap-1.5" href="problem-view.html">
+<span>View Challenge &amp; Propose</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Card 3: Renewable Energy & Power (Match: 91%) -->
+<article class="bg-surface-container-lowest border border-outline-variant hover:border-outline rounded-xl p-space-md flex flex-col justify-between transition-all relative">
+<div>
+<!-- Category & AI Match Pill -->
+<div class="flex items-center justify-between gap-2 mb-space-sm">
+<span class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-primary font-semibold border border-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="solar_power">solar_power</span>
+                  Renewable Energy &amp; Power
+                </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-low text-primary-container border border-outline-variant font-bold">
+<span class="material-symbols-outlined text-[13px]" data-icon="auto_awesome">auto_awesome</span>
+                  91% Match
+                </span>
+</div>
+<!-- Title -->
+<h3 class="text-headline-sm font-headline-sm font-bold text-primary mb-space-xs leading-snug">
+                Solar Micro-Grid Inverter Failure in Netarhat Tribal Hamlet
+              </h3>
+<!-- Description -->
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-space-md line-clamp-3">
+                20kW standalone solar installation offline due to lightning surge damage; requires smart hybrid charge controller and remote GSM battery health telemetry architecture.
+              </p>
+<!-- Meta specs & badges -->
+<div class="grid grid-cols-2 gap-2 pt-space-xs border-t border-outline-variant/60 text-body-sm font-body-sm mb-space-md">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="location_on">location_on</span>
+<span class="font-medium truncate">Latehar (Netarhat)</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="groups">groups</span>
+<span class="font-medium truncate">Village (80 households)</span>
+</div>
+</div>
+</div>
+<!-- Card Footer CTA & Actions -->
+<div class="flex items-center justify-between pt-space-xs">
+<button class="p-2 text-outline hover:text-primary transition-colors" title="Bookmark Challenge" type="button">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+<a class="px-space-md py-2.5 bg-secondary hover:bg-[#8C5F1F] text-on-secondary rounded-lg font-label-md font-label-md font-semibold transition-all flex items-center gap-1.5" href="problem-view.html">
+<span>View Challenge &amp; Propose</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Card 4: Agriculture & Irrigation (Match: 88%) -->
+<article class="bg-surface-container-lowest border border-outline-variant hover:border-outline rounded-xl p-space-md flex flex-col justify-between transition-all relative">
+<div>
+<!-- Category & AI Match Pill -->
+<div class="flex items-center justify-between gap-2 mb-space-sm">
+<span class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-primary font-semibold border border-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="agriculture">agriculture</span>
+                  Agriculture &amp; Irrigation
+                </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-low text-primary-container border border-outline-variant font-bold">
+<span class="material-symbols-outlined text-[13px]" data-icon="auto_awesome">auto_awesome</span>
+                  88% Match
+                </span>
+</div>
+<!-- Title -->
+<h3 class="text-headline-sm font-headline-sm font-bold text-primary mb-space-xs leading-snug">
+                Low-cost Silt Desilting Mechanism for Check-dams in Palamu
+              </h3>
+<!-- Description -->
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-space-md line-clamp-3">
+                Severe silt accumulation reducing water retention capacity by 60%; engineering students sought for mechanical Archimedes screw dredge prototype operable with village tractors.
+              </p>
+<!-- Meta specs & badges -->
+<div class="grid grid-cols-2 gap-2 pt-space-xs border-t border-outline-variant/60 text-body-sm font-body-sm mb-space-md">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="location_on">location_on</span>
+<span class="font-medium truncate">Palamu (Daltonganj)</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="groups">groups</span>
+<span class="font-medium truncate">Gram Panchayat (1,800)</span>
+</div>
+</div>
+</div>
+<!-- Card Footer CTA & Actions -->
+<div class="flex items-center justify-between pt-space-xs">
+<button class="p-2 text-outline hover:text-primary transition-colors" title="Bookmark Challenge" type="button">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+<a class="px-space-md py-2.5 bg-secondary hover:bg-[#8C5F1F] text-on-secondary rounded-lg font-label-md font-label-md font-semibold transition-all flex items-center gap-1.5" href="problem-view.html">
+<span>View Challenge &amp; Propose</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</article>
+</div>
+<!-- Pagination & Load More Footer -->
+<div class="flex items-center justify-between bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md mt-space-md">
+<span class="text-body-sm font-body-sm text-on-surface-variant">
+            Showing <strong class="text-primary">1-4</strong> of <strong>48</strong> challenges
+          </span>
+<div class="flex items-center space-x-1">
+<button class="px-3 py-1.5 border border-outline-variant rounded text-body-sm text-outline hover:bg-surface-container-low transition-colors disabled:opacity-50" disabled="">
+              Previous
+            </button>
+<button class="px-3 py-1.5 bg-primary-container text-on-primary rounded text-body-sm font-semibold">1</button>
+<button class="px-3 py-1.5 border border-outline-variant rounded text-body-sm text-on-surface hover:bg-surface-container-low transition-colors">2</button>
+<button class="px-3 py-1.5 border border-outline-variant rounded text-body-sm text-on-surface hover:bg-surface-container-low transition-colors">3</button>
+<span class="px-2 text-outline">...</span>
+<button class="px-3 py-1.5 border border-outline-variant rounded text-body-sm text-on-surface hover:bg-surface-container-low transition-colors">12</button>
+<button class="px-3 py-1.5 border border-outline-variant rounded text-body-sm text-on-surface hover:bg-surface-container-low transition-colors">
+              Next
+            </button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-gutter-desktop py-space-md max-w-container-max mx-auto gap-space-sm text-center md:text-left">
+<!-- Institutional Copyright & DPI Badge -->
+<div class="flex items-center gap-space-sm">
+<span class="text-body-sm font-body-sm text-on-surface-variant">
+          © 2025 Department of Higher, Technical Education &amp; Skill Development, Govt. of Jharkhand. All rights reserved.
+        </span>
+</div>
+<!-- Institutional Portal Links -->
+<div class="flex flex-wrap items-center justify-center gap-x-space-md gap-y-1 text-label-sm font-label-sm">
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-150 focus:ring-2 focus:ring-primary focus:outline-none" href="#">
+          Citizen Charter
+        </a>
+<span class="text-outline-variant">•</span>
+<a class="text-primary font-semibold hover:text-secondary transition-colors duration-150 focus:ring-2 focus:ring-primary focus:outline-none flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[13px]" data-icon="call">call</span>
+          Helpline: 181
+        </a>
+<span class="text-outline-variant">•</span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-150 focus:ring-2 focus:ring-primary focus:outline-none" href="#">
+          Privacy Policy
+        </a>
+<span class="text-outline-variant">•</span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-150 focus:ring-2 focus:ring-primary focus:outline-none" href="#">
+          Terms of Service
+        </a>
+<span class="text-outline-variant">•</span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-150 focus:ring-2 focus:ring-primary focus:outline-none flex items-center gap-0.5" href="#">
+<span class="material-symbols-outlined text-[13px]" data-icon="check_circle">check_circle</span>
+          DigiLocker Verification
+        </a>
+</div>
+</div>
+</footer>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+  requireRole('student', 'login.html');
+</script>
+</body></html>

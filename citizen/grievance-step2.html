@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface" lang="hi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>झारखंड समाधान सेतु | Jharkhand Samadhan Setu</title>
+<!-- Google Fonts: Noto Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-container": "#1F4A34",
+            "inverse-surface": "#17213A",
+            "tertiary-fixed": "#8FC7A8",
+            "on-secondary-fixed": "#4A3B1F",
+            "on-tertiary-fixed": "#12281E",
+            "surface-variant": "#F1ECE0",
+            "primary-container": "#232F4E",
+            "outline-variant": "#E4DFD0",
+            "primary": "#17213A",
+            "outline": "#C7C0AC",
+            "on-primary-fixed": "#17213A",
+            "on-surface-variant": "#5B5847",
+            "tertiary-container": "#E3EEE6",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "surface-tint": "#A6742A",
+            "surface-dim": "#E8E3D3",
+            "tertiary-fixed-dim": "#6FA98A",
+            "surface": "#FBF9F4",
+            "inverse-primary": "#D9CBA3",
+            "surface-container-high": "#EAE4D4",
+            "secondary-container": "#F1E4C7",
+            "primary-fixed": "#D9CBA3",
+            "inverse-on-surface": "#FBF9F4",
+            "surface-container-lowest": "#FFFFFF",
+            "on-error-container": "#5F1712",
+            "error": "#B3261E",
+            "surface-container-low": "#F6F3EA",
+            "secondary": "#A6742A",
+            "on-tertiary": "#FFFFFF",
+            "on-secondary-container": "#6B4A17",
+            "on-surface": "#17213A",
+            "surface-container-highest": "#E2DBC7",
+            "background": "#FBF9F4",
+            "surface-container": "#F1ECE0",
+            "surface-bright": "#FBF9F4",
+            "primary-fixed-dim": "#C7B37E",
+            "on-secondary": "#FFFFFF",
+            "on-primary": "#FBF9F4",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "on-primary-container": "#FBF9F4",
+            "secondary-fixed-dim": "#D9B876",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "error-container": "#F9DEDC",
+            "on-error": "#FFFFFF",
+            "secondary-fixed": "#F1E4C7",
+            "tertiary": "#2F6F4E",
+            "on-background": "#17213A"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-desktop": "2rem",
+            "container-max": "72rem",
+            "space-3xl": "4rem",
+            "min-touch-target": "3rem",
+            "space-xl": "2rem",
+            "space-xxs": "0.25rem",
+            "gutter-tablet": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-sm": "0.75rem",
+            "gutter-mobile": "1rem",
+            "space-xs": "0.5rem",
+            "space-2xl": "3rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-full flex flex-col bg-surface font-body-md text-on-surface antialiased">
+<!-- Top App Bar / Header -->
+<header class="w-full bg-surface z-30">
+<div class="flex justify-between items-center w-full px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
+<!-- Portal Branding Anchor -->
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center font-bold text-base">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_balance">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight leading-tight">झारखंड समाधान सेतु</span>
+<span class="text-label-sm font-label-sm text-outline tracking-normal hidden sm:inline">Jharkhand Samadhan Setu</span>
+</div>
+</div>
+<!-- Desktop Navigation Links -->
+<nav class="hidden md:flex items-center gap-space-lg">
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors duration-150" href="#">गृह / Home</a>
+<a class="border-b-2 border-secondary text-primary font-label-lg text-label-lg pb-1" href="#">शिकायत दर्ज करें / File Grievance</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors duration-150" href="#">स्थिति जांचें / Track Status</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors duration-150" href="#">अक्सर पूछे जाने वाले प्रश्न / FAQs</a>
+</nav>
+<!-- Trailing Actions & Language Switcher -->
+<div class="flex items-center gap-space-xs sm:gap-space-sm">
+<button aria-label="Toggle Language" class="px-space-sm py-1.5 rounded-lg border border-outline-variant text-label-sm font-label-sm text-primary hover:bg-surface-container transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-container" type="button">
+          हिंदी / English
+        </button>
+<button aria-label="Notifications" class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-container" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="Citizen Account" class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-container" type="button">
+<span class="material-symbols-outlined text-[24px]" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Flow Canvas -->
+<main class="flex-1 w-full max-w-container-max mx-auto px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop py-space-lg">
+<!-- Linear Stepper Header -->
+<div class="max-w-2xl mx-auto mb-space-lg">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center justify-center px-space-xs py-0.5 rounded text-label-sm font-label-sm bg-primary-fixed text-on-primary-fixed font-bold">
+            Step 2 of 4
+          </span>
+<h1 class="text-headline-sm font-headline-sm text-primary ml-1">शिकायत पंजीकरण / Grievance Filing</h1>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">50% Complete</span>
+</div>
+<!-- Progressive Timeline Nodes -->
+<div class="w-full bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-space-sm sm:p-space-md">
+<div class="grid grid-cols-4 gap-2 relative">
+<!-- Connector Track -->
+<div class="absolute top-4 left-6 right-6 h-0.5 bg-outline-variant/50 -z-0"></div>
+<div class="absolute top-4 left-6 w-1/3 h-0.5 bg-primary -z-0"></div>
+<!-- Step 1: Completed -->
+<div class="flex flex-col items-center text-center relative z-10">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center mb-1 ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-[18px] font-bold" data-icon="check">check</span>
+</div>
+<span class="text-label-sm font-label-sm text-primary font-bold hidden sm:block">Step 1</span>
+<span class="text-[10px] sm:text-label-sm text-on-surface-variant">नागरिक विवरण<br class="hidden sm:inline"/><span class="hidden sm:inline"> / Citizen Info</span></span>
+</div>
+<!-- Step 2: Active -->
+<div class="flex flex-col items-center text-center relative z-10">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center mb-1 ring-4 ring-secondary/20 ring-offset-2">
+<span class="text-label-sm font-bold text-[13px]">2</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary font-bold hidden sm:block">Step 2</span>
+<span class="text-[10px] sm:text-label-sm text-on-surface font-bold">स्थान एवं पता<br class="hidden sm:inline"/><span class="hidden sm:inline"> / Location</span></span>
+</div>
+<!-- Step 3: Pending -->
+<div class="flex flex-col items-center text-center relative z-10">
+<div class="w-8 h-8 rounded-full bg-surface-container-lowest border-2 border-outline-variant text-outline flex items-center justify-center mb-1 ring-4 ring-surface-container-lowest">
+<span class="text-label-sm font-semibold text-[13px]">3</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline hidden sm:block">Step 3</span>
+<span class="text-[10px] sm:text-label-sm text-outline">साक्ष्य विवरण<br class="hidden sm:inline"/><span class="hidden sm:inline"> / Evidence</span></span>
+</div>
+<!-- Step 4: Pending -->
+<div class="flex flex-col items-center text-center relative z-10">
+<div class="w-8 h-8 rounded-full bg-surface-container-lowest border-2 border-outline-variant text-outline flex items-center justify-center mb-1 ring-4 ring-surface-container-lowest">
+<span class="text-label-sm font-semibold text-[13px]">4</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline hidden sm:block">Step 4</span>
+<span class="text-[10px] sm:text-label-sm text-outline">पुष्टि व समीक्षा<br class="hidden sm:inline"/><span class="hidden sm:inline"> / Preview</span></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Card Container -->
+<section class="max-w-2xl mx-auto bg-surface-container-lowest border border-outline-variant/80 rounded-xl overflow-hidden mb-space-2xl">
+<!-- Card Header Notice -->
+<div class="p-space-md sm:p-space-lg border-b border-outline-variant/60 bg-surface-container-low/40">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary mt-0.5" data-icon="location_on">location_on</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface font-bold">Where is the issue located? / समस्या का स्थान</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+              कृपया सटीक स्थानीय विवरण प्रदान करें ताकि संबंधित प्रखंड व पंचायत अधिकारी त्वरित निरीक्षण कर सकें।
+            </p>
+</div>
+</div>
+<!-- Segmented Tab Bar -->
+<div class="grid grid-cols-2 gap-1 p-1 bg-surface-container rounded-lg mt-space-md border border-outline-variant/40" role="tablist">
+<button aria-selected="false" class="min-h-min-touch-target flex items-center justify-center gap-space-xs rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface/50 transition-all" role="tab" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="my_location">my_location</span>
+<span>Use GPS Pin (Optional) / जीपीएस स्थान</span>
+</button>
+<button aria-selected="true" class="min-h-min-touch-target flex items-center justify-center gap-space-xs rounded bg-surface-container-lowest text-primary font-label-md text-label-md font-bold transition-all" role="tab" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="edit_location_alt">edit_location_alt</span>
+<span>Enter Manually / मैन्युअल पता दर्ज करें</span>
+</button>
+</div>
+</div>
+<!-- Manual Entry Form -->
+<form class="p-space-md sm:p-space-lg space-y-space-lg" id="location-form" onsubmit="event.preventDefault();">
+<!-- District Select -->
+<div class="space-y-space-xs">
+<label class="block" for="district-select">
+<span class="text-body-md font-label-lg text-on-surface font-bold">District / जिला <span class="text-error">*</span></span>
+<span class="block text-label-sm font-label-sm text-on-surface-variant">Select your administrative jurisdiction / अपना प्रशासनिक जिला चुनें</span>
+</label>
+<div class="relative">
+<select class="w-full min-h-min-touch-target bg-surface-container-lowest border border-outline-variant rounded-lg px-space-md pr-10 text-on-surface text-body-md font-body-md focus:border-primary focus:ring-2 focus:ring-primary-container focus:outline-none appearance-none cursor-pointer" id="district-select">
+<option value="Bokaro">Bokaro / बोकारो</option>
+<option value="Chatra">Chatra / चतरा</option>
+<option value="Deoghar">Deoghar / देवघर</option>
+<option value="Dhanbad">Dhanbad / धनबाद</option>
+<option value="Dumka">Dumka / दुमका</option>
+<option value="East Singhbhum (Jamshedpur)">East Singhbhum (Jamshedpur) / पूर्वी सिंहभूम (जमशेदपुर)</option>
+<option value="Garhwa">Garhwa / गढ़वा</option>
+<option value="Giridih">Giridih / गिरिडीह</option>
+<option value="Godda">Godda / गोड्डा</option>
+<option value="Gumla">Gumla / गुमला</option>
+<option value="Hazaribagh">Hazaribagh / हजारीबाग</option>
+<option value="Jamtara">Jamtara / जामताड़ा</option>
+<option value="Khunti">Khunti / खूंटी</option>
+<option value="Koderma">Koderma / कोडरमा</option>
+<option value="Latehar">Latehar / लातेहार</option>
+<option value="Lohardaga">Lohardaga / लोहरदगा</option>
+<option value="Pakur">Pakur / पाकुड़</option>
+<option value="Palamu">Palamu / पलामू</option>
+<option value="Ramgarh">Ramgarh / रामगढ़</option>
+<option selected="" value="Ranchi">Ranchi / रांची (राजधानी मुख्यालय)</option>
+<option value="Sahebganj">Sahebganj / साहेबगंज</option>
+<option value="Seraikela-Kharsawan">Seraikela-Kharsawan / सरायकेला खरसावां</option>
+<option value="Simdega">Simdega / सिमडेगा</option>
+<option value="West Singhbhum (Chaibasa)">West Singhbhum (Chaibasa) / पश्चिमी सिंहभूम (चाईबासा)</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-space-sm text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Block / प्रखंड -->
+<div class="space-y-space-xs">
+<label class="block" for="block-input">
+<span class="text-body-md font-label-lg text-on-surface font-bold">Block / प्रखंड / अंचल <span class="text-error">*</span></span>
+<span class="block text-label-sm font-label-sm text-on-surface-variant">Name of administrative development block / विकास प्रखंड का नाम</span>
+</label>
+<div class="relative">
+<input class="w-full min-h-min-touch-target bg-surface-container-lowest border border-outline-variant rounded-lg px-space-md text-on-surface text-body-md font-body-md focus:border-primary focus:ring-2 focus:ring-primary-container focus:outline-none placeholder:text-outline" id="block-input" name="block" placeholder="e.g. Kanke / कांके" required="" type="text" value="Kanke / कांके"/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-outline-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="apartment">apartment</span>
+</div>
+</div>
+</div>
+<!-- Gram Panchayat / Ward -->
+<div class="space-y-space-xs">
+<label class="block" for="ward-input">
+<span class="text-body-md font-label-lg text-on-surface font-bold">Gram Panchayat / Ward / ग्राम पंचायत / वार्ड <span class="text-error">*</span></span>
+<span class="block text-label-sm font-label-sm text-on-surface-variant">Rural Panchayat name or Urban Civic Ward number / पंचायत अथवा नगर निगम वार्ड संख्या</span>
+</label>
+<div class="relative">
+<input class="w-full min-h-min-touch-target bg-surface-container-lowest border border-outline-variant rounded-lg px-space-md text-on-surface text-body-md font-body-md focus:border-primary focus:ring-2 focus:ring-primary-container focus:outline-none placeholder:text-outline" id="ward-input" name="ward" placeholder="e.g. Choreya / वार्ड नं 14" required="" type="text" value="Choreya / वार्ड नं 14"/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-outline-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="holiday_village">holiday_village</span>
+</div>
+</div>
+</div>
+<!-- Pincode and Landmark Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Pincode -->
+<div class="space-y-space-xs">
+<label class="block" for="pincode-input">
+<span class="text-body-md font-label-lg text-on-surface font-bold">Pincode / पिनकोड <span class="text-error">*</span></span>
+<span class="block text-label-sm font-label-sm text-on-surface-variant">6-digit postal code / 6 अंकों का पिनकोड</span>
+</label>
+<div class="relative">
+<input class="w-full min-h-min-touch-target bg-surface-container-lowest border border-outline-variant rounded-lg px-space-md text-on-surface text-body-md font-body-md focus:border-primary focus:ring-2 focus:ring-primary-container focus:outline-none placeholder:text-outline tracking-wider" id="pincode-input" maxlength="6" name="pincode" placeholder="834001" required="" type="text" value="834001"/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-outline-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="pin_drop">pin_drop</span>
+</div>
+</div>
+</div>
+<!-- Nearest Landmark -->
+<div class="space-y-space-xs">
+<label class="block" for="landmark-input">
+<span class="text-body-md font-label-lg text-on-surface font-bold">Nearest Landmark / निकटतम पहचान <span class="text-outline text-label-sm font-normal">(Optional)</span></span>
+<span class="block text-label-sm font-label-sm text-on-surface-variant">Prominent school, hospital or chawk / निकटवर्ती स्कूल, चौक या अस्पताल</span>
+</label>
+<div class="relative">
+<input class="w-full min-h-min-touch-target bg-surface-container-lowest border border-outline-variant rounded-lg px-space-md text-on-surface text-body-md font-body-md focus:border-primary focus:ring-2 focus:ring-primary-container focus:outline-none placeholder:text-outline" id="landmark-input" name="landmark" placeholder="e.g. Near Birsa Chowk / बिरसा चौक के पास" type="text"/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-outline-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="signpost">signpost</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Verification Notice Box -->
+<div class="p-space-sm bg-surface-container rounded-lg border border-outline-variant/60 flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5" data-icon="verified_user">verified_user</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-snug">
+            यह शिकायत सीधे रांची जिला लोक शिकायत निवारण पदाधिकारी (DGO) के डैशबोर्ड पर मैप होगी।
+          </p>
+</div>
+<!-- Action Navigation Toolbar -->
+<div class="pt-space-md border-t border-outline-variant/60 flex flex-col-reverse sm:flex-row items-center justify-between gap-space-md">
+<!-- Back Button -->
+<button class="w-full sm:w-auto min-h-min-touch-target px-space-lg rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container active:scale-98 transition-all duration-150 flex items-center justify-center gap-space-xs font-label-lg text-label-lg focus:outline-none focus:ring-2 focus:ring-primary-container" id="btn-back-step" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
+<span>Back / पीछे जाएं</span>
+</button>
+<!-- Primary Submit/Next Button -->
+<button class="w-full sm:w-auto min-h-min-touch-target px-space-xl rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-container active:scale-98 transition-all duration-150 flex items-center justify-center gap-space-xs font-label-lg text-label-lg font-bold focus:outline-none focus:ring-2 focus:ring-secondary-container" id="btn-next-step" type="submit">
+<span>Next: Evidence &amp; Details / आगे बढ़ें: साक्ष्य एवं विवरण</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="mt-auto bg-primary text-on-primary">
+<div class="w-full py-space-xl px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-space-md">
+<!-- Copyright Notice -->
+<div class="flex flex-col gap-1 text-center md:text-left">
+<span class="text-headline-sm font-headline-sm font-bold text-on-primary">झारखंड समाधान सेतु</span>
+<p class="text-body-sm font-body-sm text-surface-variant max-w-xl">
+          © 2024 सूचना प्रौद्योगिकी एवं ई-गवर्नेंस विभाग, झारखंड सरकार | Department of Information Technology &amp; e-Governance, Government of Jharkhand. All Rights Reserved.
+        </p>
+</div>
+<!-- Official Institutional Links -->
+<nav class="flex flex-wrap justify-center md:justify-end gap-x-space-md gap-y-2 text-label-sm font-label-sm">
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150 focus:ring-2 focus:ring-secondary-container" href="#">गोपनीयता नीति / Privacy Policy</a>
+<span class="text-outline-variant hidden sm:inline">•</span>
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150 focus:ring-2 focus:ring-secondary-container" href="#">उपयोग की शर्तें / Terms of Service</a>
+<span class="text-outline-variant hidden sm:inline">•</span>
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150 focus:ring-2 focus:ring-secondary-container" href="#">नागरिक चार्टर / Citizen Charter</a>
+<span class="text-outline-variant hidden sm:inline">•</span>
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150 focus:ring-2 focus:ring-secondary-container" href="#">संपर्क करें / Contact Us</a>
+</nav>
+</div>
+</footer>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Restore any previously saved location fields
+    const draft = API.getDraft();
+    if (draft.district) document.getElementById('district-select').value = draft.district;
+    if (draft.block) document.getElementById('block-input').value = draft.block;
+    if (draft.ward) document.getElementById('ward-input').value = draft.ward;
+    if (draft.pincode) document.getElementById('pincode-input').value = draft.pincode;
+    if (draft.landmark) document.getElementById('landmark-input').value = draft.landmark;
+
+    // GPS tab vs Manual tab switching
+    const tabs = document.querySelectorAll('[role="tab"]');
+    const gpsTab = tabs[0];
+    const manualTab = tabs[1];
+
+    function setActiveTab(active, inactive) {
+      active.setAttribute('aria-selected', 'true');
+      active.classList.add('bg-surface-container-lowest', 'text-primary', 'font-bold', 'shadow-sm');
+      active.classList.remove('text-on-surface-variant');
+      inactive.setAttribute('aria-selected', 'false');
+      inactive.classList.remove('bg-surface-container-lowest', 'text-primary', 'font-bold', 'shadow-sm');
+      inactive.classList.add('text-on-surface-variant');
+    }
+
+    gpsTab.addEventListener('click', () => {
+      setActiveTab(gpsTab, manualTab);
+      if (!navigator.geolocation) {
+        showToast('GPS not supported on this device / इस डिवाइस पर जीपीएस उपलब्ध नहीं है');
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          API.saveDraft({ gpsLat: pos.coords.latitude, gpsLng: pos.coords.longitude });
+          showToast('स्थान कैप्चर किया गया / Location captured');
+        },
+        () => showToast('स्थान प्राप्त नहीं हो सका / Could not get location')
+      );
+    });
+
+    manualTab.addEventListener('click', () => setActiveTab(manualTab, gpsTab));
+
+    document.getElementById('btn-back-step').addEventListener('click', () => {
+      window.location.href = 'grievance-step1.html';
+    });
+
+    document.getElementById('location-form').addEventListener('submit', () => {
+      const district = document.getElementById('district-select').value;
+      const block = document.getElementById('block-input').value.trim();
+      const pincode = document.getElementById('pincode-input').value.trim();
+
+      if (!district || !block || !pincode) {
+        showToast('कृपया आवश्यक फ़ील्ड भरें / Please fill the required fields');
+        return;
+      }
+
+      API.saveDraft({
+        district,
+        block,
+        ward: document.getElementById('ward-input').value.trim(),
+        pincode,
+        landmark: document.getElementById('landmark-input').value.trim(),
+      });
+      window.location.href = 'grievance-step3.html';
+    });
+  });
+</script>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+</body></html>

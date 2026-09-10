@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Startup Dashboard - Jharkhand Samadhan Setu</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Noto Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed": "#17213A",
+            "surface-bright": "#FBF9F4",
+            "tertiary-fixed": "#8FC7A8",
+            "on-surface-variant": "#5B5847",
+            "primary-container": "#232F4E",
+            "surface-variant": "#F1ECE0",
+            "on-background": "#17213A",
+            "error": "#B3261E",
+            "error-container": "#F9DEDC",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "tertiary-container": "#E3EEE6",
+            "surface-container-low": "#F6F3EA",
+            "on-primary-container": "#FBF9F4",
+            "surface-container-lowest": "#FFFFFF",
+            "primary-fixed-dim": "#C7B37E",
+            "inverse-on-surface": "#FBF9F4",
+            "on-secondary-fixed": "#4A3B1F",
+            "on-tertiary-fixed": "#12281E",
+            "on-error": "#FFFFFF",
+            "on-error-container": "#5F1712",
+            "on-tertiary-container": "#1F4A34",
+            "surface-container-high": "#EAE4D4",
+            "on-primary": "#FBF9F4",
+            "surface-container": "#F1ECE0",
+            "secondary": "#A6742A",
+            "inverse-primary": "#D9CBA3",
+            "outline": "#C7C0AC",
+            "background": "#FBF9F4",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "tertiary-fixed-dim": "#6FA98A",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "primary-fixed": "#D9CBA3",
+            "primary": "#17213A",
+            "secondary-fixed-dim": "#D9B876",
+            "on-tertiary": "#FFFFFF",
+            "on-secondary": "#FFFFFF",
+            "on-surface": "#17213A",
+            "surface-tint": "#A6742A",
+            "surface": "#FBF9F4",
+            "secondary-fixed": "#F1E4C7",
+            "surface-container-highest": "#E2DBC7",
+            "on-secondary-container": "#6B4A17",
+            "surface-dim": "#E8E3D3",
+            "outline-variant": "#E4DFD0",
+            "inverse-surface": "#17213A",
+            "tertiary": "#2F6F4E",
+            "secondary-container": "#F1E4C7"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "3rem",
+            "min-touch-target": "3rem",
+            "space-xxs": "0.25rem",
+            "gutter-desktop": "2rem",
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "space-sm": "0.75rem",
+            "gutter-mobile": "1rem",
+            "space-lg": "1.5rem",
+            "gutter-tablet": "1.5rem",
+            "container-max": "72rem",
+            "space-md": "1rem",
+            "space-3xl": "4rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"]
+          },
+          "fontSize": {
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col font-body-md text-body-md antialiased selection:bg-surface-variant selection:text-primary">
+<!-- TopNavBar (Shared Component: JSON Exact Mapping) -->
+<header class="w-full border-b border-outline-variant bg-surface-container-lowest sticky top-0 z-50 px-gutter-desktop max-w-container-max mx-auto flex items-center justify-between min-h-min-touch-target">
+<div class="flex items-center gap-space-xl">
+<!-- Brand Logo Anchor -->
+<a class="flex items-center gap-space-xs text-headline-sm font-headline-sm text-primary tracking-tight" href="#">
+<span class="w-8 h-8 rounded-lg bg-primary text-on-primary flex items-center justify-center font-headline-sm text-label-lg">
+<span class="material-symbols-outlined text-[20px]" data-icon="hub">hub</span>
+</span>
+<span>Jharkhand Samadhan Setu</span>
+</a>
+<!-- Desktop Navigation Links -->
+<nav class="hidden md:flex items-center gap-space-lg">
+<!-- Dashboard (Active) -->
+<a class="border-b-2 border-secondary text-secondary font-label-lg text-label-lg pb-1 transition-all duration-150 active:scale-[0.99] flex items-center gap-space-xxs" href="dashboard.html">
+<span>Dashboard</span>
+</a>
+<!-- Browse Problems -->
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-all duration-150 active:scale-[0.99] hover:bg-surface-container-low px-space-xs py-1 rounded" href="browse-problems.html">
+<span>Browse Problems</span>
+</a>
+<!-- Collaborations -->
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-all duration-150 active:scale-[0.99] hover:bg-surface-container-low px-space-xs py-1 rounded" href="collaboration-workspace.html">
+<span>Collaborations</span>
+</a>
+<!-- Funding -->
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-all duration-150 active:scale-[0.99] hover:bg-surface-container-low px-space-xs py-1 rounded" href="collaboration-workspace.html">
+<span>Funding</span>
+</a>
+<!-- Impact -->
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-all duration-150 active:scale-[0.99] hover:bg-surface-container-low px-space-xs py-1 rounded" href="impact-dashboard.html">
+<span>Impact</span>
+</a>
+<!-- Profile -->
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-on-surface transition-all duration-150 active:scale-[0.99] hover:bg-surface-container-low px-space-xs py-1 rounded" href="company-profile.html">
+<span>Profile</span>
+</a>
+</nav>
+</div>
+<!-- Trailing Actions Cluster -->
+<div class="flex items-center gap-space-sm">
+<!-- Trailing Action Button from JSON -->
+<button class="hidden sm:inline-flex items-center justify-center bg-secondary hover:bg-on-secondary-fixed text-on-secondary font-label-lg text-label-lg h-10 px-space-md rounded-lg transition-colors active:scale-[0.99]">
+<span class="material-symbols-outlined text-[18px] mr-1" data-icon="add">add</span>
+<span>Post Solution</span>
+</button>
+<!-- Trailing Icon Action: Notifications -->
+<button aria-label="Notifications" class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary"></span>
+</button>
+<!-- Trailing Icon Action: Help -->
+<button aria-label="Help &amp; Documentation" class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<!-- Vertical Divider -->
+<div class="h-6 w-px bg-outline-variant mx-1"></div>
+<!-- Company Avatar & Profile Pill -->
+<div class="flex items-center gap-space-xs pl-1">
+<div class="w-10 h-10 rounded-lg overflow-hidden border border-outline-variant bg-surface-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A modern, high-tech industrial research corporate logo displayed on a matte metallic badge inside a light minimalist enterprise tech setting with deep blue and warm amber lighting accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8ZXnnoUa2q12NFENbYfw0bSY0aMI1QvRXdmPMyiZCWTDdwoRnUtxXtolCgFxZjErzXJtydHCJ1k1waVaI9DEdCcC0Hb1-Us7abTCn6QySgHrbGYZwWZ8VRAVJj0sLDa9GuQHDxSaGZ4n66siBZvwu5R12yv1rdR0RjbGpU--j-hyyqWT6Gq7lYEOueCHJJP3Rg5YdNl0Kqy5ZV2F0eCu1nRZdAQZsu74xE7L6USx-Dxnd2iIc2qGY"/>
+</div>
+<div class="hidden lg:flex flex-col text-left">
+<span class="font-label-md text-label-md text-on-surface leading-tight" data-session-name="">CCL Innovation Lab</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Central Coalfields Ltd.</span>
+</div>
+</div>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" data-logout="../index.html" title="Logout">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+</button>
+</div>
+</header>
+<!-- Sub-Header / Workspace Title Bar -->
+<section class="w-full bg-surface-container-lowest border-b border-outline-variant">
+<div class="max-w-container-max mx-auto px-gutter-desktop py-space-md flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs">
+<h1 class="font-headline-md text-headline-md text-primary">Partner Enterprise Dashboard</h1>
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-full font-label-sm text-label-sm bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#166534] mr-1.5"></span>
+              Verified DPI Partner
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Real-time civic challenges, academic R&amp;D consortia, and escrow funding deployment for Jharkhand.
+          </p>
+</div>
+</div>
+<!-- Action Quick Bar -->
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center bg-surface-container-low border border-outline-variant rounded-lg px-space-sm py-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] mr-1.5 text-primary" data-icon="verified_user">verified_user</span>
+<span>DigiLocker &amp; DPI Linked</span>
+</div>
+<button class="inline-flex items-center justify-center h-9 px-space-md rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px] mr-1.5" data-icon="tune">tune</span>
+          Filter Matches
+        </button>
+</div>
+</div>
+</section>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-gutter-desktop py-space-xl space-y-space-xl">
+<!-- Top Metric Stats Row (4 Cards) -->
+<section>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1: Available Problems -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md flex flex-col justify-between transition-colors hover:border-outline">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Available Problems</span>
+<div class="mt-space-xs flex items-baseline gap-space-xs">
+<span class="font-display-lg text-display-lg text-on-background">142</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low text-primary flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined" data-icon="travel_explore">travel_explore</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-outline-variant flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant font-medium">Active Civic Challenges</span>
+<span class="inline-flex items-center font-label-sm text-label-sm text-primary font-semibold">
+              +14 this week
+            </span>
+</div>
+</div>
+<!-- Card 2: Shortlisted Projects -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md flex flex-col justify-between transition-colors hover:border-outline">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Shortlisted Projects</span>
+<div class="mt-space-xs flex items-baseline gap-space-xs">
+<span class="font-display-lg text-display-lg text-on-background">8</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low text-primary flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-outline-variant flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant font-medium">Student Teams Assigned</span>
+<span class="inline-flex items-center font-label-sm text-label-sm text-on-surface-variant">
+              Across 5 Institutes
+            </span>
+</div>
+</div>
+<!-- Card 3: Active Collaborations -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md flex flex-col justify-between transition-colors hover:border-outline">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active Collaborations</span>
+<div class="mt-space-xs flex items-baseline gap-space-xs">
+<span class="font-display-lg text-display-lg text-primary">3</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low text-secondary flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined" data-icon="handshake">handshake</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-outline-variant flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant font-medium">Ongoing Joint R&amp;D</span>
+<span class="inline-flex items-center font-label-sm text-label-sm text-[#166534] bg-[#DCFCE7] px-1.5 py-0.5 rounded border border-[#BBF7D0]">
+              In Field Stage
+            </span>
+</div>
+</div>
+<!-- Card 4: Funding Committed -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md flex flex-col justify-between transition-colors hover:border-outline">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Funding Committed</span>
+<div class="mt-space-xs flex items-baseline gap-space-xs">
+<span class="font-display-lg text-display-lg text-on-background">₹18.5L</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low text-primary flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-outline-variant flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant font-medium">CSR &amp; Grant Escrow</span>
+<span class="inline-flex items-center font-label-sm text-label-sm text-primary font-semibold">
+              100% Guaranteed
+            </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Area Section 1: AI Recommended Problems for You -->
+<section class="space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs border-b border-outline-variant pb-space-sm">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]" data-icon="auto_awesome">auto_awesome</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">AI Recommended Problems for You</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Ranked through state grievance clustering and matched with your organizational R&amp;D domain.
+          </p>
+</div>
+<a class="inline-flex items-center font-label-lg text-label-lg text-primary hover:text-primary-container font-semibold transition-colors" href="#">
+<span>View All 142 Problems</span>
+<span class="material-symbols-outlined text-[18px] ml-1" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<!-- Problem Cards Grid (Bento/Card arrangement) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<!-- Problem Card 1: Water Tech -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg flex flex-col justify-between hover:border-outline transition-all duration-150 relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-1 bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div>
+<!-- Header Tags & Score -->
+<div class="flex items-center justify-between gap-space-xs mb-space-sm">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container-low text-primary border border-outline-variant">
+                Water Tech
+              </span>
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-[#FEE2E2] text-[#991B1B] border border-[#FECACA]">
+                  Urgent
+                </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] font-bold">
+                  96% Match
+                </span>
+</div>
+</div>
+<!-- Title -->
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors line-clamp-2">
+              Heavy Metal Filtration &amp; Arsenic Detection in Subarnarekha Basin Wells
+            </h3>
+<!-- Description snippet -->
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs line-clamp-3">
+              Frequent civic complaints from 42 Gram Panchayats indicate excessive mineral seepage and tube-well toxicity affecting local agrarian communities.
+            </p>
+</div>
+<!-- Metadata & Footer CTA -->
+<div class="mt-space-lg pt-space-sm border-t border-outline-variant space-y-space-sm">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span class="inline-flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1 text-outline" data-icon="location_on">location_on</span>
+                Ranchi &amp; Saraikela
+              </span>
+<span class="inline-flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1 text-outline" data-icon="payments">payments</span>
+                ₹6.0 Lakhs Escrow
+              </span>
+</div>
+<button class="w-full h-10 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary font-label-md text-label-md border border-outline-variant transition-colors flex items-center justify-center gap-space-xxs">
+<span>Review Details</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="north_east">north_east</span>
+</button>
+</div>
+</div>
+<!-- Problem Card 2: Rural Energy -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg flex flex-col justify-between hover:border-outline transition-all duration-150 relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-1 bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div>
+<!-- Header Tags & Score -->
+<div class="flex items-center justify-between gap-space-xs mb-space-sm">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container-low text-primary border border-outline-variant">
+                Rural Energy
+              </span>
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-[#FEF3C7] text-[#92400E] border border-[#FDE68A]">
+                  High Priority
+                </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] font-bold">
+                  92% Match
+                </span>
+</div>
+</div>
+<!-- Title -->
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors line-clamp-2">
+              Decentralized Microgrid Load Balancing for Cold Storage in Off-Grid Clusters
+            </h3>
+<!-- Description snippet -->
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs line-clamp-3">
+              Solar microgrid unreliability causes spoilage of perishable tribal horticulture produce during low irradiation monsoon spells across isolated forest hamlets.
+            </p>
+</div>
+<!-- Metadata & Footer CTA -->
+<div class="mt-space-lg pt-space-sm border-t border-outline-variant space-y-space-sm">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span class="inline-flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1 text-outline" data-icon="location_on">location_on</span>
+                Khunti District
+              </span>
+<span class="inline-flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1 text-outline" data-icon="payments">payments</span>
+                ₹4.5 Lakhs Escrow
+              </span>
+</div>
+<button class="w-full h-10 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary font-label-md text-label-md border border-outline-variant transition-colors flex items-center justify-center gap-space-xxs">
+<span>Review Details</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="north_east">north_east</span>
+</button>
+</div>
+</div>
+<!-- Problem Card 3: Agritech -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg flex flex-col justify-between hover:border-outline transition-all duration-150 relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-1 bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div>
+<!-- Header Tags & Score -->
+<div class="flex items-center justify-between gap-space-xs mb-space-sm">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container-low text-primary border border-outline-variant">
+                Agritech
+              </span>
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-[#FEE2E2] text-[#991B1B] border border-[#FECACA]">
+                  Urgent
+                </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] font-bold">
+                  89% Match
+                </span>
+</div>
+</div>
+<!-- Title -->
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors line-clamp-2">
+              Coal Dust Fallout Mitigation on Terrace Rice Fields &amp; Topsoil Remediation
+            </h3>
+<!-- Description snippet -->
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs line-clamp-3">
+              Open-cast coal dust airborne particulate settling on standing crops reduces soil porosity and grain yield across surrounding agrarian tracts.
+            </p>
+</div>
+<!-- Metadata & Footer CTA -->
+<div class="mt-space-lg pt-space-sm border-t border-outline-variant space-y-space-sm">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span class="inline-flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1 text-outline" data-icon="location_on">location_on</span>
+                Dhanbad Coalfield Zone
+              </span>
+<span class="inline-flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1 text-outline" data-icon="payments">payments</span>
+                ₹8.0 Lakhs Escrow
+              </span>
+</div>
+<button class="w-full h-10 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary font-label-md text-label-md border border-outline-variant transition-colors flex items-center justify-center gap-space-xxs">
+<span>Review Details</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="north_east">north_east</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Area Section 2: Active Collaborations (Table / High-density list) -->
+<section class="space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs border-b border-outline-variant pb-space-sm">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]" data-icon="hub">hub</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Active Collaborations</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Multi-stakeholder R&amp;D consortia with university research cohorts, mentored and funded through your organization.
+          </p>
+</div>
+<div class="flex items-center gap-space-xs">
+<div class="relative">
+<input class="h-9 pl-8 pr-3 text-body-sm bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-1 focus:ring-primary focus:border-primary" placeholder="Search collaborations..." type="text"/>
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-[16px] text-outline" data-icon="search">search</span>
+</div>
+<button class="h-9 px-space-sm border border-outline-variant rounded-lg bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-sm text-label-sm inline-flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1" data-icon="filter_list">filter_list</span>
+            Status
+          </button>
+</div>
+</div>
+<!-- Linear / Stripe Style High-Density Table Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant font-label-md text-label-md text-on-surface-variant">
+<th class="py-space-sm px-space-md" scope="col">Project Name</th>
+<th class="py-space-sm px-space-md" scope="col">University / Student Team</th>
+<th class="py-space-sm px-space-md" scope="col">Current Stage</th>
+<th class="py-space-sm px-space-md" scope="col">Last Activity</th>
+<th class="py-space-sm px-space-md text-right" scope="col">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant font-body-sm text-body-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="py-space-md px-space-md">
+<div class="flex items-start gap-space-xs">
+<span class="w-8 h-8 rounded bg-surface-container text-primary flex items-center justify-center flex-shrink-0 mt-0.5 border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="water_drop">water_drop</span>
+</span>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block group-hover:text-primary">
+                        Automated Sluice Gate IoT Telemetry
+                      </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">
+                        ID: JSS-COLLAB-2025-048 • Water Resources Dept
+                      </span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div>
+<span class="font-label-md text-label-md text-on-surface block">Team Jal-Drishti</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Birla Institute of Technology (BIT) Mesra</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#166534] mr-1.5"></span>
+                    Field Testing
+                  </span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="schedule">schedule</span>
+<span>12 mins ago</span>
+</div>
+<span class="text-label-sm text-outline block mt-0.5">Telemetry log uploaded</span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="inline-flex items-center justify-center h-9 px-space-sm rounded-lg bg-surface-container-low hover:bg-primary-container hover:text-on-primary text-primary font-label-md text-label-md border border-outline-variant transition-colors">
+<span class="material-symbols-outlined text-[16px] mr-1" data-icon="folder_open">folder_open</span>
+<span>Open Workspace</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="py-space-md px-space-md">
+<div class="flex items-start gap-space-xs">
+<span class="w-8 h-8 rounded bg-surface-container text-primary flex items-center justify-center flex-shrink-0 mt-0.5 border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="solar_power">solar_power</span>
+</span>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block group-hover:text-primary">
+                        Agri-Photovoltaic Dual Canopy Optimization
+                      </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">
+                        ID: JSS-COLLAB-2025-019 • JREDA &amp; Agro Dept
+                      </span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div>
+<span class="font-label-md text-label-md text-on-surface block">UrjaVikas Innovation Lab</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">IIT (ISM) Dhanbad</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-[#FEF3C7] text-[#92400E] border border-[#FDE68A]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#92400E] mr-1.5"></span>
+                    Prototyping
+                  </span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="schedule">schedule</span>
+<span>3 hours ago</span>
+</div>
+<span class="text-label-sm text-outline block mt-0.5">CAD schematics v2 approved</span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="inline-flex items-center justify-center h-9 px-space-sm rounded-lg bg-surface-container-low hover:bg-primary-container hover:text-on-primary text-primary font-label-md text-label-md border border-outline-variant transition-colors">
+<span class="material-symbols-outlined text-[16px] mr-1" data-icon="folder_open">folder_open</span>
+<span>Open Workspace</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="py-space-md px-space-md">
+<div class="flex items-start gap-space-xs">
+<span class="w-8 h-8 rounded bg-surface-container text-primary flex items-center justify-center flex-shrink-0 mt-0.5 border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="medication">medication</span>
+</span>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block group-hover:text-primary">
+                        Autonomous Drone Delivery for Remote PHC Vaccines
+                      </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">
+                        ID: JSS-COLLAB-2024-112 • Dept of Health &amp; Family Welfare
+                      </span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div>
+<span class="font-label-md text-label-md text-on-surface block">AeroMed Consortium</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">NIT Jamshedpur + RIMS Ranchi</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#166534] mr-1.5"></span>
+                    Field Testing
+                  </span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="schedule">schedule</span>
+<span>Yesterday, 17:40</span>
+</div>
+<span class="text-label-sm text-outline block mt-0.5">DGCA corridor cleared</span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="inline-flex items-center justify-center h-9 px-space-sm rounded-lg bg-surface-container-low hover:bg-primary-container hover:text-on-primary text-primary font-label-md text-label-md border border-outline-variant transition-colors">
+<span class="material-symbols-outlined text-[16px] mr-1" data-icon="folder_open">folder_open</span>
+<span>Open Workspace</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination / Footer info -->
+<div class="p-space-sm bg-surface-container-lowest border-t border-outline-variant flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Showing 3 of 3 Active Joint Consortia</span>
+<div class="flex items-center gap-space-xs">
+<button class="px-2.5 py-1 rounded border border-outline-variant bg-surface-container-lowest disabled:opacity-50" disabled="">Previous</button>
+<button class="px-2.5 py-1 rounded border border-outline-variant bg-surface-container-lowest disabled:opacity-50" disabled="">Next</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Additional Information Bento: Escrow Overview & Quick Compliance -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-space-md">
+<!-- Escrow Status Card -->
+<div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg">
+<div class="flex items-center justify-between border-b border-outline-variant pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Escrow Disbursement Schedule</h3>
+</div>
+<span class="font-label-sm text-label-sm text-[#166534] bg-[#DCFCE7] px-2 py-0.5 rounded border border-[#BBF7D0]">
+            NIC PFMS Audited
+          </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md text-left">
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant">
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Tranche 1: Prototype</span>
+<span class="text-headline-md font-headline-md text-primary mt-1 block">₹6.50 L</span>
+<span class="text-label-sm text-[#166534] font-medium flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span> Disbursed
+            </span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant">
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Tranche 2: Field Testing</span>
+<span class="text-headline-md font-headline-md text-on-surface mt-1 block">₹7.00 L</span>
+<span class="text-label-sm text-[#92400E] font-medium flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="pending">pending</span> Under Milestones
+            </span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant">
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Tranche 3: Handover</span>
+<span class="text-headline-md font-headline-md text-outline mt-1 block">₹5.00 L</span>
+<span class="text-label-sm text-outline font-medium flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock">lock</span> Locked in Escrow
+            </span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs text-body-sm text-on-surface-variant flex items-center justify-between">
+<span>Next nodal milestone review scheduled for <strong>14 November 2025</strong></span>
+<a class="font-label-md text-label-md text-primary hover:underline" href="#">View Escrow Contract →</a>
+</div>
+</div>
+<!-- Quick Nodal Contact / Action -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-xs border-b border-outline-variant pb-space-sm mb-space-md">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="support_agent">support_agent</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">State Nodal Desk</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Dedicated assistance for industry-academia compliance, MoUs, and IP assignment protocols under the Jharkhand DPI Framework.
+          </p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded border border-outline-variant text-label-sm text-on-surface space-y-1">
+<div class="font-semibold text-primary">Dr. A. K. Verma, IAS</div>
+<div class="text-on-surface-variant">Nodal Director, Higher &amp; Technical Education</div>
+<div class="text-on-surface-variant">Govt of Jharkhand, Project Bhawan</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-outline-variant flex items-center gap-space-xs">
+<button class="w-full h-10 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="mail">mail</span>
+<span>Schedule Review</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component: JSON Exact Mapping) -->
+<footer class="w-full bg-primary text-on-primary px-gutter-desktop py-space-xl border-t border-outline-variant mt-space-3xl">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center justify-between gap-space-md">
+<!-- Brand & Copyright from JSON -->
+<div class="space-y-space-xxs text-center md:text-left">
+<div class="text-headline-sm font-headline-sm text-on-primary tracking-tight">
+          Jharkhand Samadhan Setu
+        </div>
+<p class="text-primary-fixed-dim font-body-sm text-body-sm">
+          © 2025 Jharkhand Samadhan Setu. Government of Jharkhand Digital Public Infrastructure. All rights reserved.
+        </p>
+</div>
+<!-- Links array strictly from JSON -->
+<nav class="flex flex-wrap items-center justify-center gap-x-space-md gap-y-space-xs text-primary-fixed-dim font-body-sm text-body-sm">
+<a class="hover:text-on-primary hover:underline transition-colors duration-150" href="#">
+          Toll-Free Helpline 181
+        </a>
+<span>•</span>
+<a class="hover:text-on-primary hover:underline transition-colors duration-150" href="#">
+          National Informatics Centre (NIC)
+        </a>
+<span>•</span>
+<a class="hover:text-on-primary hover:underline transition-colors duration-150" href="#">
+          Citizen Charter
+        </a>
+<span>•</span>
+<a class="hover:text-on-primary hover:underline transition-colors duration-150" href="#">
+          Terms of Service
+        </a>
+<span>•</span>
+<a class="hover:text-on-primary hover:underline transition-colors duration-150" href="#">
+          Privacy Policy
+        </a>
+<span>•</span>
+<a class="hover:text-on-primary hover:underline transition-colors duration-150" href="#">
+          Nodal Officer Contact
+        </a>
+</nav>
+</div>
+</footer>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+  requireRole('startup', 'login.html');
+</script>
+</body></html>

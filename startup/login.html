@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Startup Login - Jharkhand Samadhan Setu</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed": "#17213A",
+            "surface-bright": "#FBF9F4",
+            "tertiary-fixed": "#8FC7A8",
+            "on-surface-variant": "#5B5847",
+            "primary-container": "#232F4E",
+            "surface-variant": "#F1ECE0",
+            "on-background": "#17213A",
+            "error": "#B3261E",
+            "error-container": "#F9DEDC",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "tertiary-container": "#E3EEE6",
+            "surface-container-low": "#F6F3EA",
+            "on-primary-container": "#FBF9F4",
+            "surface-container-lowest": "#FFFFFF",
+            "primary-fixed-dim": "#C7B37E",
+            "inverse-on-surface": "#FBF9F4",
+            "on-secondary-fixed": "#4A3B1F",
+            "on-tertiary-fixed": "#12281E",
+            "on-error": "#FFFFFF",
+            "on-error-container": "#5F1712",
+            "on-tertiary-container": "#1F4A34",
+            "surface-container-high": "#EAE4D4",
+            "on-primary": "#FBF9F4",
+            "surface-container": "#F1ECE0",
+            "secondary": "#A6742A",
+            "inverse-primary": "#D9CBA3",
+            "outline": "#C7C0AC",
+            "background": "#FBF9F4",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "tertiary-fixed-dim": "#6FA98A",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "primary-fixed": "#D9CBA3",
+            "primary": "#17213A",
+            "secondary-fixed-dim": "#D9B876",
+            "on-tertiary": "#FFFFFF",
+            "on-secondary": "#FFFFFF",
+            "on-surface": "#17213A",
+            "surface-tint": "#A6742A",
+            "surface": "#FBF9F4",
+            "secondary-fixed": "#F1E4C7",
+            "surface-container-highest": "#E2DBC7",
+            "on-secondary-container": "#6B4A17",
+            "surface-dim": "#E8E3D3",
+            "outline-variant": "#E4DFD0",
+            "inverse-surface": "#17213A",
+            "tertiary": "#2F6F4E",
+            "secondary-container": "#F1E4C7"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "3rem",
+            "min-touch-target": "3rem",
+            "space-xxs": "0.25rem",
+            "gutter-desktop": "2rem",
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "space-sm": "0.75rem",
+            "gutter-mobile": "1rem",
+            "space-lg": "1.5rem",
+            "gutter-tablet": "1.5rem",
+            "container-max": "72rem",
+            "space-md": "1rem",
+            "space-3xl": "4rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"]
+          },
+          "fontSize": {
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col justify-between selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Institutional Top Header Anchor -->
+<header class="w-full bg-surface-container-lowest border-b border-outline-variant px-gutter-mobile md:px-gutter-desktop py-space-sm">
+<div class="max-w-container-max mx-auto flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight leading-tight">Jharkhand Samadhan Setu</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Government of Jharkhand Digital Public Infrastructure</span>
+</div>
+</div>
+<div class="hidden sm:flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs text-on-surface-variant bg-surface-container-low px-space-sm py-1 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="shield">shield</span>
+<span class="font-label-sm text-label-sm font-semibold">DPIIT Authorized Service</span>
+</div>
+<a class="flex items-center gap-1 font-label-md text-label-md text-primary hover:underline" href="#help">
+<span class="material-symbols-outlined text-[16px]" data-icon="help">help</span>
+<span>Helpdesk</span>
+</a>
+</div>
+</div>
+</header>
+<!-- Central Canvas & Card Container -->
+<main class="flex-grow flex items-center justify-center px-gutter-mobile py-space-xl md:py-space-2xl">
+<div class="w-full max-w-[28rem] bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg md:p-space-xl">
+<!-- Institutional Identity & Title -->
+<div class="text-center mb-space-lg">
+<div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-surface-container mb-space-xs border border-outline-variant text-primary">
+<span class="material-symbols-outlined text-[28px]" data-icon="assured_workload">assured_workload</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary font-bold tracking-tight">Startup &amp; Industry Access</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">उद्योग एवं स्टार्टअप पोर्टल लॉगिन</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Sign in to solve civic problem statements, track joint projects, and access innovation grants.</p>
+</div>
+<!-- Authentication Form -->
+<form class="space-y-space-md" id="startup-login-form" onsubmit="event.preventDefault();">
+<!-- Company / Work Email Input -->
+<div class="space-y-space-xxs">
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold" for="work-email">
+            Company / Work Email ID
+            <span class="block font-label-sm text-label-sm text-on-surface-variant font-normal">कंपनी / आधिकारिक ईमेल आईडी</span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-space-sm text-outline pointer-events-none" data-icon="mail">mail</span>
+<input class="w-full pl-10 pr-space-md min-h-min-touch-target rounded-lg border border-outline-variant bg-surface-container-lowest font-body-md text-body-md text-on-surface placeholder:text-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="work-email" name="work-email" placeholder="founder@enterprise.in" required="" type="email"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-space-xxs">
+<div class="flex items-center justify-between">
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold" for="password">
+              Password
+              <span class="block font-label-sm text-label-sm text-on-surface-variant font-normal">पासवर्ड</span>
+</label>
+<a class="font-label-md text-label-md text-secondary hover:underline focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#forgot">
+              Forgot password?
+            </a>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-space-sm text-outline pointer-events-none" data-icon="lock">lock</span>
+<input class="w-full pl-10 pr-10 min-h-min-touch-target rounded-lg border border-outline-variant bg-surface-container-lowest font-body-md text-body-md text-on-surface placeholder:text-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="password" name="password" placeholder="••••••••••••" required="" type="password"/>
+<button class="absolute right-space-sm text-outline hover:text-on-surface p-1 rounded focus:outline-none" onclick="const p = document.getElementById('password'); p.type = p.type === 'password' ? 'text' : 'password';" title="Toggle password visibility" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Checkbox: Remember this device -->
+<div class="flex items-center pt-space-xxs">
+<label class="flex items-center gap-space-xs cursor-pointer min-h-[32px]">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary-container focus:ring-offset-0 transition-colors" id="remember" name="remember" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface select-none">Remember this device for 30 days</span>
+</label>
+</div>
+<!-- Primary Action CTA -->
+<div class="pt-space-xs">
+<button class="w-full min-h-min-touch-target bg-secondary hover:bg-[#8C5F1F] active:scale-[0.99] text-on-secondary rounded-lg font-label-lg text-label-lg font-semibold flex items-center justify-center gap-space-xs transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary" id="btn-startup-login" type="submit">
+<span>Login to Industry Portal / उद्योग पोर्टल लॉगिन</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+<!-- Inside Card Separator -->
+<div class="my-space-md border-t border-outline-variant relative"></div>
+<!-- Registration link inside card -->
+<div class="text-center mb-space-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          New to Jharkhand Samadhan Setu?
+        </p>
+<a class="inline-block mt-1 font-label-md text-label-md text-primary font-bold hover:underline focus:outline-none focus:ring-2 focus:ring-primary-container rounded p-0.5" href="#register">
+          Register your company/startup / नया उद्योग या स्टार्टअप पंजीकृत करें
+        </a>
+</div>
+<!-- DPIIT / Startup India Verification Notice Badge -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-sm flex items-start gap-space-xs text-left">
+<span class="material-symbols-outlined text-secondary text-[20px] flex-shrink-0 mt-0.5" data-icon="verified_user">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-primary">DPIIT &amp; Startup India Integration</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant leading-normal">
+            Entity profiles are cross-verified with Ministry of Commerce &amp; Industry databases and Jharkhand Industrial Area Development Authority (JIADA).
+          </span>
+</div>
+</div>
+</div>
+</main>
+<!-- Institutional Footer (Shared Anchor Standards) -->
+<footer class="w-full bg-primary text-on-primary px-gutter-mobile md:px-gutter-desktop py-space-md border-t border-outline-variant">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center justify-between gap-space-sm text-center md:text-left">
+<div class="flex flex-wrap items-center justify-center md:justify-start gap-x-space-md gap-y-1 font-body-sm text-body-sm text-primary-fixed-dim">
+<span class="flex items-center gap-1 text-on-primary font-semibold">
+<span class="material-symbols-outlined text-[16px]" data-icon="phone_in_talk">phone_in_talk</span>
+          Toll-Free Helpline 181
+        </span>
+<span class="hidden md:inline">•</span>
+<a class="hover:text-on-primary hover:underline transition-colors" href="#nic">National Informatics Centre (NIC)</a>
+<span class="hidden md:inline">•</span>
+<a class="hover:text-on-primary hover:underline transition-colors" href="#charter">Citizen Charter</a>
+<span class="hidden md:inline">•</span>
+<a class="hover:text-on-primary hover:underline transition-colors" href="#terms">Terms of Service</a>
+<span class="hidden md:inline">•</span>
+<a class="hover:text-on-primary hover:underline transition-colors" href="#privacy">Privacy Policy</a>
+</div>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim">
+        © 2025 Jharkhand Samadhan Setu. Government of Jharkhand Digital Public Infrastructure. All rights reserved.
+      </p>
+</div>
+</footer>
+<script>
+  document.getElementById('startup-login-form').addEventListener('submit', () => {
+    const email = document.getElementById('work-email').value.trim();
+    const password = document.getElementById('password').value;
+    if (!email || !password) {
+      showToast('Please fill all fields');
+      return;
+    }
+    API.login('startup', email);
+    showToast('Login successful');
+    setTimeout(() => { window.location.href = 'dashboard.html'; }, 500);
+  });
+</script>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+</body></html>

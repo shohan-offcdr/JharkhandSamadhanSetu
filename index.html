@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface text-on-surface" lang="hi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="theme-color" content="#17213A"/>
+<title>झारखंड समाधान सेतु | Jharkhand Samadhan Setu</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Noto Sans / Noto Serif, Latin + Devanagari -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-container": "#1F4A34",
+            "inverse-surface": "#17213A",
+            "tertiary-fixed": "#8FC7A8",
+            "on-secondary-fixed": "#4A3B1F",
+            "on-tertiary-fixed": "#12281E",
+            "surface-variant": "#F1ECE0",
+            "primary-container": "#232F4E",
+            "outline-variant": "#E4DFD0",
+            "primary": "#17213A",
+            "outline": "#C7C0AC",
+            "on-primary-fixed": "#17213A",
+            "on-surface-variant": "#5B5847",
+            "tertiary-container": "#E3EEE6",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "surface-tint": "#A6742A",
+            "surface-dim": "#E8E3D3",
+            "tertiary-fixed-dim": "#6FA98A",
+            "surface": "#FBF9F4",
+            "inverse-primary": "#D9CBA3",
+            "surface-container-high": "#EAE4D4",
+            "secondary-container": "#F1E4C7",
+            "primary-fixed": "#D9CBA3",
+            "inverse-on-surface": "#FBF9F4",
+            "surface-container-lowest": "#FFFFFF",
+            "on-error-container": "#5F1712",
+            "error": "#B3261E",
+            "surface-container-low": "#F6F3EA",
+            "secondary": "#A6742A",
+            "on-tertiary": "#FFFFFF",
+            "on-secondary-container": "#6B4A17",
+            "on-surface": "#17213A",
+            "surface-container-highest": "#E2DBC7",
+            "background": "#FBF9F4",
+            "surface-container": "#F1ECE0",
+            "surface-bright": "#FBF9F4",
+            "primary-fixed-dim": "#C7B37E",
+            "on-secondary": "#FFFFFF",
+            "on-primary": "#FBF9F4",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "on-primary-container": "#FBF9F4",
+            "secondary-fixed-dim": "#D9B876",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "error-container": "#F9DEDC",
+            "on-error": "#FFFFFF",
+            "secondary-fixed": "#F1E4C7",
+            "tertiary": "#2F6F4E",
+            "on-background": "#17213A",
+            "success": "#2F6F4E",
+            "on-success": "#FFFFFF",
+            "success-container": "#E3EEE6",
+            "on-success-container": "#1F4A34",
+            "warning": "#9C6B12",
+            "warning-container": "#F3E7CE",
+            "on-warning-container": "#6B4A17"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-desktop": "2rem",
+            "container-max": "72rem",
+            "space-3xl": "4rem",
+            "min-touch-target": "3rem",
+            "space-xl": "2rem",
+            "space-xxs": "0.25rem",
+            "gutter-tablet": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-sm": "0.75rem",
+            "gutter-mobile": "1rem",
+            "space-xs": "0.5rem",
+            "space-2xl": "3rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-full flex flex-col bg-surface text-on-surface antialiased font-body-md text-body-md">
+<a class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-primary focus:text-on-primary focus:px-4 focus:py-2 focus:rounded" href="#main-content">मुख्य सामग्री पर जाएं / Skip to main content</a>
+<!-- Top Utility Strip -->
+<aside aria-label="National Portal Accessibility Toolbar" class="w-full bg-primary text-on-primary py-1.5 px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop text-label-sm font-label-sm border-b border-primary-container">
+<div class="max-w-container-max mx-auto flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-1.5 min-w-0 text-on-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed inline-block shrink-0"></span>
+<span class="font-bold truncate">
+<span class="sm:hidden">झारखंड सरकार</span>
+<span class="hidden sm:inline">झारखंड सरकार | Government of Jharkhand</span>
+</span>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<a class="flex items-center gap-1 text-on-primary hover:text-tertiary-fixed font-label-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-tertiary-fixed focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded" href="tel:181">
+<span class="material-symbols-outlined text-[16px]">call</span>
+<span class="hidden sm:inline">हेल्पलाइन:</span>
+<strong>181</strong>
+</a>
+<!-- Desktop / laptop: full inline accessibility controls -->
+<div aria-label="Text size adjustments" class="hidden lg:flex items-center gap-1 bg-primary-container px-2 py-0.5 rounded" role="group">
+<button aria-label="Decrease font size" aria-pressed="false" class="px-1 font-bold text-label-sm hover:text-tertiary-fixed focus:outline-none focus-visible:ring-2 focus-visible:ring-tertiary-fixed rounded" id="fontDec" type="button">A-</button>
+<button aria-label="Default font size" aria-pressed="true" class="px-1 font-bold text-label-sm hover:text-tertiary-fixed focus:outline-none focus-visible:ring-2 focus-visible:ring-tertiary-fixed rounded" id="fontDef" type="button">A</button>
+<button aria-label="Increase font size" aria-pressed="false" class="px-1 font-bold text-label-sm hover:text-tertiary-fixed focus:outline-none focus-visible:ring-2 focus-visible:ring-tertiary-fixed rounded" id="fontInc" type="button">A+</button>
+</div>
+<div class="hidden lg:flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-surface-variant">translate</span>
+<select aria-label="Select Portal Language" class="bg-primary-container text-on-primary text-label-sm font-label-sm py-0.5 px-2 rounded border-0 focus:ring-1 focus:ring-tertiary-fixed" id="langSelect">
+<option selected="" value="hi">हिन्दी</option>
+<option value="en">English</option>
+<option value="sat">संथाली (Santali)</option>
+</select>
+</div>
+<!-- Mobile / tablet: single icon opens a compact panel instead of spreading 5 controls across a thin strip -->
+<button aria-controls="a11yPanel" aria-expanded="false" aria-label="भाषा एवं टेक्स्ट आकार / Language &amp; text size" class="lg:hidden w-7 h-7 flex items-center justify-center rounded hover:bg-primary-container focus:outline-none focus-visible:ring-2 focus-visible:ring-tertiary-fixed" id="a11yToggle" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+</div>
+</div>
+<div class="hidden lg:hidden max-w-container-max mx-auto mt-1.5 pt-1.5 border-t border-primary-container flex items-center justify-between gap-space-sm" id="a11yPanel">
+<div aria-label="Text size adjustments" class="flex items-center gap-1 bg-primary-container px-2 py-0.5 rounded" role="group">
+<button aria-label="Decrease font size" aria-pressed="false" class="px-1.5 font-bold text-label-sm hover:text-tertiary-fixed focus:outline-none focus-visible:ring-2 focus-visible:ring-tertiary-fixed rounded" id="fontDecMobile" type="button">A-</button>
+<button aria-label="Default font size" aria-pressed="true" class="px-1.5 font-bold text-label-sm hover:text-tertiary-fixed focus:outline-none focus-visible:ring-2 focus-visible:ring-tertiary-fixed rounded" id="fontDefMobile" type="button">A</button>
+<button aria-label="Increase font size" aria-pressed="false" class="px-1.5 font-bold text-label-sm hover:text-tertiary-fixed focus:outline-none focus-visible:ring-2 focus-visible:ring-tertiary-fixed rounded" id="fontIncMobile" type="button">A+</button>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-surface-variant">translate</span>
+<select aria-label="Select Portal Language" class="bg-primary-container text-on-primary text-label-sm font-label-sm py-0.5 px-2 rounded border-0 focus:ring-1 focus:ring-tertiary-fixed" id="langSelectMobile">
+<option selected="" value="hi">हिन्दी</option>
+<option value="en">English</option>
+<option value="sat">संथाली (Santali)</option>
+</select>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="bg-surface w-full border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
+<a class="flex items-center gap-space-sm min-w-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 rounded" href="index.html">
+<div aria-hidden="true" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center border border-outline-variant shrink-0">
+<span class="material-symbols-outlined text-primary text-[24px]">account_balance</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-label-lg sm:text-headline-sm font-label-lg sm:font-headline-sm font-bold text-primary leading-tight truncate sm:whitespace-normal">
+            झारखंड समाधान सेतु <span class="hidden sm:inline">| Jharkhand Samadhan Setu</span>
+          </span>
+<span class="hidden sm:block text-label-sm font-label-sm text-on-surface-variant">
+            सार्वजनिक शिकायत निवारण प्रणाली (DoIT &amp; e-Gov)
+          </span>
+</div>
+</a>
+<!-- Desktop Navigation Links -->
+<nav aria-label="Primary Navigation" class="hidden md:flex items-center gap-space-md">
+<a aria-current="page" class="border-b-2 border-secondary text-primary font-label-lg text-label-lg pb-1" href="index.html">
+          गृह / Home
+        </a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface pb-1 transition-colors duration-150" href="citizen/grievance-step1.html">
+          शिकायत दर्ज करें / File Grievance
+        </a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface pb-1 transition-colors duration-150" data-action="scroll-tracker" href="#hero-tracker">
+          स्थिति जांचें / Track Status
+        </a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface pb-1 transition-colors duration-150" href="#faqs">
+          अक्सर पूछे जाने वाले प्रश्न / FAQs
+        </a>
+</nav>
+<!-- Trailing Action Badges & Icons -->
+<div class="flex items-center gap-space-sm">
+<button aria-label="सूचनाएं / Notifications" class="w-10 h-10 rounded flex items-center justify-center text-primary hover:bg-surface-container transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2" id="notifBtn" type="button">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button aria-label="खाता / Account" class="w-10 h-10 rounded flex items-center justify-center text-primary hover:bg-surface-container transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2" id="accountBtn" type="button">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 pb-16 md:pb-12" id="main-content">
+<!-- Hero Section -->
+<section class="w-full bg-surface-container-low py-space-xl md:py-space-2xl border-b border-outline-variant">
+<div class="max-w-container-max mx-auto px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop">
+<div class="max-w-3xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm mb-space-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span>डिजिटल झारखंड सशक्त नागरिक | Digital Jharkhand DPI Initiative</span>
+</div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-space-sm tracking-tight">
+            आपकी समस्या, सरकार का समाधान | Empowering Citizens of Jharkhand
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-space-md">
+            A unified, transparent public grievance redressal platform connecting citizens directly with district and state administration.
+          </p>
+<!-- Grievance Tracker -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs" id="hero-tracker">
+<form class="flex items-center bg-surface-container-lowest rounded border border-outline-variant px-3 py-2 text-label-md font-label-md text-on-surface max-w-md w-full sm:w-auto" id="trackForm" role="search">
+<span class="material-symbols-outlined text-outline mr-2 text-[20px]">search</span>
+<input aria-label="Grievance ID" autocomplete="off" class="border-0 bg-transparent p-0 text-on-surface placeholder:text-outline focus:ring-0 text-body-sm font-body-sm w-48 sm:w-64" id="trackInput" placeholder="शिकायत क्रमांक / Grievance ID (e.g. JH-2024-10312)" type="text"/>
+<button class="ml-2 bg-primary text-on-primary px-3 py-1 rounded text-label-sm font-label-sm hover:bg-primary-container focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2" type="submit">ट्रैक / Track</button>
+</form>
+<div class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">lock</span>
+<span>100% पारदर्शी, सुरक्षित एवं समयबद्ध</span>
+</div>
+</div>
+<div aria-live="polite" class="hidden mt-space-sm bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md max-w-xl" id="trackResult"></div>
+</div>
+</div>
+</section>
+<!-- Quick Stats Ribbon -->
+<section aria-label="Portal Performance Statistics" class="w-full bg-surface-container-lowest border-b border-outline-variant">
+<div class="max-w-container-max mx-auto px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop py-space-md">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md divide-y sm:divide-y-0 sm:divide-x divide-outline-variant text-center">
+<div class="flex flex-col items-center justify-center p-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[28px]">task_alt</span>
+<span class="text-headline-lg font-headline-lg text-primary">94.2%</span>
+</div>
+<span class="text-label-md font-label-md text-on-surface-variant mt-1">
+              समाधान दर / Resolution Rate
+            </span>
+<span class="text-label-sm font-label-sm text-outline">
+              3.8 लाख+ शिकायतें सफलतापूर्वक निस्तारित
+            </span>
+</div>
+<div class="flex flex-col items-center justify-center p-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[28px]">schedule</span>
+<span class="text-headline-lg font-headline-lg text-primary">7 दिन / Days</span>
+</div>
+<span class="text-label-md font-label-md text-on-surface-variant mt-1">
+              औसत समय / Avg Turnaround Time
+            </span>
+<span class="text-label-sm font-label-sm text-outline">
+              विभागीय स्तर पर त्वरित कार्रवाई
+            </span>
+</div>
+<div class="flex flex-col items-center justify-center p-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[28px]">map</span>
+<span class="text-headline-lg font-headline-lg text-primary">24 जिले / Districts</span>
+</div>
+<span class="text-label-md font-label-md text-on-surface-variant mt-1">
+              सभी जिले सीधे जुड़े / Fully Connected
+            </span>
+<span class="text-label-sm font-label-sm text-outline">
+              प्रखंड स्तर पर नोडल अधिकारी नियुक्त
+            </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Role Selection Section -->
+<section class="max-w-container-max mx-auto px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop pt-space-xl md:pt-space-2xl" id="portal-access">
+<div class="mb-space-lg">
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-primary">
+          प्रवेश द्वार चुनें / Select Your Portal Access
+        </h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">
+          अपनी श्रेणी के अनुसार आगे बढ़ें ताकि आपको विशिष्ट सेवाएं और निवारण तंत्र उपलब्ध हो सके।
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<!-- Role 1: Citizen -->
+<div class="bg-surface-container-lowest border border-secondary/50 rounded-lg p-space-lg flex flex-col justify-between relative hover:border-secondary transition-colors">
+<div class="absolute -top-3 right-4 bg-secondary text-on-secondary text-label-sm font-label-sm py-0.5 px-2.5 rounded-full">
+            मुख्य / Start Here
+          </div>
+<div>
+<div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center text-primary mb-space-md border border-outline-variant">
+<span class="material-symbols-outlined text-[30px]" style="font-variation-settings: 'FILL' 1;">groups</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-1">
+              Citizen / नागरिक
+            </h3>
+<p class="text-label-md font-label-md text-secondary font-bold mb-space-xs">
+              आम नागरिक एवं ग्रामीण समुदाय
+            </p>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-space-lg">
+              Report civic issues, track grievance status, and request local public services in your area.
+            </p>
+</div>
+<div>
+<div class="bg-surface-container-low p-space-xs rounded text-label-sm font-label-sm text-on-surface-variant mb-space-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">badge</span>
+<span>Aadhaar / OTP से 1-क्लिक प्रवेश</span>
+</div>
+<a class="w-full h-min-touch-target flex items-center justify-center bg-secondary hover:bg-secondary/90 text-on-secondary font-label-lg text-label-lg rounded transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" href="citizen/login.html">
+<span>Enter as Citizen / नागरिक प्रवेश</span>
+<span class="material-symbols-outlined ml-2 text-[20px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Role 2: Student -->
+<div class="bg-surface-container-lowest border border-outline-variant hover:border-outline rounded-lg p-space-lg flex flex-col justify-between transition-colors">
+<div>
+<div class="w-12 h-12 rounded bg-surface-container-low flex items-center justify-center text-primary mb-space-md border border-outline-variant">
+<span class="material-symbols-outlined text-[30px]">school</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-1">
+              Student / विद्यार्थी
+            </h3>
+<p class="text-label-md font-label-md text-outline font-semibold mb-space-xs">
+              छात्र-छात्राएं व शोधार्थी
+            </p>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-space-lg">
+              Scholarship issues, school/college infrastructure, and educational concerns.
+            </p>
+</div>
+<div>
+<div class="bg-surface-container-low p-space-xs rounded text-label-sm font-label-sm text-on-surface-variant mb-space-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">verified_user</span>
+<span>e-Kalyan छात्रवृत्ति लिंकेज</span>
+</div>
+<a class="w-full h-min-touch-target flex items-center justify-center bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg rounded transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" href="student/login.html">
+<span>छात्र प्रवेश / Student Login</span>
+<span class="material-symbols-outlined ml-2 text-[20px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Role 3: Startup & Industry -->
+<div class="bg-surface-container-lowest border border-outline-variant hover:border-outline rounded-lg p-space-lg flex flex-col justify-between transition-colors">
+<div>
+<div class="w-12 h-12 rounded bg-surface-container-low flex items-center justify-center text-primary mb-space-md border border-outline-variant">
+<span class="material-symbols-outlined text-[30px]">factory</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-1">
+              Startup &amp; Industry / उद्योग व उद्यम
+            </h3>
+<p class="text-label-md font-label-md text-outline font-semibold mb-space-xs">
+              व्यापारी, एमएसएमई एवं उद्यमी
+            </p>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-space-lg">
+              Single window clearances, industrial grievances, and MSME support.
+            </p>
+</div>
+<div>
+<div class="bg-surface-container-low p-space-xs rounded text-label-sm font-label-sm text-on-surface-variant mb-space-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">domain_verification</span>
+<span>Advantage Jharkhand सुगम सुविधा</span>
+</div>
+<a class="w-full h-min-touch-target flex items-center justify-center bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg rounded transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" href="startup/login.html">
+<span>उद्योग प्रवेश / Industry Login</span>
+<span class="material-symbols-outlined ml-2 text-[20px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Role 4: Government Official -->
+<div class="bg-surface-container-lowest border border-outline-variant hover:border-outline rounded-lg p-space-lg flex flex-col justify-between transition-colors">
+<div>
+<div class="w-12 h-12 rounded bg-surface-container-low flex items-center justify-center text-primary mb-space-md border border-outline-variant">
+<span class="material-symbols-outlined text-[30px]">shield</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-1">
+              Government Official / विभागीय अधिकारी
+            </h3>
+<p class="text-label-md font-label-md text-outline font-semibold mb-space-xs">
+              प्रखंड, जिला व राज्य नोडल अफसर
+            </p>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-space-lg">
+              Departmental officer login, task assignment, and nodal resolution dashboard.
+            </p>
+</div>
+<div>
+<div class="bg-surface-container-low p-space-xs rounded text-label-sm font-label-sm text-on-surface-variant mb-space-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">vpn_key</span>
+<span>NIC Gov ID / e-Pramaan सुरक्षित लॉगिन</span>
+</div>
+<a class="w-full h-min-touch-target flex items-center justify-center bg-surface-container border border-outline text-primary font-label-lg text-label-lg rounded hover:bg-surface-container-high transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" href="government/login.html">
+<span>अधिकारी लॉगिन / Officer Portal</span>
+<span class="material-symbols-outlined ml-2 text-[20px]">login</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Essential Civic Services & Categories -->
+<section class="max-w-container-max mx-auto px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop pt-space-2xl">
+<div class="flex flex-col sm:flex-row justify-between items-baseline mb-space-md">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary">
+            प्रमुख सेवाएं एवं निवारण क्षेत्र / Redressal Categories
+          </h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            सर्वाधिक दर्ज की जाने वाली नागरिक शिकायत श्रेणियां
+          </p>
+</div>
+<button aria-controls="moreCategories" aria-expanded="false" class="text-label-md font-label-md text-secondary hover:underline flex items-center gap-1 mt-2 sm:mt-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary rounded" id="toggleCategoriesBtn" type="button">
+<span class="toggle-label">सभी विभाग देखें / View All Departments</span>
+<span class="material-symbols-outlined text-[16px] transition-transform">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-space-md flex items-start gap-space-sm hover:border-outline transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px] p-2 bg-surface-container rounded shrink-0">water_drop</span>
+<div>
+<h3 class="font-label-lg text-label-lg text-primary">पेयजल एवं स्वच्छता / Drinking Water &amp; Sanitation</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">चापाकल मरम्मत, जल जीवन मिशन नल कनेक्शन एवं ग्रामीण जलापूर्ति योजनाएं।</p>
+<span class="inline-block mt-2 text-label-sm font-label-sm text-secondary">औसत निस्तारण: 5 दिन</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-space-md flex items-start gap-space-sm hover:border-outline transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px] p-2 bg-surface-container rounded shrink-0">local_hospital</span>
+<div>
+<h3 class="font-label-lg text-label-lg text-primary">स्वास्थ्य एवं परिवार कल्याण / Health &amp; Family Welfare</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">सदर अस्पताल व PHC सुविधाएं, एंबुलेंस उपलब्धता, आयुष्मान भारत कार्ड सहायता।</p>
+<span class="inline-block mt-2 text-label-sm font-label-sm text-secondary">औसत निस्तारण: 3 दिन</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-space-md flex items-start gap-space-sm hover:border-outline transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px] p-2 bg-surface-container rounded shrink-0">electric_bolt</span>
+<div>
+<h3 class="font-label-lg text-label-lg text-primary">ऊर्जा एवं विद्युत आपूर्ति / Electricity &amp; JBVNL</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">ट्रांसफार्मर खराबी, मीटर रीडिंग त्रुटि सुधार, ग्रामीण विद्युतीकरण शिकायतें।</p>
+<span class="inline-block mt-2 text-label-sm font-label-sm text-secondary">औसत निस्तारण: 4 दिन</span>
+</div>
+</div>
+</div>
+<div class="hidden grid grid-cols-1 md:grid-cols-3 gap-space-md mt-space-md" id="moreCategories">
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-space-md flex items-start gap-space-sm hover:border-outline transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px] p-2 bg-surface-container rounded shrink-0">construction</span>
+<div>
+<h3 class="font-label-lg text-label-lg text-primary">सड़क एवं अवसंरचना / Roads &amp; Infrastructure</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">गड्ढे, पुल-पुलिया क्षति, ग्रामीण सड़क योजना (PMGSY) से जुड़ी शिकायतें।</p>
+<span class="inline-block mt-2 text-label-sm font-label-sm text-secondary">औसत निस्तारण: 6 दिन</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-space-md flex items-start gap-space-sm hover:border-outline transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px] p-2 bg-surface-container rounded shrink-0">menu_book</span>
+<div>
+<h3 class="font-label-lg text-label-lg text-primary">शिक्षा / Education</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">विद्यालय अवसंरचना, शिक्षक उपलब्धता, छात्रवृत्ति एवं मध्याह्न भोजन संबंधी शिकायतें।</p>
+<span class="inline-block mt-2 text-label-sm font-label-sm text-secondary">औसत निस्तारण: 5 दिन</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-space-md flex items-start gap-space-sm hover:border-outline transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px] p-2 bg-surface-container rounded shrink-0">agriculture</span>
+<div>
+<h3 class="font-label-lg text-label-lg text-primary">कृषि एवं भू-अभिलेख / Agriculture &amp; Land Records</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">भूमि नामांतरण, फसल क्षति मुआवजा, एवं कृषि इनपुट सब्सिडी से जुड़ी शिकायतें।</p>
+<span class="inline-block mt-2 text-label-sm font-label-sm text-secondary">औसत निस्तारण: 8 दिन</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Citizen Charter & Public Trust Assurance Banner -->
+<section class="max-w-container-max mx-auto px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop mt-space-2xl" id="citizen-charter">
+<div class="bg-surface-container border border-outline-variant rounded-lg p-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[26px]">gavel</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">झारखंड सेवा का अधिकार अधिनियम, 2011</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Jharkhand Right to Service Act, 2011 guarantees fixed-time delivery for notified public services, with designated appellate officers for timely redressal.
+            </p>
+</div>
+</div>
+<a class="whitespace-nowrap px-4 py-2 border border-primary text-primary hover:bg-primary hover:text-on-primary font-label-md text-label-md rounded transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" data-coming-soon="चार्टर PDF जल्द जोड़ा जाएगा / Charter PDF will be added soon" href="#">
+          नागरिक चार्टर डाउनलोड करें / PDF
+        </a>
+</div>
+</section>
+<!-- FAQ -->
+<section class="max-w-container-max mx-auto px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop mt-space-2xl" id="faqs">
+<h2 class="text-headline-sm font-headline-sm text-primary mb-space-md">
+        अक्सर पूछे जाने वाले प्रश्न / Frequently Asked Questions
+      </h2>
+<div class="border-t border-outline-variant">
+<details class="group border-b border-outline-variant py-space-sm">
+<summary class="flex items-center justify-between cursor-pointer list-none font-label-lg text-label-lg text-primary py-space-xs">
+<span>शिकायत दर्ज करने में कितना समय लगता है? / How long does it take to register a grievance?</span>
+<span class="material-symbols-outlined shrink-0 transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="text-body-md font-body-md text-on-surface-variant pt-space-xs pr-space-lg">
+          फॉर्म भरने में लगभग 5 मिनट लगते हैं। जमा करने के बाद आपको तुरंत एक ट्रैकिंग क्रमांक मिल जाता है। / Filing takes about 5 minutes, and you get a tracking ID immediately after submission.
+        </p>
+</details>
+<details class="group border-b border-outline-variant py-space-sm">
+<summary class="flex items-center justify-between cursor-pointer list-none font-label-lg text-label-lg text-primary py-space-xs">
+<span>मैं अपनी शिकायत की स्थिति कैसे जानूं? / How do I check my grievance status?</span>
+<span class="material-symbols-outlined shrink-0 transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="text-body-md font-body-md text-on-surface-variant pt-space-xs pr-space-lg">
+          इस पेज पर ऊपर दिए गए बॉक्स में अपना शिकायत क्रमांक डालें और "ट्रैक" पर क्लिक करें। / Enter your grievance ID in the tracker box near the top of this page and select Track.
+        </p>
+</details>
+<details class="group border-b border-outline-variant py-space-sm">
+<summary class="flex items-center justify-between cursor-pointer list-none font-label-lg text-label-lg text-primary py-space-xs">
+<span>क्या शिकायत दर्ज करने के लिए लॉगिन जरूरी है? / Do I need to log in to file a grievance?</span>
+<span class="material-symbols-outlined shrink-0 transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="text-body-md font-body-md text-on-surface-variant pt-space-xs pr-space-lg">
+          नहीं, आप बिना लॉगिन किए भी शिकायत दर्ज कर सकते हैं, लेकिन लॉगिन करने पर आप अपनी सभी शिकायतें एक जगह देख सकते हैं। / No — you can file without logging in, but signing in lets you see all your grievances in one place.
+        </p>
+</details>
+<details class="group border-b border-outline-variant py-space-sm">
+<summary class="flex items-center justify-between cursor-pointer list-none font-label-lg text-label-lg text-primary py-space-xs">
+<span>यदि मेरी समस्या का समाधान समय पर नहीं होता तो क्या होगा? / What happens if my issue isn't resolved on time?</span>
+<span class="material-symbols-outlined shrink-0 transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="text-body-md font-body-md text-on-surface-variant pt-space-xs pr-space-lg">
+          झारखंड सेवा का अधिकार अधिनियम के तहत, निर्धारित समय-सीमा के बाद शिकायत स्वतः प्रथम अपीलीय अधिकारी को अग्रेषित हो जाती है। / Under the Jharkhand Right to Service Act, unresolved grievances are automatically escalated to the First Appellate Authority after the deadline.
+        </p>
+</details>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar for Mobile -->
+<nav aria-label="Mobile Navigation Shell" class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter-mobile h-min-touch-target md:hidden bg-surface border-t border-outline-variant">
+<a aria-current="page" class="flex flex-col items-center justify-center bg-primary-container text-on-primary rounded-lg px-space-sm py-space-xxs min-h-min-touch-target" href="index.html">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-label-sm font-label-sm mt-0.5">मुख्य / Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" href="citizen/grievance-step1.html">
+<span class="material-symbols-outlined text-[20px]">edit_document</span>
+<span class="text-label-sm font-label-sm mt-0.5">शिकायत / File</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" data-action="scroll-tracker" href="#hero-tracker">
+<span class="material-symbols-outlined text-[20px]">timeline</span>
+<span class="text-label-sm font-label-sm mt-0.5">स्थिति / Track</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" href="#faqs">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="text-label-sm font-label-sm mt-0.5">सहायता / Help</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="bg-primary border-t border-outline text-on-primary">
+<div class="w-full py-space-xl px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-space-md">
+<div class="flex flex-col gap-1 text-center md:text-left">
+<div class="text-headline-sm font-headline-sm text-on-primary">
+          झारखंड समाधान सेतु | Jharkhand Samadhan Setu
+        </div>
+<p class="text-body-sm font-body-sm text-surface-variant max-w-2xl">
+          © 2024 सूचना प्रौद्योगिकी एवं ई-गवर्नेंस विभाग, झारखंड सरकार | Department of Information Technology &amp; e-Governance, Government of Jharkhand. All Rights Reserved.
+        </p>
+</div>
+<div class="flex flex-wrap justify-center md:justify-end gap-x-space-md gap-y-space-xs text-label-sm font-label-sm text-surface-variant">
+<a class="hover:underline hover:text-tertiary-fixed transition-colors duration-150" data-coming-soon="गोपनीयता नीति पेज जल्द जोड़ा जाएगा / Privacy policy page coming soon" href="#">
+          गोपनीयता नीति / Privacy Policy
+        </a>
+<span>•</span>
+<a class="hover:underline hover:text-tertiary-fixed transition-colors duration-150" data-coming-soon="उपयोग की शर्तें पेज जल्द जोड़ा जाएगा / Terms of service page coming soon" href="#">
+          उपयोग की शर्तें / Terms of Service
+        </a>
+<span>•</span>
+<a class="hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#citizen-charter">
+          नागरिक चार्टर / Citizen Charter
+        </a>
+<span>•</span>
+<a class="hover:underline hover:text-tertiary-fixed transition-colors duration-150" data-coming-soon="संपर्क पेज जल्द जोड़ा जाएगा / Contact page coming soon" href="#">
+          संपर्क करें / Contact Us
+        </a>
+</div>
+</div>
+</footer>
+<script src="js/mock-data.js"></script>
+<script src="js/api.js"></script>
+<script src="js/shared.js"></script>
+<script>
+  // ---------- Accessibility: font-size scale (persists, whole scale is rem-based) ----------
+  // Desktop shows these controls inline; mobile/tablet tuck the same controls behind the "tune" icon.
+  const FONT_SCALE_KEY = 'jss_font_scale';
+  const fontBtnGroups = [
+    { 14: document.getElementById('fontDec'), 16: document.getElementById('fontDef'), 18: document.getElementById('fontInc') },
+    { 14: document.getElementById('fontDecMobile'), 16: document.getElementById('fontDefMobile'), 18: document.getElementById('fontIncMobile') },
+  ];
+  function applyFontScale(px) {
+    document.documentElement.style.fontSize = px + 'px';
+    localStorage.setItem(FONT_SCALE_KEY, px);
+    fontBtnGroups.forEach(group => {
+      Object.entries(group).forEach(([size, btn]) => btn.setAttribute('aria-pressed', String(Number(size) === px)));
+    });
+  }
+  fontBtnGroups.forEach(group => {
+    Object.entries(group).forEach(([size, btn]) => btn.addEventListener('click', () => applyFontScale(Number(size))));
+  });
+  applyFontScale(Number(localStorage.getItem(FONT_SCALE_KEY)) || 16);
+
+  // ---------- Language preference ----------
+  const langSelects = [document.getElementById('langSelect'), document.getElementById('langSelectMobile')];
+  const savedLang = localStorage.getItem('jss_lang_pref');
+  langSelects.forEach(sel => {
+    if (savedLang) sel.value = savedLang;
+    sel.addEventListener('change', (e) => {
+      localStorage.setItem('jss_lang_pref', e.target.value);
+      langSelects.forEach(s => { s.value = e.target.value; });
+      showToast('भाषा वरीयता सहेजी गई / Language preference saved');
+    });
+  });
+
+  // ---------- Mobile/tablet accessibility panel toggle ----------
+  const a11yToggle = document.getElementById('a11yToggle');
+  const a11yPanel = document.getElementById('a11yPanel');
+  a11yToggle.addEventListener('click', () => {
+    const nowHidden = a11yPanel.classList.toggle('hidden');
+    a11yToggle.setAttribute('aria-expanded', String(!nowHidden));
+  });
+
+  // ---------- Notifications & Account quick actions ----------
+  document.getElementById('notifBtn').addEventListener('click', () => {
+    showToast('सूचनाएं देखने के लिए साइन इन करें / Sign in to view notifications');
+  });
+  document.getElementById('accountBtn').addEventListener('click', () => {
+    document.getElementById('portal-access').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // ---------- Scroll-to-tracker (header nav + mobile nav) ----------
+  document.querySelectorAll('[data-action="scroll-tracker"]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('hero-tracker').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      document.getElementById('trackInput').focus();
+    });
+  });
+
+  // ---------- Grievance tracker (reads the same localStorage "table" the rest of the demo uses) ----------
+  function escapeHtml(str) {
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  }
+  function statusClasses(status) {
+    const map = {
+      'Verified': 'bg-success-container text-on-success-container',
+      'Resolved': 'bg-success-container text-on-success-container',
+      'Pending Verification': 'bg-warning-container text-on-warning-container',
+      'Escalated': 'bg-error-container text-on-error-container',
+    };
+    return map[status] || 'bg-surface-container text-on-surface-variant';
+  }
+  document.getElementById('trackForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = document.getElementById('trackInput');
+    const result = document.getElementById('trackResult');
+    const id = input.value.trim().toUpperCase();
+    if (!id) {
+      showToast('कृपया शिकायत क्रमांक दर्ज करें / Please enter a grievance ID');
+      return;
+    }
+    const problem = API.getProblemById(id);
+    result.classList.remove('hidden');
+    if (problem) {
+      result.innerHTML = `
+        <div class="flex flex-wrap items-start justify-between gap-space-sm">
+          <div>
+            <div class="flex items-center gap-space-xs mb-1">
+              <span class="text-label-sm font-label-sm text-on-surface-variant">${escapeHtml(problem.id)}</span>
+              <span class="inline-flex px-2 py-0.5 rounded text-label-sm font-label-sm ${statusClasses(problem.status)}">${escapeHtml(problem.status)}</span>
+            </div>
+            <p class="text-body-md font-body-md text-on-surface">${escapeHtml(problem.titleHi || problem.title)}</p>
+            <p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">${escapeHtml(problem.category)} • ${escapeHtml(problem.district)}${problem.block ? ', ' + escapeHtml(problem.block) : ''}</p>
+          </div>
+          <div class="text-right shrink-0">
+            <div class="text-label-sm font-label-sm text-on-surface-variant">दर्ज तिथि / Filed</div>
+            <div class="text-body-sm font-body-sm text-on-surface">${escapeHtml(problem.createdAt)}</div>
+          </div>
+        </div>`;
+    } else {
+      result.innerHTML = `
+        <div class="flex items-center gap-space-sm text-body-md font-body-md text-on-surface-variant">
+          <span class="material-symbols-outlined text-outline">search_off</span>
+          <span>"${escapeHtml(id)}" क्रमांक से कोई शिकायत नहीं मिली। कृपया क्रमांक जांचें। / No grievance found for "${escapeHtml(id)}". Please check the ID and try again.</span>
+        </div>`;
+    }
+  });
+
+  // ---------- Expand more redressal categories ----------
+  const toggleCategoriesBtn = document.getElementById('toggleCategoriesBtn');
+  const moreCategories = document.getElementById('moreCategories');
+  toggleCategoriesBtn.addEventListener('click', () => {
+    const expanded = toggleCategoriesBtn.getAttribute('aria-expanded') === 'true';
+    toggleCategoriesBtn.setAttribute('aria-expanded', String(!expanded));
+    moreCategories.classList.toggle('hidden');
+    toggleCategoriesBtn.querySelector('.toggle-label').textContent = expanded
+      ? 'सभी विभाग देखें / View All Departments'
+      : 'कम दिखाएं / Show Less';
+    toggleCategoriesBtn.querySelector('.material-symbols-outlined').style.transform = expanded ? '' : 'rotate(90deg)';
+  });
+</script>
+</body></html>

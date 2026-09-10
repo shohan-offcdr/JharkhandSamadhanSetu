@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>झारखंड समाधान सेतु | University &amp; Research Network</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#F1E4C7",
+            "tertiary-fixed": "#8FC7A8",
+            "error-container": "#F9DEDC",
+            "outline": "#C7C0AC",
+            "surface-container-low": "#F6F3EA",
+            "inverse-surface": "#17213A",
+            "surface-container-lowest": "#FFFFFF",
+            "on-error": "#FFFFFF",
+            "on-secondary-fixed": "#4A3B1F",
+            "surface-variant": "#F1ECE0",
+            "surface-bright": "#FBF9F4",
+            "background": "#FBF9F4",
+            "outline-variant": "#E4DFD0",
+            "primary-container": "#232F4E",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "surface-tint": "#A6742A",
+            "primary": "#17213A",
+            "on-secondary-container": "#6B4A17",
+            "on-background": "#17213A",
+            "secondary": "#A6742A",
+            "inverse-on-surface": "#FBF9F4",
+            "on-secondary": "#FFFFFF",
+            "on-primary-fixed": "#17213A",
+            "secondary-fixed-dim": "#D9B876",
+            "on-tertiary": "#FFFFFF",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "secondary-fixed": "#F1E4C7",
+            "on-tertiary-container": "#1F4A34",
+            "surface": "#FBF9F4",
+            "tertiary-fixed-dim": "#6FA98A",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "on-surface": "#17213A",
+            "tertiary": "#2F6F4E",
+            "on-tertiary-fixed": "#12281E",
+            "surface-container-high": "#EAE4D4",
+            "tertiary-container": "#E3EEE6",
+            "on-primary-container": "#FBF9F4",
+            "on-surface-variant": "#5B5847",
+            "error": "#B3261E",
+            "surface-container": "#F1ECE0",
+            "primary-fixed": "#D9CBA3",
+            "primary-fixed-dim": "#C7B37E",
+            "surface-container-highest": "#E2DBC7",
+            "on-primary": "#FBF9F4",
+            "inverse-primary": "#D9CBA3",
+            "surface-dim": "#E8E3D3",
+            "on-error-container": "#5F1712"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "container-max": "72rem",
+            "gutter-desktop": "2rem",
+            "space-md": "1rem",
+            "space-3xl": "4rem",
+            "gutter-mobile": "1rem",
+            "space-2xl": "3rem",
+            "min-touch-target": "3rem",
+            "space-xxs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-lg": "1.5rem",
+            "gutter-tablet": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"]
+          },
+          "fontSize": {
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-primary-fixed selection:text-primary">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface-container-lowest border-b border-outline-variant w-full sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
+<!-- Brand & Emblem -->
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-xs border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">झारखंड समाधान सेतु | Government Administration</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Academic R&amp;D Consortia &amp; State Technology Escrow</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center space-x-6 h-full">
+<a class="text-on-surface-variant hover:text-primary text-label-lg font-label-lg h-full flex items-center transition-colors duration-150" href="ai-analysis.html">AI Analysis</a>
+<a class="text-on-surface-variant hover:text-primary text-label-lg font-label-lg h-full flex items-center transition-colors duration-150" href="priority-queue.html">Priority Queue</a>
+<!-- Active Nav: Universities -->
+<a class="border-b-2 border-secondary text-secondary font-semibold pb-1 text-label-lg font-label-lg h-full flex items-center" href="university-management.html">Universities</a>
+<a class="text-on-surface-variant hover:text-primary text-label-lg font-label-lg h-full flex items-center transition-colors duration-150" href="industry-csr-management.html">Industry-CSR</a>
+<a class="text-on-surface-variant hover:text-primary text-label-lg font-label-lg h-full flex items-center transition-colors duration-150" href="overview-dashboard.html">Projects</a>
+<a class="text-on-surface-variant hover:text-primary text-label-lg font-label-lg h-full flex items-center transition-colors duration-150" href="overview-dashboard.html">Alerts</a>
+<a class="text-on-surface-variant hover:text-primary text-label-lg font-label-lg h-full flex items-center transition-colors duration-150" href="overview-dashboard.html">Impact</a>
+<a class="text-on-surface-variant hover:text-primary text-label-lg font-label-lg h-full flex items-center transition-colors duration-150" href="overview-dashboard.html">Audit</a>
+</nav>
+<!-- Trailing Administrative Profile -->
+<div class="flex items-center space-x-4">
+<div class="hidden lg:flex flex-col text-right">
+<span class="text-label-md font-label-md text-primary font-bold">Nodal Officer (IAS)</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Department of Administrative Reforms</span>
+</div>
+<div class="flex items-center space-x-1 border-l border-outline-variant pl-3">
+<button aria-label="Notifications" class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors duration-150" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button aria-label="Help Center" class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors duration-150" type="button">
+<span class="material-symbols-outlined text-[20px]">help_center</span>
+</button>
+<button aria-label="Account Profile" class="p-2 text-primary hover:bg-surface-container-low rounded-full transition-colors duration-150" type="button">
+<span class="material-symbols-outlined text-[24px]">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Sub-Header & Breadcrumb Bar -->
+<section class="bg-surface-container-lowest border-b border-outline-variant">
+<div class="max-w-container-max mx-auto px-gutter-desktop py-space-md">
+<!-- Breadcrumbs -->
+<div class="flex items-center space-x-2 text-label-sm font-label-sm text-on-surface-variant mb-space-xs">
+<span>Government Administration</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-medium">Academic R&amp;D Consortia</span>
+</div>
+<!-- Main Header Titles & CTA Clusters -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+<div>
+<h1 class="text-headline-lg font-headline-lg text-primary tracking-tight flex items-center gap-2">
+            University &amp; Research Network
+            <span class="text-outline text-headline-sm font-normal">/ विश्वविद्यालय एवं अनुसंधान नेटवर्क</span>
+</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-0.5">
+            Registry of accredited higher educational institutions, state R&amp;D seed grants, faculty mentors, and student civic innovation squads.
+          </p>
+</div>
+<!-- Top Actions -->
+<div class="flex flex-wrap items-center gap-2.5">
+<button class="h-[40px] px-3.5 bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-low border border-outline-variant text-label-md font-label-md rounded flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-primary-container" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Download Accreditation Scorecard</span>
+</button>
+<button class="h-[40px] px-3.5 bg-primary-container text-on-primary hover:bg-primary text-label-md font-label-md rounded flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-primary-container" type="button">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+<span>Disburse State Innovation Grants (PFMS)</span>
+</button>
+<button class="h-[40px] px-4 bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant text-label-md font-label-md rounded flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-secondary-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">domain_add</span>
+<span>Onboard New Institution</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Page Main Content Area -->
+<main class="flex-1 max-w-container-max w-full mx-auto px-gutter-desktop py-space-lg flex flex-col gap-space-lg">
+<!-- Top KPI Row (4 Cards) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-4 flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="text-label-md font-label-md">Participating Universities</span>
+<span class="material-symbols-outlined text-[20px] text-primary">account_balance</span>
+</div>
+<div>
+<div class="text-headline-lg font-headline-lg text-primary">14 Institutions</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">BIT Mesra, IIT ISM Dhanbad, NIT Jamshedpur, BAU, JUT, RU</p>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-[14px] mr-1">verified</span>
+          100% Affiliated with State Innovation Council
+        </div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-4 flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="text-label-md font-label-md">Active Civic R&amp;D Projects</span>
+<span class="material-symbols-outlined text-[20px] text-primary">science</span>
+</div>
+<div>
+<div class="text-headline-lg font-headline-lg text-primary">46 In-Field</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">18 Prototyping • 16 Testing • 12 Pre-Deployment</p>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center text-label-sm font-label-sm text-on-surface">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary mr-1.5"></span>
+          24 Municipal Problem Statements Solved
+        </div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-4 flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="text-label-md font-label-md">Certified Faculty Mentors</span>
+<span class="material-symbols-outlined text-[20px] text-primary">badge</span>
+</div>
+<div>
+<div class="text-headline-lg font-headline-lg text-primary">184 Professors</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Holding State Principal Investigator clearance</p>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center text-label-sm font-label-sm text-primary">
+<span class="material-symbols-outlined text-[14px] mr-1">assignment_turned_in</span>
+          92.8% Faculty Compliance Verified
+        </div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-4 flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="text-label-md font-label-md">Total Innovation Grant Sanctioned</span>
+<span class="material-symbols-outlined text-[20px] text-secondary">payments</span>
+</div>
+<div>
+<div class="text-headline-lg font-headline-lg text-primary">₹3.42 Crore</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">98.4% timely tranche disbursal via State Escrow</p>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center text-label-sm font-label-sm text-[#166534]">
+<span class="material-symbols-outlined text-[14px] mr-1">check_circle</span>
+          Audited by State Finance Commission
+        </div>
+</div>
+</section>
+<!-- Main Body: 65% Institution Registry Table + 35% Detailed University Dossier -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left Column: Registry & Filter (65% -> 8 of 12 cols on desktop) -->
+<div class="lg:col-span-8 flex flex-col gap-4">
+<!-- Search, Filter & Quick Stats Toolstrip -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-4 flex flex-col gap-3">
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+<!-- Search Field -->
+<div class="sm:col-span-6 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full h-10 pl-9 pr-3 bg-surface border border-outline-variant rounded text-body-sm text-on-surface placeholder:text-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container" placeholder="Search institute name, AISHE code, or nodal PI..." type="text"/>
+</div>
+<!-- Zone Selector -->
+<div class="sm:col-span-3">
+<select class="w-full h-10 px-3 bg-surface border border-outline-variant rounded text-body-sm text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container">
+<option value="">All Zones (झारखंड क्षेत्र)</option>
+<option>North Chota Nagpur</option>
+<option>South Chota Nagpur</option>
+<option>Santhal Pargana</option>
+<option>Palamu</option>
+<option>Kolhan</option>
+</select>
+</div>
+<!-- Specialization Selector -->
+<div class="sm:col-span-3">
+<select class="w-full h-10 px-3 bg-surface border border-outline-variant rounded text-body-sm text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container">
+<option value="">All Specializations</option>
+<option>Hydraulics &amp; Water Tech</option>
+<option>Renewable Energy</option>
+<option>Agri-Tech</option>
+<option>Mining Safety &amp; Runoff</option>
+<option>IoT &amp; LoRaWAN</option>
+</select>
+</div>
+</div>
+<!-- Active Filter Pill Badges -->
+<div class="flex items-center flex-wrap gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span class="font-semibold text-primary">Active Filters:</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container border border-outline-variant text-on-surface">
+              Consortium: Active R&amp;D
+              <span class="material-symbols-outlined text-[12px] cursor-pointer">close</span>
+</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container border border-outline-variant text-on-surface">
+              Fiscal Year: 2024-25
+              <span class="material-symbols-outlined text-[12px] cursor-pointer">close</span>
+</span>
+<button class="text-secondary hover:underline ml-auto text-label-sm font-label-sm font-medium">Reset All</button>
+</div>
+</div>
+<!-- High-density Data Table of Institutions -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded overflow-hidden">
+<div class="px-4 py-3 border-b border-outline-variant bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[18px] text-primary">school</span>
+<h2 class="text-label-lg font-label-lg text-primary font-bold">Accredited State R&amp;D Institutions (5 of 14 Listed)</h2>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Live Escrow &amp; Milestone Registry</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">
+<th class="py-3 px-4 font-semibold">Institution Name &amp; Location</th>
+<th class="py-3 px-3 font-semibold">Specialization Focus</th>
+<th class="py-3 px-2 font-semibold text-center">Accepted</th>
+<th class="py-3 px-2 font-semibold text-center">Active</th>
+<th class="py-3 px-2 font-semibold text-center">Completed</th>
+<th class="py-3 px-3 font-semibold text-center">Performance</th>
+<th class="py-3 px-4 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-body-sm font-body-sm">
+<!-- Row 1: Selected / Highlighted (BIT Mesra) -->
+<tr class="bg-surface-container-low border-l-4 border-l-primary-container transition-colors duration-150">
+<td class="py-3 px-4">
+<div class="font-semibold text-primary">Birla Institute of Technology (BIT), Mesra</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[13px] text-secondary">location_on</span> Ranchi | NAAC A+
+                    </div>
+</td>
+<td class="py-3 px-3">
+<span class="inline-block px-2 py-0.5 text-label-sm rounded bg-surface border border-outline-variant text-on-surface">Water Tech, LoRaWAN, Structural</span>
+</td>
+<td class="py-3 px-2 text-center font-medium text-primary">28</td>
+<td class="py-3 px-2 text-center font-semibold text-secondary">14</td>
+<td class="py-3 px-2 text-center text-[#166534] font-medium">11</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-semibold bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0]">
+                      A+ (9.4/10)
+                    </span>
+</td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end space-x-1">
+<button class="px-2.5 py-1 text-label-sm font-label-sm font-semibold text-primary bg-surface border border-outline-variant rounded hover:bg-surface-container" type="button">View Dossier</button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm font-semibold text-on-secondary bg-secondary rounded hover:bg-on-secondary-fixed-variant" type="button">Allocate</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: NIT Jamshedpur -->
+<tr class="hover:bg-surface transition-colors duration-150">
+<td class="py-3 px-4">
+<div class="font-semibold text-primary">National Institute of Technology (NIT), Jamshedpur</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[13px] text-secondary">location_on</span> Kolhan | INI CFTI
+                    </div>
+</td>
+<td class="py-3 px-3">
+<span class="inline-block px-2 py-0.5 text-label-sm rounded bg-surface border border-outline-variant text-on-surface">Solar Microgrids, Cryogenics, Drones</span>
+</td>
+<td class="py-3 px-2 text-center font-medium text-primary">22</td>
+<td class="py-3 px-2 text-center font-semibold text-secondary">12</td>
+<td class="py-3 px-2 text-center text-[#166534] font-medium">8</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-semibold bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0]">
+                      A+ (9.2/10)
+                    </span>
+</td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end space-x-1">
+<button class="px-2.5 py-1 text-label-sm font-label-sm font-semibold text-primary bg-surface border border-outline-variant rounded hover:bg-surface-container" type="button">View Dossier</button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm font-semibold text-on-secondary bg-secondary rounded hover:bg-on-secondary-fixed-variant" type="button">Allocate</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: IIT ISM Dhanbad -->
+<tr class="hover:bg-surface transition-colors duration-150">
+<td class="py-3 px-4">
+<div class="font-semibold text-primary">Indian Institute of Technology (IIT ISM), Dhanbad</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[13px] text-secondary">location_on</span> North Chota Nagpur | INI CFTI
+                    </div>
+</td>
+<td class="py-3 px-3">
+<span class="inline-block px-2 py-0.5 text-label-sm rounded bg-surface border border-outline-variant text-on-surface">Mining Runoff, Soil Science, AI</span>
+</td>
+<td class="py-3 px-2 text-center font-medium text-primary">19</td>
+<td class="py-3 px-2 text-center font-semibold text-secondary">9</td>
+<td class="py-3 px-2 text-center text-[#166534] font-medium">7</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-semibold bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0]">
+                      A+ (9.5/10)
+                    </span>
+</td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end space-x-1">
+<button class="px-2.5 py-1 text-label-sm font-label-sm font-semibold text-primary bg-surface border border-outline-variant rounded hover:bg-surface-container" type="button">View Dossier</button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm font-semibold text-on-secondary bg-secondary rounded hover:bg-on-secondary-fixed-variant" type="button">Allocate</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: BAU Ranchi -->
+<tr class="hover:bg-surface transition-colors duration-150">
+<td class="py-3 px-4">
+<div class="font-semibold text-primary">Birsa Agricultural University (BAU), Ranchi</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[13px] text-secondary">location_on</span> South Chota Nagpur | State Agri Univ
+                    </div>
+</td>
+<td class="py-3 px-3">
+<span class="inline-block px-2 py-0.5 text-label-sm rounded bg-surface border border-outline-variant text-on-surface">Sluice Desilting, Soil Moisture, Agritech</span>
+</td>
+<td class="py-3 px-2 text-center font-medium text-primary">15</td>
+<td class="py-3 px-2 text-center font-semibold text-secondary">6</td>
+<td class="py-3 px-2 text-center text-[#166534] font-medium">5</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-semibold bg-[#FEF3C7] text-[#92400E] border border-[#FDE68A]">
+                      Grade A (8.8/10)
+                    </span>
+</td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end space-x-1">
+<button class="px-2.5 py-1 text-label-sm font-label-sm font-semibold text-primary bg-surface border border-outline-variant rounded hover:bg-surface-container" type="button">View Dossier</button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm font-semibold text-on-secondary bg-secondary rounded hover:bg-on-secondary-fixed-variant" type="button">Allocate</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: JUT Namkum -->
+<tr class="hover:bg-surface transition-colors duration-150">
+<td class="py-3 px-4">
+<div class="font-semibold text-primary">Jharkhand University of Technology (JUT), Namkum</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[13px] text-secondary">location_on</span> Ranchi | State Tech Univ
+                    </div>
+</td>
+<td class="py-3 px-3">
+<span class="inline-block px-2 py-0.5 text-label-sm rounded bg-surface border border-outline-variant text-on-surface">Rural Electrification, Low-cost Civil</span>
+</td>
+<td class="py-3 px-2 text-center font-medium text-primary">18</td>
+<td class="py-3 px-2 text-center font-semibold text-secondary">5</td>
+<td class="py-3 px-2 text-center text-[#166534] font-medium">4</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-semibold bg-[#F1F5F9] text-[#334155] border border-[#E2E8F0]">
+                      Grade B+ (8.1/10)
+                    </span>
+</td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end space-x-1">
+<button class="px-2.5 py-1 text-label-sm font-label-sm font-semibold text-primary bg-surface border border-outline-variant rounded hover:bg-surface-container" type="button">View Dossier</button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm font-semibold text-on-secondary bg-secondary rounded hover:bg-on-secondary-fixed-variant" type="button">Allocate</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Pagination Bar -->
+<div class="px-4 py-3 bg-surface border-t border-outline-variant flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Showing 1 to 5 of 14 Participating Higher Education Entities</span>
+<div class="flex items-center space-x-1">
+<button class="px-2 py-1 border border-outline-variant rounded bg-surface-container-lowest disabled:opacity-50" disabled="">Previous</button>
+<button class="px-2.5 py-1 border border-primary-container bg-primary-container text-on-primary rounded font-semibold">1</button>
+<button class="px-2.5 py-1 border border-outline-variant bg-surface-container-lowest text-on-surface rounded hover:bg-surface-container">2</button>
+<button class="px-2.5 py-1 border border-outline-variant bg-surface-container-lowest text-on-surface rounded hover:bg-surface-container">3</button>
+<button class="px-2 py-1 border border-outline-variant rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container">Next</button>
+</div>
+</div>
+</div>
+<!-- Secondary Informational Card: State Escalation Escrow Compliance -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-4 flex items-start space-x-3">
+<span class="material-symbols-outlined text-[24px] text-primary-container mt-0.5">info</span>
+<div>
+<h4 class="text-label-lg font-label-lg text-primary font-semibold">Public Financial Management System (PFMS) Compliance Mandate</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+              All tranche releases for State Civic R&amp;D Grants are locked against Milestone Verification Reports endorsed jointly by the District Magistrate (DM) and the University Nodal Dean. All accounts adhere to STQC &amp; CAG electronic audit frameworks.
+            </p>
+</div>
+</div>
+</div>
+<!-- Right Column: Selected University Detail Drawer (35% -> 4 of 12 cols on desktop) -->
+<aside class="lg:col-span-4 flex flex-col gap-4">
+<div class="bg-surface-container-lowest border border-outline-variant rounded overflow-hidden">
+<!-- Detail Header with Badge & Crest -->
+<div class="p-4 bg-primary text-on-primary">
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-12 h-12 rounded bg-surface-container-lowest text-primary flex items-center justify-center font-bold text-lg border border-outline-variant">
+<span class="material-symbols-outlined text-[28px] text-primary">apartment</span>
+</div>
+<div>
+<span class="inline-block px-1.5 py-0.5 text-label-sm bg-secondary-fixed text-on-secondary-fixed font-semibold rounded mb-1">Active Consortium Node</span>
+<h3 class="text-headline-sm font-headline-sm font-bold text-on-primary">Birla Institute of Technology</h3>
+<span class="text-body-sm font-body-sm text-primary-fixed">Mesra, Ranchi • Est. 1955</span>
+</div>
+</div>
+</div>
+<!-- Dean and MoU reference metadata -->
+<div class="mt-4 pt-3 border-t border-primary-container grid grid-cols-2 gap-2 text-label-sm font-label-sm">
+<div>
+<span class="text-surface-variant block">Nodal Dean (R&amp;D):</span>
+<span class="font-semibold text-on-primary">Dr. S. K. Roy</span>
+</div>
+<div>
+<span class="text-surface-variant block">MoU Reference:</span>
+<span class="font-semibold font-mono text-on-primary">#JH-RND-2023-BIT-01</span>
+</div>
+</div>
+</div>
+<!-- Section 1: R&D Capacity & Labs -->
+<div class="p-4 border-b border-surface-container">
+<div class="flex items-center justify-between mb-2.5">
+<h4 class="text-label-md font-label-md font-bold text-primary uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">biotech</span>
+                R&amp;D Capacity &amp; Facilities
+              </h4>
+<span class="text-label-sm font-label-sm text-[#166534] font-medium">3 Dedicated Centers</span>
+</div>
+<ul class="space-y-2.5">
+<li class="p-2.5 bg-surface rounded border border-outline-variant">
+<div class="flex items-center justify-between text-label-sm font-label-sm font-semibold text-primary">
+<span>Water Hydraulics Bench</span>
+<span class="text-secondary font-bold">85% Utilized</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1.5 overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 85%"></div>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant mt-1 block">Dedicated to Dam &amp; Sluice Flow Telemetry</span>
+</li>
+<li class="p-2.5 bg-surface rounded border border-outline-variant">
+<div class="flex items-center justify-between text-label-sm font-label-sm font-semibold text-primary">
+<span>Sensor Prototyping Cleanroom</span>
+<span class="text-label-sm px-1.5 py-0.2 bg-[#DCFCE7] text-[#166534] rounded">ISO-7 Certified</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant mt-1 block">SMD PCB Fabrication, Rapid Sensor Assembly</span>
+</li>
+<li class="p-2.5 bg-surface rounded border border-outline-variant">
+<div class="flex items-center justify-between text-label-sm font-label-sm font-semibold text-primary">
+<span>State LoRaWAN Gateway Base Station</span>
+<span class="text-label-sm font-mono text-primary font-bold">868 MHz</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant mt-1 block">Active coverage radius: 15km circular corridor</span>
+</li>
+</ul>
+</div>
+<!-- Section 2: Active Student Innovation Squads -->
+<div class="p-4 border-b border-surface-container">
+<div class="flex items-center justify-between mb-2.5">
+<h4 class="text-label-md font-label-md font-bold text-primary uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">groups</span>
+                Active Student Innovation Squads
+              </h4>
+<span class="text-label-sm font-label-sm text-on-surface-variant">2 Active Field Teams</span>
+</div>
+<div class="space-y-2.5">
+<!-- Team 1 -->
+<div class="p-2.5 bg-surface rounded border border-outline-variant">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-primary text-label-sm font-label-sm">Team Jal-Drishti</span>
+<span class="text-label-sm px-1.5 py-0.5 bg-secondary-fixed text-on-secondary-fixed rounded font-medium">3 Members</span>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant mt-1">
+                  Lead: <strong class="text-on-surface">Aryan Sharma</strong> (B.Tech Mechanical)
+                </div>
+<div class="mt-2 p-1.5 bg-surface-container-low rounded border border-surface-container-high text-label-sm font-label-sm">
+<span class="text-primary font-medium block">Project: Kanke Pipeline Acoustic Telemetry</span>
+<div class="flex items-center text-[#166534] gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">timeline</span>
+<span>Milestone 2 Active (Acoustic Sensor Field Run)</span>
+</div>
+</div>
+</div>
+<!-- Team 2 -->
+<div class="p-2.5 bg-surface rounded border border-outline-variant">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-primary text-label-sm font-label-sm">Team Urja-Vikas</span>
+<span class="text-label-sm px-1.5 py-0.5 bg-surface-container text-on-surface rounded font-medium">4 Members</span>
+</div>
+<div class="mt-1 p-1.5 bg-surface-container-low rounded border border-surface-container-high text-label-sm font-label-sm">
+<span class="text-primary font-medium block">Project: Microgrid Battery Balancer</span>
+<span class="text-on-surface-variant">Rural Electrification Hub (Khunti Pilot)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Faculty Mentor Roster -->
+<div class="p-4 border-b border-surface-container">
+<h4 class="text-label-md font-label-md font-bold text-primary uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">supervisor_account</span>
+              Principal Investigator (PI) Roster
+            </h4>
+<div class="space-y-2 text-label-sm font-label-sm">
+<div class="flex items-center justify-between p-2 rounded bg-surface border border-outline-variant">
+<div>
+<div class="font-semibold text-primary">Dr. S. K. Roy</div>
+<div class="text-on-surface-variant">Dept. of Civil / Hydraulics</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-primary font-semibold text-label-sm">3 Active Projects</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface border border-outline-variant">
+<div>
+<div class="font-semibold text-primary">Dr. Ananya Sen</div>
+<div class="text-on-surface-variant">Dept. of Embedded Electronics</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-primary font-semibold text-label-sm">2 Active Projects</span>
+</div>
+</div>
+</div>
+<!-- Section 4: Grant Disbursal Ledger Snapshot -->
+<div class="p-4 bg-surface-container-low">
+<h4 class="text-label-md font-label-md font-bold text-primary uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">receipt_long</span>
+              State Escrow Disbursal Ledger
+            </h4>
+<div class="grid grid-cols-2 gap-2 text-label-sm font-label-sm">
+<div class="p-2 bg-surface-container-lowest rounded border border-outline-variant">
+<span class="text-on-surface-variant block">Sanctioned Allocation:</span>
+<span class="text-headline-sm font-headline-sm font-bold text-primary">₹48.5 Lakh</span>
+</div>
+<div class="p-2 bg-surface-container-lowest rounded border border-outline-variant">
+<span class="text-on-surface-variant block">Disbursed (Tranche 1 &amp; 2):</span>
+<span class="text-headline-sm font-headline-sm font-bold text-[#166534]">₹32.0 Lakh</span>
+</div>
+</div>
+<div class="mt-2 text-label-sm font-label-sm text-on-surface-variant flex items-center justify-between">
+<span>Next CAG &amp; STQC Audit Due:</span>
+<strong class="text-secondary">15 Nov 2024</strong>
+</div>
+<!-- Download Action Button -->
+<button class="w-full mt-4 py-2.5 px-3 bg-surface-container-lowest border border-outline-variant hover:bg-surface text-primary rounded font-semibold text-label-sm font-label-sm flex items-center justify-center gap-2 focus:ring-2 focus:ring-primary-container" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+              Download Institutional MoU &amp; Compliance Certificate
+            </button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-primary border-t border-primary-container w-full mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-gutter-desktop py-space-md max-w-container-max mx-auto gap-4">
+<!-- Copyright & Hosting Entity -->
+<div class="flex flex-col text-center md:text-left">
+<span class="text-label-lg font-label-lg font-bold text-on-primary">झारखंड सरकार | Government of Jharkhand</span>
+<p class="text-body-sm font-body-sm text-surface-container-high mt-0.5">
+          © 2024 Government of Jharkhand. Designed, Developed and Hosted by National Informatics Centre (NIC). All Rights Reserved.
+        </p>
+</div>
+<!-- Footer Policy Links -->
+<nav class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-label-sm font-label-sm">
+<a class="text-surface-container-high hover:text-secondary-fixed transition-colors duration-150" href="#">Citizen Charter</a>
+<a class="text-surface-container-high hover:text-secondary-fixed transition-colors duration-150" href="#">RTI Disclosures</a>
+<a class="text-surface-container-high hover:text-secondary-fixed transition-colors duration-150" href="#">Security STQC Certified</a>
+<a class="text-secondary-fixed underline underline-offset-4" href="#">Toll-Free Helpline: 181</a>
+<a class="text-surface-container-high hover:text-secondary-fixed transition-colors duration-150" href="#">Privacy Policy</a>
+<a class="text-surface-container-high hover:text-secondary-fixed transition-colors duration-150" href="#">Terms of Service</a>
+</nav>
+</div>
+</footer>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+  requireRole('government', 'login.html');
+</script>
+</body></html>

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>झारखंड समाधान सेतु | Industry &amp; CSR Management</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Noto Sans Google Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with forms & container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#F1E4C7",
+            "tertiary-fixed": "#8FC7A8",
+            "error-container": "#F9DEDC",
+            "outline": "#C7C0AC",
+            "surface-container-low": "#F6F3EA",
+            "inverse-surface": "#17213A",
+            "surface-container-lowest": "#FFFFFF",
+            "on-error": "#FFFFFF",
+            "on-secondary-fixed": "#4A3B1F",
+            "surface-variant": "#F1ECE0",
+            "surface-bright": "#FBF9F4",
+            "background": "#FBF9F4",
+            "outline-variant": "#E4DFD0",
+            "primary-container": "#232F4E",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "surface-tint": "#A6742A",
+            "primary": "#17213A",
+            "on-secondary-container": "#6B4A17",
+            "on-background": "#17213A",
+            "secondary": "#A6742A",
+            "inverse-on-surface": "#FBF9F4",
+            "on-secondary": "#FFFFFF",
+            "on-primary-fixed": "#17213A",
+            "secondary-fixed-dim": "#D9B876",
+            "on-tertiary": "#FFFFFF",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "secondary-fixed": "#F1E4C7",
+            "on-tertiary-container": "#1F4A34",
+            "surface": "#FBF9F4",
+            "tertiary-fixed-dim": "#6FA98A",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "on-surface": "#17213A",
+            "tertiary": "#2F6F4E",
+            "on-tertiary-fixed": "#12281E",
+            "surface-container-high": "#EAE4D4",
+            "tertiary-container": "#E3EEE6",
+            "on-primary-container": "#FBF9F4",
+            "on-surface-variant": "#5B5847",
+            "error": "#B3261E",
+            "surface-container": "#F1ECE0",
+            "primary-fixed": "#D9CBA3",
+            "primary-fixed-dim": "#C7B37E",
+            "surface-container-highest": "#E2DBC7",
+            "on-primary": "#FBF9F4",
+            "inverse-primary": "#D9CBA3",
+            "surface-dim": "#E8E3D3",
+            "on-error-container": "#5F1712"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "container-max": "72rem",
+            "gutter-desktop": "2rem",
+            "space-md": "1rem",
+            "space-3xl": "4rem",
+            "gutter-mobile": "1rem",
+            "space-2xl": "3rem",
+            "min-touch-target": "3rem",
+            "space-xxs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-lg": "1.5rem",
+            "gutter-tablet": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"]
+          },
+          "fontSize": {
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md text-body-md antialiased selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation Bar (Shared Component Blueprint) -->
+<header class="w-full bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
+<!-- Brand Logo / Identity -->
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 bg-primary flex items-center justify-center rounded text-on-primary font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-xl">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">झारखंड समाधान सेतु | Government Administration</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant leading-none">Government of Jharkhand • Portal for Collaborative Grievance Resolution &amp; R&amp;D</span>
+</div>
+</div>
+<!-- Trailing Administrative Profile Badges & Actions -->
+<div class="hidden lg:flex items-center gap-4">
+<div class="text-right border-r border-outline-variant pr-4">
+<p class="text-label-md font-label-md text-primary font-bold">Department of Administrative Reforms</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant flex items-center justify-end gap-1">
+<span class="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span>
+            Nodal Officer (IAS)
+          </p>
+</div>
+<div class="flex items-center gap-1">
+<button class="w-10 h-10 flex items-center justify-center rounded hover:bg-surface-container-low text-on-surface-variant transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-container" title="Notifications">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded hover:bg-surface-container-low text-on-surface-variant transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-container" title="Help Center">
+<span class="material-symbols-outlined">help_center</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded hover:bg-surface-container-low text-on-surface-variant transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-container" title="Officer Account">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Main Navigation Bar Links -->
+<nav class="w-full bg-surface-container-lowest border-t border-surface-container">
+<div class="max-w-container-max mx-auto px-gutter-desktop flex items-center gap-8 overflow-x-auto text-label-lg font-label-lg">
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150" href="ai-analysis.html">AI Analysis</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150" href="priority-queue.html">Priority Queue</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150" href="university-management.html">Universities</a>
+<!-- Active Nav: Industry-CSR -->
+<a aria-current="page" class="py-2.5 border-b-2 border-secondary text-secondary font-semibold pb-1 flex items-center gap-1.5" href="#">
+<span>Industry-CSR</span>
+<span class="bg-secondary text-on-secondary text-label-sm font-label-sm px-1.5 py-0.2 rounded-full">Active</span>
+</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150" href="overview-dashboard.html">Projects</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150" href="overview-dashboard.html">Alerts</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150" href="overview-dashboard.html">Impact</a>
+<a class="py-2.5 text-on-surface-variant hover:text-primary transition-colors duration-150" href="overview-dashboard.html">Audit</a>
+</div>
+</nav>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-container-max mx-auto px-gutter-desktop py-space-lg">
+<!-- Breadcrumbs & Government Context Notice -->
+<div class="flex flex-wrap items-center justify-between gap-4 mb-space-sm">
+<nav class="flex items-center space-x-2 text-label-sm font-label-sm text-on-surface-variant">
+<span>Government Administration</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-primary font-semibold">Enterprise CSR &amp; Testbed Partnerships</span>
+</nav>
+<div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm border border-outline-variant">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+<span>Single Nodal Account: <strong>JH-SNA-CSR-99042</strong> (SBI Secretariat Branch)</span>
+</div>
+</div>
+<!-- Header Section with Bilingual Title & Primary Administrative CTAs -->
+<section class="flex flex-col xl:flex-row xl:items-start justify-between gap-6 pb-space-lg border-b border-outline-variant">
+<div class="max-w-3xl">
+<h1 class="text-headline-lg font-headline-lg text-primary tracking-tight">
+          Industry &amp; CSR Management / उद्योग एवं कॉर्पोरेट सामाजिक उत्तरदायित्व
+        </h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1.5 leading-relaxed">
+          Oversight of Section 135 CSR allocations, industrial equipment sponsorship, state testbed clearances, and tripartite MoUs.
+        </p>
+</div>
+<!-- Action Buttons conforming to Design System -->
+<div class="flex flex-wrap items-center gap-3">
+<button class="h-min-touch-target px-4 bg-surface-container-lowest border border-outline text-on-surface font-label-lg rounded hover:bg-surface-container-low transition-colors duration-150 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary-container">
+<span class="material-symbols-outlined text-lg">description</span>
+<span>Generate Ministry of Corporate Affairs (MCA) 80G Dossier</span>
+</button>
+<button class="h-min-touch-target px-4 bg-primary text-on-primary font-label-lg rounded hover:bg-primary-container transition-colors duration-150 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary-container">
+<span class="material-symbols-outlined text-lg">verified_user</span>
+<span>Approve Escrow Releases</span>
+</button>
+<button class="h-min-touch-target px-5 bg-secondary text-on-secondary font-label-lg rounded hover:bg-secondary-container transition-colors duration-150 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-secondary">
+<span class="material-symbols-outlined text-lg">add_business</span>
+<span>Onboard Corporate Partner</span>
+</button>
+</div>
+</section>
+<!-- Top KPI Row (4 Cards) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-space-lg">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg border border-outline-variant flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="text-label-md font-label-md">Registered Industry Partners</span>
+<span class="material-symbols-outlined text-primary">corporate_fare</span>
+</div>
+<div class="text-headline-lg font-headline-lg font-bold text-primary">24 Enterprises</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2 pt-2 border-t border-surface-container-low">
+          Tata Steel, Central Coalfields Ltd, SAIL, Jindal Power, Usha Martin, etc.
+        </p>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg border border-outline-variant flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="text-label-md font-label-md">Committed CSR Escrow</span>
+<span class="material-symbols-outlined text-secondary">account_balance_wallet</span>
+</div>
+<div class="text-headline-lg font-headline-lg font-bold text-secondary">₹4.80 Crore</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2 pt-2 border-t border-surface-container-low flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-700 text-sm">verified</span>
+<span>100% bank guaranteed under Jharkhand State Treasury Single Nodal Account</span>
+</p>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg border border-outline-variant flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="text-label-md font-label-md">Active Co-Funded Projects</span>
+<span class="material-symbols-outlined text-primary">engineering</span>
+</div>
+<div class="text-headline-lg font-headline-lg font-bold text-primary">32 Deployments</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2 pt-2 border-t border-surface-container-low">
+          Jointly paired with university student teams across BIT, IIT ISM, and NIT
+        </p>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg border border-outline-variant flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="text-label-md font-label-md">Equipment Testbeds Provided</span>
+<span class="material-symbols-outlined text-primary">factory</span>
+</div>
+<div class="text-headline-lg font-headline-lg font-bold text-primary">19 Facilities</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2 pt-2 border-t border-surface-container-low">
+          Mine de-watering pipelines, sub-stations, smelters, and industrial effluent bays
+        </p>
+</div>
+</section>
+<!-- Sub-Section A: Corporate Partner Registry -->
+<section class="mt-space-xl bg-surface-container-lowest rounded-lg border border-outline-variant overflow-hidden">
+<!-- Section Header with Filters -->
+<div class="p-space-md border-b border-outline-variant flex flex-col md:flex-row md:items-center justify-between gap-4 bg-surface-bright">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">domain</span>
+            Corporate Partner Registry &amp; CSR Fund Flow
+          </h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            Live monitoring of Companies Act 2013 compliance, capital allocations, and testbed utilization.
+          </p>
+</div>
+<!-- Sector Filters -->
+<div class="flex flex-wrap items-center gap-2">
+<span class="text-label-sm font-label-sm text-on-surface-variant mr-1">Filter by Sector:</span>
+<button class="px-3 py-1 rounded bg-primary text-on-primary text-label-sm font-label-sm">All Sectors</button>
+<button class="px-3 py-1 rounded bg-surface-container-lowest border border-outline text-on-surface-variant hover:bg-surface-container text-label-sm font-label-sm">Mining &amp; Energy</button>
+<button class="px-3 py-1 rounded bg-surface-container-lowest border border-outline text-on-surface-variant hover:bg-surface-container text-label-sm font-label-sm">Steel &amp; Metallurgy</button>
+<button class="px-3 py-1 rounded bg-surface-container-lowest border border-outline text-on-surface-variant hover:bg-surface-container text-label-sm font-label-sm">Tech &amp; Infrastructure</button>
+<button class="px-3 py-1 rounded bg-surface-container-lowest border border-outline text-on-surface-variant hover:bg-surface-container text-label-sm font-label-sm">Agro-processing</button>
+</div>
+</div>
+<!-- Structured Data Registry Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant text-label-md font-label-md border-b border-outline-variant">
+<th class="py-3 px-4">Enterprise Partner</th>
+<th class="py-3 px-4">Focus Sector</th>
+<th class="py-3 px-4">Committed CSR</th>
+<th class="py-3 px-4">Active Projects</th>
+<th class="py-3 px-4">Status &amp; Compliance</th>
+<th class="py-3 px-4">Designated Testbeds</th>
+<th class="py-3 px-4 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-body-sm font-body-sm">
+<!-- Row 1: CCL -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-4 px-4">
+<div class="font-bold text-on-surface text-body-md font-body-md">Central Coalfields Limited (CCL)</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">CIN: U10200JH1956GOI000581 • Ministry of Coal</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-label-sm font-label-sm bg-surface-container-high text-on-surface">
+                  Coal &amp; Clean Energy
+                </span>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-primary">₹1.20 Cr</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Escrow Released: ₹48.5 L</div>
+</td>
+<td class="py-4 px-4">
+<span class="font-semibold">8 Active Projects</span>
+<div class="text-label-sm font-label-sm text-on-surface-variant">BIT Mesra / Ranchi Univ</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-emerald-100 text-emerald-900 border border-emerald-300">
+<span class="material-symbols-outlined text-xs">verified</span>
+                  Verified DPI Partner
+                </span>
+</td>
+<td class="py-4 px-4">
+<div class="text-on-surface font-medium">Piparwar &amp; Kanke</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Heavy dewatering pipelines</div>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="px-3 py-1.5 bg-surface-container-lowest border border-outline text-primary font-label-md rounded hover:bg-primary hover:text-on-primary transition-colors duration-150">
+                  Manage Portfolio
+                </button>
+</td>
+</tr>
+<!-- Row 2: Tata Steel -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-4 px-4">
+<div class="font-bold text-on-surface text-body-md font-body-md">Tata Steel CSR Foundation</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Section 8 Reg: 2016JH0091 • Jamshedpur</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-label-sm font-label-sm bg-surface-container-high text-on-surface">
+                  Metallurgy &amp; Water Security
+                </span>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-primary">₹1.85 Cr</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Escrow Released: ₹92.0 L</div>
+</td>
+<td class="py-4 px-4">
+<span class="font-semibold">12 Active Projects</span>
+<div class="text-label-sm font-label-sm text-on-surface-variant">NIT Jamshedpur / Kolhan</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-emerald-100 text-emerald-900 border border-emerald-300">
+<span class="material-symbols-outlined text-xs">verified</span>
+                  Verified DPI Partner
+                </span>
+</td>
+<td class="py-4 px-4">
+<div class="text-on-surface font-medium">Jamshedpur &amp; West Singhbhum</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Subarnarekha discharge bay</div>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="px-3 py-1.5 bg-surface-container-lowest border border-outline text-primary font-label-md rounded hover:bg-primary hover:text-on-primary transition-colors duration-150">
+                  Manage Portfolio
+                </button>
+</td>
+</tr>
+<!-- Row 3: SAIL Bokaro -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-4 px-4">
+<div class="font-bold text-on-surface text-body-md font-body-md">Steel Authority of India (SAIL Bokaro)</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Maharatna CPSE • Ministry of Steel</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-label-sm font-label-sm bg-surface-container-high text-on-surface">
+                  Heavy Industry &amp; Environment
+                </span>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-primary">₹95 Lakhs</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Escrow Released: ₹31.0 L</div>
+</td>
+<td class="py-4 px-4">
+<span class="font-semibold">6 Active Projects</span>
+<div class="text-label-sm font-label-sm text-on-surface-variant">IIT (ISM) Dhanbad</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-amber-100 text-amber-900 border border-amber-300">
+<span class="material-symbols-outlined text-xs">pending_actions</span>
+                  Active MoU
+                </span>
+</td>
+<td class="py-4 px-4">
+<div class="text-on-surface font-medium">Chas &amp; Damodar</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Cooling ponds &amp; slag yards</div>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="px-3 py-1.5 bg-surface-container-lowest border border-outline text-primary font-label-md rounded hover:bg-primary hover:text-on-primary transition-colors duration-150">
+                  Manage Portfolio
+                </button>
+</td>
+</tr>
+<!-- Row 4: JSW / Jindal -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-4 px-4">
+<div class="font-bold text-on-surface text-body-md font-body-md">JSW Energy / Jindal</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Corporate Group • Renewables Division</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-label-sm font-label-sm bg-surface-container-high text-on-surface">
+                  Renewable Solar &amp; Wind
+                </span>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-primary">₹80 Lakhs</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Escrow Released: ₹18.0 L</div>
+</td>
+<td class="py-4 px-4">
+<span class="font-semibold">6 Active Projects</span>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Birsa Agricultural Univ</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-amber-100 text-amber-900 border border-amber-300">
+<span class="material-symbols-outlined text-xs">pending_actions</span>
+                  Active MoU
+                </span>
+</td>
+<td class="py-4 px-4">
+<div class="text-on-surface font-medium">Latehar</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Solar array microgrids</div>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="px-3 py-1.5 bg-surface-container-lowest border border-outline text-primary font-label-md rounded hover:bg-primary hover:text-on-primary transition-colors duration-150">
+                  Manage Portfolio
+                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination Metadata -->
+<div class="p-3 bg-surface-bright border-t border-outline-variant flex flex-col sm:flex-row items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Showing 4 of 24 empaneled enterprises (Mandatory annual MCA e-form CSR-1 filed)</span>
+<div class="flex items-center gap-2 mt-2 sm:mt-0">
+<button class="px-2 py-1 border border-outline rounded bg-surface-container-lowest disabled:opacity-50" disabled="">Previous</button>
+<span class="font-bold text-primary">Page 1 of 6</span>
+<button class="px-2 py-1 border border-outline rounded bg-surface-container-lowest hover:bg-surface-container">Next</button>
+</div>
+</div>
+</section>
+<!-- Sub-Section B: Dual Panel (Escrow Releases & Testbeds Tracker) -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-space-xl">
+<!-- Left Panel: Pending Funding & Escrow Sanctions (7 Cols) -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-lg border border-outline-variant flex flex-col justify-between">
+<div>
+<!-- Panel Header -->
+<div class="p-space-md border-b border-outline-variant flex items-center justify-between bg-surface-bright">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">gavel</span>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-primary">Pending Funding &amp; Escrow Sanctions</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Section 135 Treasury Disbursements requiring IAS Nodal Officer Clearance</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-amber-100 text-amber-900 border border-amber-300 font-semibold">
+              2 Pending Action
+            </span>
+</div>
+<!-- Sanction Items List -->
+<div class="p-space-md space-y-4">
+<!-- Sanction Item 1 -->
+<div class="p-4 rounded border border-outline-variant bg-surface-container-low flex flex-col gap-3">
+<div class="flex flex-wrap items-start justify-between gap-2">
+<div>
+<span class="text-label-sm font-label-sm text-secondary font-bold uppercase tracking-wider">Tranche Release #02</span>
+<h4 class="text-headline-sm font-headline-sm text-primary">Project: Kanke Pipeline Leakage Detection</h4>
+</div>
+<div class="text-right">
+<div class="text-headline-sm font-headline-sm font-bold text-primary">₹38,000</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Direct PFMS Transfer</span>
+</div>
+</div>
+<!-- Metadata Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-body-sm font-body-sm bg-surface-container-lowest p-3 rounded border border-outline-variant">
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Student Team:</span>
+<span class="font-medium text-on-surface">Jal-Drishti (BIT Mesra Civil Eng)</span>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Corporate Sponsor:</span>
+<span class="font-medium text-on-surface">Central Coalfields Ltd (CCL CSR)</span>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Expense Head:</span>
+<span>Hardware casing &amp; LoRaWAN node fabrication</span>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Audit Status:</span>
+<span class="text-emerald-800 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">check_circle</span>
+                    Bench testing verified by BIT Dean (R&amp;D)
+                  </span>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="flex flex-wrap items-center justify-end gap-3 pt-2">
+<button class="h-10 px-3 border border-outline rounded text-on-surface-variant hover:bg-surface-container text-label-md font-label-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">help</span>
+<span>Request Clarification</span>
+</button>
+<button class="h-10 px-4 bg-primary text-on-primary rounded hover:bg-primary-container text-label-md font-label-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">draw</span>
+<span>Approve Escrow Sanction (Digital Sign)</span>
+</button>
+</div>
+</div>
+<!-- Sanction Item 2 -->
+<div class="p-4 rounded border border-outline-variant bg-surface-container-low flex flex-col gap-3">
+<div class="flex flex-wrap items-start justify-between gap-2">
+<div>
+<span class="text-label-sm font-label-sm text-secondary font-bold uppercase tracking-wider">Tranche Release #01</span>
+<h4 class="text-headline-sm font-headline-sm text-primary">Project: Damodar Effluent Monitoring System</h4>
+</div>
+<div class="text-right">
+<div class="text-headline-sm font-headline-sm font-bold text-primary">₹65,000</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Direct PFMS Transfer</span>
+</div>
+</div>
+<!-- Metadata Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-body-sm font-body-sm bg-surface-container-lowest p-3 rounded border border-outline-variant">
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Student Team:</span>
+<span class="font-medium text-on-surface">IIT ISM EcoTech Innovators</span>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Corporate Sponsor:</span>
+<span class="font-medium text-on-surface">SAIL CSR (Bokaro Steel)</span>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Expense Head:</span>
+<span>Spectrophotometer probe &amp; submersible housing</span>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Audit Status:</span>
+<span class="text-emerald-800 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">check_circle</span>
+                    Verified by Jharkhand Pollution Control Board
+                  </span>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="flex flex-wrap items-center justify-end gap-3 pt-2">
+<button class="h-10 px-3 border border-red-300 text-error rounded hover:bg-red-50 text-label-md font-label-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">close</span>
+<span>Reject</span>
+</button>
+<button class="h-10 px-4 bg-primary text-on-primary rounded hover:bg-primary-container text-label-md font-label-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">verified</span>
+<span>Approve Escrow Sanction</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Footer -->
+<div class="p-3 bg-surface-bright border-t border-outline-variant text-label-sm font-label-sm text-on-surface-variant flex items-center justify-between">
+<span>Digital Signature Service: eSign via Aadhaar-linked DSC (Certifying Authority: NIC-CA)</span>
+<a class="text-primary underline font-semibold" href="#">View Sanction Ledger</a>
+</div>
+</div>
+<!-- Right Panel: Equipment & Industrial Testbed Provisions Tracker (5 Cols) -->
+<div class="lg:col-span-5 bg-surface-container-lowest rounded-lg border border-outline-variant flex flex-col justify-between">
+<div>
+<!-- Panel Header -->
+<div class="p-space-md border-b border-outline-variant bg-surface-bright">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">precision_manufacturing</span>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-primary">Equipment &amp; Industrial Testbed Tracker</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Live civic &amp; corporate assets commissioned for student pilots</p>
+</div>
+</div>
+</div>
+<!-- Testbed Items -->
+<div class="p-space-md space-y-4">
+<!-- Testbed 1 -->
+<div class="p-3 rounded border border-outline-variant bg-surface-container-lowest">
+<div class="flex items-start justify-between">
+<div>
+<h4 class="font-bold text-on-surface text-body-md font-body-md">CCL High-Pressure Pipeline Test Loop</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Ward 03 Kanke • Right-of-Way Permit #ROW-PHED-892</p>
+</div>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-emerald-100 text-emerald-900 border border-emerald-300 font-semibold">
+                  Active
+                </span>
+</div>
+<div class="mt-2 text-body-sm font-body-sm text-on-surface-variant">
+                Allocated to BIT Mesra telemetry sensor deployment team. 4 bar water pressure feed authorized for calibrated burst simulations.
+              </div>
+</div>
+<!-- Testbed 2 -->
+<div class="p-3 rounded border border-outline-variant bg-surface-container-lowest">
+<div class="flex items-start justify-between">
+<div>
+<h4 class="font-bold text-on-surface text-body-md font-body-md">Tata Steel Nanofiltration Pilot Bay</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Subarnarekha Basin • Site Clearance #JSP-ENV-441</p>
+</div>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-emerald-100 text-emerald-900 border border-emerald-300 font-semibold">
+                  Active
+                </span>
+</div>
+<div class="mt-2 text-body-sm font-body-sm text-on-surface-variant">
+                Direct intake channel provided for heavy metal ceramic filter membrane stress-testing. 24/7 technical escort assigned.
+              </div>
+</div>
+<!-- Testbed 3 -->
+<div class="p-3 rounded border border-outline-variant bg-surface-container-lowest">
+<div class="flex items-start justify-between">
+<div>
+<h4 class="font-bold text-on-surface text-body-md font-body-md">JREDA Netarhat Solar Inverter Bench</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Jharkhand Renewable Energy Dev Agency • 35kW Telemetry</p>
+</div>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-emerald-100 text-emerald-900 border border-emerald-300 font-semibold">
+                  Active
+                </span>
+</div>
+<div class="mt-2 text-body-sm font-body-sm text-on-surface-variant">
+                High-altitude islanded microgrid connected with live SCADA link for fault diagnosis algorithm validation.
+              </div>
+</div>
+</div>
+</div>
+<!-- Direct Action CTA for Right Panel -->
+<div class="p-space-md bg-surface-bright border-t border-outline-variant">
+<button class="w-full h-min-touch-target bg-secondary text-on-secondary font-label-lg rounded hover:bg-secondary-container transition-colors duration-150 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-secondary">
+<span class="material-symbols-outlined">add_location_alt</span>
+<span>Issue New State Testbed Right-of-Way Sanction</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Statutory Compliance Notice Banner -->
+<section class="mt-space-xl p-4 bg-surface-container-low border border-outline-variant rounded-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl">verified_user</span>
+<div>
+<h4 class="font-semibold text-primary text-body-md font-body-md">Statutory Compliance (Section 135, Companies Act 2013)</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            All CSR funds managed under Jharkhand Samadhan Setu are audited bi-annually by the Comptroller and Auditor General (CAG) and registered on the MCA21 Corporate Portal.
+          </p>
+</div>
+</div>
+<button class="whitespace-nowrap px-4 py-2 border border-outline rounded bg-surface-container-lowest text-on-surface text-label-md font-label-md hover:bg-surface-container transition-colors">
+        Download CAG Audit Guidelines
+      </button>
+</section>
+</main>
+<!-- Standard Government Administration Footer (Shared Component Blueprint) -->
+<footer class="w-full bg-primary border-t border-primary-container mt-space-3xl">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-gutter-desktop py-space-md max-w-container-max mx-auto gap-4">
+<!-- Copyright & Hosting Accreditation -->
+<div class="text-on-primary text-center md:text-left">
+<p class="text-label-lg font-label-lg font-bold">झारखंड समाधान सेतु | Government of Jharkhand</p>
+<p class="text-body-sm font-body-sm text-surface-container-high">
+          © 2024 Government of Jharkhand. Designed, Developed and Hosted by National Informatics Centre (NIC). All Rights Reserved.
+        </p>
+</div>
+<!-- Footer Policy Links -->
+<div class="flex flex-wrap justify-center items-center gap-4 text-label-sm font-label-sm text-surface-container-high">
+<a class="hover:text-secondary-fixed transition-colors duration-150" href="#">Citizen Charter</a>
+<span class="text-primary-container">|</span>
+<a class="hover:text-secondary-fixed transition-colors duration-150" href="#">RTI Disclosures</a>
+<span class="text-primary-container">|</span>
+<a class="hover:text-secondary-fixed transition-colors duration-150" href="#">Security STQC Certified</a>
+<span class="text-primary-container">|</span>
+<a class="text-secondary-fixed underline underline-offset-4 hover:text-secondary-fixed-dim transition-colors duration-150" href="#">Toll-Free Helpline: 181</a>
+<span class="text-primary-container">|</span>
+<a class="hover:text-secondary-fixed transition-colors duration-150" href="#">Privacy Policy</a>
+<span class="text-primary-container">|</span>
+<a class="hover:text-secondary-fixed transition-colors duration-150" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+  requireRole('government', 'login.html');
+</script>
+</body></html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>झारखंड समाधान सेतु | Team Formation &amp; Mentorship</title>
+<!-- Google Fonts: Noto Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#FFFFFF",
+            "on-primary-fixed": "#17213A",
+            "primary": "#17213A",
+            "on-secondary-fixed": "#4A3B1F",
+            "surface-container": "#F1ECE0",
+            "inverse-surface": "#17213A",
+            "secondary": "#A6742A",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "surface-variant": "#F1ECE0",
+            "surface-container-low": "#F6F3EA",
+            "surface-bright": "#FBF9F4",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "background": "#FBF9F4",
+            "secondary-fixed": "#F1E4C7",
+            "on-error-container": "#5F1712",
+            "surface-container-highest": "#E2DBC7",
+            "tertiary": "#2F6F4E",
+            "tertiary-container": "#E3EEE6",
+            "on-tertiary-fixed": "#12281E",
+            "secondary-fixed-dim": "#D9B876",
+            "on-background": "#17213A",
+            "surface-dim": "#E8E3D3",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "on-tertiary-container": "#1F4A34",
+            "on-surface": "#17213A",
+            "on-primary-container": "#FBF9F4",
+            "outline": "#C7C0AC",
+            "outline-variant": "#E4DFD0",
+            "tertiary-fixed": "#8FC7A8",
+            "on-secondary-container": "#6B4A17",
+            "on-primary": "#FBF9F4",
+            "surface": "#FBF9F4",
+            "surface-container-lowest": "#FFFFFF",
+            "surface-container-high": "#EAE4D4",
+            "error-container": "#F9DEDC",
+            "inverse-on-surface": "#FBF9F4",
+            "on-surface-variant": "#5B5847",
+            "on-tertiary": "#FFFFFF",
+            "on-error": "#FFFFFF",
+            "primary-fixed-dim": "#C7B37E",
+            "primary-fixed": "#D9CBA3",
+            "primary-container": "#232F4E",
+            "inverse-primary": "#D9CBA3",
+            "error": "#B3261E",
+            "tertiary-fixed-dim": "#6FA98A",
+            "secondary-container": "#F1E4C7",
+            "surface-tint": "#A6742A"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-xxs": "0.25rem",
+            "gutter-mobile": "1rem",
+            "gutter-tablet": "1.5rem",
+            "space-2xl": "3rem",
+            "space-sm": "0.75rem",
+            "min-touch-target": "3rem",
+            "space-xl": "2rem",
+            "gutter-desktop": "2rem",
+            "container-max": "72rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"]
+          },
+          "fontSize": {
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col justify-between selection:bg-surface-variant selection:text-primary">
+<!-- ================= TOP NAV BAR (Shared Component Anchor) ================= -->
+<header class="bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
+<!-- Brand & Search cluster -->
+<div class="flex items-center space-x-space-lg">
+<a class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight flex items-center gap-space-xs" href="#">
+<span class="material-symbols-outlined text-secondary" data-icon="account_balance">account_balance</span>
+<span>झारखंड समाधान सेतु | Student Innovation Hub</span>
+</a>
+<!-- Global Search Bar (on_left) -->
+<div class="hidden lg:flex items-center relative w-64">
+<span class="material-symbols-outlined absolute left-3 text-outline text-label-lg pointer-events-none" data-icon="search">search</span>
+<input class="w-full pl-9 pr-3 py-1.5 bg-surface-bright border border-outline-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-colors duration-150" placeholder="Search problems, grants..." type="text"/>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center space-x-space-md">
+<!-- Dashboard -->
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal px-2 py-1 transition-colors duration-150 ease-in-out" href="#">
+          Dashboard
+        </a>
+<!-- Browse Problems -->
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal px-2 py-1 transition-colors duration-150 ease-in-out" href="#">
+          Browse Problems
+        </a>
+<!-- My Teams (ACTIVE TAB) -->
+<a class="border-b-2 border-secondary text-secondary font-label-md font-semibold pb-1 px-2 py-1 transition-colors duration-150 ease-in-out" href="#">
+          My Teams
+        </a>
+<!-- My Projects -->
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal px-2 py-1 transition-colors duration-150 ease-in-out" href="#">
+          My Projects
+        </a>
+<!-- Grants & Funding -->
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal px-2 py-1 transition-colors duration-150 ease-in-out" href="#">
+          Grants &amp; Funding
+        </a>
+</nav>
+<!-- Trailing Action: Notifications & Student Avatar -->
+<div class="flex items-center space-x-space-md">
+<button aria-label="Notifications" class="relative p-2 text-outline hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary-container rounded">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-secondary rounded-full"></span>
+</button>
+<div class="flex items-center space-x-space-xs border-l border-outline-variant pl-space-md">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-md font-bold ring-1 ring-outline-variant" title="Student avatar from BIT Mesra with institutional badge">
+            AS
+          </div>
+<div class="hidden xl:block leading-none text-left">
+<p class="text-label-sm font-label-sm font-bold text-on-surface">Aryan Sharma</p>
+<p class="text-[10px] text-outline tracking-wider font-semibold uppercase">BIT Mesra • B.Tech</p>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- ================= MAIN CONTENT CANVAS ================= -->
+<main class="w-full max-w-container-max mx-auto px-gutter-desktop py-space-xl flex-grow">
+<!-- Breadcrumb -->
+<nav aria-label="Breadcrumb" class="flex items-center space-x-space-xs text-body-sm font-body-sm text-outline mb-space-xs">
+<a class="hover:text-primary transition-colors" href="dashboard.html">Dashboard</a>
+<span class="material-symbols-outlined text-outline-variant text-[14px]" data-icon="chevron_right">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Projects</a>
+<span class="material-symbols-outlined text-outline-variant text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-primary font-semibold">Team Formation</span>
+</nav>
+<!-- Page Header Banner -->
+<header class="mb-space-xl border-b border-outline-variant pb-space-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<h1 class="text-headline-lg font-headline-lg text-primary tracking-tight">
+            Build Your Innovation Team / टीम का गठन एवं संकाय संरक्षक
+          </h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1 max-w-3xl">
+            Multi-disciplinary teams (mixing Civil/ECE/CS) receive <span class="font-semibold text-secondary">20% higher innovation grant evaluations</span> under Jharkhand R&amp;D Policy.
+          </p>
+</div>
+<!-- DigiLocker / Institutional Validation Tag -->
+<div class="flex items-center space-x-2 bg-surface-container-low border border-outline-variant px-3 py-1.5 rounded self-start md:self-auto">
+<span class="material-symbols-outlined text-primary-container text-label-lg" data-icon="verified_user">verified_user</span>
+<span class="text-label-sm font-label-sm text-primary font-bold">Jharkhand State DPI Verified</span>
+</div>
+</div>
+</header>
+<!-- 2-Column Asymmetrical Grid Layout (Left: 68%, Right: 32%) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- ================= LEFT COLUMN: TEAM & MENTOR BUILDER (approx 68% / 8 cols) ================= -->
+<div class="lg:col-span-8 space-y-space-xl">
+<!-- SECTION 1: Current Team Members -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-md border-b border-outline-variant gap-space-xs">
+<div>
+<div class="flex items-center space-x-2">
+<h2 class="text-headline-sm font-headline-sm text-primary">Current Team Members</h2>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-primary font-bold border border-outline-variant">
+                  3 / 5 Maximum
+                </span>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-0.5">Project ID: JSS-2025-WTR-042 (Swachh Jal Urban Drainage)</p>
+</div>
+<!-- Interdisciplinary Status indicator -->
+<div class="flex items-center space-x-1.5 text-label-sm font-label-sm text-primary-container bg-surface-container-low px-2.5 py-1 rounded border border-outline-variant">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="hub">hub</span>
+<span>Interdisciplinary: <strong>Civil + ECE</strong></span>
+</div>
+</div>
+<!-- Members Stack / Cards -->
+<div class="divide-y divide-outline-variant mt-space-md">
+<!-- Member 1: Aryan Sharma (You) -->
+<div class="py-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md hover:bg-surface-bright transition-colors rounded p-space-xs">
+<div class="flex items-start space-x-space-md">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-label-lg shrink-0">
+                  AS
+                </div>
+<div>
+<div class="flex items-center space-x-2">
+<span class="font-headline-sm text-[16px] text-on-surface font-bold">Aryan Sharma</span>
+<span class="text-label-sm font-label-sm text-outline font-semibold">(You - Primary Applicant)</span>
+</div>
+<p class="text-body-sm font-body-sm text-outline flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[15px]" data-icon="school">school</span>
+                    BIT Mesra • Civil Engineering (7th Sem)
+                  </p>
+<p class="text-[12px] text-outline font-mono mt-0.5">Roll: 21CIV-0894 • DigiLocker Verified</p>
+</div>
+</div>
+<div class="flex items-center space-x-space-md shrink-0">
+<div class="w-52">
+<label class="block text-label-sm font-label-sm text-outline mb-1" for="role-aryan">Assigned Role</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded py-1.5 px-2 text-body-sm font-body-sm text-on-surface focus:ring-2 focus:ring-primary focus:outline-none" id="role-aryan">
+<option selected="">Team Lead &amp; Civil Hydraulics</option>
+<option>System Architecture</option>
+<option>Field Survey &amp; Geo-testing</option>
+</select>
+</div>
+<div class="text-right min-w-[90px]">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-emerald-50 text-emerald-800 border border-emerald-300 font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 mr-1.5"></span>
+                    Confirmed
+                  </span>
+</div>
+</div>
+</div>
+<!-- Member 2: Priya Murmu -->
+<div class="py-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md hover:bg-surface-bright transition-colors rounded p-space-xs">
+<div class="flex items-start space-x-space-md">
+<div class="w-10 h-10 rounded-full bg-tertiary-container text-tertiary-fixed flex items-center justify-center font-bold text-label-lg shrink-0">
+                  PM
+                </div>
+<div>
+<div class="flex items-center space-x-2">
+<span class="font-headline-sm text-[16px] text-on-surface font-bold">Priya Murmu</span>
+<span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] bg-surface-container-high text-primary font-bold">Cross-Institute</span>
+</div>
+<p class="text-body-sm font-body-sm text-outline flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[15px]" data-icon="school">school</span>
+                    NIT Jamshedpur • Electronics &amp; Communication (5th Sem)
+                  </p>
+<p class="text-[12px] text-outline font-mono mt-0.5">Roll: 22ECE-104 • DigiLocker Verified</p>
+</div>
+</div>
+<div class="flex items-center space-x-space-md shrink-0">
+<div class="w-52">
+<label class="block text-label-sm font-label-sm text-outline mb-1" for="role-priya">Assigned Role</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded py-1.5 px-2 text-body-sm font-body-sm text-on-surface focus:ring-2 focus:ring-primary focus:outline-none" id="role-priya">
+<option selected="">IoT Hardware &amp; Firmware</option>
+<option>Sensor Calibration</option>
+<option>Embedded C Programming</option>
+</select>
+</div>
+<div class="text-right min-w-[90px]">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-emerald-50 text-emerald-800 border border-emerald-300 font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 mr-1.5"></span>
+                    Confirmed
+                  </span>
+</div>
+</div>
+</div>
+<!-- Member 3: Rohit Mahato -->
+<div class="py-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md hover:bg-surface-bright transition-colors rounded p-space-xs bg-surface-container-low/40">
+<div class="flex items-start space-x-space-md">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface flex items-center justify-center font-bold text-label-lg shrink-0">
+                  RM
+                </div>
+<div>
+<div class="flex items-center space-x-2">
+<span class="font-headline-sm text-[16px] text-on-surface font-bold">Rohit Mahato</span>
+<span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] bg-amber-100 text-amber-900 border border-amber-300 font-bold">Awaiting Auth</span>
+</div>
+<p class="text-body-sm font-body-sm text-outline flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[15px]" data-icon="school">school</span>
+                    BIT Mesra • Computer Science &amp; Engg (7th Sem)
+                  </p>
+<p class="text-[12px] text-outline font-mono mt-0.5">Invited via: r.mahato@bitmesra.ac.in</p>
+</div>
+</div>
+<div class="flex items-center space-x-space-md shrink-0">
+<div class="w-52">
+<label class="block text-label-sm font-label-sm text-outline mb-1" for="role-rohit">Assigned Role</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded py-1.5 px-2 text-body-sm font-body-sm text-on-surface focus:ring-2 focus:ring-primary focus:outline-none" id="role-rohit">
+<option selected="">GIS Mapping &amp; App Dev</option>
+<option>Cloud Infrastructure</option>
+<option>Mobile App (Flutter)</option>
+</select>
+</div>
+<div class="text-right min-w-[90px]">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-amber-50 text-amber-800 border border-amber-300 font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-600 mr-1.5"></span>
+                    Invite Pending
+                  </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Invite Teammate Action Section -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant">
+<div class="bg-surface-bright border border-outline-variant p-space-md rounded">
+<div class="flex items-center justify-between mb-space-xs">
+<label class="font-label-md font-label-md text-primary flex items-center gap-1.5" for="teammate-search">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="person_add">person_add</span>
+                  Invite Teammate / सहपाठी को आमंत्रित करें
+                </label>
+<span class="text-label-sm font-label-sm text-outline">Search database across 142 Jharkhand Colleges</span>
+</div>
+<div class="flex flex-col sm:flex-row gap-space-xs mt-2">
+<div class="relative flex-grow">
+<span class="material-symbols-outlined absolute left-3 top-3 text-outline text-[18px]" data-icon="badge">badge</span>
+<input class="w-full h-min-touch-target pl-10 pr-3 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface focus:border-primary-container focus:ring-2 focus:ring-primary-container" id="teammate-search" placeholder="Enter College Email ID, Registration Number, or Student Name..." type="text"/>
+</div>
+<button class="h-min-touch-target px-space-lg bg-surface-container-lowest hover:bg-surface-container-low text-primary border border-primary font-label-md font-bold rounded flex items-center justify-center gap-2 transition-colors duration-150 focus:ring-2 focus:ring-primary focus:outline-none shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
+                  Send Invitation
+                </button>
+</div>
+<p class="text-[12px] text-outline mt-2">
+                Eligible students must possess an active DigiLocker account linked with their institution roll number under the State Higher Education Registry.
+              </p>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Faculty Mentor / संकाय संरक्षक -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-md border-b border-outline-variant gap-space-xs">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary flex items-center gap-2">
+                Faculty Mentor / संकाय संरक्षक
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] bg-secondary-fixed text-on-secondary-fixed font-bold">Mandatory for Grants</span>
+</h2>
+<p class="text-body-sm font-body-sm text-outline mt-0.5">
+                Every innovation team must have at least one verified faculty member from an accredited technical institution in Jharkhand.
+              </p>
+</div>
+</div>
+<!-- Search Input for Mentor -->
+<div class="mt-space-md">
+<label class="block text-label-sm font-label-sm text-on-surface font-semibold mb-1" for="mentor-search-input">
+              Search Faculty Registry / प्राध्यापक खोजें
+            </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-outline text-[20px]" data-icon="manage_search">manage_search</span>
+<input class="w-full h-min-touch-target pl-10 pr-10 bg-surface-bright border border-outline-variant rounded text-body-md font-body-md text-on-surface focus:border-primary-container focus:ring-2 focus:ring-primary-container" id="mentor-search-input" placeholder="Search faculty by name, department, or college in Jharkhand..." type="text" value="Dr. Sudhir Kumar Roy, BIT Mesra"/>
+<button class="absolute right-3 top-3 text-outline hover:text-primary" title="Clear search">
+<span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<!-- Active Selection / Suggestion Card: Dr. Sudhir Kumar Roy -->
+<div class="mt-space-md border-2 border-primary-container/40 bg-surface-bright rounded p-space-md relative">
+<div class="absolute -top-3 right-4 bg-primary-container text-on-primary text-[11px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+              Selected Mentor Candidate
+            </div>
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-space-md">
+<div class="flex items-start space-x-space-md">
+<div class="w-14 h-14 rounded bg-surface-container text-primary font-bold flex items-center justify-center text-headline-sm border border-outline-variant shrink-0">
+<span class="material-symbols-outlined text-[32px]" data-icon="person_apron">person_apron</span>
+</div>
+<div>
+<div class="flex items-center space-x-2">
+<h3 class="text-headline-sm font-headline-sm text-primary font-bold">Dr. Sudhir Kumar Roy</h3>
+<span class="material-symbols-outlined text-emerald-700 text-[18px]" data-icon="verified" title="Jharkhand Academic Council Verified Faculty">verified</span>
+</div>
+<p class="text-body-md font-body-md font-medium text-on-surface mt-0.5">
+                    Associate Professor, Dept of Water Resources &amp; Civil Engineering
+                  </p>
+<p class="text-body-sm font-body-sm text-outline">
+                    Birla Institute of Technology (BIT) Mesra, Ranchi • Faculty ID: FAC-JH-44029
+                  </p>
+<!-- Tags -->
+<div class="flex flex-wrap gap-1.5 mt-space-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container-high text-primary border border-outline-variant">
+                      Hydraulic Modeling
+                    </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container-high text-primary border border-outline-variant">
+                      Urban Drainage
+                    </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container-high text-primary border border-outline-variant">
+                      Remote Sensing
+                    </span>
+</div>
+<!-- Prior Mentored Civic Projects -->
+<div class="mt-space-sm flex items-center space-x-4 text-body-sm font-body-sm text-on-surface">
+<div class="flex items-center space-x-1 text-primary-container font-semibold">
+<span class="material-symbols-outlined text-[16px]" data-icon="fact_check">fact_check</span>
+<span>Prior mentored civic projects: <strong>4 completed</strong></span>
+</div>
+<span class="text-outline">•</span>
+<span class="text-outline">H-Index: 18</span>
+<span class="text-outline">•</span>
+<span class="text-emerald-800 font-medium">Accepting Projects (1/2 Slots)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action & Gateway notification -->
+<div class="mt-space-md pt-space-md border-t border-outline-variant flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center space-x-2 text-body-sm font-body-sm text-outline">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="cell_tower">cell_tower</span>
+<span>Mentor receives SMS &amp; email via State Academic Portal instantly.</span>
+</div>
+<button class="w-full sm:w-auto h-min-touch-target px-space-xl bg-secondary hover:bg-on-secondary-container text-on-secondary font-label-md font-bold rounded flex items-center justify-center gap-2 transition-colors duration-150 focus:ring-2 focus:ring-secondary focus:outline-none shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="outgoing_mail">outgoing_mail</span>
+                Send Mentorship Request
+              </button>
+</div>
+</div>
+</section>
+</div>
+<!-- ================= RIGHT COLUMN: TEAM READINESS CHECKLIST (approx 32% / 4 cols) ================= -->
+<div class="lg:col-span-4 space-y-space-xl">
+<!-- Team Readiness Checklist Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg">
+<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant mb-space-md">
+<h3 class="text-headline-sm font-headline-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="checklist">checklist</span>
+              Team Readiness Checklist
+            </h3>
+<span class="text-label-sm font-label-sm font-bold text-secondary">50% Complete</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container h-2 rounded-full mb-space-lg overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 50%;"></div>
+</div>
+<!-- Chronological Step Indicator -->
+<div class="space-y-space-md relative pl-2">
+<!-- Continuous line behind nodes -->
+<div class="absolute left-5 top-3 bottom-3 w-0.5 bg-outline-variant -z-0"></div>
+<!-- Step 1: Completed -->
+<div class="flex items-start space-x-space-md relative z-10">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]" data-icon="check">check</span>
+</div>
+<div>
+<p class="font-label-md font-label-md text-primary font-bold">Step 1: Team Lead Assigned</p>
+<p class="text-body-sm font-body-sm text-outline mt-0.5">Done: Aryan Sharma (BIT Mesra)</p>
+</div>
+</div>
+<!-- Step 2: Completed -->
+<div class="flex items-start space-x-space-md relative z-10">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]" data-icon="check">check</span>
+</div>
+<div>
+<p class="font-label-md font-label-md text-primary font-bold">Step 2: Minimum 2 Disciplines</p>
+<p class="text-body-sm font-body-sm text-outline mt-0.5">Represented: Civil + ECE (Eligible for +20% Grant Bonus)</p>
+</div>
+</div>
+<!-- Step 3: Pending -->
+<div class="flex items-start space-x-space-md relative z-10">
+<div class="w-6 h-6 rounded-full bg-surface-container-lowest border-2 border-secondary text-secondary flex items-center justify-center shrink-0 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<div>
+<p class="font-label-md font-label-md text-on-surface font-bold">Step 3: Faculty Mentor Confirmed</p>
+<p class="text-body-sm font-body-sm text-amber-800 font-medium mt-0.5">Pending acceptance from Dr. S. K. Roy</p>
+</div>
+</div>
+<!-- Step 4: Locked -->
+<div class="flex items-start space-x-space-md relative z-10">
+<div class="w-6 h-6 rounded-full bg-surface-container-lowest border-2 border-outline text-outline flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock">lock</span>
+</div>
+<div>
+<p class="font-label-md font-label-md text-outline font-semibold">Step 4: Ready to Submit Proposal</p>
+<p class="text-body-sm font-body-sm text-outline mt-0.5">Locks until mentor assigns digital approval</p>
+</div>
+</div>
+</div>
+<!-- Submit Team Lock Warning CTA -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant">
+<button class="w-full h-min-touch-target bg-surface-container-highest text-outline font-label-md font-bold rounded cursor-not-allowed flex items-center justify-center gap-2" disabled="">
+<span class="material-symbols-outlined text-[18px]" data-icon="lock">lock</span>
+              Freeze Team &amp; Proceed to Proposal
+            </button>
+<p class="text-[11px] text-center text-outline mt-2">Team can be modified until the mentor signs off</p>
+</div>
+</div>
+<!-- Inter-College Collaboration Guide Tip Box -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-md">
+<div class="flex items-start space-x-space-sm">
+<span class="material-symbols-outlined text-secondary text-[24px] shrink-0 mt-0.5" data-icon="lightbulb">lightbulb</span>
+<div>
+<h4 class="font-headline-sm text-[16px] text-primary font-bold">
+                Inter-College Collaboration Guide
+              </h4>
+<p class="text-body-sm font-body-sm text-outline mt-1">
+                Sponsored by the Jharkhand Innovation Council (JIC):
+              </p>
+<ul class="mt-space-sm space-y-space-xs text-body-sm font-body-sm text-on-surface">
+<li class="flex items-start space-x-2">
+<span class="material-symbols-outlined text-primary text-[16px] shrink-0 mt-0.5" data-icon="gavel">gavel</span>
+<span><strong>Patent Rights:</strong> IP generated remains 100% co-owned equally between all verified student inventors.</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="material-symbols-outlined text-primary text-[16px] shrink-0 mt-0.5" data-icon="biotech">biotech</span>
+<span><strong>Lab Access:</strong> Teammates receive cross-institutional digital passes to BIT Mesra &amp; NIT Jamshedpur R&amp;D facilities.</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="material-symbols-outlined text-primary text-[16px] shrink-0 mt-0.5" data-icon="directions_bus">directions_bus</span>
+<span><strong>Travel Allowance:</strong> Up to ₹12,000 per semester for inter-district field validation and ground sensor testing.</span>
+</li>
+</ul>
+<div class="mt-space-md pt-space-xs border-t border-outline-variant/60 flex justify-between items-center">
+<a class="text-label-sm font-label-sm font-bold text-primary hover:text-secondary flex items-center gap-1 transition-colors" href="#">
+<span>Download JIC Guideline 2025 (PDF)</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="download">download</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Helpdesk Contact snippet -->
+<div class="p-space-md border border-outline-variant rounded bg-surface-container-lowest text-body-sm font-body-sm text-outline flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="support_agent">support_agent</span>
+<span>Team formation helpline</span>
+</div>
+<span class="font-bold text-primary">Toll-Free: 1800-345-6541</span>
+</div>
+</div>
+</div>
+</main>
+<!-- ================= INSTITUTIONAL FOOTER (Shared Component Anchor) ================= -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant mt-space-3xl">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-gutter-desktop py-space-md max-w-container-max mx-auto gap-space-md">
+<!-- Copyright text -->
+<div class="text-center md:text-left">
+<p class="text-label-lg font-label-lg font-bold text-primary">
+          झारखंड समाधान सेतु | Govt. of Jharkhand
+        </p>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+          © 2025 Department of Higher, Technical Education &amp; Skill Development, Govt. of Jharkhand. All rights reserved.
+        </p>
+</div>
+<!-- Links defined in Shared Components JSON -->
+<nav class="flex flex-wrap items-center justify-center md:justify-end gap-x-space-md gap-y-1 text-label-sm font-label-sm text-on-surface-variant">
+<a class="hover:text-secondary transition-colors duration-150 focus:ring-2 focus:ring-primary focus:outline-none" href="#">
+          Citizen Charter
+        </a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-secondary transition-colors duration-150 focus:ring-2 focus:ring-primary focus:outline-none font-semibold text-primary" href="#">
+          Helpline: 181
+        </a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-secondary transition-colors duration-150 focus:ring-2 focus:ring-primary focus:outline-none" href="#">
+          Privacy Policy
+        </a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-secondary transition-colors duration-150 focus:ring-2 focus:ring-primary focus:outline-none" href="#">
+          Terms of Service
+        </a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-secondary transition-colors duration-150 focus:ring-2 focus:ring-primary focus:outline-none flex items-center gap-1 text-primary font-bold" href="#">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock_open">lock_open</span>
+          DigiLocker Verification
+        </a>
+</nav>
+</div>
+</footer>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+  requireRole('student', 'login.html');
+</script>
+</body></html>

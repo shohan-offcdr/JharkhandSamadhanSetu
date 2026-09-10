@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>झारखंड समाधान सेतु | Citizen Login</title>
+<!-- Material Symbols Outlined Font -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Font: Noto Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-container": "#1F4A34",
+            "inverse-surface": "#17213A",
+            "tertiary-fixed": "#8FC7A8",
+            "on-secondary-fixed": "#4A3B1F",
+            "on-tertiary-fixed": "#12281E",
+            "surface-variant": "#F1ECE0",
+            "primary-container": "#232F4E",
+            "outline-variant": "#E4DFD0",
+            "primary": "#17213A",
+            "outline": "#C7C0AC",
+            "on-primary-fixed": "#17213A",
+            "on-surface-variant": "#5B5847",
+            "tertiary-container": "#E3EEE6",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "surface-tint": "#A6742A",
+            "surface-dim": "#E8E3D3",
+            "tertiary-fixed-dim": "#6FA98A",
+            "surface": "#FBF9F4",
+            "inverse-primary": "#D9CBA3",
+            "surface-container-high": "#EAE4D4",
+            "secondary-container": "#F1E4C7",
+            "primary-fixed": "#D9CBA3",
+            "inverse-on-surface": "#FBF9F4",
+            "surface-container-lowest": "#FFFFFF",
+            "on-error-container": "#5F1712",
+            "error": "#B3261E",
+            "surface-container-low": "#F6F3EA",
+            "secondary": "#A6742A",
+            "on-tertiary": "#FFFFFF",
+            "on-secondary-container": "#6B4A17",
+            "on-surface": "#17213A",
+            "surface-container-highest": "#E2DBC7",
+            "background": "#FBF9F4",
+            "surface-container": "#F1ECE0",
+            "surface-bright": "#FBF9F4",
+            "primary-fixed-dim": "#C7B37E",
+            "on-secondary": "#FFFFFF",
+            "on-primary": "#FBF9F4",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "on-primary-container": "#FBF9F4",
+            "secondary-fixed-dim": "#D9B876",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "error-container": "#F9DEDC",
+            "on-error": "#FFFFFF",
+            "secondary-fixed": "#F1E4C7",
+            "tertiary": "#2F6F4E",
+            "on-background": "#17213A"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-desktop": "2rem",
+            "container-max": "72rem",
+            "space-3xl": "4rem",
+            "min-touch-target": "3rem",
+            "space-xl": "2rem",
+            "space-xxs": "0.25rem",
+            "gutter-tablet": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-sm": "0.75rem",
+            "gutter-mobile": "1rem",
+            "space-xs": "0.5rem",
+            "space-2xl": "3rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col font-body-md text-body-md selection:bg-surface-variant selection:text-primary">
+<!-- Top Bar / Institutional TopNavBar (Auth Context: Linear/Task Focused Flow) -->
+<header class="w-full bg-surface sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
+<!-- Brand & Emblems -->
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-on-primary font-bold">
+<span class="material-symbols-outlined text-[22px]" data-icon="account_balance">account_balance</span>
+</div>
+<div class="flex flex-col justify-center">
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight leading-snug">झारखंड समाधान सेतु</span>
+<span class="text-label-sm font-label-sm text-outline hidden sm:inline-block">Jharkhand Samadhan Setu | Govt. of Jharkhand</span>
+</div>
+</div>
+<!-- Action Cluster: Language Switcher and Help Contact -->
+<div class="flex items-center gap-space-sm">
+<button aria-label="Language Selector" class="flex items-center gap-space-xs px-space-sm py-space-xs rounded-lg border border-outline-variant bg-surface-container-lowest text-primary font-label-md text-label-md hover:bg-surface-container transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-container" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="translate">translate</span>
+<span>हिन्दी / English</span>
+</button>
+<a class="hidden md:flex items-center gap-space-xs px-space-sm py-space-xs rounded-lg bg-surface-container text-primary font-label-md text-label-md hover:bg-surface-container-high transition-colors" href="tel:181">
+<span class="material-symbols-outlined text-[18px]" data-icon="support_agent">support_agent</span>
+<span>हेल्पलाइन / Helpline: 181</span>
+</a>
+</div>
+</div>
+</header>
+<!-- Institutional Tricolor Accent Line -->
+<div class="w-full h-1 bg-gradient-to-r from-[#FF9933] via-surface-container-lowest to-[#138808] opacity-85"></div>
+<!-- Main Content Canvas (Civic Centerstage Login) -->
+<main class="flex-grow flex items-center justify-center px-gutter-mobile py-space-xl md:py-space-2xl">
+<div class="w-full max-w-[440px] mx-auto">
+<!-- Centerstage Card Container -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-space-lg md:p-space-xl">
+<!-- Header & Emblems inside Card -->
+<div class="text-center mb-space-lg">
+<div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-surface-container text-primary-container mb-space-sm">
+<span class="material-symbols-outlined text-[28px]" data-icon="lock">lock</span>
+</div>
+<h1 class="text-headline-sm md:text-headline-md font-headline-sm md:font-headline-md font-bold text-on-surface">
+            नागरिक लॉगिन / Citizen Login
+          </h1>
+<p class="text-body-sm font-body-sm text-outline mt-space-xxs">
+            Sign in to file grievances and track your status
+          </p>
+</div>
+<!-- Segmented Tab Toggle (Mobile vs Email) -->
+<div aria-label="Login Mode" class="p-1 bg-surface-container rounded-lg flex items-center mb-space-lg select-none" role="tablist">
+<button aria-controls="panel-mobile" aria-selected="true" class="flex-1 py-2 px-3 rounded-lg text-center font-label-md text-label-md transition-all duration-150 bg-surface-container-lowest text-primary font-bold flex items-center justify-center gap-1.5 min-h-[40px]" id="tab-mobile" onclick="switchLoginMode('mobile')" role="tab" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="phone_android">phone_android</span>
+<span>मोबाइल / Mobile</span>
+</button>
+<button aria-controls="panel-email" aria-selected="false" class="flex-1 py-2 px-3 rounded-lg text-center font-label-md text-label-md transition-all duration-150 text-on-surface-variant hover:text-on-surface flex items-center justify-center gap-1.5 min-h-[40px]" id="tab-email" onclick="switchLoginMode('email')" role="tab" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="mail">mail</span>
+<span>ईमेल / Email</span>
+</button>
+</div>
+<!-- Dynamic Form Container -->
+<form class="space-y-space-lg" id="loginForm" onsubmit="handleFormSubmit(event)">
+<!-- MOBILE INPUT SECTION -->
+<div class="space-y-space-xs" id="section-mobile">
+<label class="block" for="mobile-number">
+<span class="font-label-md text-label-md text-on-surface font-semibold">मोबाइल नंबर / Mobile Number</span>
+<span class="text-secondary font-bold ml-0.5">*</span>
+</label>
+<div class="relative flex rounded-lg">
+<div class="inline-flex items-center px-space-sm border border-r-0 border-outline-variant rounded-l-lg bg-surface-container text-on-surface font-label-lg text-label-lg select-none">
+<span class="font-bold text-primary mr-1">🇮🇳</span> +91
+              </div>
+<input class="block w-full min-h-min-touch-target rounded-none rounded-r-lg border border-outline-variant bg-surface-container-lowest px-space-sm text-on-surface placeholder:text-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container font-body-md text-body-md" id="mobile-number" maxlength="10" name="mobile-number" pattern="[0-9]{10}" placeholder="98765 43210" required="" type="tel"/>
+</div>
+<p class="text-body-sm font-body-sm text-outline flex items-center gap-1 pt-1">
+<span class="material-symbols-outlined text-[15px]" data-icon="info">info</span>
+<span>An OTP will be sent to verify your identity</span>
+</p>
+</div>
+<!-- EMAIL INPUT SECTION (Default Hidden) -->
+<div class="space-y-space-xs hidden" id="section-email">
+<label class="block" for="email-address">
+<span class="font-label-md text-label-md text-on-surface font-semibold">ईमेल पता / Email Address</span>
+<span class="text-secondary font-bold ml-0.5">*</span>
+</label>
+<div class="relative flex items-center">
+<input class="block w-full min-h-min-touch-target rounded-lg border border-outline-variant bg-surface-container-lowest px-space-sm text-on-surface placeholder:text-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container font-body-md text-body-md" id="email-address" name="email-address" placeholder="citizen@example.gov.in" type="email"/>
+</div>
+<p class="text-body-sm font-body-sm text-outline flex items-center gap-1 pt-1">
+<span class="material-symbols-outlined text-[15px]" data-icon="info">info</span>
+<span>Verification code will be sent to your registered email</span>
+</p>
+</div>
+<!-- OTP / VERIFICATION CODE FIELD -->
+<div class="space-y-space-xs">
+<div class="flex justify-between items-center">
+<label class="block" for="otp-code">
+<span class="font-label-md text-label-md text-on-surface font-semibold">ओटीपी / One Time Password</span>
+<span class="text-secondary font-bold ml-0.5">*</span>
+</label>
+<button class="text-label-md font-label-md font-semibold text-secondary hover:text-on-secondary-fixed-variant transition-colors underline focus:outline-none" id="getOtpBtn" onclick="triggerOtp()" type="button">
+                Get OTP / ओटीपी भेजें
+              </button>
+</div>
+<div class="relative flex items-center">
+<input class="block w-full min-h-min-touch-target rounded-lg border border-outline-variant bg-surface-container-lowest px-space-sm text-on-surface tracking-widest placeholder:tracking-normal placeholder:text-outline focus:border-primary-container focus:ring-1 focus:ring-primary-container font-body-md text-body-md" id="otp-code" maxlength="6" name="otp-code" placeholder="Enter 6-digit OTP" required="" type="text"/>
+<div class="absolute right-3 text-label-sm font-label-sm text-outline hidden items-center gap-1" id="otpTimer">
+<span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span>
+<span id="countdown">00:59</span>
+</div>
+</div>
+</div>
+<!-- Remember me & Assistive Link -->
+<div class="flex items-center justify-between pt-1">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary-container focus:ring-primary-container focus:ring-offset-0" type="checkbox"/>
+<span class="text-body-sm font-body-sm text-on-surface">Remember on this device</span>
+</label>
+<button class="text-body-sm font-body-sm text-primary hover:underline" type="button">
+              Password Login?
+            </button>
+</div>
+<!-- SUBMIT CTA BUTTON (Civic Terracotta / Secondary Token) -->
+<button class="w-full min-h-min-touch-target rounded-lg bg-secondary text-on-secondary font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-xs hover:bg-[#8C5F1F] active:scale-[0.99] transition-all focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2" type="submit">
+<span>Login with OTP / लॉगिन करें</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Institutional Security Badge / Reassurance -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant/60 flex items-center justify-center gap-2 text-center text-label-sm font-label-sm text-outline">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="verified_user">verified_user</span>
+<span>Govt of Jharkhand SSL Encrypted | Aadhaar &amp; Jan Samarth Integrated</span>
+</div>
+<!-- Registration & Support Links -->
+<div class="mt-space-md text-center space-y-space-xs">
+<div>
+<span class="text-body-sm font-body-sm text-on-surface-variant">New to Samadhan Setu? </span>
+<a class="text-body-sm font-body-sm font-bold text-primary hover:underline" href="#">Register here / नया खाता बनाएं</a>
+</div>
+<div class="pt-space-xxs">
+<a class="inline-flex items-center gap-1 text-label-sm font-label-sm font-semibold text-secondary hover:underline" href="tel:181">
+<span class="material-symbols-outlined text-[15px]" data-icon="phone_in_talk">phone_in_talk</span>
+<span>Need assistance? Call 181 (Toll Free)</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Quick Accessibility & Dignified Civic Notice -->
+<div class="mt-space-lg grid grid-cols-2 gap-space-sm text-center">
+<div class="p-space-sm bg-surface-container-low rounded-lg border border-outline-variant/50">
+<span class="material-symbols-outlined text-primary text-[20px] mb-1" data-icon="security_update_good">security_update_good</span>
+<p class="text-label-sm font-label-sm font-bold text-on-surface">OTP Not Received?</p>
+<p class="text-[10px] text-outline">Verify DND status or use Email login</p>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg border border-outline-variant/50">
+<span class="material-symbols-outlined text-primary text-[20px] mb-1" data-icon="accessibility_new">accessibility_new</span>
+<p class="text-label-sm font-label-sm font-bold text-on-surface">Assisted Kiosk</p>
+<p class="text-[10px] text-outline">Visit your nearest Pragya Kendra (CSC)</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Institutional Footer (Shared Components Specification) -->
+<footer class="w-full mt-auto bg-primary border-t border-outline">
+<div class="w-full py-space-xl px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-space-md">
+<!-- Department Branding & Copyright -->
+<div class="flex flex-col text-center md:text-left">
+<div class="text-headline-sm font-headline-sm font-bold text-on-primary">
+          झारखंड समाधान सेतु
+        </div>
+<p class="text-body-sm font-body-sm text-on-primary/80 mt-1 max-w-xl">
+          © 2024 सूचना प्रौद्योगिकी एवं ई-गवर्नेंस विभाग, झारखंड सरकार | Department of Information Technology &amp; e-Governance, Government of Jharkhand. All Rights Reserved.
+        </p>
+</div>
+<!-- Mandatory Footer Institutional Links -->
+<div class="flex flex-wrap justify-center md:justify-end gap-x-space-md gap-y-space-xs text-label-sm font-label-sm">
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#">
+          गोपनीयता नीति / Privacy Policy
+        </a>
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#">
+          उपयोग की शर्तें / Terms of Service
+        </a>
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#">
+          नागरिक चार्टर / Citizen Charter
+        </a>
+<a class="text-surface-variant hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#">
+          संपर्क करें / Contact Us
+        </a>
+</div>
+</div>
+</footer>
+<!-- Micro-interactions Script -->
+<script>
+    function switchLoginMode(mode) {
+      const tabMobile = document.getElementById('tab-mobile');
+      const tabEmail = document.getElementById('tab-email');
+      const sectionMobile = document.getElementById('section-mobile');
+      const sectionEmail = document.getElementById('section-email');
+      const mobileInput = document.getElementById('mobile-number');
+      const emailInput = document.getElementById('email-address');
+
+      if (mode === 'mobile') {
+        tabMobile.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-bold');
+        tabMobile.classList.remove('text-on-surface-variant');
+        tabMobile.setAttribute('aria-selected', 'true');
+
+        tabEmail.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-bold');
+        tabEmail.classList.add('text-on-surface-variant');
+        tabEmail.setAttribute('aria-selected', 'false');
+
+        sectionMobile.classList.remove('hidden');
+        sectionEmail.classList.add('hidden');
+        mobileInput.setAttribute('required', 'required');
+        emailInput.removeAttribute('required');
+      } else {
+        tabEmail.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-bold');
+        tabEmail.classList.remove('text-on-surface-variant');
+        tabEmail.setAttribute('aria-selected', 'true');
+
+        tabMobile.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-bold');
+        tabMobile.classList.add('text-on-surface-variant');
+        tabMobile.setAttribute('aria-selected', 'false');
+
+        sectionEmail.classList.remove('hidden');
+        sectionMobile.classList.add('hidden');
+        emailInput.setAttribute('required', 'required');
+        mobileInput.removeAttribute('required');
+      }
+    }
+
+    let countdownInterval;
+    function triggerOtp() {
+      const btn = document.getElementById('getOtpBtn');
+      const timerSpan = document.getElementById('otpTimer');
+      const countdownEl = document.getElementById('countdown');
+      
+      btn.disabled = true;
+      btn.classList.add('opacity-50', 'no-underline', 'cursor-not-allowed');
+      timerSpan.classList.remove('hidden');
+      timerSpan.classList.add('flex');
+
+      let timeLeft = 59;
+      countdownEl.innerText = `00:${timeLeft < 10 ? '0' : ''}${timeLeft}`;
+
+      clearInterval(countdownInterval);
+      countdownInterval = setInterval(() => {
+        timeLeft--;
+        if (timeLeft <= 0) {
+          clearInterval(countdownInterval);
+          btn.disabled = false;
+          btn.classList.remove('opacity-50', 'no-underline', 'cursor-not-allowed');
+          timerSpan.classList.add('hidden');
+          timerSpan.classList.remove('flex');
+          btn.innerText = 'Resend OTP / पुनः भेजें';
+        } else {
+          countdownEl.innerText = `00:${timeLeft < 10 ? '0' : ''}${timeLeft}`;
+        }
+      }, 1000);
+    }
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const otp = document.getElementById('otp-code').value;
+      if (otp.length < 6) {
+        alert('कृपया 6 अंकों का ओटीपी दर्ज करें / Please enter a valid 6-digit OTP.');
+        return;
+      }
+      const mobile = document.getElementById('mobile-number').value;
+      const email = document.getElementById('email-address').value;
+      const identifier = mobile || email || 'Citizen';
+
+      // Demo login - creates a local session.
+      // LATER: swap for a real OTP-verify API call to your backend.
+      API.login('citizen', identifier);
+
+      showToast('OTP verified! Redirecting... / ओटीपी सत्यापित!');
+      setTimeout(() => {
+        window.location.href = 'grievance-step1.html';
+      }, 700);
+    }
+  </script>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+</body></html>

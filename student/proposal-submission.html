@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>झारखंड समाधान सेतु | Student Innovation Hub - Submit Solution Proposal</title>
+<!-- Google Fonts: Noto Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#FFFFFF",
+            "on-primary-fixed": "#17213A",
+            "primary": "#17213A",
+            "on-secondary-fixed": "#4A3B1F",
+            "surface-container": "#F1ECE0",
+            "inverse-surface": "#17213A",
+            "secondary": "#A6742A",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "surface-variant": "#F1ECE0",
+            "surface-container-low": "#F6F3EA",
+            "surface-bright": "#FBF9F4",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "background": "#FBF9F4",
+            "secondary-fixed": "#F1E4C7",
+            "on-error-container": "#5F1712",
+            "surface-container-highest": "#E2DBC7",
+            "tertiary": "#2F6F4E",
+            "tertiary-container": "#E3EEE6",
+            "on-tertiary-fixed": "#12281E",
+            "secondary-fixed-dim": "#D9B876",
+            "on-background": "#17213A",
+            "surface-dim": "#E8E3D3",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "on-tertiary-container": "#1F4A34",
+            "on-surface": "#17213A",
+            "on-primary-container": "#FBF9F4",
+            "outline": "#C7C0AC",
+            "outline-variant": "#E4DFD0",
+            "tertiary-fixed": "#8FC7A8",
+            "on-secondary-container": "#6B4A17",
+            "on-primary": "#FBF9F4",
+            "surface": "#FBF9F4",
+            "surface-container-lowest": "#FFFFFF",
+            "surface-container-high": "#EAE4D4",
+            "error-container": "#F9DEDC",
+            "inverse-on-surface": "#FBF9F4",
+            "on-surface-variant": "#5B5847",
+            "on-tertiary": "#FFFFFF",
+            "on-error": "#FFFFFF",
+            "primary-fixed-dim": "#C7B37E",
+            "primary-fixed": "#D9CBA3",
+            "primary-container": "#232F4E",
+            "inverse-primary": "#D9CBA3",
+            "error": "#B3261E",
+            "tertiary-fixed-dim": "#6FA98A",
+            "secondary-container": "#F1E4C7",
+            "surface-tint": "#A6742A"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-xxs": "0.25rem",
+            "gutter-mobile": "1rem",
+            "gutter-tablet": "1.5rem",
+            "space-2xl": "3rem",
+            "space-sm": "0.75rem",
+            "min-touch-target": "3rem",
+            "space-xl": "2rem",
+            "gutter-desktop": "2rem",
+            "container-max": "72rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"]
+          },
+          "fontSize": {
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600"}],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400"}],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600"}],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600"}],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600"}],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600"}],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar (Shared Component) -->
+<header class="w-full bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
+<!-- Left: Logo & Search -->
+<div class="flex items-center gap-space-lg">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary font-bold" data-icon="account_balance">account_balance</span>
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">
+            झारखंड समाधान सेतु | Student Innovation Hub
+          </span>
+</div>
+<!-- Search bar on left as mandated by JSON -->
+<div class="hidden lg:flex items-center bg-surface-container-low border border-outline-variant rounded px-space-xs py-1 text-on-surface-variant w-64">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="bg-transparent border-0 focus:ring-0 text-body-sm font-body-sm px-space-xs text-on-surface w-full focus:outline-none placeholder-outline" placeholder="Search challenges &amp; grants..." type="text"/>
+</div>
+</div>
+<!-- Center / Nav links -->
+<nav class="hidden md:flex items-center gap-space-lg">
+<!-- Dashboard -->
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal transition-colors duration-150 ease-in-out" href="dashboard.html">Dashboard</a>
+<!-- Browse Problems -->
+<a class="border-b-2 border-secondary text-secondary font-label-md font-semibold pb-1 transition-colors duration-150 ease-in-out" href="dashboard.html#recommended">Browse Problems</a>
+<!-- My Teams -->
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal transition-colors duration-150 ease-in-out" href="team-formation.html">My Teams</a>
+<!-- My Projects -->
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal transition-colors duration-150 ease-in-out" href="milestone-tracker.html">My Projects</a>
+<!-- Grants & Funding -->
+<a class="text-on-surface-variant hover:text-primary font-label-md font-normal transition-colors duration-150 ease-in-out" href="#">Grants &amp; Funding</a>
+</nav>
+<!-- Right: Action & Profile Image -->
+<div class="flex items-center gap-space-md">
+<button aria-label="Notifications" class="relative p-space-xs text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-secondary rounded-full"></span>
+</button>
+<div class="flex items-center gap-space-xs pl-space-xs border-l border-outline-variant">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-label-md relative">
+<span>BM</span>
+<span class="absolute -bottom-1 -right-1 bg-[#166534] text-white text-[9px] px-1 rounded-full border border-white font-bold" title="Institutional Verified: BIT Mesra">✓</span>
+</div>
+<div class="hidden sm:flex flex-col text-left">
+<span class="text-label-sm font-label-sm text-on-surface font-semibold leading-tight">Rohit Soren</span>
+<span class="text-label-sm font-label-sm text-outline leading-tight">BIT Mesra · Team Lead</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 w-full max-w-container-max mx-auto px-gutter-mobile sm:px-gutter-tablet md:px-gutter-desktop py-space-xl">
+<!-- Page Header & Context Breadcrumb -->
+<div class="mb-space-xl">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-space-xxs text-body-sm font-body-sm text-on-surface-variant mb-space-xs">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="home">home</span>
+          Challenges
+        </a>
+<span class="text-outline">/</span>
+<span class="font-mono text-outline font-medium">JH-2024-GW-89421</span>
+<span class="text-outline">/</span>
+<span class="text-primary font-semibold">Submit Solution Proposal</span>
+</nav>
+<!-- Title & Context Strip -->
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-space-md pt-space-xs">
+<div>
+<div class="flex items-center gap-space-xs mb-space-xxs">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0]">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span>
+              Phase II: Proposal Call Open
+            </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-[#FEF3C7] text-[#92400E] border border-[#FDE68A]">
+<span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span>
+              Submission Deadline: 10 Nov 2024
+            </span>
+</div>
+<h1 class="text-headline-lg font-headline-lg text-primary tracking-tight">
+            Engineering Solution Proposal: Smart Acoustic Leak Detection &amp; IoT Valve Control
+          </h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-space-xxs">
+            Formal technical specification, bill of materials, implementation milestones, and municipal water conservation impact statement.
+          </p>
+</div>
+</div>
+<!-- Institutional Metadata Chip -->
+<div class="mt-space-md p-space-sm bg-surface-container-low border border-surface-container rounded-xl flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary text-white flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-sm" data-icon="groups">groups</span>
+</div>
+<div>
+<div class="text-label-md font-label-md text-on-surface font-semibold">
+              Submitting Team: <span class="text-primary">Jal-Drishti (BIT Mesra + NIT Jamshedpur)</span>
+</div>
+<div class="text-body-sm font-body-sm text-outline">
+              Mentor: Dr. S. K. Roy (Dept. of Electronics &amp; Telecommunication, BIT Mesra)
+            </div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm text-body-sm font-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="verified">verified</span>
+            Joint University R&amp;D Consortium
+          </span>
+<span class="hidden sm:inline text-outline">•</span>
+<span class="bg-surface-container-lowest px-2 py-0.5 rounded border border-outline-variant text-label-sm font-label-sm text-primary">
+            Grant Tier: R&amp;D Seed (Max ₹1.5L)
+          </span>
+</div>
+</div>
+</div>
+<!-- Multi-section Structured Proposal Form -->
+<div class="space-y-space-xl">
+<!-- SECTION 1: Technical Architecture & Methodology -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg">
+<div class="flex items-start justify-between border-b border-outline-variant pb-space-sm mb-space-lg">
+<div class="flex items-center gap-space-xs">
+<span class="w-8 h-8 rounded bg-primary-fixed text-primary flex items-center justify-center font-bold text-label-lg">1</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary">Technical Architecture &amp; Methodology</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Detail the telemetry pipeline, sensor integration, and leak-localization algorithm.</p>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-outline font-mono">REQ-ENG-01</span>
+</div>
+<div class="space-y-space-lg">
+<!-- Executive Technical Summary with char counter and rich-text format bar -->
+<div>
+<div class="flex justify-between items-center mb-space-xs">
+<label class="block text-label-lg font-label-lg text-on-surface" for="exec-summary">
+                Executive Technical Summary <span class="text-secondary">*</span>
+</label>
+<span class="text-label-sm font-label-sm text-outline" id="char-counter">
+<span class="font-semibold text-primary" id="char-count">642</span> / 1500 characters
+              </span>
+</div>
+<!-- Rich text bar -->
+<div class="border border-outline-variant rounded-t-lg bg-surface-container-low px-space-xs py-1 flex items-center gap-space-xs border-b-0">
+<button class="p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container" title="Bold" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="format_bold">format_bold</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container" title="Italic" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="format_italic">format_italic</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container" title="Numbered List" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="format_list_numbered">format_list_numbered</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container" title="Bullet List" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="format_list_bulleted">format_list_bulleted</span>
+</button>
+<div class="h-4 w-px bg-outline-variant mx-1"></div>
+<button class="p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container" title="Code Block" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="code">code</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container" title="Insert Link" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="link">link</span>
+</button>
+</div>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-b-lg p-space-sm text-body-md font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" id="exec-summary" placeholder="Describe mathematical modeling, signal filtering (cross-correlation), sampling rate, LoRaWAN latency profiles, and edge-compute algorithms..." rows="6">Our proposed solution implements non-invasive piezoelectric acoustic hydrophones fastened directly to pipeline service junctions along Kanke Road's primary water distribution main. High-frequency acoustic vibrations (10Hz–5kHz) produced by turbulent orifice leakage are continuously sampled via 24-bit ADCs coupled to an ultra-low power ESP32-S3 microcontroller. 
+
+The edge module performs Fast Fourier Transforms (FFT) and transient peak cross-correlation to isolate pressurized burst acoustic signatures from surrounding ambient vehicular noise on NH-33. Leak metrics and geocoded GPS tags are packaged into compact binary payloads and broadcast via LoRaWAN (865-867 MHz India band) to a municipal gateway situated atop the Kanke Water Works reservoir, delivering sub-meter burst pinpointing within 180 seconds of rupture.</textarea>
+</div>
+<!-- Schematic Upload Box with preview -->
+<div>
+<label class="block text-label-lg font-label-lg text-on-surface mb-space-xs">
+              Schematic / Architecture Diagram Upload <span class="text-secondary">*</span>
+</label>
+<!-- Upload Container -->
+<div class="border-2 border-dashed border-outline-variant hover:border-primary rounded-xl p-space-md bg-surface-container-low transition-colors">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<!-- Uploaded preview pill -->
+<div class="flex items-center gap-space-sm bg-surface-container-lowest p-space-sm rounded-lg border border-outline-variant w-full sm:w-auto flex-1 max-w-md">
+<div class="w-10 h-10 rounded bg-red-100 text-error flex items-center justify-center font-bold">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="text-label-md font-label-md text-primary font-semibold truncate">
+                      System_Architecture_Telemetry_v1.pdf
+                    </div>
+<div class="text-body-sm font-body-sm text-outline flex items-center gap-2">
+<span>3.4 MB</span>
+<span>•</span>
+<span class="text-[#166534] flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="verified_user">verified_user</span> Virus Scanned
+                      </span>
+</div>
+</div>
+<button class="text-outline hover:text-error p-1 transition-colors" title="Remove file" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Action to replace/add -->
+<div class="flex items-center gap-space-xs w-full sm:w-auto justify-end">
+<button class="px-space-md py-2 border border-outline-variant hover:bg-surface-container text-body-sm font-body-sm text-on-surface font-semibold rounded transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="upload_file">upload_file</span>
+                    Replace File
+                  </button>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-space-xs text-center sm:text-left">
+                Accepted formats: PDF, PNG, SVG (Max size 15 MB). Must depict hardware pinout, RF link budget, and cloud server topology.
+              </p>
+</div>
+</div>
+<!-- Hardware & Software Stack selector (tag input) -->
+<div>
+<label class="block text-label-lg font-label-lg text-on-surface mb-space-xs">
+              Hardware &amp; Software Technology Stack <span class="text-secondary">*</span>
+</label>
+<div class="p-2 border border-outline-variant rounded-lg bg-surface-container-lowest flex flex-wrap items-center gap-space-xs min-h-[48px] focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
+<!-- Tag: LoRaWAN -->
+<span class="inline-flex items-center gap-1 px-space-xs py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]" data-icon="sensors">sensors</span>
+                LoRaWAN (865 MHz)
+                <button class="hover:text-error text-outline leading-none ml-1" type="button">×</button>
+</span>
+<!-- Tag: ESP32 -->
+<span class="inline-flex items-center gap-1 px-space-xs py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]" data-icon="memory">memory</span>
+                ESP32-S3 Microcontroller
+                <button class="hover:text-error text-outline leading-none ml-1" type="button">×</button>
+</span>
+<!-- Tag: Python backend -->
+<span class="inline-flex items-center gap-1 px-space-xs py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]" data-icon="terminal">terminal</span>
+                Python (FastAPI + NumPy)
+                <button class="hover:text-error text-outline leading-none ml-1" type="button">×</button>
+</span>
+<!-- Tag: Leaflet GIS -->
+<span class="inline-flex items-center gap-1 px-space-xs py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]" data-icon="map">map</span>
+                Leaflet GIS Redline
+                <button class="hover:text-error text-outline leading-none ml-1" type="button">×</button>
+</span>
+<!-- Tag: Acoustic Hydrophone -->
+<span class="inline-flex items-center gap-1 px-space-xs py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]" data-icon="graphic_eq">graphic_eq</span>
+                Acoustic Hydrophone
+                <button class="hover:text-error text-outline leading-none ml-1" type="button">×</button>
+</span>
+<!-- Tag input placeholder -->
+<input class="border-0 focus:ring-0 text-body-sm font-body-sm p-1 text-on-surface placeholder-outline flex-1 min-w-[140px] focus:outline-none" placeholder="+ Add technology tag..." type="text"/>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-1">Press enter or comma to register custom frameworks, microchips, or communication protocols.</p>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Budget Estimate & Bill of Materials -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg">
+<div class="flex items-start justify-between border-b border-outline-variant pb-space-sm mb-space-lg">
+<div class="flex items-center gap-space-xs">
+<span class="w-8 h-8 rounded bg-primary-fixed text-primary flex items-center justify-center font-bold text-label-lg">2</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary">Budget Estimate &amp; Bill of Materials (BoM)</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Itemized procurement specification subject to university mentor audit &amp; government procurement norms.</p>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-outline font-mono">REQ-ENG-02</span>
+</div>
+<!-- Line Item Table -->
+<div class="overflow-x-auto border border-outline-variant rounded-lg">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant text-label-md font-label-md text-on-surface">
+<th class="py-3 px-4 w-12 text-center">#</th>
+<th class="py-3 px-4">Item Name &amp; Technical Specifications</th>
+<th class="py-3 px-4 w-32 text-center">Quantity</th>
+<th class="py-3 px-4 w-44 text-right">Estimated Cost (₹)</th>
+<th class="py-3 px-4 w-16 text-center">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant text-body-sm font-body-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="py-3 px-4 text-center font-mono text-outline">01</td>
+<td class="py-3 px-4 font-medium text-primary">
+                  Piezoelectric Acoustic Sensors (High-sensitivity contact transducers, 10Hz-5kHz)
+                </td>
+<td class="py-3 px-4 text-center">
+<span class="bg-surface-container px-2.5 py-1 rounded font-mono font-semibold">3 units</span>
+</td>
+<td class="py-3 px-4 text-right font-mono font-semibold text-on-surface">
+                  ₹ 18,000.00
+                </td>
+<td class="py-3 px-4 text-center">
+<button class="text-outline hover:text-error p-1 rounded" title="Delete row" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="py-3 px-4 text-center font-mono text-outline">02</td>
+<td class="py-3 px-4 font-medium text-primary">
+                  Solar LoRaWAN Gateway &amp; Industrial Telemetry Node (8-channel SX1302 with backup battery)
+                </td>
+<td class="py-3 px-4 text-center">
+<span class="bg-surface-container px-2.5 py-1 rounded font-mono font-semibold">1 unit</span>
+</td>
+<td class="py-3 px-4 text-right font-mono font-semibold text-on-surface">
+                  ₹ 24,500.00
+                </td>
+<td class="py-3 px-4 text-center">
+<button class="text-outline hover:text-error p-1 rounded" title="Delete row" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="py-3 px-4 text-center font-mono text-outline">03</td>
+<td class="py-3 px-4 font-medium text-primary">
+                  Field Testing, Acoustic Calibration &amp; Ground Rigging at Kanke Distribution Site
+                </td>
+<td class="py-3 px-4 text-center">
+<span class="bg-surface-container px-2.5 py-1 rounded font-mono font-semibold">Lump sum</span>
+</td>
+<td class="py-3 px-4 text-right font-mono font-semibold text-on-surface">
+                  ₹ 12,000.00
+                </td>
+<td class="py-3 px-4 text-center">
+<button class="text-outline hover:text-error p-1 rounded" title="Delete row" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="py-3 px-4 text-center font-mono text-outline">04</td>
+<td class="py-3 px-4 font-medium text-primary">
+                  Prototype Enclosure (IP68 Weatherproof Die-cast Aluminum casing with hermetic glands)
+                </td>
+<td class="py-3 px-4 text-center">
+<span class="bg-surface-container px-2.5 py-1 rounded font-mono font-semibold">4 units</span>
+</td>
+<td class="py-3 px-4 text-right font-mono font-semibold text-on-surface">
+                  ₹ 8,500.00
+                </td>
+<td class="py-3 px-4 text-center">
+<button class="text-outline hover:text-error p-1 rounded" title="Delete row" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Add Row Button -->
+<div class="mt-space-sm flex justify-start">
+<button class="px-space-md py-2 border border-outline-variant hover:bg-surface-container text-body-sm font-body-sm text-primary font-semibold rounded transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+            Add Line Item
+          </button>
+</div>
+<!-- Summary Bar -->
+<div class="mt-space-md p-space-md bg-surface-container-low border border-primary-fixed rounded-lg flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="account_balance_wallet">account_balance_wallet</span>
+<div>
+<div class="text-label-md font-label-md text-on-surface font-bold">Total Requested R&amp;D Grant</div>
+<div class="text-body-sm font-body-sm text-outline">Directly disbursed to BIT Mesra Institutional Student Project Escrow</div>
+</div>
+</div>
+<div class="flex items-baseline gap-space-md text-right">
+<div>
+<div class="text-headline-md font-headline-md font-bold text-primary font-mono">₹ 63,000.00</div>
+<div class="text-label-sm font-label-sm text-[#166534] font-semibold flex items-center justify-end gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span>
+                Within ₹1,50,000 Tier-1 Grant Limit (42.0% allocated)
+              </div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Milestone Timeline & Deliverables -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg">
+<div class="flex items-start justify-between border-b border-outline-variant pb-space-sm mb-space-lg">
+<div class="flex items-center gap-space-xs">
+<span class="w-8 h-8 rounded bg-primary-fixed text-primary flex items-center justify-center font-bold text-label-lg">3</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary">Milestone Timeline &amp; Deliverables</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Phased 45-day rapid prototyping schedule with concrete verification outputs.</p>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-outline font-mono">REQ-ENG-03</span>
+</div>
+<!-- Grievance Timeline Tracker Architecture -->
+<div class="relative pl-6 border-l-2 border-outline-variant ml-4 space-y-space-lg py-2">
+<!-- Milestone 1 -->
+<div class="relative group">
+<!-- Milestone node -->
+<div class="absolute -left-[33px] top-1.5 w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]" data-icon="done">done</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-space-md rounded-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="text-label-lg font-label-lg text-primary font-bold">Milestone 1 (Day 1-15)</span>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-semibold">Laboratory Phase</span>
+</div>
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]" data-icon="event">event</span>
+                  Target: 15 Nov 2024
+                </div>
+</div>
+<p class="text-body-md font-body-md text-on-surface">
+                Sensor bench testing &amp; acoustic calibration in university hydraulic testbed. Acquisition of acoustic signature library for pressurized mild-steel pipes under controlled leak scenarios.
+              </p>
+<div class="mt-space-xs pt-space-xs border-t border-outline-variant flex items-center gap-space-md text-body-sm font-body-sm text-outline">
+<span class="font-medium text-primary">Deliverable:</span> Bench Test Lab Report &amp; FFT Frequency Signature Matrix (.csv + raw audio)
+              </div>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="relative group">
+<!-- Milestone node: Current Step -->
+<div class="absolute -left-[33px] top-1.5 w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center text-label-sm font-bold ring-4 ring-secondary-fixed">
+              2
+            </div>
+<div class="bg-surface-container-lowest border-2 border-primary-container p-space-md rounded-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="text-label-lg font-label-lg text-primary font-bold">Milestone 2 (Day 16-30)</span>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-secondary-fixed text-on-secondary-fixed-variant font-semibold">Deployment Phase</span>
+</div>
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]" data-icon="event">event</span>
+                  Target: 30 Nov 2024
+                </div>
+</div>
+<p class="text-body-md font-body-md text-on-surface">
+                Field deployment on Kanke distribution line &amp; LoRaWAN telemetry sync. Installation of 3 sensor nodes on 1.2 km section with live telemetry stream into Ranchi Municipal GIS portal.
+              </p>
+<div class="mt-space-xs pt-space-xs border-t border-outline-variant flex items-center gap-space-md text-body-sm font-body-sm text-outline">
+<span class="font-medium text-primary">Deliverable:</span> Telemetry API Endpoint, Live GIS Dashboard Integration &amp; Node Health Logs
+              </div>
+</div>
+</div>
+<!-- Milestone 3 -->
+<div class="relative group">
+<!-- Milestone node: Upcoming -->
+<div class="absolute -left-[33px] top-1.5 w-6 h-6 rounded-full bg-surface-container-lowest border-2 border-outline-variant text-outline flex items-center justify-center text-label-sm font-bold">
+              3
+            </div>
+<div class="bg-surface-container-low border border-outline-variant p-space-md rounded-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="text-label-lg font-label-lg text-primary font-bold">Milestone 3 (Day 31-45)</span>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-semibold">Validation &amp; Handover</span>
+</div>
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]" data-icon="event">event</span>
+                  Target: 15 Dec 2024
+                </div>
+</div>
+<p class="text-body-md font-body-md text-on-surface">
+                Controlled field validation with Municipal PHED Engineers. Simulated leak event testing, localization accuracy assessment, and final technical transfer dossier handover.
+              </p>
+<div class="mt-space-xs pt-space-xs border-t border-outline-variant flex items-center gap-space-md text-body-sm font-body-sm text-outline">
+<span class="font-medium text-primary">Deliverable:</span> Field Audit Sign-off from Executive Engineer (Drinking Water &amp; Sanitation Dept)
+              </div>
+</div>
+</div>
+</div>
+<!-- Add Milestone Button -->
+<div class="mt-space-md ml-4">
+<button class="px-space-md py-2 border border-outline-variant hover:bg-surface-container text-body-sm font-body-sm text-primary font-semibold rounded transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+            Add Custom Milestone
+          </button>
+</div>
+</section>
+<!-- SECTION 4: Expected Social Impact & Sustainability -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg">
+<div class="flex items-start justify-between border-b border-outline-variant pb-space-sm mb-space-lg">
+<div class="flex items-center gap-space-xs">
+<span class="w-8 h-8 rounded bg-primary-fixed text-primary flex items-center justify-center font-bold text-label-lg">4</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary">Expected Social Impact &amp; Sustainability</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Quantifiable public utility metrics and long-term civic operational handover strategy.</p>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-outline font-mono">REQ-ENG-04</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- Metric 1: Estimated Beneficiaries -->
+<div>
+<label class="block text-label-lg font-label-lg text-on-surface mb-space-xs" for="beneficiaries">
+              Estimated Citizen Beneficiaries <span class="text-secondary">*</span>
+</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="groups">groups</span>
+</div>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded h-min-touch-target pl-10 pr-4 text-body-md font-body-md text-on-surface font-semibold focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none" id="beneficiaries" type="text" value="1,200 citizens / 240 households"/>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-1">Impact zone: Kanke Ward 4 &amp; 5 residential distribution belt.</p>
+</div>
+<!-- Metric 2: Daily Water Saved -->
+<div>
+<label class="block text-label-lg font-label-lg text-on-surface mb-space-xs" for="water-saved">
+              Estimated Daily Water Saved <span class="text-secondary">*</span>
+</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="water_drop">water_drop</span>
+</div>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded h-min-touch-target pl-10 pr-4 text-body-md font-body-md text-on-surface font-semibold focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none" id="water-saved" type="text" value="35,000 Liters/day"/>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-1">Calculated at 2.4 bar pressure on typical 15mm fissure leaks.</p>
+</div>
+</div>
+<!-- Maintenance Handover Plan -->
+<div class="mt-space-lg">
+<label class="block text-label-lg font-label-lg text-on-surface mb-space-xs" for="handover-plan">
+            Long-term Maintenance &amp; Municipal Handover Protocol <span class="text-secondary">*</span>
+</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded p-space-sm text-body-md font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none" id="handover-plan" placeholder="Specify equipment warranty, training of municipal technicians, and software repository licensing..." rows="4">Complete deployment manual, calibration rig, and battery-replacement kits will be formally transferred to the Ranchi Municipal Corporation (RMC) Water Works Division upon completion of Milestone 3. The Jal-Drishti team will conduct two in-person training sessions for line fitters and provide open-source firmware maintenance under the GNU General Public License v3 for state government use.</textarea>
+</div>
+<!-- Faculty Mentor Attestation Box -->
+<div class="mt-space-lg p-space-md bg-surface-container-low border border-outline-variant rounded-lg flex items-start gap-space-sm">
+<input checked="" class="mt-1 w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" id="mentor-attest" type="checkbox"/>
+<label class="text-body-sm font-body-sm text-on-surface select-none" for="mentor-attest">
+<span class="font-semibold text-primary">Academic &amp; Feasibility Attestation:</span> 
+            I confirm that this proposal has been vetted by Faculty Mentor Dr. S. K. Roy (BIT Mesra). All equipment costs conform to GeM (Government e-Marketplace) price indices, and lab infrastructure at BIT Mesra is allocated for Milestone 1 bench testing without additional institutional overhead.
+          </label>
+</div>
+</section>
+</div>
+</main>
+<!-- Sticky Bottom Action Bar (Mandatory civic task action container) -->
+<aside aria-label="Proposal Actions" class="sticky bottom-0 z-30 bg-surface-container-lowest border-t border-outline-variant py-space-sm px-gutter-mobile sm:px-gutter-tablet md:px-gutter-desktop">
+<div class="w-full max-w-container-max mx-auto flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[#166534] text-[18px]" data-icon="cloud_done">cloud_done</span>
+<span>Auto-saved to draft storage at <span class="font-mono font-medium">14:32 IST</span></span>
+</div>
+<div class="flex items-center gap-space-sm w-full sm:w-auto justify-end">
+<!-- Tertiary Outline: Save Draft -->
+<button class="h-min-touch-target px-space-md rounded border border-outline-variant hover:bg-surface-container-low text-on-surface font-label-lg font-semibold transition-colors flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="save">save</span>
+          Save Draft
+        </button>
+<!-- Tertiary Outline: Preview Proposal -->
+<button class="h-min-touch-target px-space-md rounded border border-outline-variant hover:bg-surface-container-low text-on-surface font-label-lg font-semibold transition-colors flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span>
+          Preview Proposal
+        </button>
+<!-- Primary CTA: Submit Proposal (Warm amber/terracotta accent) -->
+<button class="h-min-touch-target px-space-lg rounded bg-secondary hover:bg-[#8C5F1F] text-white font-label-lg font-semibold transition-all flex items-center justify-center gap-2 focus:ring-2 focus:ring-primary focus:ring-offset-2" type="button">
+<span>Submit Proposal for Faculty &amp; Govt Review / प्रस्ताव जमा करें</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Footer (Institutional Footer Shared Component) -->
+<footer class="w-full bg-surface-container-lowest border-t border-outline-variant mt-space-2xl">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-gutter-desktop py-space-md max-w-container-max mx-auto gap-space-md">
+<!-- Brand & Copyright Text -->
+<div class="flex flex-col sm:flex-row items-center gap-space-xs text-center sm:text-left">
+<span class="text-label-lg font-label-lg font-bold text-primary">
+          झारखंड समाधान सेतु
+        </span>
+<span class="hidden sm:inline text-outline">•</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+          © 2025 Department of Higher, Technical Education &amp; Skill Development, Govt. of Jharkhand. All rights reserved.
+        </p>
+</div>
+<!-- Footer Links Array -->
+<div class="flex flex-wrap items-center justify-center gap-space-md text-label-sm font-label-sm">
+<a class="text-on-surface-variant hover:text-primary focus:ring-2 focus:ring-primary focus:outline-none transition-colors duration-150" href="#">
+          Citizen Charter
+        </a>
+<a class="text-on-surface-variant hover:text-primary focus:ring-2 focus:ring-primary focus:outline-none transition-colors duration-150" href="#">
+          Helpline: 181
+        </a>
+<a class="text-on-surface-variant hover:text-primary focus:ring-2 focus:ring-primary focus:outline-none transition-colors duration-150" href="#">
+          Privacy Policy
+        </a>
+<a class="text-on-surface-variant hover:text-primary focus:ring-2 focus:ring-primary focus:outline-none transition-colors duration-150" href="#">
+          Terms of Service
+        </a>
+<a class="text-on-surface-variant hover:text-primary focus:ring-2 focus:ring-primary focus:outline-none transition-colors duration-150" href="#">
+          DigiLocker Verification
+        </a>
+</div>
+</div>
+</footer>
+<!-- Micro-interaction JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dynamic Character Counter for Executive Summary
+      const textarea = document.getElementById('exec-summary');
+      const counter = document.getElementById('char-count');
+      if (textarea && counter) {
+        textarea.addEventListener('input', () => {
+          counter.textContent = textarea.value.length;
+          if (textarea.value.length > 1500) {
+            counter.classList.add('text-error');
+          } else {
+            counter.classList.remove('text-error');
+          }
+        });
+      }
+    });
+  </script>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+  requireRole('student', 'login.html');
+</script>
+</body></html>

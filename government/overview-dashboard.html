@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>झारखंड समाधान सेतु | Government Administration Workspace</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Noto Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container": "#F1ECE0",
+            "on-primary-fixed-variant": "#4A3B1F",
+            "secondary": "#A6742A",
+            "inverse-surface": "#17213A",
+            "on-tertiary": "#FFFFFF",
+            "error": "#B3261E",
+            "on-tertiary-fixed-variant": "#1F4A34",
+            "background": "#FBF9F4",
+            "tertiary-fixed-dim": "#6FA98A",
+            "on-primary": "#FBF9F4",
+            "on-error-container": "#5F1712",
+            "on-surface": "#17213A",
+            "secondary-container": "#F1E4C7",
+            "surface-container-lowest": "#FFFFFF",
+            "on-surface-variant": "#5B5847",
+            "primary-fixed-dim": "#C7B37E",
+            "surface-container-high": "#EAE4D4",
+            "on-background": "#17213A",
+            "surface-variant": "#F1ECE0",
+            "outline": "#C7C0AC",
+            "tertiary": "#2F6F4E",
+            "secondary-fixed": "#F1E4C7",
+            "on-secondary": "#FFFFFF",
+            "on-tertiary-container": "#1F4A34",
+            "outline-variant": "#E4DFD0",
+            "surface-container-low": "#F6F3EA",
+            "primary-container": "#232F4E",
+            "on-secondary-fixed": "#4A3B1F",
+            "inverse-on-surface": "#FBF9F4",
+            "tertiary-fixed": "#8FC7A8",
+            "secondary-fixed-dim": "#D9B876",
+            "on-primary-fixed": "#17213A",
+            "on-secondary-container": "#6B4A17",
+            "inverse-primary": "#D9CBA3",
+            "surface-tint": "#A6742A",
+            "surface-container-highest": "#E2DBC7",
+            "primary-fixed": "#D9CBA3",
+            "tertiary-container": "#E3EEE6",
+            "on-error": "#FFFFFF",
+            "surface": "#FBF9F4",
+            "error-container": "#F9DEDC",
+            "primary": "#17213A",
+            "surface-dim": "#E8E3D3",
+            "on-secondary-fixed-variant": "#6B4A17",
+            "surface-bright": "#FBF9F4",
+            "on-primary-container": "#FBF9F4",
+            "on-tertiary-fixed": "#12281E"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "3rem",
+            "gutter-desktop": "2rem",
+            "space-md": "1rem",
+            "space-3xl": "4rem",
+            "gutter-mobile": "1rem",
+            "space-sm": "0.75rem",
+            "space-lg": "1.5rem",
+            "gutter-tablet": "1.5rem",
+            "container-max": "72rem",
+            "space-xxs": "0.25rem",
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "min-touch-target": "3rem"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "display-lg-mobile": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "body-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "label-md": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "display-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-md": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "headline-sm": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg": ["Noto Serif", "Noto Serif Devanagari", "serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Devanagari", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "headline-lg": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Restrained civic elevation & print-friendly border logic */
+    .civic-card {
+      background-color: #ffffff;
+      border: 1px solid #E4DFD0;
+      border-radius: 0.25rem;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 4px;
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #E4DFD0;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col selection:bg-surface-container-highest">
+<!-- ================= TOP NAVIGATION BAR (From Shared Components JSON) ================= -->
+<header class="bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
+<!-- Brand & Identification -->
+<div class="flex items-center space-x-space-md">
+<!-- Official Emblem Placeholder / Visual Token -->
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight block">
+            झारखंड समाधान सेतु | Government Administration
+          </span>
+<span class="text-label-sm font-label-sm text-on-surface-variant block -mt-1 hidden sm:block">
+            Integrated Civic Grievance, R&amp;D Translation &amp; Public Service Delivery Hub
+          </span>
+</div>
+</div>
+<!-- Administrative Right Badges & Global Icon Actions -->
+<div class="flex items-center space-x-space-md">
+<div class="hidden lg:flex flex-col text-right">
+<span class="text-label-md font-label-md text-primary font-bold">Department of Administrative Reforms</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Nodal Officer (IAS)</span>
+</div>
+<div class="h-6 w-px bg-outline-variant hidden lg:block"></div>
+<div class="flex items-center space-x-space-xs text-on-surface-variant">
+<button aria-label="Notifications" class="w-9 h-9 flex items-center justify-center rounded hover:bg-surface-container-low transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-container relative">
+<span class="material-symbols-outlined text-[22px]" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary"></span>
+</button>
+<button aria-label="Help Center" class="w-9 h-9 flex items-center justify-center rounded hover:bg-surface-container-low transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-container">
+<span class="material-symbols-outlined text-[22px]" data-icon="help_center">help_center</span>
+</button>
+<button aria-label="Account Settings" class="w-9 h-9 flex items-center justify-center rounded hover:bg-surface-container-low transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-container">
+<span class="material-symbols-outlined text-[24px] text-primary" data-icon="account_circle">account_circle</span>
+</button>
+<button aria-label="Logout" class="w-9 h-9 flex items-center justify-center rounded hover:bg-surface-container-low transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-container" data-logout="../index.html">
+<span class="material-symbols-outlined text-[22px]">logout</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Navigation Tabs Cluster -->
+<div class="w-full bg-surface-container-lowest border-t border-outline-variant/50 overflow-x-auto custom-scrollbar">
+<nav class="flex items-center px-gutter-desktop max-w-container-max mx-auto space-x-space-lg text-label-lg font-label-lg min-w-max">
+<!-- Overview (Active) -->
+<a class="border-b-2 border-secondary text-secondary font-semibold pb-2 pt-2.5 flex items-center gap-1.5" href="overview-dashboard.html">
+<span class="material-symbols-outlined text-[18px]" data-icon="dashboard">dashboard</span>
+          Overview
+        </a>
+<a class="text-on-surface-variant hover:text-primary pb-2 pt-2.5 transition-colors duration-150" href="overview-dashboard.html">Problem Map</a>
+<a class="text-on-surface-variant hover:text-primary pb-2 pt-2.5 transition-colors duration-150" href="problem-management.html">Problems</a>
+<a class="text-on-surface-variant hover:text-primary pb-2 pt-2.5 transition-colors duration-150" href="ai-analysis.html">AI Analysis</a>
+<a class="text-on-surface-variant hover:text-primary pb-2 pt-2.5 transition-colors duration-150" href="priority-queue.html">Priority Queue</a>
+<a class="text-on-surface-variant hover:text-primary pb-2 pt-2.5 transition-colors duration-150" href="university-management.html">Universities</a>
+<a class="text-on-surface-variant hover:text-primary pb-2 pt-2.5 transition-colors duration-150" href="industry-csr-management.html">Industry-CSR</a>
+<a class="text-on-surface-variant hover:text-primary pb-2 pt-2.5 transition-colors duration-150" href="overview-dashboard.html">Projects</a>
+<a class="text-on-surface-variant hover:text-primary pb-2 pt-2.5 transition-colors duration-150" href="overview-dashboard.html">Alerts</a>
+<a class="text-on-surface-variant hover:text-primary pb-2 pt-2.5 transition-colors duration-150" href="overview-dashboard.html">Impact</a>
+<a class="text-on-surface-variant hover:text-primary pb-2 pt-2.5 transition-colors duration-150" href="overview-dashboard.html">Audit</a>
+</nav>
+</div>
+</header>
+<!-- ================= SECONDARY HEADER BAR ================= -->
+<section class="bg-surface border-b border-outline-variant/60 py-space-xs">
+<div class="max-w-container-max mx-auto px-gutter-desktop flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+<!-- Breadcrumbs & Cycle -->
+<div class="flex flex-wrap items-center gap-space-xs text-body-sm font-body-sm text-on-surface-variant">
+<span class="font-medium text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="home">home</span>
+          State Dashboard
+        </span>
+<span class="text-outline">›</span>
+<span class="text-on-surface font-semibold">Administrative Command Center</span>
+<span class="mx-2 text-outline-variant">|</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm border border-outline-variant">
+          Active Audit Cycle: Q3 FY 2024-25
+        </span>
+<span class="inline-flex items-center gap-1 text-label-sm text-on-surface-variant ml-1">
+<span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+          Live Sync: 2 mins ago
+        </span>
+</div>
+<!-- Quick Action CTA -->
+<div class="flex items-center space-x-space-sm">
+<button class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-surface-container-lowest border border-outline-variant hover:bg-surface-container-low text-primary text-label-md font-label-md rounded focus:ring-2 focus:ring-primary-container focus:outline-none transition-colors">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="picture_as_pdf">picture_as_pdf</span>
+<span>Export Executive PDF Briefing</span>
+</button>
+</div>
+</div>
+</section>
+<!-- ================= URGENT ALERT STRIP ================= -->
+<section class="bg-secondary-fixed/30 border-y border-secondary/20">
+<div class="max-w-container-max mx-auto px-gutter-desktop py-2.5">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-2.5">
+<!-- Left Banner Headline + Chips -->
+<div class="flex flex-col md:flex-row md:items-center gap-2 overflow-x-auto custom-scrollbar">
+<div class="flex items-center gap-1.5 text-secondary font-bold text-label-md shrink-0">
+<span class="material-symbols-outlined text-[20px] text-secondary" data-icon="warning">warning</span>
+<span>3 Critical Directives Requiring Immediate IAS/Nodal Action:</span>
+</div>
+<!-- Alert Badges / Chips -->
+<div class="flex items-center gap-2 shrink-0">
+<span class="inline-flex items-center gap-1 bg-surface-container-lowest text-on-surface text-label-sm px-2.5 py-1 rounded border border-error/30 font-medium">
+              🚨 5 Escalated Water Contamination Milestones Delayed (&gt;72 hrs) in Kanke &amp; Dhanbad
+            </span>
+<span class="inline-flex items-center gap-1 bg-surface-container-lowest text-on-surface text-label-sm px-2.5 py-1 rounded border border-secondary/40 font-medium">
+              ⚠️ 18 Citizen Grievances Pending Nodal Verification in Palamu Block
+            </span>
+<span class="inline-flex items-center gap-1 bg-surface-container-lowest text-on-surface text-label-sm px-2.5 py-1 rounded border border-primary-container/30 font-medium">
+              ⚡ ₹42.5 Lakhs CSR Tranche Clearance Awaiting Municipal Sign-off
+            </span>
+</div>
+</div>
+<!-- Right Action Button -->
+<a class="text-secondary hover:text-on-secondary-fixed-variant font-label-md font-semibold inline-flex items-center shrink-0 self-end lg:self-auto hover:underline" href="#all-alerts">
+          View All 14 Alerts →
+        </a>
+</div>
+</div>
+</section>
+<!-- ================= MAIN WORKSPACE CANVAS ================= -->
+<main class="flex-1 max-w-container-max w-full mx-auto px-gutter-desktop py-space-lg space-y-space-lg">
+<!-- ================= KEY METRIC GRID (2 ROWS) ================= -->
+<section class="space-y-space-md">
+<!-- Row 1: Citizen Grievance Core -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-label-lg font-label-lg text-primary font-bold tracking-tight uppercase flex items-center gap-1.5">
+<span class="w-2 h-2 rounded bg-primary"></span>
+            Citizen Grievance Core Registries
+          </h2>
+<span class="text-label-sm text-on-surface-variant font-medium">Updated Across All 24 Districts</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1 -->
+<div class="civic-card p-space-md flex flex-col justify-between hover:border-outline transition-colors">
+<div class="flex items-start justify-between">
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Total Problems Registered</span>
+<p class="text-display-lg font-display-lg text-primary mt-1">14,820</p>
+</div>
+<div class="w-9 h-9 rounded bg-surface-container-low text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="assignment">assignment</span>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center text-body-sm text-on-surface-variant">
+<span class="text-emerald-700 font-semibold mr-1">+342</span> this week across 24 districts
+            </div>
+</div>
+<!-- Card 2 -->
+<div class="civic-card p-space-md flex flex-col justify-between hover:border-outline transition-colors border-l-4 border-l-secondary">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Pending Verification</span>
+<span class="inline-block px-1.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-label-sm font-bold">Action Required</span>
+</div>
+<p class="text-display-lg font-display-lg text-secondary mt-1">184</p>
+</div>
+<div class="w-9 h-9 rounded bg-secondary-fixed/40 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="pending_actions">pending_actions</span>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center text-body-sm text-on-surface-variant">
+              Avg triage turnaround: <strong class="text-on-surface ml-1">4.2 hrs</strong>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="civic-card p-space-md flex flex-col justify-between hover:border-outline transition-colors">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Verified &amp; Dispatched</span>
+<span class="inline-block px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-label-sm font-bold">87.3% Resolution</span>
+</div>
+<p class="text-display-lg font-display-lg text-primary mt-1">12,940</p>
+</div>
+<div class="w-9 h-9 rounded bg-surface-container-low text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="verified">verified</span>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center text-body-sm text-on-surface-variant truncate">
+              Transferred to R&amp;D Academic or PHED Units
+            </div>
+</div>
+<!-- Card 4 -->
+<div class="civic-card p-space-md flex flex-col justify-between hover:border-outline transition-colors border-l-4 border-l-error">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant">High-Priority Redressals</span>
+<span class="inline-block px-1.5 py-0.5 rounded-full bg-error-container text-on-error-container text-label-sm font-bold">SLA &lt; 48 hrs</span>
+</div>
+<p class="text-display-lg font-display-lg text-error mt-1">42</p>
+</div>
+<div class="w-9 h-9 rounded bg-error-container/40 text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="priority_high">priority_high</span>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center text-body-sm text-on-surface-variant">
+              Involving critical public health &amp; safety
+            </div>
+</div>
+</div>
+</div>
+<!-- Row 2: Academic & Industry R&D Execution -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-label-lg font-label-lg text-primary font-bold tracking-tight uppercase flex items-center gap-1.5">
+<span class="w-2 h-2 rounded bg-tertiary-container"></span>
+            Academic &amp; Industry R&amp;D Translation Pipeline
+          </h2>
+<span class="text-label-sm text-on-surface-variant font-medium">Jharkhand R&amp;D Council Integration</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-space-sm">
+<!-- Metric 1 -->
+<div class="civic-card p-space-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Assigned Projects</span>
+<span class="material-symbols-outlined text-[18px] text-primary-container" data-icon="school">school</span>
+</div>
+<p class="text-headline-lg font-headline-lg text-primary mt-1">128</p>
+<p class="text-label-sm text-on-surface-variant mt-1 leading-tight line-clamp-2">BIT Mesra, NIT Jsr, IIT ISM</p>
+</div>
+<!-- Metric 2 -->
+<div class="civic-card p-space-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Pilots Active</span>
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="engineering">engineering</span>
+</div>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="text-headline-lg font-headline-lg text-on-surface">46</span>
+<span class="text-[10px] font-bold text-secondary bg-secondary-fixed px-1 rounded">In Field</span>
+</div>
+<p class="text-label-sm text-on-surface-variant mt-1 leading-tight">14 districts with sensors</p>
+</div>
+<!-- Metric 3 -->
+<div class="civic-card p-space-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Completed</span>
+<span class="material-symbols-outlined text-[18px] text-emerald-700" data-icon="task_alt">task_alt</span>
+</div>
+<p class="text-headline-lg font-headline-lg text-emerald-800 mt-1">82</p>
+<p class="text-label-sm text-on-surface-variant mt-1 leading-tight">Validated by Social Audit</p>
+</div>
+<!-- Metric 4 -->
+<div class="civic-card p-space-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">CSR Partners</span>
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="corporate_fare">corporate_fare</span>
+</div>
+<p class="text-headline-lg font-headline-lg text-primary mt-1">24</p>
+<p class="text-label-sm text-on-surface-variant mt-1 leading-tight">₹4.8 Cr Total Escrow</p>
+</div>
+<!-- Metric 5 -->
+<div class="civic-card p-space-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Patents Filed</span>
+<span class="material-symbols-outlined text-[18px] text-amber-600" data-icon="lightbulb">lightbulb</span>
+</div>
+<p class="text-headline-lg font-headline-lg text-primary mt-1">9</p>
+<p class="text-label-sm text-on-surface-variant mt-1 leading-tight">DPI Public Sector IP</p>
+</div>
+<!-- Metric 6 -->
+<div class="civic-card p-space-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Startups Spun</span>
+<span class="material-symbols-outlined text-[18px] text-tertiary-container" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<p class="text-headline-lg font-headline-lg text-primary mt-1">7</p>
+<p class="text-label-sm text-on-surface-variant mt-1 leading-tight">Jharkhand Incubation</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= MAIN SPLIT CONTENT (65% / 35%) ================= -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- ================= LEFT COLUMN (65% / col-span-8) ================= -->
+<div class="lg:col-span-8 space-y-space-lg">
+<!-- 1. District Redressal Velocity & Grievance Heatmap -->
+<div class="civic-card overflow-hidden">
+<!-- Card Header -->
+<div class="p-space-md border-b border-outline-variant flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-surface-container-lowest">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-primary font-bold">
+                District Redressal Velocity &amp; Grievance Heatmap
+              </h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                Synthesized operational throughput across local administrative bodies
+              </p>
+</div>
+<!-- Filters -->
+<div class="flex items-center space-x-space-xs">
+<select class="text-label-sm font-label-sm bg-surface-container-low border border-outline-variant rounded px-2.5 py-1.5 text-on-surface focus:ring-1 focus:ring-primary-container focus:outline-none">
+<option selected="">All 24 Districts</option>
+<option>North Chotanagpur</option>
+<option>South Chotanagpur</option>
+<option>Santhal Pargana</option>
+<option>Kolhan Division</option>
+<option>Palamu Division</option>
+</select>
+<select class="text-label-sm font-label-sm bg-surface-container-low border border-outline-variant rounded px-2.5 py-1.5 text-on-surface focus:ring-1 focus:ring-primary-container focus:outline-none">
+<option selected="">Last 30 Days</option>
+<option>Last 7 Days</option>
+<option>Current Quarter (Q3)</option>
+</select>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left text-body-sm font-body-sm">
+<thead class="bg-surface-container-low border-b border-outline-variant text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">
+<tr>
+<th class="px-space-md py-2.5" scope="col">District Name</th>
+<th class="px-space-md py-2.5 text-center" scope="col">Open Issues</th>
+<th class="px-space-md py-2.5 text-center" scope="col">AI Priority Score</th>
+<th class="px-space-md py-2.5 text-center" scope="col">R&amp;D Active</th>
+<th class="px-space-md py-2.5" scope="col">Turnaround Rate</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/50">
+<!-- District 1: Ranchi -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-space-md py-3 font-semibold text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                    Ranchi
+                    <span class="text-[10px] text-on-surface-variant font-normal bg-surface-container px-1 rounded">HQ Zone</span>
+</td>
+<td class="px-space-md py-3 text-center font-medium">1,240</td>
+<td class="px-space-md py-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-bold bg-amber-100 text-amber-900 border border-amber-300">
+                      78 / 100
+                    </span>
+</td>
+<td class="px-space-md py-3 text-center font-medium text-primary">14 Pilots</td>
+<td class="px-space-md py-3">
+<div class="flex items-center gap-2">
+<div class="w-28 bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-emerald-600 h-2 rounded-full" style="width: 91%"></div>
+</div>
+<span class="text-label-sm font-bold text-on-surface">91%</span>
+</div>
+</td>
+</tr>
+<!-- District 2: Dhanbad -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-space-md py-3 font-semibold text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                    Dhanbad
+                    <span class="text-[10px] text-secondary font-bold bg-secondary-fixed px-1 rounded">Mining Hub</span>
+</td>
+<td class="px-space-md py-3 text-center font-medium">980</td>
+<td class="px-space-md py-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-bold bg-red-100 text-red-900 border border-red-300">
+                      89 / 100
+                    </span>
+</td>
+<td class="px-space-md py-3 text-center font-medium text-primary">9 Pilots</td>
+<td class="px-space-md py-3">
+<div class="flex items-center gap-2">
+<div class="w-28 bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-amber-600 h-2 rounded-full" style="width: 74%"></div>
+</div>
+<span class="text-label-sm font-bold text-on-surface">74%</span>
+</div>
+</td>
+</tr>
+<!-- District 3: Palamu -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-space-md py-3 font-semibold text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+                    Palamu
+                  </td>
+<td class="px-space-md py-3 text-center font-medium">620</td>
+<td class="px-space-md py-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-bold bg-red-100 text-red-900 border border-red-300">
+                      92 / 100
+                    </span>
+</td>
+<td class="px-space-md py-3 text-center font-medium text-primary">5 Pilots</td>
+<td class="px-space-md py-3">
+<div class="flex items-center gap-2">
+<div class="w-28 bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-red-600 h-2 rounded-full" style="width: 63%"></div>
+</div>
+<span class="text-label-sm font-bold text-on-surface">63%</span>
+</div>
+</td>
+</tr>
+<!-- District 4: Khunti -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-space-md py-3 font-semibold text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                    Khunti
+                  </td>
+<td class="px-space-md py-3 text-center font-medium">310</td>
+<td class="px-space-md py-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-bold bg-slate-100 text-slate-800 border border-slate-300">
+                      44 / 100
+                    </span>
+</td>
+<td class="px-space-md py-3 text-center font-medium text-primary">6 Pilots</td>
+<td class="px-space-md py-3">
+<div class="flex items-center gap-2">
+<div class="w-28 bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-emerald-600 h-2 rounded-full" style="width: 88%"></div>
+</div>
+<span class="text-label-sm font-bold text-on-surface">88%</span>
+</div>
+</td>
+</tr>
+<!-- District 5: Bokaro -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-space-md py-3 font-semibold text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                    Bokaro
+                  </td>
+<td class="px-space-md py-3 text-center font-medium">540</td>
+<td class="px-space-md py-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-bold bg-amber-100 text-amber-900 border border-amber-300">
+                      65 / 100
+                    </span>
+</td>
+<td class="px-space-md py-3 text-center font-medium text-primary">8 Pilots</td>
+<td class="px-space-md py-3">
+<div class="flex items-center gap-2">
+<div class="w-28 bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-emerald-600 h-2 rounded-full" style="width: 82%"></div>
+</div>
+<span class="text-label-sm font-bold text-on-surface">82%</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Card Footer Note -->
+<div class="px-space-md py-2.5 bg-surface-container-lowest border-t border-outline-variant flex items-center justify-between text-label-sm text-on-surface-variant">
+<span>Showing top 5 of 24 reporting districts by operational volume.</span>
+<a class="text-primary font-semibold hover:underline flex items-center gap-0.5" href="overview-dashboard.html">
+              Open Full Heatmap GIS View <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 2. Recent High-Priority Citizen Escalations -->
+<div class="civic-card overflow-hidden">
+<div class="p-space-md border-b border-outline-variant flex items-center justify-between bg-surface-container-lowest">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm text-primary font-bold">
+                  Recent High-Priority Citizen Escalations
+                </h3>
+<span class="bg-error text-on-error text-label-sm font-bold px-2 py-0.5 rounded">Critical Action</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                Enforced by CM Secretariat Service Level Agreement (SLA) Tracker
+              </p>
+</div>
+<a class="text-secondary font-label-md font-semibold hover:underline" href="priority-queue.html">
+              View Priority Queue (42) →
+            </a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-body-sm font-body-sm">
+<thead class="bg-surface-container-low border-b border-outline-variant text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">
+<tr>
+<th class="px-space-md py-2.5" scope="col">Problem ID</th>
+<th class="px-space-md py-2.5" scope="col">Location</th>
+<th class="px-space-md py-2.5" scope="col">Category</th>
+<th class="px-space-md py-2.5" scope="col">SLA Countdown</th>
+<th class="px-space-md py-2.5" scope="col">Assigned Entity</th>
+<th class="px-space-md py-2.5 text-right" scope="col">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/50">
+<!-- Escalation 1 -->
+<tr class="hover:bg-surface-container-lowest">
+<td class="px-space-md py-3 font-mono font-bold text-primary">
+                    JH-2024-8902
+                  </td>
+<td class="px-space-md py-3">
+<span class="font-medium text-on-surface">Kanke Block</span>
+<span class="block text-label-sm text-on-surface-variant">Ranchi District</span>
+</td>
+<td class="px-space-md py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-medium bg-surface-container text-primary-container">
+                      Drinking Water (Arsenic)
+                    </span>
+</td>
+<td class="px-space-md py-3">
+<span class="inline-flex items-center gap-1 font-bold text-label-sm text-error bg-error-container px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]" data-icon="timer">timer</span>
+                      14 hrs left
+                    </span>
+</td>
+<td class="px-space-md py-3 text-on-surface">
+<span class="font-medium block">Team Jal-Drishti</span>
+<span class="text-label-sm text-on-surface-variant">BIT Mesra &amp; PHED</span>
+</td>
+<td class="px-space-md py-3 text-right">
+<button class="px-3 py-1 bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant text-label-sm font-semibold rounded transition-colors focus:ring-2 focus:ring-secondary focus:outline-none">
+                      Review
+                    </button>
+</td>
+</tr>
+<!-- Escalation 2 -->
+<tr class="hover:bg-surface-container-lowest">
+<td class="px-space-md py-3 font-mono font-bold text-primary">
+                    JH-2024-8841
+                  </td>
+<td class="px-space-md py-3">
+<span class="font-medium text-on-surface">Jharia Coalfield</span>
+<span class="block text-label-sm text-on-surface-variant">Dhanbad District</span>
+</td>
+<td class="px-space-md py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-medium bg-surface-container text-primary-container">
+                      Subsurface Gas Leak
+                    </span>
+</td>
+<td class="px-space-md py-3">
+<span class="inline-flex items-center gap-1 font-bold text-label-sm text-secondary bg-secondary-fixed px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]" data-icon="timer">timer</span>
+                      19 hrs left
+                    </span>
+</td>
+<td class="px-space-md py-3 text-on-surface">
+<span class="font-medium block">Geo-Safety Wing</span>
+<span class="text-label-sm text-on-surface-variant">IIT (ISM) Dhanbad</span>
+</td>
+<td class="px-space-md py-3 text-right">
+<button class="px-3 py-1 bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant text-label-sm font-semibold rounded transition-colors focus:ring-2 focus:ring-secondary focus:outline-none">
+                      Review
+                    </button>
+</td>
+</tr>
+<!-- Escalation 3 -->
+<tr class="hover:bg-surface-container-lowest">
+<td class="px-space-md py-3 font-mono font-bold text-primary">
+                    JH-2024-8719
+                  </td>
+<td class="px-space-md py-3">
+<span class="font-medium text-on-surface">Satbarwa PHC</span>
+<span class="block text-label-sm text-on-surface-variant">Palamu District</span>
+</td>
+<td class="px-space-md py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-medium bg-surface-container text-primary-container">
+                      Vaccine Cold-Chain Outage
+                    </span>
+</td>
+<td class="px-space-md py-3">
+<span class="inline-flex items-center gap-1 font-bold text-label-sm text-error bg-error-container px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]" data-icon="timer">timer</span>
+                      08 hrs left
+                    </span>
+</td>
+<td class="px-space-md py-3 text-on-surface">
+<span class="font-medium block">Solar IoT Rapid Unit</span>
+<span class="text-label-sm text-on-surface-variant">NIT Jamshedpur &amp; NHM</span>
+</td>
+<td class="px-space-md py-3 text-right">
+<button class="px-3 py-1 bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant text-label-sm font-semibold rounded transition-colors focus:ring-2 focus:ring-secondary focus:outline-none">
+                      Review
+                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-space-sm bg-surface-container-low border-t border-outline-variant flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-label-sm">
+              Average Redressal Velocity: <strong>38.4 hrs</strong> across critical health &amp; safety nodes.
+            </span>
+<div class="flex gap-1 text-label-sm">
+<span class="px-2 py-1 bg-surface-container-lowest border rounded text-primary font-bold">1</span>
+<span class="px-2 py-1 bg-surface-container-lowest border rounded text-on-surface-variant">2</span>
+<span class="px-2 py-1 bg-surface-container-lowest border rounded text-on-surface-variant">3</span>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= RIGHT COLUMN (35% / col-span-4) ================= -->
+<div class="lg:col-span-4 space-y-space-lg">
+<!-- 1. Quick Nodal Actions Widget -->
+<div class="civic-card p-space-md bg-surface-container-lowest border-t-4 border-t-primary-container">
+<div class="flex items-center justify-between mb-space-sm">
+<h3 class="text-headline-sm font-headline-sm text-primary font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[20px] text-primary" data-icon="bolt">bolt</span>
+              Quick Nodal Actions
+            </h3>
+<span class="text-label-sm text-on-surface-variant font-semibold">IAS Authorized</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-space-md">
+            Direct executive dispatches and financial approvals requiring nodal signature.
+          </p>
+<div class="space-y-space-xs">
+<!-- Button 1 -->
+<button class="w-full h-min-touch-target flex items-center justify-between px-space-md bg-primary hover:bg-primary-container text-on-primary rounded font-label-md font-semibold transition-colors focus:ring-2 focus:ring-primary-container focus:outline-none">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+                Verify Batch Grievances
+              </span>
+<span class="bg-secondary px-2 py-0.5 rounded-full text-label-sm font-bold text-on-secondary">18</span>
+</button>
+<!-- Button 2 -->
+<button class="w-full h-min-touch-target flex items-center justify-between px-space-md bg-surface-container-lowest border border-outline-variant hover:bg-surface-container-low text-primary rounded font-label-md font-semibold transition-colors focus:ring-2 focus:ring-primary-container focus:outline-none">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="account_balance_wallet">account_balance_wallet</span>
+                Sanction Phase-2 Escrow
+              </span>
+<span class="material-symbols-outlined text-[18px] text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Button 3 -->
+<button class="w-full h-min-touch-target flex items-center justify-between px-space-md bg-surface-container-lowest border border-outline-variant hover:bg-surface-container-low text-primary rounded font-label-md font-semibold transition-colors focus:ring-2 focus:ring-primary-container focus:outline-none">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="campaign">campaign</span>
+                Dispatch Field Inspection Directive
+              </span>
+<span class="material-symbols-outlined text-[18px] text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Button 4 -->
+<button class="w-full h-min-touch-target flex items-center justify-between px-space-md bg-surface-container-lowest border border-outline-variant hover:bg-surface-container-low text-primary rounded font-label-md font-semibold transition-colors focus:ring-2 focus:ring-primary-container focus:outline-none">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-tertiary-container" data-icon="summarize">summarize</span>
+                Generate District Scorecard
+              </span>
+<span class="material-symbols-outlined text-[18px] text-outline" data-icon="download">download</span>
+</button>
+</div>
+</div>
+<!-- 2. Multi-Sector Problem Distribution Card -->
+<div class="civic-card p-space-md bg-surface-container-lowest">
+<div class="flex items-center justify-between mb-space-sm">
+<h3 class="text-headline-sm font-headline-sm text-primary font-bold">
+              Multi-Sector Distribution
+            </h3>
+<span class="text-label-sm text-on-surface-variant font-medium">14,820 Total</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-space-md">
+            Grievance categorization driven by automated NLP tagging and field audit verification.
+          </p>
+<div class="space-y-space-sm">
+<!-- Sector 1 -->
+<div>
+<div class="flex justify-between text-body-sm mb-1">
+<span class="font-medium text-on-surface flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+                  Drinking Water &amp; Sanitation
+                </span>
+<span class="font-bold text-primary">38% <span class="text-on-surface-variant font-normal text-label-sm">(5,631)</span></span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-primary-container h-2 rounded-full" style="width: 38%"></div>
+</div>
+</div>
+<!-- Sector 2 -->
+<div>
+<div class="flex justify-between text-body-sm mb-1">
+<span class="font-medium text-on-surface flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+                  Rural Electrification
+                </span>
+<span class="font-bold text-secondary">24% <span class="text-on-surface-variant font-normal text-label-sm">(3,556)</span></span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-secondary h-2 rounded-full" style="width: 24%"></div>
+</div>
+</div>
+<!-- Sector 3 -->
+<div>
+<div class="flex justify-between text-body-sm mb-1">
+<span class="font-medium text-on-surface flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-700"></span>
+                  Agritech &amp; Irrigation
+                </span>
+<span class="font-bold text-emerald-800">18% <span class="text-on-surface-variant font-normal text-label-sm">(2,667)</span></span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-emerald-700 h-2 rounded-full" style="width: 18%"></div>
+</div>
+</div>
+<!-- Sector 4 -->
+<div>
+<div class="flex justify-between text-body-sm mb-1">
+<span class="font-medium text-on-surface flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-container"></span>
+                  Health &amp; Cold Chain
+                </span>
+<span class="font-bold text-tertiary">12% <span class="text-on-surface-variant font-normal text-label-sm">(1,778)</span></span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-tertiary-container h-2 rounded-full" style="width: 12%"></div>
+</div>
+</div>
+<!-- Sector 5 -->
+<div>
+<div class="flex justify-between text-body-sm mb-1">
+<span class="font-medium text-on-surface flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-outline"></span>
+                  Roads &amp; Infrastructure
+                </span>
+<span class="font-bold text-on-surface">8% <span class="text-on-surface-variant font-normal text-label-sm">(1,188)</span></span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-outline h-2 rounded-full" style="width: 8%"></div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-outline-variant flex items-center justify-between text-label-sm text-on-surface-variant">
+<span>Model: Jharkhand NLP Indic v2.1</span>
+<a class="text-primary font-semibold hover:underline" href="ai-analysis.html">View AI Deep-Dive →</a>
+</div>
+</div>
+<!-- 3. System Operational Health Card -->
+<div class="civic-card p-space-md bg-surface-container-lowest">
+<div class="flex items-center justify-between mb-space-sm">
+<h3 class="text-headline-sm font-headline-sm text-primary font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-emerald-700" data-icon="health_and_safety">health_and_safety</span>
+              System Operational Health
+            </h3>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-label-sm font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+              All Green
+            </span>
+</div>
+<div class="space-y-space-sm text-body-sm font-body-sm">
+<!-- Health Item 1 -->
+<div class="flex items-center justify-between py-1.5 border-b border-outline-variant/40">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+<span class="font-medium text-on-surface">NIC State Data Center Gateway</span>
+</div>
+<span class="text-label-sm font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                Operational (99.98%)
+              </span>
+</div>
+<!-- Health Item 2 -->
+<div class="flex items-center justify-between py-1.5 border-b border-outline-variant/40">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+<span class="font-medium text-on-surface">Pragya Kendra Telemetry Ingestion</span>
+</div>
+<span class="text-label-sm font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                Live (420 req/sec)
+              </span>
+</div>
+<!-- Health Item 3 -->
+<div class="flex items-center justify-between py-1.5">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+<span class="font-medium text-on-surface">Aadhaar/DigiLocker Verification API</span>
+</div>
+<span class="text-label-sm font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                Active (UIDAI STQC)
+              </span>
+</div>
+</div>
+<div class="mt-space-md pt-2 border-t border-outline-variant flex items-center justify-between text-label-sm text-on-surface-variant">
+<span>Audit Trail Token: <code class="font-mono text-primary font-bold">0x9F4C...B21</code></span>
+<a class="text-primary hover:underline font-semibold" href="overview-dashboard.html">Audit Logs</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- ================= INSTITUTIONAL FOOTER (From Shared Components JSON) ================= -->
+<footer class="bg-primary border-t border-primary-container text-on-primary mt-space-2xl">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-gutter-desktop py-space-md max-w-container-max mx-auto gap-4">
+<!-- Brand & Copyright -->
+<div class="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-space-md text-center sm:text-left">
+<span class="text-label-lg font-label-lg font-bold text-on-primary">
+          झारखंड समाधान सेतु
+        </span>
+<span class="hidden sm:inline text-primary-fixed-dim">|</span>
+<span class="text-body-sm font-body-sm text-surface-container-high">
+          © 2024 Government of Jharkhand. Designed, Developed and Hosted by National Informatics Centre (NIC). All Rights Reserved.
+        </span>
+</div>
+<!-- Links Cluster -->
+<div class="flex flex-wrap items-center justify-center gap-x-space-md gap-y-1 text-label-sm font-label-sm">
+<a class="text-surface-container-high hover:text-secondary-fixed transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-fixed" href="#citizen-charter">
+          Citizen Charter
+        </a>
+<a class="text-surface-container-high hover:text-secondary-fixed transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-fixed" href="#rti">
+          RTI Disclosures
+        </a>
+<a class="text-surface-container-high hover:text-secondary-fixed transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-fixed" href="#stqc">
+          Security STQC Certified
+        </a>
+<a class="text-secondary-fixed underline underline-offset-4 focus:outline-none focus:ring-1 focus:ring-secondary-fixed font-bold" href="#helpline">
+          Toll-Free Helpline: 181
+        </a>
+<a class="text-surface-container-high hover:text-secondary-fixed transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-fixed" href="#privacy">
+          Privacy Policy
+        </a>
+<a class="text-surface-container-high hover:text-secondary-fixed transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-fixed" href="#terms">
+          Terms of Service
+        </a>
+</div>
+</div>
+</footer>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+  requireRole('government', 'login.html');
+</script>
+</body></html>
