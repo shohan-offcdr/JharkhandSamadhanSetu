@@ -228,6 +228,8 @@
 <span id="countdown">00:59</span>
 </div>
 </div>
+<!-- Firebase's invisible reCAPTCHA attaches here -- renders nothing visible -->
+<div id="recaptcha-container"></div>
 </div>
 <!-- Remember me & Assistive Link -->
 <div class="flex items-center justify-between pt-1">
@@ -254,7 +256,7 @@
 <div class="mt-space-md text-center space-y-space-xs">
 <div>
 <span class="text-body-sm font-body-sm text-on-surface-variant">New to Samadhan Setu? </span>
-<a class="text-body-sm font-body-sm font-bold text-primary hover:underline" href="#">Register here / नया खाता बनाएं</a>
+<a class="text-body-sm font-body-sm font-bold text-primary hover:underline" href="register.html">Register here / नया खाता बनाएं</a>
 </div>
 <div class="pt-space-xxs">
 <a class="inline-flex items-center gap-1 text-label-sm font-label-sm font-semibold text-secondary hover:underline" href="tel:181">
@@ -348,12 +350,12 @@
     }
 
     let countdownInterval;
-    function triggerOtp() {
+
+    function startOtpCountdown() {
       const btn = document.getElementById('getOtpBtn');
       const timerSpan = document.getElementById('otpTimer');
       const countdownEl = document.getElementById('countdown');
-      
-      btn.disabled = true;
+
       btn.classList.add('opacity-50', 'no-underline', 'cursor-not-allowed');
       timerSpan.classList.remove('hidden');
       timerSpan.classList.add('flex');
@@ -377,28 +379,123 @@
       }, 1000);
     }
 
-    function handleFormSubmit(event) {
+    function currentTab() {
+      return document.getElementById('tab-mobile').getAttribute('aria-selected') === 'true' ? 'mobile' : 'email';
+    }
+
+    // Real Firebase SMS OTP (mobile tab) + real Resend-backed OTP (email tab).
+    // Your backend's address -- change this if you serve/deploy it somewhere else.
+    const API_BASE = 'http://localhost:4000';
+
+    async function triggerOtp() {
+      const btn = document.getElementById('getOtpBtn');
+
+      if (currentTab() === 'email') {
+        const email = document.getElementById('email-address').value.trim();
+        btn.disabled = true;
+        try {
+          const res = await fetch(`${API_BASE}/api/auth/send-email-otp`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'OTP भेजने में समस्या / Failed to send OTP');
+          showToast(`OTP भेजा गया ${email} पर / OTP sent to ${email}`);
+          startOtpCountdown();
+        } catch (err) {
+          showToast(err.message || 'सर्वर से जुड़ नहीं पाए / Could not reach the server -- is it running?');
+          btn.disabled = false;
+        }
+        return;
+      }
+
+      if (!window.__firebaseAuth) {
+        showToast('अभी लोड हो रहा है, कृपया एक क्षण प्रतीक्षा करें / Still loading, please wait a moment');
+        return;
+      }
+
+      const mobile = document.getElementById('mobile-number').value.trim();
+      btn.disabled = true;
+      try {
+        await window.__firebaseAuth.sendOtp(mobile);
+        showToast(`OTP भेजा गया +91 ${mobile} पर / OTP sent to +91 ${mobile}`);
+        startOtpCountdown();
+      } catch (err) {
+        showToast(err.message);
+        btn.disabled = false;
+      }
+    }
+
+    async function handleFormSubmit(event) {
       event.preventDefault();
       const otp = document.getElementById('otp-code').value;
       if (otp.length < 6) {
-        alert('कृपया 6 अंकों का ओटीपी दर्ज करें / Please enter a valid 6-digit OTP.');
+        showToast('कृपया 6 अंकों का ओटीपी दर्ज करें / Please enter a valid 6-digit OTP.');
         return;
       }
+
       const mobile = document.getElementById('mobile-number').value;
       const email = document.getElementById('email-address').value;
-      const identifier = mobile || email || 'Citizen';
 
-      // Demo login - creates a local session.
-      // LATER: swap for a real OTP-verify API call to your backend.
-      API.login('citizen', identifier);
+      // Email tab: real backend verification against the code Resend just emailed.
+      if (currentTab() === 'email') {
+        try {
+          const res = await fetch(`${API_BASE}/api/auth/verify-email-otp`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email.trim(), code: otp }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'सत्यापन विफल / Verification failed');
+          await findOrCreateAndRedirect({ email: data.email });
+        } catch (err) {
+          showToast(err.message || 'सर्वर से जुड़ नहीं पाए / Could not reach the server -- is it running?');
+        }
+        return;
+      }
 
-      showToast('OTP verified! Redirecting... / ओटीपी सत्यापित!');
-      setTimeout(() => {
-        window.location.href = 'grievance-step1.html';
-      }, 700);
+      // Mobile tab (or Firebase not loaded for some reason): real Firebase verification.
+      if (!window.__firebaseAuth) {
+        const identifier = mobile || 'Citizen';
+        API.login('citizen', identifier);
+        showToast('OTP सत्यापित! Redirecting... / OTP verified!');
+        setTimeout(() => { window.location.href = 'grievance-step1.html'; }, 700);
+        return;
+      }
+
+      // Mobile tab: real Firebase verification.
+      try {
+        const user = await window.__firebaseAuth.verifyOtp(otp);
+        await findOrCreateAndRedirect({ phone: user.phoneNumber });
+      } catch (err) {
+        showToast(err.message);
+      }
+    }
+
+    // Looks up (or quietly creates) the backend Citizen record for whoever
+    // just verified their OTP, then starts the local session and redirects.
+    // Keeps "log in without registering first" working sensibly instead of
+    // requiring everyone go through the Register page.
+    async function findOrCreateAndRedirect(identity) {
+      try {
+        const res = await fetch(`${API_BASE}/api/citizens/find-or-create`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(identity),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'खाता खोजने में समस्या / Could not look up account');
+        API.login('citizen', data.email || data.phone);
+        showToast('OTP सत्यापित! Redirecting... / OTP verified!');
+        setTimeout(() => { window.location.href = 'grievance-step1.html'; }, 700);
+      } catch (err) {
+        showToast(err.message || 'सर्वर से जुड़ नहीं पाए / Could not reach the server -- is it running?');
+      }
     }
   </script>
 <script src="../js/mock-data.js"></script>
 <script src="../js/api.js"></script>
 <script src="../js/shared.js"></script>
+<script src="../js/firebase-config.js" type="module"></script>
 </body></html>

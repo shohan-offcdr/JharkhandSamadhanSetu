@@ -1,0 +1,25 @@
+{
+  "name": "jharkhand-samadhan-setu-server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Backend API for Jharkhand Samadhan Setu. Starting with Cloudinary-backed file uploads for grievance photo evidence.",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "cloudinary": "^2.5.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "mongoose": "^8.8.3",
+    "multer": "^1.4.5-lts.1",
+    "resend": "^4.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}

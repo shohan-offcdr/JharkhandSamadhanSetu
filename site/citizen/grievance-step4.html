@@ -415,7 +415,7 @@
       window.location.href = 'grievance-step3.html';
     });
 
-    document.getElementById('btn-submit-grievance').addEventListener('click', () => {
+    document.getElementById('btn-submit-grievance').addEventListener('click', async () => {
       const description = textarea.value.trim();
       const consent = document.getElementById('declaration-consent').checked;
 
@@ -433,22 +433,32 @@
         title: draft.title,
         district: draft.district,
         block: draft.block,
-        ward: draft.ward,
+        gramPanchayat: draft.ward,
         pincode: draft.pincode,
         landmark: draft.landmark,
         gpsLat: draft.gpsLat,
         gpsLng: draft.gpsLng,
         evidenceFileName: draft.evidenceFileName,
+        photos: draft.photos || [],
         durationDays: draft.durationDays,
         scaleOfImpact: draft.scaleOfImpact,
         description,
       };
 
-      // This is the moment where, once your backend is connected,
-      // API.submitProblem() will call your real /api/problems route
-      // (AI categorization + duplicate detection) instead of the
-      // local demo logic in js/api.js.
-      const saved = API.submitProblem(problem);
+      const submitButton = document.getElementById('btn-submit-grievance');
+      submitButton.disabled = true;
+      submitButton.classList.add('opacity-60', 'cursor-wait');
+
+      let saved;
+      try {
+        saved = await API.submitProblem(problem);
+      } catch (error) {
+        submitButton.disabled = false;
+        submitButton.classList.remove('opacity-60', 'cursor-wait');
+        showToast(error.message);
+        return;
+      }
+
       API.clearDraft();
 
       sessionStorage.setItem('jss_last_submitted_id', saved.id);

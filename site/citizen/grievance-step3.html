@@ -281,7 +281,7 @@
               </span>
 </div>
 </div>
-<input accept="image/*,video/*" class="hidden" id="evidence-file-input" type="file"/>
+<input accept="image/jpeg,image/png,image/webp,image/heic" class="hidden" id="evidence-file-input" type="file"/>
 <!-- Uploaded Evidence Preview Card (High-density institutional card) -->
 <div class="mt-space-sm bg-surface-container-low border border-[#CBD5E1] rounded-lg p-3 flex items-center justify-between hidden" id="evidence-preview">
 <div class="flex items-center gap-3">
@@ -485,7 +485,7 @@
     const thumb = document.getElementById('evidence-thumb');
     const filenameEl = document.getElementById('evidence-filename');
     const filesizeEl = document.getElementById('evidence-filesize');
-    let uploadedFileName = null;
+    let selectedFile = null;
 
     dropzone.addEventListener('click', () => fileInput.click());
     dropzone.addEventListener('keydown', (e) => {
@@ -495,7 +495,7 @@
     fileInput.addEventListener('change', () => {
       const file = fileInput.files[0];
       if (!file) return;
-      uploadedFileName = file.name;
+      selectedFile = file;
       filenameEl.textContent = file.name;
       filesizeEl.textContent = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
       if (file.type.startsWith('image/')) {
@@ -511,18 +511,18 @@
 
     document.getElementById('btn-remove-evidence').addEventListener('click', () => {
       fileInput.value = '';
-      uploadedFileName = null;
+      selectedFile = null;
       preview.classList.add('hidden');
       dropzone.classList.remove('hidden');
     });
 
     // Voice-note style follow-up is on step 4; here we just save evidence + details.
-    document.getElementById('evidence-form').addEventListener('submit', () => {
+    document.getElementById('evidence-form').addEventListener('submit', async () => {
       const duration = document.getElementById('duration-count').value;
       const durationUnit = document.getElementById('duration-unit').value;
       const scaleInput = document.querySelector('input[name="impact_scale"]:checked');
 
-      if (!uploadedFileName) {
+      if (!selectedFile) {
         showToast('कृपया एक फोटो/वीडियो अपलोड करें / Please upload a photo or video');
         return;
       }
@@ -543,11 +543,24 @@
       const unitMultiplier = { days: 1, weeks: 7, months: 30 };
       const durationDays = Number(duration) * (unitMultiplier[durationUnit] || 1);
 
-      API.saveDraft({
-        evidenceFileName: uploadedFileName,
-        durationDays,
-        scaleOfImpact: scaleLabels[scaleInput.value],
-      });
+      const nextButton = document.getElementById('btn-next-step');
+      nextButton.disabled = true;
+      nextButton.classList.add('opacity-60', 'cursor-wait');
+
+      try {
+        const photos = await API.uploadEvidence(selectedFile);
+        API.saveDraft({
+          evidenceFileName: selectedFile.name,
+          photos,
+          durationDays,
+          scaleOfImpact: scaleLabels[scaleInput.value],
+        });
+      } catch (error) {
+        nextButton.disabled = false;
+        nextButton.classList.remove('opacity-60', 'cursor-wait');
+        showToast(error.message);
+        return;
+      }
       window.location.href = 'grievance-step4.html';
     });
   });
