@@ -272,7 +272,7 @@
               Tap to upload or take photo / फोटो लें या फाइल अपलोड करें
             </p>
 <p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm mx-auto">
-              Supported: JPG, PNG, MP4 up to 25MB. Geotagged images accelerate nodal verification.
+              Supported: JPG, PNG, WEBP or HEIC up to 5MB. Geotagged images accelerate nodal verification.
             </p>
 <div class="mt-3 flex items-center justify-center gap-2">
 <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-primary bg-surface-container-lowest px-2.5 py-1 rounded border border-outline-variant">
@@ -540,7 +540,7 @@
       };
 
       // Convert duration to days for a consistent priority calculation later.
-      const unitMultiplier = { days: 1, weeks: 7, months: 30 };
+      const unitMultiplier = { days: 1, weeks: 7, months: 30, years: 365 };
       const durationDays = Number(duration) * (unitMultiplier[durationUnit] || 1);
 
       const nextButton = document.getElementById('btn-next-step');

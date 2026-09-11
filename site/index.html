@@ -664,7 +664,13 @@
     });
   });
 
-  // ---------- Grievance tracker (reads the same localStorage "table" the rest of the demo uses) ----------
+  // ---------- Grievance tracker (reads submitted grievances from the API) ----------
+  const TRACK_API_BASE = window.JSS_API_BASE_URL || (
+    window.location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(window.location.hostname)
+      ? `http://${window.location.hostname || 'localhost'}:4000/api`
+      : '/api'
+  );
+
   function escapeHtml(str) {
     const d = document.createElement('div');
     d.textContent = str;
@@ -679,7 +685,7 @@
     };
     return map[status] || 'bg-surface-container text-on-surface-variant';
   }
-  document.getElementById('trackForm').addEventListener('submit', (e) => {
+  document.getElementById('trackForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const input = document.getElementById('trackInput');
     const result = document.getElementById('trackResult');
@@ -688,8 +694,28 @@
       showToast('कृपया शिकायत क्रमांक दर्ज करें / Please enter a grievance ID');
       return;
     }
-    const problem = API.getProblemById(id);
     result.classList.remove('hidden');
+    result.innerHTML = '<div class="text-body-md font-body-md text-on-surface-variant">शिकायत खोजी जा रही है... / Searching for grievance...</div>';
+
+    let problem;
+    try {
+      const response = await fetch(`${TRACK_API_BASE}/problems/${encodeURIComponent(id)}`);
+      if (response.status === 404) {
+        problem = null;
+      } else {
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.error || 'Could not search for the grievance');
+        problem = data;
+      }
+    } catch (error) {
+      result.innerHTML = `
+        <div class="flex items-center gap-space-sm text-body-md font-body-md text-error">
+          <span class="material-symbols-outlined">cloud_off</span>
+          <span>सर्वर से संपर्क नहीं हो सका। कृपया बाद में पुनः प्रयास करें। / Could not reach the grievance server. Please try again later.</span>
+        </div>`;
+      return;
+    }
+
     if (problem) {
       result.innerHTML = `
         <div class="flex flex-wrap items-start justify-between gap-space-sm">

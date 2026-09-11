@@ -661,17 +661,17 @@ The edge module performs Fast Fourier Transforms (FFT) and transient peak cross-
 </div>
 <div class="flex items-center gap-space-sm w-full sm:w-auto justify-end">
 <!-- Tertiary Outline: Save Draft -->
-<button class="h-min-touch-target px-space-md rounded border border-outline-variant hover:bg-surface-container-low text-on-surface font-label-lg font-semibold transition-colors flex items-center justify-center gap-1.5" type="button">
+<button id="saveProposalDraft" class="h-min-touch-target px-space-md rounded border border-outline-variant hover:bg-surface-container-low text-on-surface font-label-lg font-semibold transition-colors flex items-center justify-center gap-1.5" type="button">
 <span class="material-symbols-outlined text-[18px]" data-icon="save">save</span>
           Save Draft
         </button>
 <!-- Tertiary Outline: Preview Proposal -->
-<button class="h-min-touch-target px-space-md rounded border border-outline-variant hover:bg-surface-container-low text-on-surface font-label-lg font-semibold transition-colors flex items-center justify-center gap-1.5" type="button">
+<button id="previewProposal" class="h-min-touch-target px-space-md rounded border border-outline-variant hover:bg-surface-container-low text-on-surface font-label-lg font-semibold transition-colors flex items-center justify-center gap-1.5" type="button">
 <span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span>
           Preview Proposal
         </button>
 <!-- Primary CTA: Submit Proposal (Warm amber/terracotta accent) -->
-<button class="h-min-touch-target px-space-lg rounded bg-secondary hover:bg-[#8C5F1F] text-white font-label-lg font-semibold transition-all flex items-center justify-center gap-2 focus:ring-2 focus:ring-primary focus:ring-offset-2" type="button">
+<button id="submitProposal" class="h-min-touch-target px-space-lg rounded bg-secondary hover:bg-[#8C5F1F] text-white font-label-lg font-semibold transition-all flex items-center justify-center gap-2 focus:ring-2 focus:ring-primary focus:ring-offset-2" type="button">
 <span>Submit Proposal for Faculty &amp; Govt Review / प्रस्ताव जमा करें</span>
 <span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
 </button>
@@ -727,6 +727,45 @@ The edge module performs Fast Fourier Transforms (FFT) and transient peak cross-
           }
         });
       }
+
+      const draftKey = 'jss_student_proposal_draft';
+      const fields = ['exec-summary', 'beneficiaries', 'water-saved', 'handover-plan'];
+      const readDraft = () => Object.fromEntries(fields.map((id) => [id, document.getElementById(id).value]));
+      const saveDraft = () => {
+        localStorage.setItem(draftKey, JSON.stringify(readDraft()));
+        showToast('Draft saved / ड्राफ्ट सुरक्षित है');
+      };
+      const saved = JSON.parse(localStorage.getItem(draftKey) || '{}');
+      fields.forEach((id) => {
+        if (saved[id] && document.getElementById(id)) document.getElementById(id).value = saved[id];
+      });
+      document.getElementById('saveProposalDraft').addEventListener('click', saveDraft);
+      document.getElementById('previewProposal').addEventListener('click', () => {
+        const summary = document.getElementById('exec-summary').value.trim();
+        if (!summary) {
+          showToast('Add an executive summary first / पहले सारांश लिखें');
+          return;
+        }
+        const preview = window.open('', '_blank', 'noopener,noreferrer');
+        if (preview) {
+          preview.document.write(`<title>Proposal Preview</title><h1>Proposal Preview</h1><h2>Executive Summary</h2><pre style="white-space:pre-wrap;font:16px sans-serif">${summary.replace(/[&<>]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[char]))}</pre>`);
+          preview.document.close();
+        }
+      });
+      document.getElementById('submitProposal').addEventListener('click', () => {
+        const summary = document.getElementById('exec-summary').value.trim();
+        if (summary.length < 50) {
+          showToast('Executive summary must be at least 50 characters');
+          return;
+        }
+        if (!document.getElementById('mentor-attest').checked) {
+          showToast('Please complete the mentor attestation');
+          return;
+        }
+        localStorage.setItem('jss_student_proposal_submitted', JSON.stringify({ ...readDraft(), submittedAt: new Date().toISOString() }));
+        localStorage.removeItem(draftKey);
+        showToast('Proposal submitted for review / प्रस्ताव समीक्षा के लिए जमा हुआ');
+      });
     });
   </script>
 <script src="../js/mock-data.js"></script>

@@ -1,8 +1,12 @@
 const express = require("express");
 const Problem = require("../models/Problem");
-const { fakeCategorize, fakePriorityScore, generateProblemId } = require("../utils/categorize");
+const { analyzeProblem, similarityScore, generateProblemId } = require("../utils/categorize");
 
 const router = express.Router();
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
 // GET /api/problems?district=Ranchi&category=...&status=...&sortBy=priority
 router.get("/", async (req, res) => {
@@ -38,12 +42,13 @@ router.get("/:id", async (req, res) => {
 
 // POST /api/problems  -- same auto-fill behaviour as api.js's submitProblem()
 router.post("/", async (req, res) => {
-  const { title, description, district, block, gramPanchayat, pincode, scaleOfImpact, durationDays, photos, titleHi } = req.body;
+  const { title, description, district, block, gramPanchayat, pincode, landmark, gpsLat, gpsLng, evidenceFileName, scaleOfImpact, durationDays, photos, titleHi } = req.body;
 
   if (!title || !description || !district) {
     return res.status(400).json({ error: "title, description और district आवश्यक हैं / title, description and district are required" });
   }
 
+  const analysis = analyzeProblem({ title, description, district, scaleOfImpact, durationDays });
   const base = {
     title,
     titleHi,
@@ -52,15 +57,35 @@ router.post("/", async (req, res) => {
     block,
     gramPanchayat,
     pincode,
+    landmark,
+    gpsLat,
+    gpsLng,
+    evidenceFileName,
     scaleOfImpact,
     durationDays,
     photos,
-    category: fakeCategorize(`${title} ${description}`),
+    category: analysis.category,
     status: "Pending Verification",
     reportCount: 1,
     createdAt: new Date().toISOString().slice(0, 10),
   };
-  base.priorityScore = fakePriorityScore(base);
+  base.priorityScore = analysis.priorityScore;
+  base.analysisVersion = analysis.analysisVersion;
+
+  const candidates = await Problem.find({ district: new RegExp(`^${escapeRegExp(analysis.district)}$`, "i"), category: base.category }).limit(100);
+  const duplicate = candidates
+    .map((candidate) => ({ candidate, score: similarityScore(analysis.tokens, new Set(`${candidate.title} ${candidate.description}`.toLowerCase().match(/[a-z0-9\u0900-\u097f]{3,}/g) || [])) }))
+    .sort((a, b) => b.score - a.score)[0];
+
+  if (duplicate && duplicate.score >= 0.45) {
+    const priorityScore = Math.min(100, Math.max(base.priorityScore, Number(duplicate.candidate.priorityScore || 0) + 5));
+    const updated = await Problem.findOneAndUpdate(
+      { _id: duplicate.candidate._id },
+      { $inc: { reportCount: 1 }, $set: { duplicateOf: duplicate.candidate.id, priorityScore } },
+      { new: true }
+    );
+    return res.status(200).json({ ...updated.toJSON(), duplicate: true, similarity: Number(duplicate.score.toFixed(2)) });
+  }
 
   // Human-facing IDs are randomly generated, like the frontend mock -- retry a
   // couple of times on the rare collision instead of trusting randomness once.

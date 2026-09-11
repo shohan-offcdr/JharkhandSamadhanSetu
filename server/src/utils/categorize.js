@@ -11,6 +11,28 @@ function fakeCategorize(text) {
   return "Other";
 }
 
+function analyzeProblem({ title, description, district, scaleOfImpact, durationDays }) {
+  const text = `${title || ""} ${description || ""}`.toLowerCase();
+  const category = fakeCategorize(text);
+  const priorityScore = fakePriorityScore({ scaleOfImpact, durationDays });
+  const tokens = new Set(text.match(/[a-z0-9\u0900-\u097f]{3,}/g) || []);
+  return {
+    category,
+    priorityScore,
+    district: String(district || "").trim().toLowerCase(),
+    tokens,
+    analysisVersion: "local-semantic-v1",
+  };
+}
+
+function similarityScore(left, right) {
+  const union = new Set([...left, ...right]);
+  if (!union.size) return 0;
+  let overlap = 0;
+  for (const token of left) if (right.has(token)) overlap += 1;
+  return overlap / union.size;
+}
+
 const SCALE_WEIGHTS = {
   "Individual Household": 10,
   "Specific Neighbourhood": 30,
@@ -31,4 +53,4 @@ function generateProblemId() {
   return `JH-${year}-${suffix}`;
 }
 
-module.exports = { fakeCategorize, fakePriorityScore, generateProblemId };
+module.exports = { fakeCategorize, fakePriorityScore, analyzeProblem, similarityScore, generateProblemId };

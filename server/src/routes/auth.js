@@ -77,6 +77,11 @@ router.post("/verify-email-otp", async (req, res) => {
       return res.status(400).json({ error: "OTP समाप्त हो गया, नया OTP भेजें / OTP expired or not found, request a new one" });
     }
 
+    if (record.expiresAt.getTime() <= Date.now()) {
+      await EmailOtp.deleteOne({ _id: record._id });
+      return res.status(400).json({ error: "OTP समाप्त हो गया, नया OTP भेजें / OTP expired, request a new one" });
+    }
+
     if (record.attempts >= MAX_ATTEMPTS) {
       await EmailOtp.deleteOne({ _id: record._id });
       return res.status(429).json({ error: "बहुत अधिक गलत प्रयास, नया OTP भेजें / Too many incorrect attempts, request a new OTP" });

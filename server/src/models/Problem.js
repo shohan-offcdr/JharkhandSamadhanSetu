@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const STATUS_VALUES = ["Pending Verification", "Verified", "Escalated", "Resolved"];
+const STATUS_VALUES = ["Pending Verification", "Verified", "Escalated", "Rejected", "Resolved"];
 
 const problemSchema = new mongoose.Schema(
   {
@@ -15,6 +15,10 @@ const problemSchema = new mongoose.Schema(
     block: { type: String },
     gramPanchayat: { type: String },
     pincode: { type: String },
+    landmark: { type: String },
+    gpsLat: { type: Number },
+    gpsLng: { type: Number },
+    evidenceFileName: { type: String },
     scaleOfImpact: {
       type: String,
       enum: ["Individual Household", "Specific Neighbourhood", "Village", "Multiple Villages", "Entire District"],
@@ -25,10 +29,15 @@ const problemSchema = new mongoose.Schema(
       {
         url: String,
         publicId: String,
+        width: Number,
+        height: Number,
+        bytes: Number,
       },
     ],
     reportCount: { type: Number, default: 1 },
+    duplicateOf: { type: String },
     priorityScore: { type: Number, default: 0 },
+    analysisVersion: { type: String, default: "local-semantic-v1" },
     status: { type: String, enum: STATUS_VALUES, default: "Pending Verification" },
     createdAt: { type: String }, // kept as YYYY-MM-DD string to match existing frontend display code
   },

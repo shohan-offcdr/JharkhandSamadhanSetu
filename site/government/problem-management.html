@@ -243,13 +243,13 @@
 </label>
 <div class="relative flex items-center">
 <span class="material-symbols-outlined absolute left-3 text-outline pointer-events-none">search</span>
-<input class="w-full h-10 pl-10 pr-4 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container" placeholder="Search by Title, Grievance ID, Citizen Name, or Keyword..." type="text"/>
+<input id="problemSearch" class="w-full h-10 pl-10 pr-4 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container" placeholder="Search by Title, Grievance ID, Citizen Name, or Keyword..." type="text"/>
 </div>
 </div>
 <!-- Department / Category Dropdown -->
 <div class="lg:col-span-2 flex flex-col gap-1">
 <label class="text-label-sm font-label-sm text-on-surface-variant font-semibold">Department / Category</label>
-<select class="w-full h-10 px-3 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container">
+<select id="problemCategory" class="w-full h-10 px-3 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container">
 <option selected="">All Categories</option>
 <option>Water Resources (PHED)</option>
 <option>Energy &amp; Microgrids</option>
@@ -262,7 +262,7 @@
 <!-- District Dropdown -->
 <div class="lg:col-span-2 flex flex-col gap-1">
 <label class="text-label-sm font-label-sm text-on-surface-variant font-semibold">District / जिला</label>
-<select class="w-full h-10 px-3 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container">
+<select id="problemDistrict" class="w-full h-10 px-3 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container">
 <option selected="">All 24 Districts</option>
 <option>Ranchi</option>
 <option>Dhanbad</option>
@@ -276,12 +276,11 @@
 <!-- Status Dropdown -->
 <div class="lg:col-span-2 flex flex-col gap-1">
 <label class="text-label-sm font-label-sm text-on-surface-variant font-semibold">Verification Status</label>
-<select class="w-full h-10 px-3 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container">
+<select id="problemStatus" class="w-full h-10 px-3 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container">
 <option selected="">All Statuses</option>
 <option>Pending Verification</option>
-<option>Verified &amp; Dispatched</option>
-<option>Under R&amp;D Pilot</option>
-<option>Escalated to DC</option>
+<option>Verified</option>
+<option>Escalated</option>
 <option>Rejected</option>
 <option>Resolved</option>
 </select>
@@ -312,7 +311,7 @@
 <span class="text-label-sm font-label-sm text-on-surface-variant">Active Filter: <strong class="text-primary font-semibold">Pending Triage (184 records)</strong></span>
 </div>
 <div class="flex items-center gap-space-xs">
-<button class="text-label-sm font-label-sm text-primary hover:underline flex items-center gap-1">
+<button id="resetProblemFilters" class="text-label-sm font-label-sm text-primary hover:underline flex items-center gap-1" type="button">
 <span class="material-symbols-outlined text-sm">filter_alt_off</span> Reset Filters
           </button>
 </div>
@@ -971,37 +970,78 @@
     `;
   }
 
-  function renderAllProblems() {
+  let allProblems = [];
+
+  function renderAllProblems(problems = allProblems) {
     const tbody = document.getElementById('problems-tbody');
-    const problems = API.getProblemsByPriority();
-    tbody.innerHTML = problems.map(renderProblemRow).join('');
+    tbody.innerHTML = problems.slice().sort((a, b) => b.priorityScore - a.priorityScore).map(renderProblemRow).join('');
 
     tbody.querySelectorAll('.btn-verify').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', async (e) => {
         const id = e.target.closest('tr').dataset.problemId;
-        API.updateProblemStatus(id, 'Verified');
-        showToast('Problem verified / समस्या सत्यापित');
-        renderAllProblems();
+        await changeStatus(id, 'Verified');
       });
     });
     tbody.querySelectorAll('.btn-reject').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', async (e) => {
         const id = e.target.closest('tr').dataset.problemId;
-        API.updateProblemStatus(id, 'Rejected');
-        showToast('Problem rejected');
-        renderAllProblems();
+        await changeStatus(id, 'Rejected');
       });
     });
     tbody.querySelectorAll('.btn-escalate').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', async (e) => {
         const id = e.target.closest('tr').dataset.problemId;
-        API.updateProblemStatus(id, 'Escalated');
-        showToast('Problem escalated');
-        renderAllProblems();
+        await changeStatus(id, 'Escalated');
       });
     });
   }
 
-  renderAllProblems();
+  async function changeStatus(id, status) {
+    try {
+      await API.updateProblemStatus(id, status);
+      showToast(`Status updated / स्थिति अपडेट हुई: ${status}`);
+      await loadProblems();
+    } catch (error) {
+      showToast(error.message || 'Could not update status');
+    }
+  }
+
+  function applyFilters() {
+    const search = document.getElementById('problemSearch').value.trim().toLowerCase();
+    const category = document.getElementById('problemCategory').value;
+    const district = document.getElementById('problemDistrict').value;
+    const status = document.getElementById('problemStatus').value;
+    const filtered = allProblems.filter((problem) => {
+      const haystack = `${problem.id} ${problem.title} ${problem.description} ${problem.category}`.toLowerCase();
+      const statusMatches = status === 'All Statuses' || problem.status === status || (status === 'Verified & Dispatched' && problem.status === 'Verified');
+      const districtMatches = district === 'All 24 Districts' || problem.district === district.split(' (')[0];
+      const categoryMatches = category === 'All Categories' || problem.category === category;
+      return (!search || haystack.includes(search)) && categoryMatches && districtMatches && statusMatches;
+    });
+    renderAllProblems(filtered);
+  }
+
+  async function loadProblems() {
+    try {
+      allProblems = await API.getProblemsFromServer({ sortBy: 'priority' });
+      applyFilters();
+    } catch (error) {
+      document.getElementById('problems-tbody').innerHTML = `<tr><td colspan="9" class="p-6 text-center text-error">${error.message || 'Could not load grievances'}</td></tr>`;
+    }
+  }
+
+  ['problemSearch', 'problemCategory', 'problemDistrict', 'problemStatus'].forEach((id) => {
+    document.getElementById(id).addEventListener('input', applyFilters);
+    document.getElementById(id).addEventListener('change', applyFilters);
+  });
+  document.getElementById('resetProblemFilters').addEventListener('click', () => {
+    document.getElementById('problemSearch').value = '';
+    document.getElementById('problemCategory').selectedIndex = 0;
+    document.getElementById('problemDistrict').selectedIndex = 0;
+    document.getElementById('problemStatus').selectedIndex = 0;
+    applyFilters();
+  });
+
+  loadProblems();
 </script>
 </body></html>

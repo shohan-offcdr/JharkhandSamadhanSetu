@@ -176,7 +176,7 @@
 <div class="flex flex-wrap items-center gap-space-xs">
 <div class="bg-surface-container text-primary font-mono text-label-md font-label-md px-2.5 py-1 rounded-lg border border-surface-variant flex items-center gap-1.5">
 <span class="material-symbols-outlined text-label-md" data-icon="tag">tag</span>
-          JH-2024-GW-89421
+          <span id="problem-view-id">JH-2024-GW-89421</span>
         </div>
 <span class="inline-flex items-center gap-1.5 bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] px-3 py-1 rounded-full text-label-sm font-label-sm">
 <span class="w-2 h-2 rounded-full bg-[#166534] animate-pulse"></span>
@@ -216,10 +216,10 @@
 <span class="material-symbols-outlined text-label-md" data-icon="water_drop">water_drop</span>
             Jal Prabhandhan &amp; Civic Infrastructure · Kanke Division
           </div>
-<h1 class="text-headline-lg font-headline-lg text-on-surface mb-space-xs">
+<h1 id="problem-view-title" class="text-headline-lg font-headline-lg text-on-surface mb-space-xs">
             Sub-surface Pipeline Leakage &amp; Contamination in Kanke Block, Ranchi
           </h1>
-<p class="text-on-surface-variant text-body-md font-body-md leading-relaxed mb-space-md">
+<p id="problem-view-description" class="text-on-surface-variant text-body-md font-body-md leading-relaxed mb-space-md">
             Continuous underground main burst along the primary distribution feeder causing 38% potable water loss, road surface subsidence, and sewage cross-contamination affecting 120 residential units in Kanke Chowk.
           </p>
 <!-- Citizen Description Box -->
@@ -683,5 +683,15 @@
 <script src="../js/shared.js"></script>
 <script>
   requireRole('student', 'login.html');
+
+  const problemId = new URLSearchParams(window.location.search).get('id');
+  if (problemId) {
+    API.getProblemByIdFromServer(problemId).then((problem) => {
+      document.title = `Jharkhand Samadhan Setu | Problem ${problem.id}`;
+      document.getElementById('problem-view-id').textContent = problem.id;
+      document.getElementById('problem-view-title').textContent = problem.title;
+      document.getElementById('problem-view-description').textContent = problem.description;
+    }).catch(() => showToast('Could not load this citizen problem / समस्या लोड नहीं हो सकी'));
+  }
 </script>
 </body></html>

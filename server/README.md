@@ -29,6 +29,11 @@ npm install
 npm run dev        # starts on http://localhost:4000 with auto-reload
 ```
 
+For deployment, copy `.env.example` to `.env`, set `NODE_ENV=production`, use
+the public site origin in `CORS_ORIGIN`, and configure a verified Resend sender
+domain. The readiness probe is `GET /api/ready`; it returns HTTP 200 only when
+MongoDB is connected. Use `npm ci` and `npm start` in the deployment service.
+
 Health check:
 
 ```bash
@@ -103,6 +108,10 @@ curl -X DELETE "http://localhost:4000/api/upload?publicId=jss/grievance-evidence
 | `scripts/seed.js` | Loads the demo grievances into Atlas — `npm run seed` |
 
 `GET /api/health` now also reports `db: "connected"` once Atlas is wired up.
+
+`GET /api/ready` is intended for load balancers and deployment health checks.
+The server also applies security headers, JSON request limits, a global request
+rate limit, explicit OTP expiry checks, and graceful shutdown handling.
 
 ### Email OTP — how it's protected
 

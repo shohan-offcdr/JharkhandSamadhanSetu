@@ -383,7 +383,8 @@
       return document.getElementById('tab-mobile').getAttribute('aria-selected') === 'true' ? 'mobile' : 'email';
     }
 
-    // Real Firebase SMS OTP (mobile tab) + real Resend-backed OTP (email tab).
+    // General mobile OTP for local deployment + real Resend-backed email OTP.
+    const GENERAL_MOBILE_OTP = '260505';
     const API_BASE = window.JSS_API_BASE_URL || (
       window.location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(window.location.hostname)
         ? `http://${window.location.hostname || 'localhost'}:4000`
@@ -413,21 +414,14 @@
         return;
       }
 
-      if (!window.__firebaseAuth) {
-        showToast('अभी लोड हो रहा है, कृपया एक क्षण प्रतीक्षा करें / Still loading, please wait a moment');
+      const mobile = document.getElementById('mobile-number').value.trim();
+      if (!/^\d{10}$/.test(mobile)) {
+        showToast('कृपया 10 अंकों का मोबाइल नंबर दर्ज करें / Enter a valid 10-digit mobile number');
         return;
       }
-
-      const mobile = document.getElementById('mobile-number').value.trim();
       btn.disabled = true;
-      try {
-        await window.__firebaseAuth.sendOtp(mobile);
-        showToast(`OTP भेजा गया +91 ${mobile} पर / OTP sent to +91 ${mobile}`);
-        startOtpCountdown();
-      } catch (err) {
-        showToast(err.message);
-        btn.disabled = false;
-      }
+      showToast(`सामान्य OTP भेजा गया +91 ${mobile} पर / General OTP sent to +91 ${mobile}`);
+      startOtpCountdown();
     }
 
     async function handleFormSubmit(event) {
@@ -458,22 +452,11 @@
         return;
       }
 
-      // Mobile tab (or Firebase not loaded for some reason): real Firebase verification.
-      if (!window.__firebaseAuth) {
-        const identifier = mobile || 'Citizen';
-        API.login('citizen', identifier);
-        showToast('OTP सत्यापित! Redirecting... / OTP verified!');
-        setTimeout(() => { window.location.href = 'grievance-step1.html'; }, 700);
+      if (otp !== GENERAL_MOBILE_OTP) {
+        showToast('गलत OTP / Incorrect OTP');
         return;
       }
-
-      // Mobile tab: real Firebase verification.
-      try {
-        const user = await window.__firebaseAuth.verifyOtp(otp);
-        await findOrCreateAndRedirect({ phone: user.phoneNumber });
-      } catch (err) {
-        showToast(err.message);
-      }
+      await findOrCreateAndRedirect({ phone: mobile });
     }
 
     // Looks up (or quietly creates) the backend Citizen record for whoever

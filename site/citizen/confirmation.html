@@ -268,11 +268,11 @@
 <!-- Primary Action CTAs -->
 <div class="mt-space-xl flex flex-col gap-space-sm">
 <!-- Primary CTA Button (Warm Terracotta/Amber) -->
-<a class="w-full h-min-touch-target flex items-center justify-center px-space-lg bg-secondary text-on-primary rounded-lg font-label-lg text-label-lg hover:bg-[#8C5F1F] active:scale-[0.99] transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container" href="#my-reports">
+<a class="w-full h-min-touch-target flex items-center justify-center px-space-lg bg-secondary text-on-primary rounded-lg font-label-lg text-label-lg hover:bg-[#8C5F1F] active:scale-[0.99] transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container" href="../index.html#hero-tracker">
             View Your Reports / अपनी शिकायतें देखें
           </a>
 <!-- Secondary Action (Clean Institutional Outline Button) -->
-<a class="w-full h-min-touch-target flex items-center justify-center px-space-lg bg-transparent border border-outline-variant text-on-surface font-label-lg text-label-lg rounded-lg hover:bg-surface-container active:scale-[0.99] transition-all focus:outline-none focus:ring-2 focus:ring-primary-container" href="#file-new">
+<a class="w-full h-min-touch-target flex items-center justify-center px-space-lg bg-transparent border border-outline-variant text-on-surface font-label-lg text-label-lg rounded-lg hover:bg-surface-container active:scale-[0.99] transition-all focus:outline-none focus:ring-2 focus:ring-primary-container" href="grievance-step1.html">
             Submit Another Grievance / नई शिकायत दर्ज करें
           </a>
 </div>
@@ -356,8 +356,16 @@
     // Fill in the real tracking ID from the grievance just submitted.
     document.addEventListener('DOMContentLoaded', () => {
       const lastId = sessionStorage.getItem('jss_last_submitted_id');
+      const wasDuplicate = sessionStorage.getItem('jss_duplicate_report') === '1';
       if (lastId) {
         document.getElementById('trackingId').textContent = lastId;
+        if (wasDuplicate) {
+          const notice = document.createElement('p');
+          notice.className = 'mt-space-sm text-body-sm font-body-sm text-on-success-container';
+          notice.textContent = 'Your report was added to this existing grievance and its report count was increased.';
+          document.getElementById('trackingId').closest('.flex').after(notice);
+          sessionStorage.removeItem('jss_duplicate_report');
+        }
       } else {
         // No submission found in this session - send back to start of the flow.
         document.getElementById('trackingId').textContent = 'N/A';

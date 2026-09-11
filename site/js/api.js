@@ -46,6 +46,35 @@ const API = {
     return this.getProblems().find(p => p.id === id);
   },
 
+  async getProblemsFromServer(filters = {}) {
+    const params = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) params.set(key, value);
+    });
+    const response = await fetch(`${API_BASE_URL}/problems?${params}`);
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.error || "Could not load grievances");
+    return result;
+  },
+
+  async getProblemByIdFromServer(id) {
+    const response = await fetch(`${API_BASE_URL}/problems/${encodeURIComponent(id)}`);
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.error || "Could not load grievance");
+    return result;
+  },
+
+  async updateProblemStatus(id, status) {
+    const response = await fetch(`${API_BASE_URL}/problems/${encodeURIComponent(id)}/status`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status }),
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.error || "Could not update grievance status");
+    return result;
+  },
+
   // Called on the final grievance step. The server owns categorization,
   // ID generation, priority scoring, and persistence.
   async submitProblem(problem) {
@@ -119,16 +148,6 @@ const API = {
     const p = problems.find(p => p.id === problemId);
     if (p) {
       p.reportCount += 1;
-      localStorage.setItem("jss_problems", JSON.stringify(problems));
-    }
-    return p;
-  },
-
-  updateProblemStatus(problemId, status) {
-    const problems = this.getProblems();
-    const p = problems.find(p => p.id === problemId);
-    if (p) {
-      p.status = status;
       localStorage.setItem("jss_problems", JSON.stringify(problems));
     }
     return p;

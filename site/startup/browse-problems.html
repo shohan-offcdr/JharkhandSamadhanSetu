@@ -181,7 +181,7 @@
 <section class="bg-surface-container-lowest border-b border-outline-variant py-space-lg">
 <div class="max-w-container-max mx-auto px-gutter-desktop">
 <div class="bg-surface border border-outline-variant rounded-xl p-space-md">
-<form class="grid grid-cols-1 md:grid-cols-12 gap-space-md" onsubmit="event.preventDefault();">
+<form id="problemBrowseForm" class="grid grid-cols-1 md:grid-cols-12 gap-space-md">
 <!-- District Selector -->
 <div class="md:col-span-4 flex flex-col gap-1">
 <label class="font-label-md text-label-md text-on-surface flex items-center gap-1" for="search-district">
@@ -236,7 +236,7 @@
 <span class="material-symbols-outlined text-primary text-[20px]">tune</span>
 <h2 class="font-headline-sm text-headline-sm text-primary">Refine Challenges</h2>
 </div>
-<button class="text-secondary hover:text-[#8C5F1F] font-label-md text-label-md flex items-center gap-1 transition-colors" type="button">
+<button id="resetBrowseFilters" class="text-secondary hover:text-[#8C5F1F] font-label-md text-label-md flex items-center gap-1 transition-colors" type="button">
 <span class="material-symbols-outlined text-[16px]">restart_alt</span>
 <span>Reset Filters</span>
 </button>
@@ -352,7 +352,7 @@
 </div>
 <!-- Reset Filter Main CTA -->
 <div class="pt-space-xs">
-<button class="w-full py-space-xs bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded-lg border border-outline-variant transition-colors" type="button">
+<button id="clearBrowseFilters" class="w-full py-space-xs bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded-lg border border-outline-variant transition-colors" type="button">
               Clear All Applied Filters
             </button>
 </div>
@@ -370,7 +370,7 @@
 <!-- Sort Dropdown -->
 <div class="flex items-center gap-1.5">
 <span class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">Sort by:</span>
-<select class="h-9 py-1 pl-2 pr-7 text-label-sm font-label-sm bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface focus:ring-1 focus:ring-primary">
+<select id="problemSort" class="h-9 py-1 pl-2 pr-7 text-label-sm font-label-sm bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface focus:ring-1 focus:ring-primary">
 <option selected="">Priority (Urgent First)</option>
 <option>Most Recent</option>
 <option>Best Match</option>
@@ -663,5 +663,89 @@
 <script src="../js/shared.js"></script>
 <script>
   requireRole('startup', 'login.html');
+
+  const browseForm = document.getElementById('problemBrowseForm');
+  const browseDistrict = document.getElementById('search-district');
+  const browseKeyword = document.getElementById('search-keyword');
+  const browseSort = document.getElementById('problemSort');
+  const problemGrid = document.querySelector('main section.lg\\:col-span-8 > div.grid');
+  let problemCards = [];
+
+  function escapeBrowseHtml(value) {
+    return String(value || '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[char]));
+  }
+
+  function renderLiveProblems(problems) {
+    if (!problemGrid) return;
+    problemGrid.innerHTML = problems.map((problem) => `
+      <article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg hover:border-outline transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-start justify-between gap-2 mb-space-sm">
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant border border-outline-variant">${escapeBrowseHtml(problem.category)}</span>
+            <span class="inline-flex items-center gap-1 text-label-sm font-label-sm ${problem.priorityScore >= 80 ? 'text-error bg-error-container' : 'text-on-warning-container bg-warning-container'} px-2 py-0.5 rounded-full border border-outline-variant">Priority ${problem.priorityScore}/100</span>
+          </div>
+          <h3 class="font-headline-sm text-headline-sm text-primary mb-1 line-clamp-2">${escapeBrowseHtml(problem.title)}</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md line-clamp-3">${escapeBrowseHtml(problem.description)}</p>
+          <div class="space-y-2 py-space-xs border-y border-outline-variant mb-space-md text-body-sm">
+            <div class="flex items-center justify-between"><span class="text-on-surface-variant">District</span><span class="font-label-md text-on-surface">${escapeBrowseHtml(problem.district)}</span></div>
+            <div class="flex items-center justify-between"><span class="text-on-surface-variant">Reports</span><span class="font-label-md text-secondary">${problem.reportCount || 1}</span></div>
+          </div>
+        </div>
+        <button data-problem-id="${escapeBrowseHtml(problem.id)}" class="live-problem-action w-full py-2.5 px-space-md bg-primary-container text-on-primary font-label-md text-label-md rounded-lg hover:bg-[#17213A] transition-colors flex items-center justify-center gap-2" type="button">View Details &amp; Propose CSR/R&amp;D <span class="material-symbols-outlined text-[16px]">arrow_forward</span></button>
+      </article>`).join('');
+    problemCards = Array.from(problemGrid.querySelectorAll('article'));
+    problemGrid.querySelectorAll('.live-problem-action').forEach((button) => {
+      button.addEventListener('click', () => { window.location.href = `../student/problem-view.html?id=${encodeURIComponent(button.dataset.problemId)}`; });
+    });
+  }
+
+  function filterBrowseCards() {
+    const keyword = browseKeyword.value.trim().toLowerCase();
+    const district = browseDistrict.value.toLowerCase();
+    problemCards.forEach((card) => {
+      const text = card.textContent.toLowerCase();
+      const districtMatches = !district || text.includes(district.replace('-', ' '));
+      const keywordMatches = !keyword || text.includes(keyword);
+      card.classList.toggle('hidden', !districtMatches || !keywordMatches);
+    });
+  }
+
+  function resetBrowseFilters() {
+    browseDistrict.value = '';
+    browseKeyword.value = '';
+    document.querySelectorAll('aside input[type="checkbox"]').forEach((input) => {
+      input.checked = input.defaultChecked;
+    });
+    filterBrowseCards();
+  }
+
+  browseForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    filterBrowseCards();
+  });
+  browseDistrict.addEventListener('change', filterBrowseCards);
+  document.getElementById('resetBrowseFilters').addEventListener('click', resetBrowseFilters);
+  document.getElementById('clearBrowseFilters').addEventListener('click', resetBrowseFilters);
+
+  browseSort.addEventListener('change', () => {
+    const cards = Array.from(problemGrid.children);
+    if (browseSort.value === 'Most Recent') cards.reverse().forEach((card) => problemGrid.appendChild(card));
+    filterBrowseCards();
+  });
+
+  document.querySelectorAll('aside input[type="checkbox"]').forEach((input) => {
+    input.addEventListener('change', filterBrowseCards);
+  });
+
+  document.querySelectorAll('main section.lg\\:col-span-8 article button').forEach((button) => {
+    button.addEventListener('click', () => {
+      const title = button.closest('article').querySelector('h3').textContent.trim();
+      window.location.href = `../student/problem-view.html?title=${encodeURIComponent(title)}`;
+    });
+  });
+
+  API.getProblemsFromServer({ sortBy: 'priority' }).then(renderLiveProblems).catch(() => {
+    showToast('Live citizen problems could not be loaded / नागरिक समस्याएं लोड नहीं हो सकीं');
+  });
 </script>
 </body></html>

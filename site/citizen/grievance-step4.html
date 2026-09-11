@@ -462,6 +462,7 @@
       API.clearDraft();
 
       sessionStorage.setItem('jss_last_submitted_id', saved.id);
+      sessionStorage.setItem('jss_duplicate_report', saved.duplicate ? '1' : '0');
       window.location.href = 'confirmation.html';
     });
   });

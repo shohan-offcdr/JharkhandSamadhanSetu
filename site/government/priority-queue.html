@@ -293,7 +293,7 @@
 <span class="text-label-sm font-label-sm text-outline">Weight Matrix: Severity (25%) + Pop. Vulnerability (25%) + Time Velocity (30%) + Feasibility (20%)</span>
 </div>
 <!-- ================= RANKED PRIORITY ITEMS ================= -->
-<div class="space-y-space-md">
+<div id="livePriorityList" class="space-y-space-md">
 <!-- ================= RANK #01 (CRITICAL EXPANDED) ================= -->
 <div class="bg-surface-container-lowest border-2 border-secondary rounded-xl overflow-hidden transition-all duration-150">
 <!-- Top Summary Bar -->
@@ -791,5 +791,43 @@
 <script src="../js/shared.js"></script>
 <script>
   requireRole('government', 'login.html');
+
+  const priorityList = document.getElementById('livePriorityList');
+  const prioritySearch = document.querySelector('input[placeholder*="Search by Grievance"]');
+  const priorityDistrict = document.getElementById('district-select');
+  const priorityCategory = document.getElementById('category-select');
+  const prioritySort = document.getElementById('sort-select');
+  let livePriorityProblems = [];
+
+  const escapePriorityHtml = (value) => String(value || '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[char]));
+  function renderPriorityQueue() {
+    const search = prioritySearch.value.trim().toLowerCase();
+    const district = priorityDistrict.value;
+    const category = priorityCategory.value;
+    const visible = livePriorityProblems.filter((problem) => {
+      const searchable = `${problem.id} ${problem.title} ${problem.description} ${problem.category} ${problem.district}`.toLowerCase();
+      return (!search || searchable.includes(search)) && (!district || district === 'All 24 Districts' || problem.district === district) && (!category || category === 'All Categories' || problem.category === category);
+    }).sort((a, b) => prioritySort.value.includes('Recent') ? String(b.createdAt).localeCompare(String(a.createdAt)) : b.priorityScore - a.priorityScore);
+
+    priorityList.innerHTML = visible.length ? visible.map((problem, index) => `
+      <article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+          <div class="flex items-start gap-space-sm">
+            <div class="w-14 h-14 rounded-lg bg-secondary text-on-secondary flex flex-col items-center justify-center shrink-0"><span class="text-label-sm">Rank</span><strong class="text-headline-sm">#${index + 1}</strong></div>
+            <div><div class="flex flex-wrap gap-2 text-label-sm"><span class="font-mono font-semibold text-primary">${escapePriorityHtml(problem.id)}</span><span class="text-on-surface-variant">${escapePriorityHtml(problem.district)}</span><span class="text-on-surface-variant">${escapePriorityHtml(problem.category)}</span></div><h3 class="text-headline-sm font-headline-sm text-primary font-semibold mt-1">${escapePriorityHtml(problem.title)}</h3><p class="text-body-sm text-on-surface-variant mt-1 line-clamp-2">${escapePriorityHtml(problem.description)}</p></div>
+          </div>
+          <div class="flex items-center gap-space-md shrink-0"><span class="px-3 py-1 rounded-full bg-warning-container text-on-warning-container font-semibold">${problem.priorityScore}/100</span><span class="text-body-sm text-on-surface-variant">${problem.reportCount || 1} reports</span><a class="text-secondary font-semibold hover:underline" href="problem-management.html">Manage</a></div>
+        </div>
+      </article>`).join('') : '<p class="p-6 text-center text-on-surface-variant">No matching grievances found.</p>';
+  }
+
+  API.getProblemsFromServer({ sortBy: 'priority' }).then((problems) => {
+    livePriorityProblems = problems;
+    renderPriorityQueue();
+  }).catch(() => {
+    priorityList.innerHTML = '<p class="p-6 text-center text-error">Could not load the live priority queue.</p>';
+  });
+  [prioritySearch, priorityDistrict, priorityCategory, prioritySort].forEach((control) => control.addEventListener('input', renderPriorityQueue));
+  [priorityDistrict, priorityCategory, prioritySort].forEach((control) => control.addEventListener('change', renderPriorityQueue));
 </script>
 </body></html>

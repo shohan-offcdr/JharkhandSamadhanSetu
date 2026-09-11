@@ -1,12 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 const uploadRoutes = require("./routes/upload");
 const problemRoutes = require("./routes/problems");
 const authRoutes = require("./routes/auth");
 const citizenRoutes = require("./routes/citizens");
 
 const app = express();
+
+app.disable("x-powered-by");
+app.use(helmet());
+app.use(express.json({ limit: "1mb" }));
+app.use(rateLimit({ windowMs: 15 * 60 * 1000, limit: 300, standardHeaders: "draft-7", legacyHeaders: false }));
 
 const allowedOrigins = (process.env.CORS_ORIGIN || "")
   .split(",")
@@ -25,16 +32,25 @@ app.use(
     },
   })
 );
-app.use(express.json());
-
 const DB_STATES = ["disconnected", "connected", "connecting", "disconnecting"];
 app.get("/api/health", (req, res) => {
-  res.json({
+  const db = DB_STATES[mongoose.connection.readyState] || "unknown";
+  res.status(db === "connected" ? 200 : 503).json({
     status: "ok",
     service: "jss-server",
-    db: DB_STATES[mongoose.connection.readyState] || "unknown",
+    db,
     time: new Date().toISOString(),
   });
+});
+
+app.get("/api/ready", (req, res) => {
+  const checks = {
+    database: mongoose.connection.readyState === 1,
+    email: Boolean(process.env.RESEND_API_KEY && process.env.EMAIL_FROM),
+    storage: Boolean(process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY && process.env.CLOUDINARY_API_SECRET),
+  };
+  const ready = Object.values(checks).every(Boolean);
+  res.status(ready ? 200 : 503).json({ ready, checks });
 });
 
 app.use("/api/upload", uploadRoutes);
