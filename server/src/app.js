@@ -16,8 +16,11 @@ const allowedOrigins = (process.env.CORS_ORIGIN || "")
 app.use(
   cors({
     origin(origin, callback) {
-      // Allow tools with no Origin header (curl, Postman) and any explicitly listed origin.
-      if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+      // Allow tools with no Origin header, local file pages during development,
+      // and any explicitly listed origin.
+      if (!origin || (origin === "null" && process.env.NODE_ENV !== "production") || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
       callback(new Error(`Origin ${origin} not allowed by CORS`));
     },
   })
