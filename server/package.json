@@ -6,7 +6,7 @@
   "main": "src/server.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "nodemon --watch src --ignore .env --ignore package-lock.json src/server.js",
+    "dev": "nodemon --signal SIGTERM --watch src --ignore .env --ignore package-lock.json src/server.js",
     "start": "node src/server.js",
     "seed": "node scripts/seed.js",
     "check": "node --check src/app.js && node --check src/server.js && node --check src/routes/auth.js && node --check src/routes/problems.js && node --check src/routes/upload.js"

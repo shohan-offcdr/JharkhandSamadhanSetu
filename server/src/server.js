@@ -25,14 +25,13 @@ connectDB()
       server.close(() => resolve());
     });
 
-    const shutdown = async (signal, restart = false) => {
+    const shutdown = async (signal) => {
       if (shuttingDown) return;
       shuttingDown = true;
       console.log(`[server] ${signal} received, shutting down`);
       await closeServer();
       await mongoose.connection.close();
-      if (restart) process.kill(process.pid, "SIGUSR2");
-      else process.exit(0);
+      process.exit(0);
     };
 
     server = app.listen(PORT, () => {
@@ -49,7 +48,6 @@ connectDB()
 
     process.once("SIGTERM", () => shutdown("SIGTERM"));
     process.once("SIGINT", () => shutdown("SIGINT"));
-    process.once("SIGUSR2", () => shutdown("SIGUSR2", true));
   })
   .catch((err) => {
     console.error("[server] failed to connect to MongoDB, not starting:", err.message);
