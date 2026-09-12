@@ -11,25 +11,45 @@ if (process.env.NODE_ENV === "production" && !process.env.CORS_ORIGIN) {
 
 const app = require("./app");
 const connectDB = require("./config/db");
+const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 4000;
 
 connectDB()
   .then(() => {
-    const server = app.listen(PORT, () => {
+    let server;
+    let shuttingDown = false;
+
+    const closeServer = () => new Promise((resolve) => {
+      if (!server || !server.listening) return resolve();
+      server.close(() => resolve());
+    });
+
+    const shutdown = async (signal, restart = false) => {
+      if (shuttingDown) return;
+      shuttingDown = true;
+      console.log(`[server] ${signal} received, shutting down`);
+      await closeServer();
+      await mongoose.connection.close();
+      if (restart) process.kill(process.pid, "SIGUSR2");
+      else process.exit(0);
+    };
+
+    server = app.listen(PORT, () => {
       console.log(`jss-server listening on http://localhost:${PORT}`);
       console.log(`Health check: http://localhost:${PORT}/api/health`);
     });
+    server.on("error", (err) => {
+      if (err.code === "EADDRINUSE") {
+        console.error(`[server] Port ${PORT} is already in use. Stop the existing server before starting another one.`);
+        process.exit(1);
+      }
+      throw err;
+    });
 
-    const shutdown = async (signal) => {
-      console.log(`[server] ${signal} received, shutting down`);
-      server.close(async () => {
-        await require("mongoose").connection.close();
-        process.exit(0);
-      });
-    };
     process.once("SIGTERM", () => shutdown("SIGTERM"));
     process.once("SIGINT", () => shutdown("SIGINT"));
+    process.once("SIGUSR2", () => shutdown("SIGUSR2", true));
   })
   .catch((err) => {
     console.error("[server] failed to connect to MongoDB, not starting:", err.message);

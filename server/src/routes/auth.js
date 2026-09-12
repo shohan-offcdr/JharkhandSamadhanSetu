@@ -43,7 +43,7 @@ router.post("/send-email-otp", async (req, res) => {
     if (error) {
       console.error("[auth] Resend rejected OTP email:", error.message || error);
       return res.status(502).json({
-        error: "इस ईमेल पर OTP नहीं भेजा जा सका / Resend could not deliver to this email address",
+        error: "ईमेल OTP अभी नहीं भेजा जा सका। Resend में अपना verified recipient/domain सेट करें। / Email OTP could not be sent. Configure a verified Resend recipient or domain.",
       });
     }
 
@@ -58,7 +58,7 @@ router.post("/send-email-otp", async (req, res) => {
     res.json({ sent: true });
   } catch (err) {
     console.error("[auth] send-email-otp failed:", err.message);
-    res.status(502).json({ error: "OTP भेजने में समस्या हुई, कृपया पुनः प्रयास करें / Couldn't send the OTP, please try again" });
+    res.status(502).json({ error: "ईमेल OTP सेवा उपलब्ध नहीं है। Resend configuration जांचें। / Email OTP service is unavailable. Check the Resend configuration." });
   }
 });
 
