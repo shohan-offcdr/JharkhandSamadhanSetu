@@ -5,6 +5,7 @@ const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const uploadRoutes = require("./routes/upload");
 const problemRoutes = require("./routes/problems");
+const solutionRoutes = require("./routes/solutions");
 const authRoutes = require("./routes/auth");
 const citizenRoutes = require("./routes/citizens");
 
@@ -96,6 +97,7 @@ app.use(globalLimiter);
 
 app.use("/api/upload", uploadRoutes);
 app.use("/api/problems", problemRoutes);
+app.use("/api/solutions", solutionRoutes);
 app.use("/api/auth", otpLimiter, authRoutes);
 app.use("/api/citizens", citizenRoutes);
 

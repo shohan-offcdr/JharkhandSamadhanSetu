@@ -1,7 +1,8 @@
 const express = require("express");
 const Problem = require("../models/Problem");
 const { STATUS_VALUES } = require("../models/Problem");
-const { analyzeProblem, similarityScore, generateProblemId } = require("../utils/categorize");
+const { similarityScore, generateProblemId } = require("../utils/categorize");
+const { analyzeGrievance } = require("../services/aiAnalyzer");
 const asyncHandler = require("../utils/asyncHandler");
 
 const router = express.Router();
@@ -29,28 +30,53 @@ function cleanNumber(value) {
   return Number.isFinite(number) ? number : undefined;
 }
 
-// GET /api/problems?district=Ranchi&category=...&status=...&sortBy=priority
+// GET /api/problems?district=&category=&status=&sortBy=priority&q=&audience=student
+// audience=student returns only visibleToStudents problems with a
+// student-safe projection (full docs otherwise, for citizen/govt callers).
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const { district, category, status, sortBy } = req.query;
+    const { district, category, status, sortBy, q, audience } = req.query;
     const filter = {};
     if (district) filter.district = district;
     if (category) filter.category = category;
     if (status) filter.status = status;
+    if (audience === "student") {
+      filter.visibleToStudents = { $ne: false };
+      filter.status = filter.status || { $ne: "Rejected" };
+    }
+    if (q) {
+      const safe = escapeRegExp(String(q).slice(0, 120));
+      filter.$or = [
+        { title: new RegExp(safe, "i") },
+        { problemStatement: new RegExp(safe, "i") },
+        { enrichedDescription: new RegExp(safe, "i") },
+        { description: new RegExp(safe, "i") },
+      ];
+    }
 
     const sort = sortBy === "priority" ? { priorityScore: -1 } : { createdAt: -1 };
-    const problems = await Problem.find(filter).sort(sort);
+    const query = Problem.find(filter).sort(sort).limit(500);
+    if (audience === "student") {
+      query.select(
+        "id title titleHi problemStatement enrichedDescription description category categoryConfidence district block priorityScore priorityLabel priorityReasons reportCount similarity duplicateOf status photos createdAt analysisVersion"
+      );
+    }
+    const problems = await query;
     res.json(problems);
   })
 );
 
 // GET /api/problems/:id  (human-facing ID, e.g. JH-2024-10312 -- used by the homepage tracker)
+// ?audience=student hides non-visible/rejected with the same 404 as unknown IDs.
 router.get(
   "/:id",
   asyncHandler(async (req, res) => {
     const problem = await Problem.findOne({ id: String(req.params.id || "").toUpperCase() });
     if (!problem) {
+      return res.status(404).json({ error: `"${req.params.id}" क्रमांक से कोई शिकायत नहीं मिली / No grievance found for that ID` });
+    }
+    if (req.query.audience === "student" && (problem.visibleToStudents === false || problem.status === "Rejected")) {
       return res.status(404).json({ error: `"${req.params.id}" क्रमांक से कोई शिकायत नहीं मिली / No grievance found for that ID` });
     }
     res.json(problem);
@@ -86,13 +112,27 @@ router.post(
         }))
       : [];
 
-    const analysis = analyzeProblem({ title, description, district, scaleOfImpact, durationDays });
+    const block = cleanText(req.body.block, 120) || undefined;
+    // Grok enrichment never blocks the submission: analyzeGrievance() falls
+    // back to local rules when AI_API_KEY is missing or Grok fails.
+    // Priority weighs scale + duration + report volume + category risk +
+    // photo evidence; analyzeGrievance() returns the score, label and reasons.
+    const analysis = await analyzeGrievance({
+      title,
+      description,
+      district,
+      block,
+      scaleOfImpact,
+      durationDays,
+      reportCount: 1,
+      photoCount: photos.length,
+    });
     const base = {
       title,
       titleHi: cleanText(req.body.titleHi, 300) || undefined,
       description,
       district,
-      block: cleanText(req.body.block, 120) || undefined,
+      block,
       gramPanchayat: cleanText(req.body.gramPanchayat, 120) || undefined,
       pincode: cleanText(req.body.pincode, 12) || undefined,
       landmark: cleanText(req.body.landmark, 200) || undefined,
@@ -103,6 +143,13 @@ router.post(
       durationDays,
       photos,
       category: analysis.category,
+      categoryConfidence: analysis.categoryConfidence,
+      problemStatement: analysis.problemStatement,
+      enrichedDescription: analysis.enrichedDescription,
+      priorityLabel: analysis.priorityLabel,
+      priorityReasons: analysis.priorityReasons,
+      aiMeta: analysis.aiMeta,
+      visibleToStudents: true,
       status: "Pending Verification",
       reportCount: 1,
       createdAt: new Date().toISOString().slice(0, 10),
@@ -114,7 +161,7 @@ router.post(
     const duplicate = candidates
       .map((candidate) => ({
         candidate,
-        score: similarityScore(analysis.tokens, new Set(`${candidate.title} ${candidate.description}`.toLowerCase().match(/[a-z0-9\u0900-\u097f]{3,}/g) || [])),
+        score: similarityScore(analysis.tokens, new Set(`${candidate.title} ${candidate.description} ${candidate.problemStatement || ""}`.toLowerCase().match(/[a-z0-9\u0900-\u097f]{3,}/g) || [])),
       }))
       .sort((a, b) => b.score - a.score)[0];
 
@@ -122,7 +169,11 @@ router.post(
       const priorityScore = Math.min(100, Math.max(base.priorityScore, Number(duplicate.candidate.priorityScore || 0) + 5));
       const updated = await Problem.findOneAndUpdate(
         { _id: duplicate.candidate._id },
-        { $inc: { reportCount: 1 }, $set: { duplicateOf: duplicate.candidate.id, priorityScore } },
+        {
+          $inc: { reportCount: 1 },
+          $addToSet: { mergedIds: base.title },
+          $set: { duplicateOf: duplicate.candidate.id, priorityScore, similarity: Number(duplicate.score.toFixed(2)) },
+        },
         { new: true }
       );
       return res.status(200).json({ ...updated.toJSON(), duplicate: true, similarity: Number(duplicate.score.toFixed(2)) });
@@ -141,6 +192,36 @@ router.post(
     }
 
     return res.status(500).json({ error: "विवरण सहेजा नहीं जा सका, कृपया पुनः प्रयास करें / Could not save the grievance, please try again" });
+  })
+);
+
+// POST /api/problems/:id/reanalyze — re-run Grok enrichment on one grievance.
+router.post(
+  "/:id/reanalyze",
+  asyncHandler(async (req, res) => {
+    const problem = await Problem.findOne({ id: String(req.params.id || "").toUpperCase() });
+    if (!problem) return res.status(404).json({ error: "Grievance not found" });
+    const analysis = await analyzeGrievance({
+      title: problem.title,
+      description: problem.description,
+      district: problem.district,
+      block: problem.block,
+      scaleOfImpact: problem.scaleOfImpact,
+      durationDays: problem.durationDays,
+      reportCount: problem.reportCount,
+      photoCount: Array.isArray(problem.photos) ? problem.photos.length : 0,
+    });
+    problem.category = analysis.category;
+    problem.categoryConfidence = analysis.categoryConfidence;
+    problem.problemStatement = analysis.problemStatement;
+    problem.enrichedDescription = analysis.enrichedDescription;
+    problem.priorityScore = analysis.priorityScore;
+    problem.priorityLabel = analysis.priorityLabel;
+    problem.priorityReasons = analysis.priorityReasons;
+    problem.analysisVersion = analysis.analysisVersion;
+    if (analysis.aiMeta) problem.aiMeta = analysis.aiMeta;
+    await problem.save();
+    res.json(problem);
   })
 );
 

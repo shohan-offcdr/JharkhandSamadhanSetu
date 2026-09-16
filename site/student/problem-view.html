@@ -3,7 +3,7 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>झारखंड समाधान सेतु | Problem JH-2024-GW-89421</title>
+<title>झारखंड समाधान सेतु | Student Challenge</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet"/>
@@ -169,14 +169,14 @@
 <span class="material-symbols-outlined text-label-md" data-icon="chevron_right">chevron_right</span>
 <a class="hover:text-primary transition-colors" href="#">Recommended Challenges</a>
 <span class="material-symbols-outlined text-label-md" data-icon="chevron_right">chevron_right</span>
-<span class="text-on-surface font-semibold truncate">JH-2024-GW-89421 (Drinking Water Pipeline Leakage)</span>
+<span class="text-on-surface font-semibold truncate" id="problem-view-breadcrumb">Loading citizen challenge…</span>
 </nav>
 <!-- Top Action Ribbon -->
 <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md mb-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md">
 <div class="flex flex-wrap items-center gap-space-xs">
 <div class="bg-surface-container text-primary font-mono text-label-md font-label-md px-2.5 py-1 rounded-lg border border-surface-variant flex items-center gap-1.5">
 <span class="material-symbols-outlined text-label-md" data-icon="tag">tag</span>
-          <span id="problem-view-id">JH-2024-GW-89421</span>
+          <span id="problem-view-id">…</span>
         </div>
 <span class="inline-flex items-center gap-1.5 bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0] px-3 py-1 rounded-full text-label-sm font-label-sm">
 <span class="w-2 h-2 rounded-full bg-[#166534] animate-pulse"></span>
@@ -188,7 +188,7 @@
         </span>
 <span class="text-outline text-body-sm font-body-sm flex items-center gap-1 ml-1">
 <span class="material-symbols-outlined text-label-md" data-icon="schedule">schedule</span>
-          Lodged 4 days ago (24 Oct 2024)
+          <span id="problem-view-lodged">Loading…</span>
         </span>
 </div>
 <div class="flex items-center gap-space-xs shrink-0">
@@ -214,13 +214,13 @@
 <article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg">
 <div class="flex items-center gap-2 text-secondary font-semibold text-label-sm font-label-sm tracking-wider uppercase mb-space-xxs">
 <span class="material-symbols-outlined text-label-md" data-icon="water_drop">water_drop</span>
-            Jal Prabhandhan &amp; Civic Infrastructure · Kanke Division
+            <span id="problem-view-kicker">Loading citizen challenge…</span>
           </div>
 <h1 id="problem-view-title" class="text-headline-lg font-headline-lg text-on-surface mb-space-xs">
-            Sub-surface Pipeline Leakage &amp; Contamination in Kanke Block, Ranchi
+            Loading…
           </h1>
 <p id="problem-view-description" class="text-on-surface-variant text-body-md font-body-md leading-relaxed mb-space-md">
-            Continuous underground main burst along the primary distribution feeder causing 38% potable water loss, road surface subsidence, and sewage cross-contamination affecting 120 residential units in Kanke Chowk.
+            Loading the categorised citizen grievance from the API…
           </p>
 <!-- Citizen Description Box -->
 <div class="bg-surface-container-low border-l-4 border-secondary p-space-md rounded-r-lg mb-space-md">
@@ -246,19 +246,19 @@
 <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-xs border-t border-outline-variant text-body-sm font-body-sm">
 <div>
 <span class="text-outline text-label-sm font-label-sm block">Grievance Category</span>
-<span class="font-semibold text-on-surface">Potable Water / Leakage</span>
+<span class="font-semibold text-on-surface" id="problem-view-quick-category">…</span>
 </div>
 <div>
 <span class="text-outline text-label-sm font-label-sm block">Ward / Assembly</span>
-<span class="font-semibold text-on-surface">Ward 03, Kanke AC</span>
+<span class="font-semibold text-on-surface" id="problem-view-quick-ward">…</span>
 </div>
 <div>
-<span class="text-outline text-label-sm font-label-sm block">Est. Daily Water Loss</span>
-<span class="font-semibold text-error">~42,000 Liters / day</span>
+<span class="text-outline text-label-sm font-label-sm block">Est. Priority</span>
+<span class="font-semibold text-error" id="problem-view-quick-impact">…</span>
 </div>
 <div>
 <span class="text-outline text-label-sm font-label-sm block">Verified By</span>
-<span class="font-semibold text-on-surface">Pragya Kendra Nodal Desk</span>
+<span class="font-semibold text-on-surface" id="problem-view-quick-verified">…</span>
 </div>
 </div>
 </article>
@@ -270,71 +270,15 @@
 <span class="material-symbols-outlined text-primary" data-icon="photo_library">photo_library</span>
                 Ground Photographic Evidence
               </h2>
-<p class="text-outline text-body-sm font-body-sm">Citizen submitted field imagery with verifiable GPS timestamp &amp; EXIF tags</p>
+<p class="text-outline text-body-sm font-body-sm" id="problem-view-gps">Citizen submitted field imagery</p>
 </div>
 <div class="text-label-sm font-label-sm text-outline flex items-center gap-1 font-mono">
 <span class="material-symbols-outlined text-body-md" data-icon="location_searching">location_searching</span>
-              GPS: 23.3441° N, 85.3096° E
+<span id="problem-view-gps-coords">GPS: …</span>
             </div>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
-<!-- Evidence Card 1 -->
-<div class="border border-outline-variant rounded-lg overflow-hidden group bg-surface-container-low flex flex-col">
-<div class="relative h-44 w-full overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A documentary photo captured under overcast outdoor lighting showing dirty pooled water and severe puddle ponding over a cracked municipal asphalt road in a residential Indian neighborhood in Ranchi Jharkhand, with mud runoff and traffic cones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPo9Uau8E7ijVlCA-OErYRTmi1qn3GNy6fd8d813yYWPAb4yY4wzD703cJeza7mIzKn7aExPxRkzwXYldi5SIJ69fEIBQVHI0gDOjlPiOAwUraFSAAwCpPMzXgJ_6jgNv9zI3XlZr4OBxECgwHSbkp8FFwzLJ6L5JlWlr-TYuBaIKssAqH0BkHMV2AZtNsrgnN-wZuFWz2qGOPRLX7QqDeD8W9_iqVQtzH9NW82hLsOMyYRi_Wf4U6"/>
-<span class="absolute top-2 right-2 bg-inverse-surface/80 backdrop-blur-none text-inverse-on-surface text-label-sm font-label-sm px-2 py-0.5 rounded flex items-center gap-1">
-<span class="material-symbols-outlined text-label-sm" data-icon="zoom_in">zoom_in</span> Evidence #1
-                </span>
-</div>
-<div class="p-space-sm flex-1 flex flex-col justify-between">
-<div>
-<h4 class="font-label-md text-label-md font-semibold text-on-surface">Asphalt Ponding &amp; Runoff</h4>
-<p class="text-outline text-label-sm font-label-sm mt-0.5">Heavy surface pooling over 35 meters road stretch.</p>
-</div>
-<div class="mt-space-xs pt-space-xs border-t border-outline-variant text-[10px] font-mono text-outline flex justify-between">
-<span>EXIF: f/1.8 · 1/250s</span>
-<span>24-OCT 08:24 IST</span>
-</div>
-</div>
-</div>
-<!-- Evidence Card 2 -->
-<div class="border border-outline-variant rounded-lg overflow-hidden group bg-surface-container-low flex flex-col">
-<div class="relative h-44 w-full overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Close up sharp street photography of deeply fractured tar asphalt and buckled road foundation where pressurized clean drinking water bubbles up from an underground fissure into the dusty roadside dirt in Ranchi." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA81Ar4Ae8EQzoIvYNJdaepxVJU3nt0DB2VqI2c4BnHrdnyrIhuwic0KlC4s7gcH2T5iwlV5wxuB2fvJHdta2UcJreeI0bzPrr9_qc2qfHomii9ngEdzf7zB6SYYwgn8N6r8i5J5CL1UrkAh3MOUciIy5PNFU2X1oNini5R0alZJmAefINhIZfd--YEIhsTS2BS6dYinYFBe_jnCcLyzrFoB22mys4HGVPgHFA4sBWc5B3FHnYs5wke"/>
-<span class="absolute top-2 right-2 bg-inverse-surface/80 backdrop-blur-none text-inverse-on-surface text-label-sm font-label-sm px-2 py-0.5 rounded flex items-center gap-1">
-<span class="material-symbols-outlined text-label-sm" data-icon="zoom_in">zoom_in</span> Evidence #2
-                </span>
-</div>
-<div class="p-space-sm flex-1 flex flex-col justify-between">
-<div>
-<h4 class="font-label-md text-label-md font-semibold text-on-surface">Sub-base Fissure Eruption</h4>
-<p class="text-outline text-label-sm font-label-sm mt-0.5">Pressurized water breach breaching concrete sub-slab.</p>
-</div>
-<div class="mt-space-xs pt-space-xs border-t border-outline-variant text-[10px] font-mono text-outline flex justify-between">
-<span>EXIF: 26mm · ISO 64</span>
-<span>24-OCT 08:26 IST</span>
-</div>
-</div>
-</div>
-<!-- Evidence Card 3 -->
-<div class="border border-outline-variant rounded-lg overflow-hidden group bg-surface-container-low flex flex-col">
-<div class="relative h-44 w-full overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Clear detailed documentary close-up of a rusted industrial water utility dial meter and adjacent turbid yellowish sediment water sample collected in a transparent laboratory test bottle placed on an Indian municipal road border." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH_BitJh2amqYN154rIjS4F1iATtRkB7uLN2Cf5HRRZaQNrb4NaSvxJ2RS7A_gwiwhbiY7XM_DxWlMWhq4BpdEBdCcUzdFCJ2GbsSXEIGKDM83DwWxuMtE50OVwHOydYdM3tKYjIXPAxjB0lS0Bwxz2RKwtSuHlodkvenbpo97rP0HS5hUIQVET5uoMTDgrkC821cVNlA3Dqth79o7BdWJMSZNReWEFXB6nBciIBt19DNfhg--e7pp"/>
-<span class="absolute top-2 right-2 bg-inverse-surface/80 backdrop-blur-none text-inverse-on-surface text-label-sm font-label-sm px-2 py-0.5 rounded flex items-center gap-1">
-<span class="material-symbols-outlined text-label-sm" data-icon="zoom_in">zoom_in</span> Evidence #3
-                </span>
-</div>
-<div class="p-space-sm flex-1 flex flex-col justify-between">
-<div>
-<h4 class="font-label-md text-label-md font-semibold text-on-surface">Turbidity &amp; Flow Drop</h4>
-<p class="text-outline text-label-sm font-label-sm mt-0.5">Terminal pressure dropped from 2.4 bar to 0.6 bar.</p>
-</div>
-<div class="mt-space-xs pt-space-xs border-t border-outline-variant text-[10px] font-mono text-outline flex justify-between">
-<span>EXIF: Tele · NTU &gt; 45</span>
-<span>24-OCT 08:31 IST</span>
-</div>
-</div>
-</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md" id="problem-view-evidence">
+<p class="md:col-span-3 text-body-sm text-on-surface-variant" id="problem-view-evidence-loading">Loading citizen evidence…</p>
 </div>
 </section>
 <!-- Embedded Location Map Card -->
@@ -696,15 +640,148 @@
   const problemTitle = viewParams.get('title');
 
   function showProblem(problem) {
-    document.title = `Jharkhand Samadhan Setu | Problem ${problem.id}`;
+    document.title = `Jharkhand Samadhan Setu | Challenge ${problem.id}`;
     document.getElementById('problem-view-id').textContent = problem.id;
-    document.getElementById('problem-view-title').textContent = problem.titleHi || problem.title;
-    document.getElementById('problem-view-description').textContent = problem.description;
+    const crumb = document.getElementById('problem-view-breadcrumb');
+    if (crumb) crumb.textContent = `${problem.id} (${problem.category || 'Citizen challenge'})`;
+    // Citizen grievance text: student-facing statement first, original citizen
+    // description preserved below so nothing the citizen wrote is ever lost.
+    document.getElementById('problem-view-title').textContent = problem.title;
+    const statement = problem.problemStatement || problem.enrichedDescription || problem.description;
+    document.getElementById('problem-view-description').textContent = statement;
+    let meta = document.getElementById('problem-view-ai-meta');
+    if (!meta) {
+      meta = document.createElement('p');
+      meta.id = 'problem-view-ai-meta';
+      meta.className = 'text-body-sm font-body-sm text-on-surface-variant mt-2';
+      document.getElementById('problem-view-description').after(meta);
+    }
+    const conf = problem.categoryConfidence !== undefined ? ` (${Math.round(problem.categoryConfidence * 100)}%)` : '';
+    const label = problem.priorityLabel ? ` · ${problem.priorityLabel} ${problem.priorityScore}/100` : '';
+    const dup = problem.reportCount > 1 ? ` · ${problem.reportCount} reports` : '';
+    meta.textContent = `${problem.category || ''}${conf}${label}${dup}`;
+    fillApiDrivenFields(problem);
+    renderSolutionSection(problem);
+  }
+
+  // Every visible field below is driven by the API grievance: category,
+  // priority + reasons, district/block, dates, GPS, photos. No pre-added copy
+  // remains on this page -- these helpers just project the API payload.
+  function setText(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+  }
+
+  function fillApiDrivenFields(problem) {
+    const district = problem.district || '—';
+    const block = problem.block ? `, ${problem.block}` : '';
+    setText('problem-view-kicker', `${problem.category || 'Citizen challenge'} · ${district}${block}`);
+    setText('problem-view-quick-category', problem.category || '—');
+    setText('problem-view-quick-ward', `${district}${block}`);
+    setText('problem-view-quick-impact', problem.priorityLabel ? `${problem.priorityLabel} ${problem.priorityScore}/100` : `${problem.priorityScore || 0}/100`);
+    setText('problem-view-quick-verified', problem.status || '—');
+    setText('problem-view-lodged', problem.createdAt ? `Lodged ${problem.createdAt}` : 'Recently lodged');
+    const hasGps = problem.gpsLat !== undefined && problem.gpsLat !== null && problem.gpsLng !== undefined && problem.gpsLng !== null;
+    setText('problem-view-gps-coords', hasGps ? `GPS: ${problem.gpsLat}° N, ${problem.gpsLng}° E` : (problem.landmark ? `Near: ${problem.landmark}` : 'Location: as reported'));
+    renderEvidence(problem);
+    renderPriorityReasons(problem);
+  }
+
+  function renderEvidence(problem) {
+    const grid = document.getElementById('problem-view-evidence');
+    if (!grid) return;
+    const photos = Array.isArray(problem.photos) ? problem.photos.filter((p) => p && p.url) : [];
+    if (!photos.length) {
+      grid.innerHTML = '<p class="md:col-span-3 text-body-sm text-on-surface-variant">No photo evidence attached to this grievance.</p>';
+      return;
+    }
+    grid.innerHTML = photos.map((photo, i) =>
+      `<div class="border border-outline-variant rounded-lg overflow-hidden group bg-surface-container-low flex flex-col">` +
+      `<div class="relative h-44 w-full overflow-hidden">` +
+      `<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="${escHtml(photo.url)}" alt="Citizen evidence ${i + 1} for ${escHtml(problem.id)}" loading="lazy" />` +
+      `<span class="absolute top-2 right-2 bg-inverse-surface/80 text-inverse-on-surface text-label-sm font-label-sm px-2 py-0.5 rounded">Evidence #${i + 1}</span>` +
+      `</div><div class="p-space-sm"><p class="text-outline text-label-sm font-label-sm">Uploaded by citizen · ${escHtml(problem.id)}</p></div></div>`
+    ).join('');
+  }
+
+  function renderPriorityReasons(problem) {
+    let box = document.getElementById('problem-view-priority-reasons');
+    if (!box) {
+      box = document.createElement('div');
+      box.id = 'problem-view-priority-reasons';
+      box.className = 'mt-3 rounded-lg border border-outline-variant bg-surface-container p-space-sm';
+      document.getElementById('problem-view-description').after(box);
+    }
+    const reasons = Array.isArray(problem.priorityReasons) ? problem.priorityReasons : [];
+    const dup = problem.duplicateOf ? `<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Duplicate check: matches ${escHtml(problem.duplicateOf)}${problem.similarity !== undefined ? ` (${Math.round(problem.similarity * 100)}% similar)` : ''} — reports merged.</p>` : '';
+    box.innerHTML =
+      `<p class="font-label-md text-label-md font-bold text-on-surface">Why this ranks here: ${escHtml(problem.priorityLabel || '')} ${Number(problem.priorityScore || 0)}/100</p>` +
+      (reasons.length ? `<ul class="mt-1 space-y-1">${reasons.map((r) => `<li class="text-body-sm font-body-sm text-on-surface-variant">• ${escHtml(r)}</li>`).join('')}</ul>` : '<p class="text-body-sm text-on-surface-variant">Priority computed from scale, duration, category risk and report volume.</p>') +
+      dup;
+  }
+
+  function escHtml(v) {
+    return String(v || '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[c]));
+  }
+
+  function renderSolutionSection(problem) {
+    let section = document.getElementById('problem-solutions');
+    if (!section) {
+      section = document.createElement('section');
+      section.id = 'problem-solutions';
+      section.className = 'mt-6 rounded-xl border border-outline-variant bg-surface-container-lowest p-4';
+      document.getElementById('problem-view-description').closest('main, div').appendChild(section);
+    }
+    section.innerHTML =
+      '<h3 class="font-bold text-lg mb-1">Submit your solution</h3>' +
+      `<p class="text-sm mb-3">Problem ${escHtml(problem.id)} · ${escHtml(problem.category || '')}</p>` +
+      '<div class="grid gap-2">' +
+      '<input id="sol-title" class="rounded border p-2" placeholder="Solution title" maxlength="300" />' +
+      '<textarea id="sol-summary" class="rounded border p-2" rows="4" placeholder="What will you build/fix? (min 20 chars)"></textarea>' +
+      '<textarea id="sol-approach" class="rounded border p-2" rows="3" placeholder="Approach / steps (optional)"></textarea>' +
+      '<button id="sol-submit" class="h-12 rounded bg-secondary text-white font-semibold">Submit solution</button>' +
+      '<p id="sol-msg" class="text-sm"></p></div>' +
+      '<h4 class="font-bold mt-4 mb-2">Submitted solutions</h4>' +
+      '<div id="sol-list" class="grid gap-2"><p class="text-sm">Loading…</p></div>';
+    document.getElementById('sol-submit').addEventListener('click', async () => {
+      const msg = document.getElementById('sol-msg');
+      const title = document.getElementById('sol-title').value.trim();
+      const summary = document.getElementById('sol-summary').value.trim();
+      const approach = document.getElementById('sol-approach').value.trim();
+      if (title.length < 5 || summary.length < 20) {
+        msg.textContent = 'Title (5+) and summary (20+ chars) are required';
+        return;
+      }
+      msg.textContent = 'Submitting…';
+      try {
+        const created = await API.submitSolution({ problemId: problem.id, title, summary, approach });
+        msg.textContent = `Submitted as ${created.id}`;
+        loadSolutions(problem.id);
+      } catch (e) {
+        msg.textContent = e.message || 'Submit failed';
+      }
+    });
+    loadSolutions(problem.id);
+  }
+
+  async function loadSolutions(problemId) {
+    const list = document.getElementById('sol-list');
+    if (!list) return;
+    try {
+      const solutions = await API.getSolutionsForProblem(problemId);
+      list.innerHTML = solutions.length ? solutions.map((s) =>
+        `<article class="rounded border p-3"><h5 class="font-semibold">${escHtml(s.title)} ` +
+        `<span class="text-xs">${escHtml(s.id)} · ${escHtml(s.status)}</span></h5>` +
+        `<p class="text-sm mt-1">${escHtml(s.summary)}</p></article>`).join('')
+        : '<p class="text-sm">No solutions yet — be the first.</p>';
+    } catch {
+      list.innerHTML = '<p class="text-sm">Could not load solutions.</p>';
+    }
   }
 
   async function loadProblem() {
     if (problemId) {
-      showProblem(await API.getProblemByIdFromServer(problemId));
+      showProblem(await API.getStudentProblemById(problemId));
       return;
     }
     if (problemTitle) {

@@ -135,9 +135,16 @@ router.post(
     }
 
     if (!hashesMatch(hashCode(code), record.codeHash)) {
-      record.attempts += 1;
-      await record.save();
-      const remaining = MAX_ATTEMPTS - record.attempts;
+      const updated = await EmailOtp.findOneAndUpdate(
+        { _id: record._id, attempts: { $lt: MAX_ATTEMPTS } },
+        { $inc: { attempts: 1 } },
+        { new: true }
+      );
+      const attempts = updated ? updated.attempts : MAX_ATTEMPTS;
+      if (attempts >= MAX_ATTEMPTS) {
+        await EmailOtp.deleteOne({ _id: record._id });
+      }
+      const remaining = Math.max(0, MAX_ATTEMPTS - attempts);
       return res.status(400).json({ error: `गलत OTP, ${remaining} प्रयास शेष / Incorrect OTP, ${remaining} attempt(s) left` });
     }
 
@@ -148,8 +155,11 @@ router.post(
       { $setOnInsert: { email } },
       { new: true, upsert: true, setDefaultsOnInsert: true }
     );
-    // Single use -- a correct code is deleted only once the account is persisted.
-    await EmailOtp.deleteOne({ _id: record._id });
+    // Single use -- only one concurrent verifier may consume the code.
+    const consumed = await EmailOtp.deleteOne({ _id: record._id });
+    if (consumed.deletedCount !== 1) {
+      return res.status(400).json({ error: "OTP पहले ही उपयोग हो चुका है / OTP has already been used" });
+    }
     res.json({ verified: true, email, citizen: citizen.toJSON() });
   })
 );

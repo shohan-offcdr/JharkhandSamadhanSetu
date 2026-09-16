@@ -12,11 +12,15 @@ const connectDB = require("../src/config/db");
 const Problem = require("../src/models/Problem");
 
 const SEED_PROBLEMS = [
+  // Curated fallback only (2 items). All other student-portal challenges arrive
+  // live through POST /api/problems (categorize + duplicate-check + prioritize)
+  // and are listed via GET /api/problems?audience=student.
   {
     id: "JH-2024-10312",
     title: "Kanke Water Pipeline Leakage causing road damage",
     titleHi: "काँके पाइपलाइन रिसाव से सड़क क्षति",
     category: "Drinking Water & Sanitation",
+    categoryConfidence: 0.92,
     district: "Ranchi",
     block: "Kanke",
     gramPanchayat: "Kanke GP",
@@ -25,34 +29,25 @@ const SEED_PROBLEMS = [
     durationDays: 12,
     description:
       "A major pipeline joint near the Kanke Dam road has been leaking continuously for the last 12 days, damaging the road surface and wasting large volumes of treated water.",
+    problemStatement:
+      "A leaking pipeline joint near Kanke Dam road is wasting treated water and damaging the road surface.",
+    enrichedDescription:
+      "A major pipeline joint near the Kanke Dam road has been leaking continuously for the last 12 days, damaging the road surface and wasting large volumes of treated water.",
     reportCount: 42,
     priorityScore: 91,
+    priorityLabel: "Critical",
+    priorityReasons: ["Scale: Specific Neighbourhood", "Pending 12 day(s)", "42 citizen reports"],
+    analysisVersion: "local-semantic-v2",
+    visibleToStudents: true,
     status: "Verified",
     createdAt: "2024-05-01",
-  },
-  {
-    id: "JH-2024-10298",
-    title: "Transformer failure - no electricity for 6 days",
-    titleHi: "ट्रांसफार्मर खराब - 6 दिनों से बिजली नहीं",
-    category: "Electricity & JBVNL",
-    district: "Dhanbad",
-    block: "Baliapur",
-    gramPanchayat: "Baliapur GP",
-    pincode: "828203",
-    scaleOfImpact: "Village",
-    durationDays: 6,
-    description:
-      "The village transformer burnt out and has not been replaced. Around 150 households are without power, affecting irrigation pumps and children's studies at night.",
-    reportCount: 27,
-    priorityScore: 84,
-    status: "Pending Verification",
-    createdAt: "2024-05-04",
   },
   {
     id: "JH-2024-10276",
     title: "No ambulance service reaching Simdega remote blocks",
     titleHi: "सिमडेगा के सुदूर प्रखंडों में एम्बुलेंस सेवा उपलब्ध नहीं",
     category: "Health & Family Welfare",
+    categoryConfidence: 0.94,
     district: "Simdega",
     block: "Bano",
     gramPanchayat: "Bano GP",
@@ -61,29 +56,25 @@ const SEED_PROBLEMS = [
     durationDays: 30,
     description:
       "108 ambulance service does not reach several remote hamlets due to poor road connectivity, forcing patients to be carried on makeshift stretchers.",
+    problemStatement:
+      "Remote hamlets in Bano block cannot access 108 ambulance service due to poor road connectivity.",
+    enrichedDescription:
+      "108 ambulance service does not reach several remote hamlets due to poor road connectivity, forcing patients to be carried on makeshift stretchers.",
     reportCount: 63,
     priorityScore: 97,
+    priorityLabel: "Critical",
+    priorityReasons: ["Scale: Multiple Villages", "Pending 30 day(s)", "63 citizen reports", "Health/safety risk"],
+    analysisVersion: "local-semantic-v2",
+    visibleToStudents: true,
     status: "Escalated",
     createdAt: "2024-04-20",
   },
-  {
-    id: "JH-2024-10250",
-    title: "Broken hand-pump, only water source for hamlet",
-    titleHi: "हैंडपंप खराब, बस्ती का एकमात्र जल स्रोत",
-    category: "Drinking Water & Sanitation",
-    district: "Gumla",
-    block: "Bharno",
-    gramPanchayat: "Bharno GP",
-    pincode: "835207",
-    scaleOfImpact: "Individual Household",
-    durationDays: 4,
-    description: "The only functioning hand-pump for 8 households broke down 4 days ago. Women are walking 2km to fetch water.",
-    reportCount: 8,
-    priorityScore: 52,
-    status: "Pending Verification",
-    createdAt: "2024-05-08",
-  },
 ];
+
+// IDs removed from the old 4-item pre-added set. Re-running the seed deletes them
+// from MongoDB so the student portal only ever shows the 2 curated challenges
+// plus live citizen grievances submitted through the API.
+const REMOVED_SEED_IDS = ["JH-2024-10298", "JH-2024-10250"];
 
 async function seed() {
   await connectDB();
@@ -103,7 +94,12 @@ async function seed() {
     }
   }
 
-  console.log(`[seed] done. created: ${created}, updated: ${updated}`);
+  // Prune the removed pre-added challenges so older databases also converge to
+  // the 2-item curated set. Citizen grievances submitted via POST /api/problems
+  // use freshly generated JH-<year>-<5 digits> ids and are never touched here.
+  const pruned = await Problem.deleteMany({ id: { $in: REMOVED_SEED_IDS } });
+
+  console.log(`[seed] done. created: ${created}, updated: ${updated}, removed pre-added: ${pruned.deletedCount || 0}`);
   process.exit(0);
 }
 

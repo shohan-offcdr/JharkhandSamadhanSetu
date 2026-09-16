@@ -181,7 +181,7 @@
           Challenges
         </a>
 <span class="text-outline">/</span>
-<span class="font-mono text-outline font-medium">JH-2024-GW-89421</span>
+<span class="font-mono text-outline font-medium" id="proposal-problem-id">…</span>
 <span class="text-outline">/</span>
 <span class="text-primary font-semibold">Submit Solution Proposal</span>
 </nav>
@@ -752,7 +752,13 @@ The edge module performs Fast Fourier Transforms (FFT) and transient peak cross-
           preview.document.close();
         }
       });
-      document.getElementById('submitProposal').addEventListener('click', () => {
+      document.getElementById('submitProposal').addEventListener('click', async () => {
+        // ?problemId=JH-... deep-links from the student problem-view page; fill
+        // the breadcrumb chip so no pre-added id ever shows here.
+        const params = new URLSearchParams(window.location.search);
+        const problemId = params.get('problemId');
+        const chip = document.getElementById('proposal-problem-id');
+        if (chip) chip.textContent = problemId || 'No challenge selected';
         const summary = document.getElementById('exec-summary').value.trim();
         if (summary.length < 50) {
           showToast('Executive summary must be at least 50 characters');
@@ -762,9 +768,23 @@ The edge module performs Fast Fourier Transforms (FFT) and transient peak cross-
           showToast('Please complete the mentor attestation');
           return;
         }
-        localStorage.setItem('jss_student_proposal_submitted', JSON.stringify({ ...readDraft(), submittedAt: new Date().toISOString() }));
-        localStorage.removeItem(draftKey);
-        showToast('Proposal submitted for review / प्रस्ताव समीक्षा के लिए जमा हुआ');
+        if (!problemId) {
+          showToast('Open this page from a problem (missing ?problemId=) — draft saved locally');
+          localStorage.setItem('jss_student_proposal_submitted', JSON.stringify({ ...readDraft(), submittedAt: new Date().toISOString() }));
+          return;
+        }
+        try {
+          const created = await API.submitSolution({
+            problemId,
+            title: (document.getElementById('proposal-title') || {}).value?.trim() || summary.slice(0, 80),
+            summary,
+            approach: document.getElementById('handover-plan').value.trim(),
+          });
+          localStorage.removeItem(draftKey);
+          showToast(`Proposal submitted as ${created.id} / प्रस्ताव समीक्षा के लिए जमा हुआ`);
+        } catch (err) {
+          showToast(err.message || 'Submit failed — draft kept locally');
+        }
       });
     });
   </script>

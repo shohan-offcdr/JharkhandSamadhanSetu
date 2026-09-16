@@ -26,8 +26,10 @@ function resolveApiBase() {
   const override = String(window.JSS_API_BASE_URL || "").trim().replace(/\/+$/, "");
   if (override) return override.replace(/\/api$/i, "");
 
-  const { protocol, hostname } = window.location;
-  if (protocol === "file:" || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(hostname)) {
+  const { protocol, hostname, port } = window.location;
+  const localHost = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(hostname);
+  const staticPreviewPort = ["3000", "4173", "5500", "8000", "8080"].includes(port);
+  if (protocol === "file:" || localHost || staticPreviewPort) {
     return `http://${hostname || "localhost"}:4000`;
   }
   return ""; // same origin -- apiUrl() adds the "/api" prefix
@@ -162,6 +164,41 @@ const API = {
     });
     const query = params.toString();
     return this.request(`/problems${query ? `?${query}` : ""}`);
+  },
+
+  // Student portal reads the same MongoDB grievances through the
+  // student-safe projection (?audience=student): category, enriched
+  // problemStatement, priority, dedup counts. Sorted by priorityScore so the
+  // highest-priority citizen grievance is always on top.
+  // Falls back to the 2-item curated localStorage set when the API is
+  // unreachable (e.g. previewing the static site without `npm run dev`).
+  async getStudentProblems(filters = {}) {
+    try {
+      return await this.getProblemsFromServer({ ...filters, audience: "student", sortBy: filters.sortBy || "priority" });
+    } catch (error) {
+      console.warn("[api] student list fell back to local curated challenges:", error.message);
+      const local = this.getProblemsByPriority();
+      const filtered = filters.category ? local.filter((p) => p.category === filters.category) : local;
+      return filtered;
+    }
+  },
+
+  async getStudentProblemById(id) {
+    return this.request(`/problems/${encodeURIComponent(id)}?audience=student`);
+  },
+
+  // A student submits a solution to one grievance. problemId is the human
+  // JH-* id; studentId defaults to the logged-in session identifier.
+  async submitSolution(payload = {}) {
+    const session = this.getSession ? this.getSession() : null;
+    return this.request("/solutions", {
+      method: "POST",
+      body: { studentId: session && session.identifier, ...payload },
+    });
+  },
+
+  async getSolutionsForProblem(problemId) {
+    return this.request(`/solutions?problemId=${encodeURIComponent(problemId)}`);
   },
 
   async getProblemByIdFromServer(id) {

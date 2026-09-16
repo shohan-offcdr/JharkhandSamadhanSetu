@@ -228,7 +228,6 @@
 <span id="countdown">00:59</span>
 </div>
 </div>
-<!-- Firebase's invisible reCAPTCHA attaches here -- renders nothing visible -->
 <div id="recaptcha-container"></div>
 </div>
 <!-- Remember me & Assistive Link -->
@@ -435,8 +434,7 @@
           return;
         }
 
-        // Mobile tab: Firebase confirms the SMS code when it sent one,
-        // otherwise the demo code is checked (MobileOtp handles both).
+        // Mobile tab: validate the local phone-demo OTP.
         if (!MOBILE_RE.test(mobile)) {
           showToast('कृपया 10 अंकों का मान्य मोबाइल नंबर दर्ज करें / Enter a valid 10-digit mobile number');
           return;
@@ -465,5 +463,4 @@
 <script src="../js/mock-data.js"></script>
 <script src="../js/api.js"></script>
 <script src="../js/shared.js"></script>
-<script src="../js/firebase-config.js" type="module"></script>
 </body></html>

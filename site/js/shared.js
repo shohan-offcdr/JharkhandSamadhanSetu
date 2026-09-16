@@ -92,78 +92,33 @@ function showToast(message) {
 // ---------------------------------------------------------------
 
 let countdownInterval = null;
-
-// The only code that works when Firebase SMS isn't available. When this is
-// used, the page says so out loud instead of claiming an SMS was sent.
 const DEMO_MOBILE_OTP = "252525";
 
 const MobileOtp = {
-  // True once Firebase actually accepted the send for the current code.
-  sentViaFirebase: false,
+  sent: false,
 
-  // firebase-config.js loads as a deferred ES module, so it can finish after
-  // the click handler exists. Wait briefly for it instead of racing it.
-  async firebase(timeoutMs = 4000) {
-    const deadline = Date.now() + timeoutMs;
-    while (Date.now() < deadline) {
-      if (window.__firebaseAuth) return window.__firebaseAuth;
-      await new Promise((resolve) => setTimeout(resolve, 100));
-    }
-    return null;
-  },
-
-  // Sends a real SMS OTP via Firebase when it's available, and falls back to
-  // demo mode when it isn't (e.g. the Blaze plan isn't enabled yet) so the
-  // demo never dead-ends. Returns { channel, message } for the page to toast.
-  async send(tenDigitNumber) {
-    const firebase = await this.firebase();
-    if (firebase) {
-      try {
-        await firebase.sendOtp(tenDigitNumber);
-        this.sentViaFirebase = true;
-        return {
-          channel: "firebase",
-          message: `OTP भेजा गया +91 ${tenDigitNumber} पर / OTP sent to +91 ${tenDigitNumber}`,
-        };
-      } catch (error) {
-        // Surface *why* the SMS didn't go out (Blaze plan, quota, unauthorised
-        // domain, ...) instead of quietly pretending a demo code is the whole
-        // story -- that reason is the first thing anyone debugging this needs.
-        console.warn("[otp] Firebase SMS unavailable, using demo mode:", error.message);
-        this.sentViaFirebase = false;
-        return {
-          channel: "demo",
-          message: `${error.message} | डेमो OTP: ${DEMO_MOBILE_OTP} / Demo OTP: ${DEMO_MOBILE_OTP}`,
-        };
-      }
-    }
-
-    this.sentViaFirebase = false;
+  // Resend delivers email, not SMS. Phone login is therefore an explicit
+  // local prototype flow and never makes a Firebase or API request.
+  async send() {
+    this.sent = true;
     return {
       channel: "demo",
-      message: `डेमो मोड (SMS सेवा उपलब्ध नहीं): OTP ${DEMO_MOBILE_OTP} / Demo mode (SMS unavailable): OTP ${DEMO_MOBILE_OTP}`,
+      message: `डेमो फोन OTP: ${DEMO_MOBILE_OTP} / Demo phone OTP: ${DEMO_MOBILE_OTP}`,
     };
   },
 
-  // Verifies the typed code against whichever channel actually sent it.
-  // Throws a user-facing Error; resolves with the verified mobile number.
   async verify(code, tenDigitNumber) {
     const trimmed = String(code || "").trim();
-    if (this.sentViaFirebase) {
-      const firebase = await this.firebase();
-      if (firebase) {
-        await firebase.verifyOtp(trimmed);
-        return tenDigitNumber;
-      }
+    if (!this.sent) {
+      throw new Error("पहले OTP भेजें / Send an OTP first");
     }
-    if (trimmed !== DEMO_MOBILE_OTP) {
-      throw new Error("गलत OTP / Incorrect OTP");
-    }
+    if (trimmed !== DEMO_MOBILE_OTP) throw new Error("गलत OTP / Incorrect OTP");
+    this.sent = false;
     return tenDigitNumber;
   },
 
   reset() {
-    this.sentViaFirebase = false;
+    this.sent = false;
   },
 };
 
