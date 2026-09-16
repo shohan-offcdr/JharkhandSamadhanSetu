@@ -678,7 +678,7 @@
   function renderLiveProblems(problems) {
     if (!problemGrid) return;
     problemGrid.innerHTML = problems.map((problem) => `
-      <article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg hover:border-outline transition-all flex flex-col justify-between">
+      <article data-priority="${Number(problem.priorityScore) || 0}" data-created-at="${escapeBrowseHtml(problem.createdAt || '')}" class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg hover:border-outline transition-all flex flex-col justify-between">
         <div>
           <div class="flex items-start justify-between gap-2 mb-space-sm">
             <span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant border border-outline-variant">${escapeBrowseHtml(problem.category)}</span>
@@ -727,9 +727,17 @@
   document.getElementById('resetBrowseFilters').addEventListener('click', resetBrowseFilters);
   document.getElementById('clearBrowseFilters').addEventListener('click', resetBrowseFilters);
 
+  // The grid starts in the API's order (priority first). The old version of this
+  // handler just reversed the DOM every time you picked "Most Recent", so it
+  // never actually sorted by date and never restored the priority order when you
+  // switched back. Cards now carry their priority/date, so both options really
+  // re-order the list.
   browseSort.addEventListener('change', () => {
     const cards = Array.from(problemGrid.children);
-    if (browseSort.value === 'Most Recent') cards.reverse().forEach((card) => problemGrid.appendChild(card));
+    const sorted = browseSort.value === 'Most Recent'
+      ? cards.slice().sort((a, b) => String(b.dataset.createdAt || '').localeCompare(String(a.dataset.createdAt || '')))
+      : cards.slice().sort((a, b) => Number(b.dataset.priority || 0) - Number(a.dataset.priority || 0));
+    sorted.forEach((card) => problemGrid.appendChild(card));
     filterBrowseCards();
   });
 

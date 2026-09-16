@@ -665,15 +665,15 @@
   });
 
   // ---------- Grievance tracker (reads submitted grievances from the API) ----------
-  const TRACK_API_BASE = window.JSS_API_BASE_URL || (
-    window.location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(window.location.hostname)
-      ? `http://${window.location.hostname || 'localhost'}:4000/api`
-      : '/api'
-  );
+  // API.apiUrl() in js/api.js is the single source of truth for the API base, so
+  // the tracker can't drift out of sync with the rest of the site (this page used
+  // to build its own base URL, in a different shape from the rest).
 
   function escapeHtml(str) {
     const d = document.createElement('div');
-    d.textContent = str;
+    // null/undefined used to render as the literal text "undefined" -- e.g. for
+    // older grievances saved before createdAt was stamped.
+    d.textContent = str === undefined || str === null ? '' : String(str);
     return d.innerHTML;
   }
   function statusClasses(status) {
@@ -699,7 +699,7 @@
 
     let problem;
     try {
-      const response = await fetch(`${TRACK_API_BASE}/problems/${encodeURIComponent(id)}`);
+      const response = await fetch(API.apiUrl(`/problems/${encodeURIComponent(id)}`));
       if (response.status === 404) {
         problem = null;
       } else {
@@ -729,7 +729,7 @@
           </div>
           <div class="text-right shrink-0">
             <div class="text-label-sm font-label-sm text-on-surface-variant">दर्ज तिथि / Filed</div>
-            <div class="text-body-sm font-body-sm text-on-surface">${escapeHtml(problem.createdAt)}</div>
+            <div class="text-body-sm font-body-sm text-on-surface">${escapeHtml(problem.createdAt || '—')}</div>
           </div>
         </div>`;
     } else {

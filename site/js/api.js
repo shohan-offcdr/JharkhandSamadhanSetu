@@ -9,13 +9,119 @@
  * ---------------------------------------------------------
  */
 
-const API_BASE_URL = window.JSS_API_BASE_URL || (
-  window.location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(window.location.hostname)
-    ? `http://${window.location.hostname || 'localhost'}:4000/api`
-    : '/api'
-);
+/**
+ * Where the Express API lives.
+ *
+ * `window.JSS_API_BASE_URL` is an optional override that can be written either
+ * as the service root ("https://api.example.com", "http://localhost:4000") or
+ * with the "/api" suffix included ("https://api.example.com/api"). Both
+ * spellings are accepted, because the base is read from several places in this
+ * codebase and a deployment should only ever have to set it once.
+ *
+ * When it isn't set: pages opened straight from disk (file://) or from a local
+ * dev host talk to http://<host>:4000, and a deployed page calls the API on its
+ * own origin ("/api/...").
+ */
+function resolveApiBase() {
+  const override = String(window.JSS_API_BASE_URL || "").trim().replace(/\/+$/, "");
+  if (override) return override.replace(/\/api$/i, "");
+
+  const { protocol, hostname } = window.location;
+  if (protocol === "file:" || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(hostname)) {
+    return `http://${hostname || "localhost"}:4000`;
+  }
+  return ""; // same origin -- apiUrl() adds the "/api" prefix
+}
+
+// localStorage/sessionStorage can hold junk (hand-edited, half-written, or
+// written by an older version of this file). Never let a bad value take down
+// the whole page script -- hand back the fallback instead.
+function readJsonStorage(storage, key, fallback) {
+  try {
+    const raw = storage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  } catch (error) {
+    console.warn(`[api] ignoring unreadable "${key}":`, error.message);
+    return fallback;
+  }
+}
 
 const API = {
+
+  // ---------- TRANSPORT ----------
+
+  // Service root, without a trailing slash or the "/api" suffix.
+  apiBase() {
+    return resolveApiBase();
+  },
+
+  // Absolute (or same-origin) URL for an API path, e.g. apiUrl("/auth/send-email-otp").
+  apiUrl(path) {
+    const clean = String(path || "").startsWith("/") ? String(path) : `/${path || ""}`;
+    return `${this.apiBase()}/api${clean}`;
+  },
+
+  /**
+   * The single fetch wrapper every call in the app goes through, so the
+   * API-base rules and the error messages only exist in one place.
+   *
+   * Fixes three real failure modes seen in this app:
+   *  1. A wrong base URL returns a static host's 404 HTML -- response.json()
+   *     used to throw "Unexpected token <" and the user saw a raw browser error.
+   *  2. A dead API produced a bare "Failed to fetch".
+   *  3. A hung request (e.g. an async route that threw before responding) left
+   *     the button spinning forever, so now requests time out.
+   */
+  async request(path, { method = "GET", body, timeoutMs = 20000, headers = {} } = {}) {
+    const url = this.apiUrl(path);
+    const isFormData = typeof FormData !== "undefined" && body instanceof FormData;
+    const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    const timer = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
+
+    let response;
+    try {
+      response = await fetch(url, {
+        method,
+        // Never set Content-Type for FormData -- the browser must add its own
+        // multipart boundary, otherwise Multer rejects the upload.
+        headers: isFormData || body === undefined ? headers : { "Content-Type": "application/json", ...headers },
+        body: body === undefined ? undefined : (isFormData ? body : JSON.stringify(body)),
+        signal: controller ? controller.signal : undefined,
+      });
+    } catch (error) {
+      const where = this.apiBase() ? ` (${url})` : "";
+      throw new Error(
+        error && error.name === "AbortError"
+          ? `सर्वर से समय पर उत्तर नहीं मिला${where} / The server took too long to respond`
+          : `सर्वर से संपर्क नहीं हो सका${where}। कृपया जांचें कि API चालू है। / Could not reach the server${where}. Check that the API is running.`
+      );
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
+
+    // Read the body as text first so an HTML error page can't crash the parser.
+    const rawBody = await response.text().catch(() => "");
+    let data = {};
+    if (rawBody) {
+      try {
+        data = JSON.parse(rawBody);
+      } catch {
+        data = {};
+      }
+    }
+
+    if (!response.ok) {
+      const fallback = response.status === 429
+        ? "बहुत अधिक अनुरोध, कृपया थोड़ी देर बाद प्रयास करें / Too many requests, please try again shortly"
+        : `अनुरोध विफल रहा (HTTP ${response.status}) / Request failed (HTTP ${response.status})`;
+      const requestError = new Error(data.error || fallback);
+      requestError.status = response.status;
+      requestError.data = data;
+      throw requestError;
+    }
+
+    return data;
+  },
 
   // ---------- AUTH ----------
 
@@ -23,7 +129,11 @@ const API = {
   // LATER: replace body with a real fetch('/api/auth/login', ...)
   login(role, identifier) {
     const session = { role, identifier, loggedInAt: new Date().toISOString() };
-    localStorage.setItem("jss_session", JSON.stringify(session));
+    try {
+      localStorage.setItem("jss_session", JSON.stringify(session));
+    } catch (error) {
+      console.warn("[api] could not persist the session:", error.message);
+    }
     return session;
   },
 
@@ -32,14 +142,13 @@ const API = {
   },
 
   getSession() {
-    const raw = localStorage.getItem("jss_session");
-    return raw ? JSON.parse(raw) : null;
+    return readJsonStorage(localStorage, "jss_session", null);
   },
 
   // ---------- PROBLEMS (Grievances) ----------
 
   getProblems() {
-    return JSON.parse(localStorage.getItem("jss_problems") || "[]");
+    return readJsonStorage(localStorage, "jss_problems", []);
   },
 
   getProblemById(id) {
@@ -51,69 +160,35 @@ const API = {
     Object.entries(filters).forEach(([key, value]) => {
       if (value) params.set(key, value);
     });
-    const response = await fetch(`${API_BASE_URL}/problems?${params}`);
-    const result = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(result.error || "Could not load grievances");
-    return result;
+    const query = params.toString();
+    return this.request(`/problems${query ? `?${query}` : ""}`);
   },
 
   async getProblemByIdFromServer(id) {
-    const response = await fetch(`${API_BASE_URL}/problems/${encodeURIComponent(id)}`);
-    const result = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(result.error || "Could not load grievance");
-    return result;
+    return this.request(`/problems/${encodeURIComponent(id)}`);
   },
 
   async updateProblemStatus(id, status) {
-    const response = await fetch(`${API_BASE_URL}/problems/${encodeURIComponent(id)}/status`, {
+    return this.request(`/problems/${encodeURIComponent(id)}/status`, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status }),
+      body: { status },
     });
-    const result = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(result.error || "Could not update grievance status");
-    return result;
   },
 
   // Called on the final grievance step. The server owns categorization,
   // ID generation, priority scoring, and persistence.
   async submitProblem(problem) {
-    let response;
-    try {
-      response = await fetch(`${API_BASE_URL}/problems`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(problem),
-      });
-    } catch (error) {
-      throw new Error("सर्वर से संपर्क नहीं हो सका / Could not reach the grievance server");
-    }
-
-    const result = await response.json().catch(() => ({}));
-    if (!response.ok) {
-      throw new Error(result.error || "शिकायत दर्ज नहीं हो सकी / Could not submit grievance");
-    }
-    return result;
+    return this.request("/problems", { method: "POST", body: problem });
   },
 
-  async uploadEvidence(file) {
+  // Accepts a single file or an array. The server takes up to 5 files in the
+  // "photos" field, so callers can hand over a multi-select list directly.
+  async uploadEvidence(fileOrFiles) {
     const formData = new FormData();
-    formData.append("photos", file);
+    const files = Array.isArray(fileOrFiles) ? fileOrFiles : [fileOrFiles];
+    files.filter(Boolean).forEach((file) => formData.append("photos", file));
 
-    let response;
-    try {
-      response = await fetch(`${API_BASE_URL}/upload/grievance-photos`, {
-        method: "POST",
-        body: formData,
-      });
-    } catch (error) {
-      throw new Error("फोटो सर्वर तक नहीं पहुंच सकी / Could not reach the photo server");
-    }
-
-    const result = await response.json().catch(() => ({}));
-    if (!response.ok) {
-      throw new Error(result.error || "फोटो अपलोड विफल रहा / Photo upload failed");
-    }
+    const result = await this.request("/upload/grievance-photos", { method: "POST", body: formData });
     return result.files || [];
   },
 
@@ -167,8 +242,7 @@ const API = {
   },
 
   getDraft() {
-    const raw = sessionStorage.getItem("jss_draft_problem");
-    return raw ? JSON.parse(raw) : {};
+    return readJsonStorage(sessionStorage, "jss_draft_problem", {});
   },
 
   clearDraft() {
@@ -178,10 +252,10 @@ const API = {
   // ---------- STUDENT / STARTUP PROJECT TABLES ----------
 
   getStudentProjects() {
-    return JSON.parse(localStorage.getItem("jss_student_projects") || "[]");
+    return readJsonStorage(localStorage, "jss_student_projects", []);
   },
 
   getStartupCollabs() {
-    return JSON.parse(localStorage.getItem("jss_startup_collabs") || "[]");
+    return readJsonStorage(localStorage, "jss_startup_collabs", []);
   },
 };

@@ -38,6 +38,19 @@ connectDB()
       console.log(`jss-server listening on http://localhost:${PORT}`);
       console.log(`Health check: http://localhost:${PORT}/api/health`);
     });
+
+    // Build/verify indexes explicitly. Mongoose does this automatically, but an
+    // index/schema mismatch (for example an older non-unique index blocking a
+    // new unique one) would surface as an unhandled rejection and take the
+    // process down. Here it is logged clearly and traffic keeps being served.
+    const models = [require("./models/Problem"), require("./models/Citizen"), require("./models/EmailOtp")];
+    Promise.all(
+      models.map((model) =>
+        model.init().catch((err) => {
+          console.warn(`[db] index warning for ${model.modelName}: ${err.message}`);
+        })
+      )
+    ).then(() => console.log("[db] indexes verified"));
     server.on("error", (err) => {
       if (err.code === "EADDRINUSE") {
         console.error(`[server] Port ${PORT} is already in use. Stop the existing server before starting another one.`);

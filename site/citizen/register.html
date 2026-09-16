@@ -357,79 +357,66 @@
       }
     }
 
-    let countdownInterval;
-
-    function startOtpCountdown() {
-      const btn = document.getElementById('getOtpBtn');
-      const timerSpan = document.getElementById('otpTimer');
-      const countdownEl = document.getElementById('countdown');
-
-      btn.classList.add('opacity-50', 'no-underline', 'cursor-not-allowed');
-      timerSpan.classList.remove('hidden');
-      timerSpan.classList.add('flex');
-
-      let timeLeft = 59;
-      countdownEl.innerText = `00:${timeLeft < 10 ? '0' : ''}${timeLeft}`;
-
-      clearInterval(countdownInterval);
-      countdownInterval = setInterval(() => {
-        timeLeft--;
-        if (timeLeft <= 0) {
-          clearInterval(countdownInterval);
-          btn.disabled = false;
-          btn.classList.remove('opacity-50', 'no-underline', 'cursor-not-allowed');
-          timerSpan.classList.add('hidden');
-          timerSpan.classList.remove('flex');
-          btn.innerText = 'Resend OTP / पुनः भेजें';
-        } else {
-          countdownEl.innerText = `00:${timeLeft < 10 ? '0' : ''}${timeLeft}`;
-        }
-      }, 1000);
-    }
-
     function currentTab() {
       return document.getElementById('tab-mobile').getAttribute('aria-selected') === 'true' ? 'mobile' : 'email';
     }
 
-    // General mobile OTP for local deployment + real Resend-backed email OTP.
-    const GENERAL_MOBILE_OTP = '252525';
-    const API_BASE = window.JSS_API_BASE_URL || (
-      window.location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(window.location.hostname)
-        ? `http://${window.location.hostname || 'localhost'}:4000`
-        : ''
-    );
+    // The API transport, the OTP helpers and the resend countdown used to be
+    // copy-pasted into this page with their own API base URL, which is how the
+    // email OTP request ended up failing here while working elsewhere. They now
+    // live in one place:
+    //   ../js/api.js    -> API.request() / API.apiUrl()
+    //   ../js/shared.js -> MobileOtp / startOtpCountdown() / stopOtpCountdown()
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const MOBILE_RE = /^[6-9]\d{9}$/;
+
+    // Locks the submit button while a request is in flight, so a slow server
+    // can't be hit twice and the citizen gets visible feedback.
+    function setSubmitting(isSubmitting) {
+      const submitBtn = document.querySelector('#loginForm button[type="submit"]');
+      if (!submitBtn) return;
+      submitBtn.disabled = isSubmitting;
+      submitBtn.classList.toggle('opacity-60', isSubmitting);
+      submitBtn.classList.toggle('cursor-wait', isSubmitting);
+    }
 
     async function triggerOtp() {
-      const btn = document.getElementById('getOtpBtn');
+      const email = document.getElementById('email-address').value.trim();
+      const mobile = document.getElementById('mobile-number').value.trim();
 
       if (currentTab() === 'email') {
-        const email = document.getElementById('email-address').value.trim();
-        btn.disabled = true;
+        if (!EMAIL_RE.test(email)) {
+          showToast('कृपया मान्य ईमेल दर्ज करें / Enter a valid email address');
+          document.getElementById('email-address').focus();
+          return;
+        }
         try {
-          const res = await fetch(`${API_BASE}/api/auth/send-email-otp`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email }),
-          });
-          const data = await res.json();
-          if (!res.ok) throw new Error(data.error || 'OTP भेजने में समस्या / Failed to send OTP');
+          await API.request('/auth/send-email-otp', { method: 'POST', body: { email } });
           showToast(`OTP भेजा गया ${email} पर / OTP sent to ${email}`);
           startOtpCountdown();
-        } catch (err) {
-          showToast(err.message || 'सर्वर से जुड़ नहीं पाए / Could not reach the server -- is it running?');
-          btn.disabled = false;
+        } catch (error) {
+          stopOtpCountdown();
+          showToast(error.message);
         }
         return;
       }
 
-      const mobile = document.getElementById('mobile-number').value.trim();
-      if (!/^\d{10}$/.test(mobile)) {
-        showToast('कृपया 10 अंकों का मोबाइल नंबर दर्ज करें / Enter a valid 10-digit mobile number');
+      if (!MOBILE_RE.test(mobile)) {
+        showToast('कृपया 10 अंकों का मान्य मोबाइल नंबर दर्ज करें / Enter a valid 10-digit mobile number');
+        document.getElementById('mobile-number').focus();
         return;
       }
-      btn.disabled = true;
-      showToast(`सामान्य OTP भेजा गया +91 ${mobile} पर / General OTP sent to +91 ${mobile}`);
-      startOtpCountdown();
+
+      // Blocks a double-click from firing two sends while we wait.
+      document.getElementById('getOtpBtn').disabled = true;
+      try {
+        const { message } = await MobileOtp.send(mobile);
+        showToast(message);
+        startOtpCountdown();
+      } catch (error) {
+        stopOtpCountdown();
+        showToast(error.message);
+      }
     }
 
     async function handleFormSubmit(event) {
@@ -437,56 +424,57 @@
       const name = document.getElementById('full-name').value.trim();
       if (!name) {
         showToast('कृपया अपना नाम दर्ज करें / Please enter your name');
-        return;
-      }
-      const otp = document.getElementById('otp-code').value;
-      if (otp.length < 6) {
-        showToast('कृपया 6 अंकों का ओटीपी दर्ज करें / Please enter a valid 6-digit OTP.');
+        document.getElementById('full-name').focus();
         return;
       }
 
-      const mobile = document.getElementById('mobile-number').value;
-      const email = document.getElementById('email-address').value;
+      const otp = document.getElementById('otp-code').value.trim();
+      if (!/^\d{6}$/.test(otp)) {
+        showToast('कृपया 6 अंकों का ओटीपी दर्ज करें / Please enter a valid 6-digit OTP');
+        return;
+      }
 
+      const email = document.getElementById('email-address').value.trim();
+      const mobile = document.getElementById('mobile-number').value.trim();
+
+      // Looks up (or creates) the real Citizen account, then starts the local
+      // session and moves on to the grievance flow. Errors propagate to the
+      // caller, which reports them in one place.
       async function registerAndRedirect(identity) {
-        try {
-          const res = await fetch(`${API_BASE}/api/citizens/find-or-create`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, ...identity }),
-          });
-          const data = await res.json();
-          if (!res.ok) throw new Error(data.error || 'खाता बनाने में समस्या / Could not create account');
-          API.login('citizen', data.email || data.phone);
-          showToast(data.isNewAccount ? 'खाता बन गया! Redirecting... / Account created!' : 'स्वागत है! Redirecting... / Welcome back!');
-          setTimeout(() => { window.location.href = 'grievance-step1.html'; }, 700);
-        } catch (err) {
-          showToast(err.message || 'सर्वर से जुड़ नहीं पाए / Could not reach the server -- is it running?');
-        }
+        const citizen = await API.request('/citizens/find-or-create', { method: 'POST', body: { name, ...identity } });
+        API.login('citizen', citizen.email || citizen.phone);
+        showToast(citizen.isNewAccount
+          ? 'खाता बन गया! Redirecting... / Account created!'
+          : 'स्वागत है! Redirecting... / Welcome back!');
+        setTimeout(() => { window.location.href = 'grievance-step1.html'; }, 700);
       }
 
-      // Email tab: real backend verification against the code Resend just emailed.
-      if (currentTab() === 'email') {
-        try {
-          const res = await fetch(`${API_BASE}/api/auth/verify-email-otp`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email.trim(), code: otp }),
-          });
-          const data = await res.json();
-          if (!res.ok) throw new Error(data.error || 'सत्यापन विफल / Verification failed');
-          await registerAndRedirect({ email: data.email });
-        } catch (err) {
-          showToast(err.message || 'सर्वर से जुड़ नहीं पाए / Could not reach the server -- is it running?');
+      setSubmitting(true);
+      try {
+        // Email tab: real backend verification against the code Resend just emailed.
+        if (currentTab() === 'email') {
+          if (!EMAIL_RE.test(email)) {
+            showToast('कृपया मान्य ईमेल दर्ज करें / Enter a valid email address');
+            return;
+          }
+          const data = await API.request('/auth/verify-email-otp', { method: 'POST', body: { email, code: otp } });
+          await registerAndRedirect({ email: data.email || email });
+          return;
         }
-        return;
-      }
 
-      if (otp !== GENERAL_MOBILE_OTP) {
-        showToast('गलत OTP / Incorrect OTP');
-        return;
+        // Mobile tab: Firebase confirms the SMS code when it sent one,
+        // otherwise the demo code is checked (MobileOtp handles both).
+        if (!MOBILE_RE.test(mobile)) {
+          showToast('कृपया 10 अंकों का मान्य मोबाइल नंबर दर्ज करें / Enter a valid 10-digit mobile number');
+          return;
+        }
+        await MobileOtp.verify(otp, mobile);
+        await registerAndRedirect({ phone: mobile });
+      } catch (error) {
+        showToast(error.message);
+      } finally {
+        setSubmitting(false);
       }
-      await registerAndRedirect({ phone: mobile });
     }
   </script>
 <script src="../js/mock-data.js"></script>

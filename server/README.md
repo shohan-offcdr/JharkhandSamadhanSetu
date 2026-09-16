@@ -16,6 +16,21 @@ setup — rotate both once you've confirmed everything works:
    → Edit Password → generate a new one → update `MONGODB_URI` in `.env`.
    Also check Network Access isn't wide open (`0.0.0.0/0`) once you're done
    testing — restrict it to your actual IP for anything beyond local dev.
+3. **Resend (email OTP)**: `EMAIL_FROM` is currently
+   `Jharkhand Samadhan Setu <onboarding@resend.dev>` — Resend's *shared test
+   sender*. It only delivers to the address that owns the Resend account; every
+   other recipient is rejected by Resend with
+   "Invalid `to` field. Please use our testing email address instead".
+   That is why email OTP can appear to "fail to send" even when the API is
+   perfectly healthy. To send OTPs to real citizens:
+
+   - verify a domain at resend.com → Domains, then set
+     `EMAIL_FROM="Jharkhand Samadhan Setu <no-reply@your-verified-domain>"`, **or**
+   - keep the test sender and only test with the Resend account owner's address.
+
+   The server now logs a warning on boot when it detects the test sender, and
+   the `POST /api/auth/send-email-otp` error response includes the exact message
+   from Resend (`detail`) so this is never guesswork again.
 
 `.env` is git-ignored. Never put real keys in `.env.example` or in any file
 under `site/` — anything in `site/` ships to the browser, where a secret is
@@ -117,24 +132,60 @@ rate limit, explicit OTP expiry checks, and graceful shutdown handling.
 
 - Codes are hashed (SHA-256) before they're stored — nobody reading the
   database directly can see a valid code
+- The comparison is constant-time (`crypto.timingSafeEqual`), so a response
+  can't be used to guess the hash one character at a time
 - 30-second cooldown between resend requests per email
 - Codes expire after 10 minutes (MongoDB deletes them automatically — no
   cleanup job needed)
 - Max 5 wrong guesses before a code is invalidated and a new one is required
 - Single-use — a correct code is deleted the moment it's verified
+- One live code per address, enforced by the `email_unique` index. It is named
+  explicitly instead of using `unique: true` (which would generate the name
+  `email_1`) because databases created by an earlier version of this model
+  already hold a *non-unique* `email_1`, and MongoDB refuses to redefine an
+  index under an existing name. If index creation ever complains about
+  duplicates, clear them with
+  `db.emailotps.aggregate([{ $group: { _id: "$email", n: { $sum: 1 } } }, { $match: { n: { $gt: 1 } } }])`
+  and delete the extra documents.
+- Index builds are awaited at boot and reported as warnings rather than
+  crashing the process (`src/server.js`).
 
 ### Frontend wiring already done
 
-`site/citizen/login.html` — Mobile tab uses real Firebase SMS (needs Blaze
-or a test number, see earlier notes). Email tab calls the auth routes above
-for real. Both paths now also call `/api/citizens/find-or-create` so a real
-account exists in the database, not just a local session.
+**Where the API lives.** Every page goes through `site/js/api.js`, which reads an
+optional `window.JSS_API_BASE_URL` override and accepts it in *either* form,
+with or without the `/api` suffix:
 
-`site/citizen/register.html` — new page, same OTP mechanics as login plus a
-required Full Name field. Calls the same `find-or-create` endpoint with the
-name attached, so registering and logging in converge on one real account
-instead of being two separate systems. The "Register here" link on the
-login page now points here instead of `href="#"`.
+```html
+<script>window.JSS_API_BASE_URL = "https://your-api.example.com";</script>
+<!-- or, equally valid: -->
+<script>window.JSS_API_BASE_URL = "https://your-api.example.com/api";</script>
+```
+
+With no override: pages served from `localhost`/`127.0.0.1`/`file://` talk to
+`http://<host>:4000`, and a deployed page calls `/api/...` on its own origin.
+Pages must use `API.apiUrl("/path")` / `API.request("/path")` rather than
+building that URL by hand — a hand-built base URL is what previously made the
+citizen login/register pages request `/api/api/auth/...` and report a generic
+fetch failure while every other page worked.
+
+`site/citizen/login.html` — the Email tab calls the auth routes above for real,
+then `/api/citizens/find-or-create` so a real account exists in the database,
+not just a local session. The Mobile tab sends a real SMS OTP through Firebase
+(`site/js/firebase-config.js`). If Firebase can't send (Blaze plan not enabled,
+SMS quota used up, domain not authorised, …) the toast says exactly why and the
+page falls back to the local demo code `252525` so the demo never dead-ends.
+**The demo code is a demo affordance, not security** — with a working Firebase
+project the SMS code is the one that is verified.
+
+`site/citizen/register.html` — same OTP mechanics as login plus a required Full
+Name field. Calls the same `find-or-create` endpoint with the name attached, so
+registering and logging in converge on one real account instead of being two
+separate systems.
+
+**Resend countdown / button state.** `startOtpCountdown()` in `site/js/shared.js`
+owns the "Get OTP" button lock (and `stopOtpCountdown()` releases it when a send
+fails), so the button can no longer get stuck disabled.
 
 ## Not done yet
 
@@ -142,9 +193,14 @@ login page now points here instead of `href="#"`.
   the upload route should require a valid session once login is fully
   wired everywhere, so they can't be spammed anonymously. `PATCH
   .../status` should be restricted to government officer accounts only.
-- CORS currently only allows `localhost:5500` / `127.0.0.1:5500` (a common
-  Live Server port). Update `CORS_ORIGIN` in `.env` to match however you
-  end up serving `site/`.
+- CORS in development allows any `localhost`/`127.0.0.1` port (plus
+  `Origin: null` from `file://` pages), so Live Server on 5500, a preview on
+  3000 and `python -m http.server` on 8000 all work. In production only the
+  explicit `CORS_ORIGIN` list is honoured, so set it to the real site origin
+  before deploying.
+- Rate limits: 300 requests / 15 min per IP across the API, and 60 / 15 min on
+  `/api/auth` (each OTP send is a real e-mail). `/api/health` and `/api/ready`
+  sit *before* the limiter so monitoring can't lock itself out.
 - Student/startup collaboration data (`SEED_STUDENT_PROJECTS`,
   `SEED_STARTUP_COLLABS` in `mock-data.js`) isn't in the database yet —
   say the word and I'll add those models + routes the same way.

@@ -9,7 +9,7 @@
     "dev": "nodemon --signal SIGTERM --watch src --ignore .env --ignore package-lock.json src/server.js",
     "start": "node src/server.js",
     "seed": "node scripts/seed.js",
-    "check": "node --check src/app.js && node --check src/server.js && node --check src/routes/auth.js && node --check src/routes/problems.js && node --check src/routes/upload.js"
+    "check": "node --check src/app.js && node --check src/server.js && node --check src/config/db.js && node --check src/routes/auth.js && node --check src/routes/problems.js && node --check src/routes/upload.js && node --check src/routes/citizens.js && node --check src/models/EmailOtp.js && node --check src/utils/asyncHandler.js && node --check src/utils/otp.js"
   },
   "engines": {
     "node": ">=20"

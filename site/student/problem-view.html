@@ -682,16 +682,58 @@
 <script src="../js/api.js"></script>
 <script src="../js/shared.js"></script>
 <script>
-  requireRole('student', 'login.html');
+  // This page is reachable from the student portal *and* from the startup
+  // portal's "browse problems" page, which links here -- so both roles are
+  // allowed instead of bouncing startup users to the student login.
+  requireRole(['student', 'startup'], 'login.html');
 
-  const problemId = new URLSearchParams(window.location.search).get('id');
-  if (problemId) {
-    API.getProblemByIdFromServer(problemId).then((problem) => {
-      document.title = `Jharkhand Samadhan Setu | Problem ${problem.id}`;
-      document.getElementById('problem-view-id').textContent = problem.id;
-      document.getElementById('problem-view-title').textContent = problem.title;
-      document.getElementById('problem-view-description').textContent = problem.description;
-    }).catch(() => showToast('Could not load this citizen problem / समस्या लोड नहीं हो सकी'));
+  // ?id=JH-2024-10312 loads one grievance straight from the API. The startup
+  // portal's static demo cards only have a title to go on, so ?title= is
+  // resolved against the live list instead of silently doing nothing (which is
+  // what used to happen: only ?id= was read).
+  const viewParams = new URLSearchParams(window.location.search);
+  const problemId = viewParams.get('id');
+  const problemTitle = viewParams.get('title');
+
+  function showProblem(problem) {
+    document.title = `Jharkhand Samadhan Setu | Problem ${problem.id}`;
+    document.getElementById('problem-view-id').textContent = problem.id;
+    document.getElementById('problem-view-title').textContent = problem.titleHi || problem.title;
+    document.getElementById('problem-view-description').textContent = problem.description;
+  }
+
+  async function loadProblem() {
+    if (problemId) {
+      showProblem(await API.getProblemByIdFromServer(problemId));
+      return;
+    }
+    if (problemTitle) {
+      const problems = await API.getProblemsFromServer();
+      const wanted = problemTitle.toLowerCase();
+      const match = problems.find((problem) => problem.title === problemTitle)
+        || problems.find((problem) => String(problem.title || '').toLowerCase().includes(wanted));
+      if (!match) {
+        throw new Error('इस शीर्षक से कोई शिकायत नहीं मिली / No grievance found with that title');
+      }
+      showProblem(match);
+      return;
+    }
+    showToast('कोई शिकायत चुनी नहीं गई / No grievance selected');
+  }
+
+  // Send the reader back to the portal they actually came from: this page lives
+  // under student/, so ./dashboard.html would redirect a startup user to the
+  // student login page.
+  const session = API.getSession();
+  const dashboardCrumb = document.querySelector('nav[aria-label="Breadcrumb"] a[href="dashboard.html"]');
+  if (dashboardCrumb && session && session.role === 'startup') {
+    dashboardCrumb.setAttribute('href', '../startup/dashboard.html');
+  }
+
+  if (problemId || problemTitle) {
+    loadProblem().catch((error) => {
+      showToast(error.message || 'Could not load this citizen problem / समस्या लोड नहीं हो सकी');
+    });
   }
 </script>
 </body></html>

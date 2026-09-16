@@ -17,7 +17,10 @@ function connectDB() {
     console.error("[db] connection error:", err.message);
   });
 
-  connectPromise = mongoose.connect(uri);
+  // Fail fast instead of buffering commands forever when Atlas is unreachable or
+  // the current IP isn't on the Atlas network access list -- before this, a
+  // misconfigured deployment just hung every request.
+  connectPromise = mongoose.connect(uri, { serverSelectionTimeoutMS: 10000 });
   return connectPromise;
 }
 

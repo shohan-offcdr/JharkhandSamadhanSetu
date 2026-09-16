@@ -46,11 +46,14 @@ export async function sendOtp(tenDigitNumber) {
   if (!/^[6-9]\d{9}$/.test(tenDigitNumber)) {
     throw new Error("कृपया मान्य 10 अंकों का मोबाइल नंबर दर्ज करें / Enter a valid 10-digit mobile number");
   }
-  const verifier = setupRecaptcha("recaptcha-container");
-  const phoneNumber = `+91${tenDigitNumber}`;
 
+  // Building the reCAPTCHA verifier can itself throw (missing container, blocked
+  // Google script, an unauthorised domain). It used to sit outside the try/catch,
+  // so those failures escaped as a raw Firebase error instead of a message the
+  // citizen could act on.
   try {
-    activeConfirmation = await signInWithPhoneNumber(auth, phoneNumber, verifier);
+    const verifier = setupRecaptcha("recaptcha-container");
+    activeConfirmation = await signInWithPhoneNumber(auth, `+91${tenDigitNumber}`, verifier);
   } catch (err) {
     activeConfirmation = null;
     throw new Error(mapFirebaseError(err));
@@ -82,10 +85,15 @@ function mapFirebaseError(err) {
   const known = {
     "auth/billing-not-enabled": "OTP सेवा अभी सक्रिय नहीं है (Blaze plan आवश्यक) / OTP service isn't enabled yet (requires Firebase Blaze plan)",
     "auth/invalid-phone-number": "अमान्य मोबाइल नंबर / Invalid mobile number",
+    "auth/missing-phone-number": "मोबाइल नंबर आवश्यक है / A mobile number is required",
     "auth/too-many-requests": "बहुत अधिक प्रयास, कृपया बाद में पुनः प्रयास करें / Too many attempts, please try again later",
     "auth/invalid-verification-code": "गलत OTP, कृपया पुनः जांचें / Incorrect OTP, please check and try again",
     "auth/code-expired": "OTP समय सीमा समाप्त, नया OTP भेजें / OTP expired, request a new one",
     "auth/quota-exceeded": "आज की SMS सीमा पूरी हो गई / Today's SMS quota has been used up",
+    "auth/operation-not-allowed": "Firebase में Phone sign-in चालू नहीं है / Phone sign-in is not enabled in Firebase Authentication",
+    "auth/unauthorized-domain": "यह डोमेन Firebase में अधिकृत नहीं है / This domain is not authorised in Firebase Authentication",
+    "auth/captcha-check-failed": "reCAPTCHA सत्यापन विफल रहा, पुनः प्रयास करें / reCAPTCHA verification failed, please try again",
+    "auth/invalid-app-credential": "ऐप क्रेडेंशियल मान्य नहीं हैं / The app credential is not valid for this domain",
   };
   return known[code] || `कुछ गलत हुआ, कृपया पुनः प्रयास करें / Something went wrong, please try again (${code || "unknown error"})`;
 }

@@ -1,16 +1,38 @@
 const express = require("express");
 const Problem = require("../models/Problem");
+const { STATUS_VALUES } = require("../models/Problem");
 const { analyzeProblem, similarityScore, generateProblemId } = require("../utils/categorize");
+const asyncHandler = require("../utils/asyncHandler");
 
 const router = express.Router();
+
+const SCALE_VALUES = ["Individual Household", "Specific Neighbourhood", "Village", "Multiple Villages", "Entire District"];
+const MAX_DESCRIPTION_LENGTH = 5000;
+const MAX_PHOTOS = 5;
 
 function escapeRegExp(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+// Trims and caps free text. Without the cap a single request could store
+// megabytes of "description" in the database.
+function cleanText(value, maxLength) {
+  return String(value === undefined || value === null ? "" : value).trim().slice(0, maxLength);
+}
+
+// Coerces numbers, and turns anything unparseable ("", "12 weeks") into
+// undefined instead of letting Mongoose raise a CastError -- which used to
+// surface as an HTTP 500 on an otherwise valid-looking submission.
+function cleanNumber(value) {
+  if (value === undefined || value === null || value === "") return undefined;
+  const number = Number(value);
+  return Number.isFinite(number) ? number : undefined;
+}
+
 // GET /api/problems?district=Ranchi&category=...&status=...&sortBy=priority
-router.get("/", async (req, res) => {
-  try {
+router.get(
+  "/",
+  asyncHandler(async (req, res) => {
     const { district, category, status, sortBy } = req.query;
     const filter = {};
     if (district) filter.district = district;
@@ -20,118 +42,134 @@ router.get("/", async (req, res) => {
     const sort = sortBy === "priority" ? { priorityScore: -1 } : { createdAt: -1 };
     const problems = await Problem.find(filter).sort(sort);
     res.json(problems);
-  } catch (err) {
-    console.error("[problems] list failed:", err.message);
-    res.status(500).json({ error: "Server error" });
-  }
-});
+  })
+);
 
 // GET /api/problems/:id  (human-facing ID, e.g. JH-2024-10312 -- used by the homepage tracker)
-router.get("/:id", async (req, res) => {
-  try {
-    const problem = await Problem.findOne({ id: req.params.id.toUpperCase() });
+router.get(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const problem = await Problem.findOne({ id: String(req.params.id || "").toUpperCase() });
     if (!problem) {
       return res.status(404).json({ error: `"${req.params.id}" क्रमांक से कोई शिकायत नहीं मिली / No grievance found for that ID` });
     }
     res.json(problem);
-  } catch (err) {
-    console.error("[problems] get failed:", err.message);
-    res.status(500).json({ error: "Server error" });
-  }
-});
+  })
+);
 
 // POST /api/problems  -- same auto-fill behaviour as api.js's submitProblem()
-router.post("/", async (req, res) => {
-  const { title, description, district, block, gramPanchayat, pincode, landmark, gpsLat, gpsLng, evidenceFileName, scaleOfImpact, durationDays, photos, titleHi } = req.body;
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const title = cleanText(req.body.title, 300);
+    const description = cleanText(req.body.description, MAX_DESCRIPTION_LENGTH);
+    const district = cleanText(req.body.district, 120);
 
-  if (!title || !description || !district) {
-    return res.status(400).json({ error: "title, description और district आवश्यक हैं / title, description and district are required" });
-  }
-
-  const analysis = analyzeProblem({ title, description, district, scaleOfImpact, durationDays });
-  const base = {
-    title,
-    titleHi,
-    description,
-    district,
-    block,
-    gramPanchayat,
-    pincode,
-    landmark,
-    gpsLat,
-    gpsLng,
-    evidenceFileName,
-    scaleOfImpact,
-    durationDays,
-    photos,
-    category: analysis.category,
-    status: "Pending Verification",
-    reportCount: 1,
-    createdAt: new Date().toISOString().slice(0, 10),
-  };
-  base.priorityScore = analysis.priorityScore;
-  base.analysisVersion = analysis.analysisVersion;
-
-  const candidates = await Problem.find({ district: new RegExp(`^${escapeRegExp(analysis.district)}$`, "i"), category: base.category }).limit(100);
-  const duplicate = candidates
-    .map((candidate) => ({ candidate, score: similarityScore(analysis.tokens, new Set(`${candidate.title} ${candidate.description}`.toLowerCase().match(/[a-z0-9\u0900-\u097f]{3,}/g) || [])) }))
-    .sort((a, b) => b.score - a.score)[0];
-
-  if (duplicate && duplicate.score >= 0.45) {
-    const priorityScore = Math.min(100, Math.max(base.priorityScore, Number(duplicate.candidate.priorityScore || 0) + 5));
-    const updated = await Problem.findOneAndUpdate(
-      { _id: duplicate.candidate._id },
-      { $inc: { reportCount: 1 }, $set: { duplicateOf: duplicate.candidate.id, priorityScore } },
-      { new: true }
-    );
-    return res.status(200).json({ ...updated.toJSON(), duplicate: true, similarity: Number(duplicate.score.toFixed(2)) });
-  }
-
-  // Human-facing IDs are randomly generated, like the frontend mock -- retry a
-  // couple of times on the rare collision instead of trusting randomness once.
-  for (let attempt = 0; attempt < 3; attempt++) {
-    try {
-      const problem = await Problem.create({ ...base, id: generateProblemId() });
-      return res.status(201).json(problem);
-    } catch (err) {
-      if (err.code === 11000 && attempt < 2) continue; // duplicate id, retry
-      console.error("[problems] create failed:", err.message);
-      return res.status(500).json({ error: "Server error" });
+    if (!title || !description || !district) {
+      return res.status(400).json({ error: "title, description और district आवश्यक हैं / title, description and district are required" });
     }
-  }
-});
+
+    // Everything below is normalised before it reaches Mongoose. The old handler
+    // passed req.body straight through, so a form field like durationDays=""
+    // or an unexpected scaleOfImpact made Mongoose throw a CastError/enum error
+    // and the API answered 500 -- from the citizen's side, a failed submission
+    // with no explanation.
+    const scaleOfImpact = SCALE_VALUES.includes(req.body.scaleOfImpact) ? req.body.scaleOfImpact : undefined;
+    const durationDays = cleanNumber(req.body.durationDays) || 0;
+    const photos = Array.isArray(req.body.photos)
+      ? req.body.photos.slice(0, MAX_PHOTOS).map((photo) => ({
+          url: cleanText(photo && photo.url, 500),
+          publicId: cleanText(photo && photo.publicId, 300),
+          width: cleanNumber(photo && photo.width),
+          height: cleanNumber(photo && photo.height),
+          bytes: cleanNumber(photo && photo.bytes),
+        }))
+      : [];
+
+    const analysis = analyzeProblem({ title, description, district, scaleOfImpact, durationDays });
+    const base = {
+      title,
+      titleHi: cleanText(req.body.titleHi, 300) || undefined,
+      description,
+      district,
+      block: cleanText(req.body.block, 120) || undefined,
+      gramPanchayat: cleanText(req.body.gramPanchayat, 120) || undefined,
+      pincode: cleanText(req.body.pincode, 12) || undefined,
+      landmark: cleanText(req.body.landmark, 200) || undefined,
+      gpsLat: cleanNumber(req.body.gpsLat),
+      gpsLng: cleanNumber(req.body.gpsLng),
+      evidenceFileName: cleanText(req.body.evidenceFileName, 255) || undefined,
+      scaleOfImpact,
+      durationDays,
+      photos,
+      category: analysis.category,
+      status: "Pending Verification",
+      reportCount: 1,
+      createdAt: new Date().toISOString().slice(0, 10),
+    };
+    base.priorityScore = analysis.priorityScore;
+    base.analysisVersion = analysis.analysisVersion;
+
+    const candidates = await Problem.find({ district: new RegExp(`^${escapeRegExp(analysis.district)}$`, "i"), category: base.category }).limit(100);
+    const duplicate = candidates
+      .map((candidate) => ({
+        candidate,
+        score: similarityScore(analysis.tokens, new Set(`${candidate.title} ${candidate.description}`.toLowerCase().match(/[a-z0-9\u0900-\u097f]{3,}/g) || [])),
+      }))
+      .sort((a, b) => b.score - a.score)[0];
+
+    if (duplicate && duplicate.score >= 0.45) {
+      const priorityScore = Math.min(100, Math.max(base.priorityScore, Number(duplicate.candidate.priorityScore || 0) + 5));
+      const updated = await Problem.findOneAndUpdate(
+        { _id: duplicate.candidate._id },
+        { $inc: { reportCount: 1 }, $set: { duplicateOf: duplicate.candidate.id, priorityScore } },
+        { new: true }
+      );
+      return res.status(200).json({ ...updated.toJSON(), duplicate: true, similarity: Number(duplicate.score.toFixed(2)) });
+    }
+
+    // Human-facing IDs are randomly generated, like the frontend mock -- retry a
+    // couple of times on the rare collision instead of trusting randomness once.
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        const problem = await Problem.create({ ...base, id: generateProblemId() });
+        return res.status(201).json(problem);
+      } catch (err) {
+        if (err.code === 11000 && attempt < 2) continue; // duplicate id, retry
+        throw err; // anything else: let the JSON error handler report it
+      }
+    }
+
+    return res.status(500).json({ error: "विवरण सहेजा नहीं जा सका, कृपया पुनः प्रयास करें / Could not save the grievance, please try again" });
+  })
+);
 
 // PATCH /api/problems/:id/status   body: { status }
-router.patch("/:id/status", async (req, res) => {
-  const { status } = req.body;
-  const { STATUS_VALUES } = require("../models/Problem");
-  if (!STATUS_VALUES.includes(status)) {
-    return res.status(400).json({ error: `status must be one of: ${STATUS_VALUES.join(", ")}` });
-  }
-  try {
-    const problem = await Problem.findOneAndUpdate({ id: req.params.id.toUpperCase() }, { status }, { new: true });
+router.patch(
+  "/:id/status",
+  asyncHandler(async (req, res) => {
+    const { status } = req.body;
+    if (!STATUS_VALUES.includes(status)) {
+      return res.status(400).json({ error: `status must be one of: ${STATUS_VALUES.join(", ")}` });
+    }
+    const problem = await Problem.findOneAndUpdate({ id: String(req.params.id || "").toUpperCase() }, { status }, { new: true });
     if (!problem) return res.status(404).json({ error: "Grievance not found" });
     res.json(problem);
-  } catch (err) {
-    console.error("[problems] status update failed:", err.message);
-    res.status(500).json({ error: "Server error" });
-  }
-});
+  })
+);
 
 // PATCH /api/problems/:id/bump  -- "me too, I have this issue too" button
-router.patch("/:id/bump", async (req, res) => {
-  try {
+router.patch(
+  "/:id/bump",
+  asyncHandler(async (req, res) => {
     const problem = await Problem.findOneAndUpdate(
-      { id: req.params.id.toUpperCase() },
+      { id: String(req.params.id || "").toUpperCase() },
       { $inc: { reportCount: 1 } },
       { new: true }
     );
     if (!problem) return res.status(404).json({ error: "Grievance not found" });
     res.json(problem);
-  } catch (err) {
-    console.error("[problems] bump failed:", err.message);
-    res.status(500).json({ error: "Server error" });
-  }
-});
+  })
+);
 
 module.exports = router;
