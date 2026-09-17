@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>झारखंड समाधान सेतु | Priority Queue</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+body { background-color: #F8FAFC; font-family: 'Noto Sans', sans-serif; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 9999px; font-size: 11px; font-weight: 600; }
+.badge-verified { background: #F0FDF4; color: #16A34A; border: 1px solid #BBF7D0; }
+.badge-pending { background: #FFFBEB; color: #D97706; border: 1px solid #FDE68A; }
+.badge-escalated { background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA; }
+.priority-critical { background: #FEF2F2; color: #DC2626; }
+.priority-high { background: #FFFBEB; color: #D97706; }
+.priority-medium { background: #F8FAFC; color: #1E293B; }
+.priority-low { background: #F8FAFC; color: #64748B; }
+</style>
+</head>
+<body class="bg-surface min-h-screen">
+<header class="bg-white border-b h-16 sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-full">
+    <h1 class="text-xl font-bold text-primary">Priority Queue</h1>
+    <div class="flex items-center gap-4">
+      <span class="text-sm text-muted" data-session-name>Admin</span>
+      <button data-logout="../index.html" class="text-muted">Logout</button>
+    </div>
+  </div>
+</header>
+
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <div class="bg-white rounded-xl shadow p-6 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <select id="sort-select" onchange="renderQueue()" class="border rounded-xl px-4 py-2"><option value="priority">Priority Score (High → Low)</option><option value="reports">Most Reports</option><option value="duration">Longest Duration</option><option value="date">Most Recent</option></select>
+      <select id="district-filter" onchange="renderQueue()" class="border rounded-xl px-4 py-2"><option value="">All Districts</option></select>
+      <select id="category-filter" onchange="renderQueue()" class="border rounded-xl px-4 py-2"><option value="">All Categories</option></select>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-xl shadow overflow-x-auto">
+    <table class="w-full">
+      <thead><tr><th>#</th><th>ID</th><th>Title</th><th>District</th><th>Score</th><th>Status</th><th>Scale</th></tr></thead>
+      <tbody id="priority-queue-body"></tbody>
+    </table>
+    <div id="empty-state" class="text-center py-12 text-muted" style="display:none;">No problems found</div>
+  </div>
+</div>
+
+<script>
+function getSortedProblems() {
+  let probs = API.getProblems();
+  const sort = document.getElementById('sort-select').value;
+  if (sort === 'priority') probs.sort((a,b) => (b.priorityScore||0) - (a.priorityScore||0));
+  else if (sort === 'reports') probs.sort((a,b) => (b.reportCount||0) - (a.reportCount||0));
+  else if (sort === 'duration') probs.sort((a,b) => (b.durationDays||0) - (a.durationDays||0));
+  else if (sort === 'date') probs.sort((a,b) => new Date(b.createdAt||0) - new Date(a.createdAt||0));
+  
+  const df = document.getElementById('district-filter').value;
+  const cf = document.getElementById('category-filter').value;
+  probs = probs.filter(p => (!df || p.district === df) && (!cf || p.category === cf));
+  return probs;
+}
+
+function renderQueue() {
+  const statuses = ['', 'Pending Verification', 'Verified', 'Escalated', 'Rejected'];
+  // Populate filters
+  const allProbs = API.getProblems();
+  const districts = [...new Set(allProbs.map(p => p.district))].sort();
+  const categories = [...new Set(allProbs.map(p => p.category))].sort();
+  document.getElementById('district-filter').innerHTML = '<option value="">All Districts</option>' + districts.map(d => `<option value="${d}">${d}</option>`).join('');
+  document.getElementById('category-filter').innerHTML = '<option value="">All Categories</option>' + categories.map(c => `<option value="${c}">${c}</option>`).join('');
+
+  const probs = getSortedProblems();
+  const tb = document.getElementById('priority-queue-body');
+  if (!probs.length) { tb.innerHTML = ''; document.getElementById('empty-state').style.display = 'block'; return; }
+  document.getElementById('empty-state').style.display = 'none';
+  
+  const priorityMap = { 80:'priority-critical', 60:'priority-high' };
+  const statusMap = {Verified:'badge-verified', 'Pending Verification':'badge-pending', Pending:'badge-pending', Escalated:'badge-escalated', Rejected:'badge-rejected'};
+  
+  tb.innerHTML = probs.map((p, i) => `
+    <tr onclick="showToast('View details for ${p.id} - coming soon', 'info')" class="cursor-pointer">
+      <td class="font-bold text-primary">${i+1}</td>
+      <td class="font-mono text-sm">${p.id}</td>
+      <td class="font-medium">${p.title}</td>
+      <td>${p.district}</td>
+      <td><span class="badge ${p.priorityScore>=80?'priority-critical':p.priorityScore>=60?'priority-high':'priority-medium'}">${p.priorityScore}</span></td>
+      <td><span class="badge ${statusMap[p.status]||'badge-pending'}">${p.status}</span></td>
+      <td class="text-sm">${p.scaleOfImpact}</td>
+    </tr>
+  `).join('');
+}
+
+document.addEventListener('DOMContentLoaded', renderQueue);
+</script>
+<script>requireRole('admin', 'login.html');</script>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>झारखंड समाधान सेतु | Problem Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+body { background-color: #F8FAFC; color: #1E293B; font-family: 'Noto Sans', sans-serif; }
+.civic-card { background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 9999px; font-size: 11px; font-weight: 600; }
+.badge-verified { background: #F0FDF4; color: #16A34A; border: 1px solid #BBF7D0; }
+.badge-pending { background: #FFFBEB; color: #D97706; border: 1px solid #FDE68A; }
+.badge-escalated { background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA; }
+.badge-rejected { background: #F8FAFC; color: #64748B; border: 1px solid #E2E8F0; }
+.priority-critical { background: #FEF2F2; color: #DC2626; }
+.priority-high { background: #FFFBEB; color: #D97706; }
+.priority-medium { background: #F8FAFC; color: #64748B; }
+.priority-low { background: #F8FAFC; color: #64748B; }
+table th { background: #F8FAFC; border-bottom: 2px solid #E2E8F0; padding: 12px 16px; font-size: 12px; color: #64748B; font-weight: 600; }
+table td { padding: 12px 16px; border-bottom: 1px solid #E2E8F0; font-size: 13px; }
+.action-btn { font-size: 12px; padding: 4px 8px; border-radius: 6px; cursor: pointer; margin-right: 4px; }
+.btn-verify { background: #D1FAE5; color: #065F46; }
+.btn-reject { background: #FEE2E2; color: #991B1B; }
+.btn-escalate { background: #FED7AA; color: #9A3412; }
+</style>
+</head>
+<body class="bg-surface min-h-screen">
+<header class="bg-white border-b h-16 sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-full">
+    <h1 class="text-xl font-bold text-primary">Problem Management</h1>
+    <div class="flex items-center gap-4">
+      <span class="text-sm text-muted" data-session-name>Admin</span>
+      <button data-logout="../index.html" class="text-muted">Logout</button>
+    </div>
+  </div>
+</header>
+
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <div class="bg-white rounded-xl shadow p-6 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <input id="search-input" placeholder="Search..." class="border rounded-xl px-4 py-2 text-sm" oninput="filterTable()"/>
+      <select id="category-filter" class="border rounded-xl px-4 py-2 text-sm" onchange="filterTable()"><option value="">All Categories</option></select>
+      <select id="district-filter" class="border rounded-xl px-4 py-2 text-sm" onchange="filterTable()"><option value="">All Districts</option></select>
+      <select id="status-filter" class="border rounded-xl px-4 py-2 text-sm" onchange="filterTable()"><option value="">All Status</option></select>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-xl shadow" id="bulk-action-bar" style="display:none; margin-bottom: 16px;">
+    <div class="flex items-center justify-between p-4">
+      <span id="selected-count" class="text-sm font-semibold">0 selected</span>
+      <div class="flex gap-2">
+        <button onclick="bulkVerify()" class="btn-verify action-btn">Verify All</button>
+        <button onclick="bulkReject()" class="btn-reject action-btn">Reject All</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-xl shadow overflow-x-auto">
+    <table class="w-full">
+      <thead><tr>
+        <th><input type="checkbox" id="select-all" onchange="toggleSelectAll()"/></th>
+        <th>ID</th><th>Title</th><th>Category</th><th>District</th><th>Score</th><th>Reports</th><th>Status</th><th>Actions</th>
+      </tr></thead>
+      <tbody id="problems-table-body"></tbody>
+    </table>
+    <div id="empty-state" class="text-center py-12 text-muted" style="display:none;">
+      No problems found
+    </div>
+    </div>
+</div>
+
+<script>
+const statusMap = {Verified:'bg-green-100 text-green-800', 'Pending Verification':'bg-amber-100 text-amber-800', Pending:'bg-amber-100 text-amber-800', Escalated:'bg-red-100 text-red-800', Rejected:'bg-gray-100 text-gray-800'};
+const priorityMap = { Critical:'bg-red-100 text-red-800', High:'bg-orange-100 text-orange-800', Medium:'bg-gray-100 text-gray-800', Low:'bg-gray-100 text-gray-800' };
+
+function renderTable() {
+  const problems = API.getProblemsByPriority();
+  const categories = [...new Set(problems.map(p => p.category))].sort();
+  const districts = [...new Set(problems.map(p => p.district))].sort();
+  document.getElementById('category-filter').innerHTML = '<option value="">All Categories</option>' + categories.map(c => `<option value="${c}">${c}</option>`).join('');
+  document.getElementById('district-filter').innerHTML = '<option value="">All Districts</option>' + districts.map(d => `<option value="${d}">${d}</option>`).join('');
+  filterTable();
+}
+
+function filterTable() {
+  const s = document.getElementById('search-input').value.toLowerCase();
+  const cf = document.getElementById('category-filter').value;
+  const df = document.getElementById('district-filter').value;
+  const sf = document.getElementById('status-filter').value;
+  const statuses = ['', 'Pending Verification', 'Verified', 'Escalated', 'Rejected'];
+  document.getElementById('status-filter').innerHTML = statuses.map(st => `<option value="${st}">${st || 'All Status'}</option>`).join('');
+  const probs = API.getProblemsByPriority().filter(p => {
+    const m = !s || p.id.toLowerCase().includes(s) || p.title.toLowerCase().includes(s) || p.district.toLowerCase().includes(s);
+    return m && (!cf || p.category === cf) && (!df || p.district === df) && (!sf || p.status === sf);
+  });
+  const tb = document.getElementById('problems-table-body');
+  if (!probs.length) { tb.innerHTML = ''; document.getElementById('empty-state').style.display = 'block'; return; }
+  document.getElementById('empty-state').style.display = 'none';
+  tb.innerHTML = probs.map(p => `<tr>
+    <td><input type="checkbox" class="row-checkbox" value="${p.id}" onchange="updateBulkBar()"/></td>
+    <td class="font-mono text-sm">${p.id}</td>
+    <td class="font-medium">${p.title}</td>
+    <td class="text-sm">${p.category}</td>
+    <td>${p.district}</td>
+    <td><span class="badge ${priorityMap[p.priorityLabel] || 'bg-gray-100 text-gray-800'}">${p.priorityScore}</span></td>
+    <td>${p.reportCount || 0}</td>
+    <td><span class="badge ${statusMap[p.status] || 'bg-amber-100 text-amber-800'}">${p.status}</span></td>
+    <td>
+      <button onclick="updateStatus('${p.id}', 'Verified')" class="action-btn btn-verify">✓</button>
+      <button onclick="updateStatus('${p.id}', 'Rejected')" class="action-btn btn-reject">✗</button>
+      <button onclick="updateStatus('${p.id}', 'Escalated')" class="action-btn btn-escalate">!</button>
+      <button onclick="showToast('Manage details coming soon', 'info')" class="action-btn">⋯</button>
+    </td>
+  </tr>`).join('');
+}
+
+function updateStatus(id, status) {
+  API.updateProblemStatus(id, status);
+  showToast(`Status updated to ${status}`, 'success');
+  setTimeout(filterTable, 200);
+}
+
+function updateBulkBar() {
+  const c = document.querySelectorAll('.row-checkbox:checked');
+  document.getElementById('bulk-action-bar').style.display = c.length > 0 ? 'block' : 'none';
+  document.getElementById('selected-count').textContent = `${c.length} selected`;
+}
+function toggleSelectAll() {
+  document.querySelectorAll('.row-checkbox').forEach(cb => cb.checked = document.getElementById('select-all').checked);
+  updateBulkBar();
+}
+function bulkVerify() {
+  const c = document.querySelectorAll('.row-checkbox:checked');
+  c.forEach(cb => API.updateProblemStatus(cb.value, 'Verified'));
+  showToast(`${c.length} verified`, 'success');
+  setTimeout(() => { c.forEach(cb => cb.checked = false); document.getElementById('select-all').checked = false; updateBulkBar(); filterTable(); }, 200);
+}
+function bulkReject() {
+  const c = document.querySelectorAll('.row-checkbox:checked');
+  c.forEach(cb => API.updateProblemStatus(cb.value, 'Rejected'));
+  showToast(`${c.length} rejected`, 'success');
+  setTimeout(() => { c.forEach(cb => cb.checked = false); document.getElementById('select-all').checked = false; updateBulkBar(); filterTable(); }, 200);
+}
+document.addEventListener('DOMContentLoaded', renderTable);
+</script>
+<script>requireRole('admin', 'login.html');</script>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>झारखंड समाधान सेतु | AI Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+body { background-color: #F8FAFC; font-family: 'Noto Sans', sans-serif; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 9999px; font-size: 11px; font-weight: 600; }
+.badge-verified { background: #F0FDF4; color: #16A34A; border: 1px solid #BBF7D0; }
+.badge-pending { background: #FFFBEB; color: #D97706; border: 1px solid #FDE68A; }
+.badge-approved { background: #D1FAE5; color: #065F46; border: 1px solid #6EE7B7; }
+.score-bar { height: 6px; border-radius: 3px; background: #E2E8F0; overflow: hidden; margin: 4px 0; }
+.score-fill { height: 100%; border-radius: 3px; }
+</style>
+</head>
+<body class="bg-surface min-h-screen">
+<header class="bg-white border-b h-16 sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-full">
+    <h1 class="text-xl font-bold text-primary">AI Analysis</h1>
+    <div class="flex items-center gap-4">
+      <span class="text-sm text-muted" data-session-name>Admin</span>
+      <button data-logout="../index.html" class="text-muted">Logout</button>
+    </div>
+  </div>
+</header>
+
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+    <div class="bg-white rounded-xl shadow p-4 text-center">
+      <div id="ai-total" class="text-2xl font-bold text-primary">0</div>
+      <div class="text-xs text-muted">Total Categorized</div>
+    </div>
+    <div class="bg-white rounded-xl shadow p-4 text-center">
+      <div id="ai-avg" class="text-2xl font-bold text-secondary">0</div>
+      <div class="text-xs text-muted">Avg Priority Score</div>
+    </div>
+    <div class="bg-white rounded-xl shadow p-4 text-center">
+      <div id="ai-spam" class="text-2xl font-bold text-amber">0</div>
+      <div class="text-xs text-muted">Spam/Duplicates</div>
+    </div>
+    <div class="bg-white rounded-xl shadow p-4 text-center">
+      <div id="ai-approved" class="text-2xl font-bold text-green">0</div>
+      <div class="text-xs text-muted">AI Decisions Approved</div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-xl shadow overflow-x-auto">
+    <table class="w-full">
+      <thead><tr><th>ID</th><th>Title</th><th>AI Category</th><th>Priority</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody id="ai-analysis-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+function renderAI() {
+  const problems = API.getProblems();
+  document.getElementById('ai-total').textContent = problems.length;
+  const avg = problems.length ? Math.round(problems.reduce((s,p) => s + (p.priorityScore||0), 0) / problems.length) : 0;
+  document.getElementById('ai-avg').textContent = avg;
+  document.getElementById('ai-spam').textContent = problems.filter(p => p.similarity && p.similarity > 0.7).length;
+  document.getElementById('ai-approved').textContent = 0;
+
+  const tb = document.getElementById('ai-analysis-body');
+  if (!problems.length) { tb.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-muted">No problems to analyze</td></tr>'; return; }
+  
+  tb.innerHTML = problems.map(p => `
+    <tr class="border-b">
+      <td class="font-mono text-sm py-3 px-4">${p.id}</td>
+      <td class="font-medium py-3 px-4">${p.title}</td>
+      <td class="py-3 px-4 text-sm">${p.category || 'Uncategorized'}</td>
+      <td class="py-3 px-4"><div class="flex items-center gap-2"><div class="score-bar w-16"><div class="score-fill bg-primary" style="width: ${p.priorityScore || 0}%"></div></div> ${p.priorityScore || 0}</td>
+      <td class="py-3 px-4"><span class="badge badge-pending">${p.status}</span></td>
+      <td class="py-3 px-4 space-x-2">
+        <button onclick="showToast('Override category coming soon', 'info')" class="text-xs text-primary">Override Category</button>
+        <button onclick="approveAI('${p.id}')" class="text-xs text-green">Approve AI Decision</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function approveAI(id) {
+  const badge = event.target;
+  badge.textContent = "Approved ✓";
+  badge.classList.add("badge-approved");
+  showToast('AI decision approved', 'success');
+  setTimeout(() => { badge.textContent = "Approved ✓"; }, 100);
+}
+
+document.addEventListener('DOMContentLoaded', renderAI);
+</script>
+<script>requireRole('admin', 'login.html');</script>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>झारखंड समाधान सेतु | Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = { theme: { extend: { colors: {
+      primary: "#0F766E", "primary-hover": "#115E59",
+      "surface": "#F8FAFC", "card-bg": "#FFFFFF", "border": "#E2E8F0",
+      "charcoal": "#1E293B", "muted": "#64748B",
+      "status-green": "#16A34A", "status-amber": "#D97706", "status-red": "#DC2626",
+    }}}} 
+
+<style>
+  body { background-color: #F8FAFC; color: #1E293B; font-family: 'Noto Sans', sans-serif; }
+  .civic-card { background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; }
+  .primary-btn { background-color: #0F766E; color: #fff; border-radius: 12px; padding: 10px 20px; font-weight: 600; }
+  .primary-btn:hover { background-color: #115E59; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 9999px; font-size: 11px; font-weight: 600; }
+  .badge-verified { background: #F0FDF4; color: #16A34A; border: 1px solid #BBF7D0; }
+  .badge-pending { background: #FFFBEB; color: #D97706; border: 1px solid #FDE68A; }
+  .nav-link { color: #64748B; padding: 12px 16px; border-radius: 8px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+  .nav-link:hover { color: #0F766E; background: #F0FDFA; }
+  .metric-card { background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 20px; }
+</style>
+</head>
+<body class="bg-surface min-h-screen">
+<header class="bg-card-bg border-b h-16 sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-full">
+    <div class="flex items-center gap-4">
+      <h1 class="text-xl font-bold text-primary">झारखंड समाधान सेतु</h1>
+      <span class="text-muted">/</span>
+
+      <span class="text-sm font-semibold">Admin Portal</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <span class="text-sm text-muted" data-session-name>Admin</span>
+      <button onclick="API.logout(); window.location.href='../index.html';" class="nav-link py-2 px-3">Logout</button>
+    </div>
+  </div>
+</header>
+
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+    <div class="metric-card text-center"><div id="metric-total" class="text-2xl font-bold text-primary">0</div><div class="text-xs text-muted mt-1">Total</div></div>
+    <div class="metric-card text-center"><div id="metric-pending" class="text-2xl font-bold text-amber">0</div><div class="text-xs text-muted mt-1">Pending</div></div>
+    <div class="metric-card text-center"><div id="metric-verified" class="text-2xl font-bold text-green">0</div><div class="text-xs text-muted mt-1">Verified</div></div>
+    <div class="metric-card text-center"><div id="metric-escalated" class="text-2xl font-bold text-red">0</div><div class="text-xs text-muted mt-1">Escalated</div></div>
+    <div class="metric-card text-center"><div id="metric-high-priority" class="text-2xl font-bold text-primary">0</div><div class="text-xs text-muted mt-1">High Priority</div></div>
+  </div>
+  <div class="civic-card p-6 mb-8">
+    <h2 class="text-lg font-bold mb-4">Quick Actions</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <a href="problem-management.html" class="nav-link justify-center py-3">Problem Mgmt</a>
+      <a href="priority-queue.html" class="nav-link justify-center py-3">Priority Queue</a>
+      <a href="ai-analysis.html" class="nav-link justify-center py-3">AI Analysis</a>
+      <button onclick="showToast('Analytics coming soon', 'info')" class="nav-link justify-center py-3">Analytics</button>
+    </div>
+  </div>
+  <div class="civic-card p-6">
+    <div class="flex justify-between items-center mb-4"><h2 class="text-lg font-bold">Recent Grievances</h2><a href="problem-management.html" class="text-sm text-primary">View All</a></div>
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead><tr><th>ID</th><th>Title</th><th>District</th><th>Score</th><th>Status</th></tr></thead>
+        <tbody id="recent-problems-table-body"><tr><td colspan="5" class="text-center py-8 text-muted">Loading...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script>requireRole('admin', 'login.html');</script>
+<script src="../js/mock-data.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const problems = API.getProblems();
+  document.getElementById('metric-total').textContent = problems.length;
+  document.getElementById('metric-pending').textContent = problems.filter(p => p.status === 'Pending Verification').length;
+  document.getElementById('metric-verified').textContent = problems.filter(p => p.status === 'Verified').length;
+  document.getElementById('metric-escalated').textContent = problems.filter(p => p.status === 'Escalated').length;
+  document.getElementById('metric-high-priority').textContent = problems.filter(p => p.priorityScore >= 80).length;
+});
+</script>
+<script>
+  // Also render recent problems table
+  const probs = API.getProblemsByPriority().slice(0, 10);
+  const tb = document.getElementById('recent-problems-table-body');
+  if (tb) {
+    const statusMap = {Verified:'badge-verified', 'Pending Verification':'badge-pending', Pending:'badge-pending', Escalated:'badge-escalated', Rejected:'badge-rejected'};
+    const priorityMap = {80:'priority-critical', 60:'priority-high'};
+    tb.innerHTML = probs.map(p => `<tr>
+      <td class="font-mono text-sm">${p.id}</td>
+      <td class="font-medium">${p.title}</td>
+      <td>${p.district}</td>
+      <td><span class="badge " class="badge">${p.priorityScore}</span></td>
+      <td><span class="badge ${statusMap[p.status]||'badge-pending'}">${p.status}</span></td>
+    </tr>`).join('');
+  }
+</script>
+</body>
+</html>

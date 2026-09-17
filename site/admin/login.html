@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>झारखंड समाधान सेतु | Admin Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#0F766E",
+            "primary-hover": "#115E59",
+            "surface": "#F8FAFC",
+            "card-bg": "#FFFFFF",
+            "border": "#E2E8F0",
+            "charcoal": "#1E293B",
+            "muted": "#64748B",
+            "subtle": "#94A3B8",
+            "status-green": "#16A34A",
+            "status-amber": "#D97706",
+            "status-red": "#DC2626",
+            "success-bg": "#F0FDF4",
+            "success-border": "#BBF7D0",
+            "amber-bg": "#FFFBEB",
+            "amber-border": "#FDE68A",
+            "red-bg": "#FEF2F2",
+            "red-border": "#FECACA",
+            "gray-bg": "#F8FAFC",
+            "gray-border": "#E2E8F0",
+            "gray-text": "#64748B",
+          },
+          borderRadius: { "DEFAULT": "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" }
+        }
+      }
+    }
+</script>
+<style>
+  body { background-color: #F8FAFC; color: #1E293B; font-family: 'Noto Sans', sans-serif; }
+  .civic-card { background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+  .primary-btn { background-color: #0F766E; color: #fff; border-radius: 12px; padding: 10px 20px; font-weight: 600; transition: background 0.15s; }
+  .primary-btn:hover { background-color: #115E59; }
+  .input-field { border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 12px 14px; font-size: 14px; width: 100%; }
+  .input-field:focus { border-color: #0F766E; box-shadow: 0 0 0 3px rgba(15,118,110,.1); outline: none; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 9999px; font-size: 11px; font-weight: 600; }
+  .badge-verified { background: #F0FDF4; color: #16A34A; border: 1px solid #BBF7D0; }
+  .badge-pending { background: #FFFBEB; color: #D97706; border: 1px solid #FDE68A; }
+  .badge-escalated { background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA; }
+  .badge-rejected { background: #F8FAFC; color: #64748B; border: 1px solid #E2E8F0; }
+</style>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-md px-4">
+    <div class="civic-card p-8">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl font-bold text-primary mb-2">झारखंड समाधान सेतु</h1>
+        <p class="text-sm text-muted">Admin / Nodal Officer Login</p>
+      </div>
+      <form id="admin-login-form" class="space-y-5">
+        <div>
+          <label class="block text-sm font-semibold text-charcoal mb-2">Officer ID</label>
+          <input id="officer-id" class="input-field" type="text" placeholder="Enter Officer ID" required />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-charcoal mb-2">Password</label>
+          <input id="admin-password" class="input-field" type="password" placeholder="Enter Password" required />
+        </div>
+        <button type="submit" class="primary-btn w-full">Login</button>
+      </form>
+    </div>
+  </div>
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/shared.js"></script>
+  <script>
+    document.getElementById('admin-login-form').addEventListener('submit', () => {
+      const officerId = document.getElementById('officer-id').value.trim();
+      const password = document.getElementById('admin-password').value;
+      if (!officerId || !password) {
+        showToast('कृपया सभी फ़ील्ड भरें / Please fill all fields');
+        return;
+      }
+      API.login('admin', officerId);
+      showToast('Login successful / लॉगिन सफल');
+      setTimeout(() => { window.location.href = 'dashboard.html'; }, 500);
+    });
+  </script>
+</body>
+</html>

@@ -157,7 +157,7 @@
 <header class="bg-surface border-b border-outline-variant sticky top-0 z-40">
 <div class="flex justify-between items-center w-full px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop max-w-container-max mx-auto h-min-touch-target">
 <!-- Brand Identity with Ashoka/Jharkhand Emblem motif -->
-<a class="flex items-center gap-space-sm text-headline-sm font-headline-sm font-bold text-primary focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 rounded" href="#" title="Jharkhand Samadhan Setu Home">
+<a class="flex items-center gap-space-sm text-headline-sm font-headline-sm font-bold text-primary focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 rounded" onclick="showToast('Feature coming soon', 'info'); return false;" title="Jharkhand Samadhan Setu Home">
 <div class="w-9 h-9 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-lg border border-primary-container">
 <span class="material-symbols-outlined filled text-xl" data-icon="account_balance">account_balance</span>
 </div>
@@ -168,10 +168,10 @@
 </a>
 <!-- Desktop Navigation Cluster -->
 <nav aria-label="Main Navigation" class="hidden md:flex items-center gap-space-lg">
-<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface py-2 transition-colors" href="#">गृह / Home</a>
-<a aria-current="page" class="border-b-2 border-secondary text-primary font-label-lg text-label-lg pb-1" href="#">शिकायत दर्ज करें / File Grievance</a>
-<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface py-2 transition-colors" href="#">स्थिति जांचें / Track Status</a>
-<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface py-2 transition-colors" href="#">अक्सर पूछे जाने वाले प्रश्न / FAQs</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface py-2 transition-colors" onclick="showToast('Feature coming soon', 'info'); return false;">गृह / Home</a>
+<a aria-current="page" class="border-b-2 border-secondary text-primary font-label-lg text-label-lg pb-1" onclick="showToast('Feature coming soon', 'info'); return false;">शिकायत दर्ज करें / File Grievance</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface py-2 transition-colors" onclick="showToast('Feature coming soon', 'info'); return false;">स्थिति जांचें / Track Status</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface py-2 transition-colors" onclick="showToast('Feature coming soon', 'info'); return false;">अक्सर पूछे जाने वाले प्रश्न / FAQs</a>
 </nav>
 <!-- Trailing Controls (Language Selector + Utility Icons) -->
 <div class="flex items-center gap-space-sm">
@@ -423,7 +423,7 @@
 </article>
 <!-- Contextual Assistance Helper Link -->
 <div class="max-w-xl mx-auto mt-space-md text-center">
-<a class="inline-flex items-center gap-1.5 text-body-sm font-body-sm text-primary hover:underline" href="#">
+<a class="inline-flex items-center gap-1.5 text-body-sm font-body-sm text-primary hover:underline" onclick="showToast('Feature coming soon', 'info'); return false;">
 <span class="material-symbols-outlined text-sm" data-icon="help">help</span>
 <span>फाइल अपलोड करने में समस्या हो रही है? व्हाट्सएप द्वारा दर्ज करें</span>
 </a>
@@ -432,22 +432,22 @@
 <!-- BottomNavBar (Shared Component Anchor - Responsive Mobile Viewport) -->
 <nav aria-label="Mobile Bottom Navigation" class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter-mobile h-min-touch-target md:hidden bg-surface border-t border-outline-variant">
 <!-- Home Item (Inactive) -->
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" onclick="showToast('Feature coming soon', 'info'); return false;">
 <span class="material-symbols-outlined text-xl" data-icon="home">home</span>
 <span class="text-label-sm font-label-sm">मुख्य / Home</span>
 </a>
 <!-- File Item (Active - Step 3 of Submission Journey) -->
-<a aria-current="page" class="flex flex-col items-center justify-center bg-primary-container text-on-primary rounded-lg px-space-sm py-space-xxs min-h-min-touch-target" href="#">
+<a aria-current="page" class="flex flex-col items-center justify-center bg-primary-container text-on-primary rounded-lg px-space-sm py-space-xxs min-h-min-touch-target" onclick="showToast('Feature coming soon', 'info'); return false;">
 <span class="material-symbols-outlined text-xl filled" data-icon="edit_document">edit_document</span>
 <span class="text-label-sm font-label-sm font-bold">शिकायत / File</span>
 </a>
 <!-- Track Item (Inactive) -->
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" onclick="showToast('Feature coming soon', 'info'); return false;">
 <span class="material-symbols-outlined text-xl" data-icon="timeline">timeline</span>
 <span class="text-label-sm font-label-sm">स्थिति / Track</span>
 </a>
 <!-- Help Item (Inactive) -->
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xxs min-h-min-touch-target" onclick="showToast('Feature coming soon', 'info'); return false;">
 <span class="material-symbols-outlined text-xl" data-icon="help">help</span>
 <span class="text-label-sm font-label-sm">सहायता / Help</span>
 </a>
@@ -467,13 +467,13 @@
 </div>
 <!-- Footer Policy Links -->
 <div class="flex flex-wrap justify-center md:justify-end gap-x-space-md gap-y-1 font-label-sm text-label-sm text-surface-variant">
-<a class="hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#">गोपनीयता नीति / Privacy Policy</a>
+<a class="hover:underline hover:text-tertiary-fixed transition-colors duration-150" onclick="showToast('Feature coming soon', 'info'); return false;">गोपनीयता नीति / Privacy Policy</a>
 <span class="text-outline">|</span>
-<a class="hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#">उपयोग की शर्तें / Terms of Service</a>
+<a class="hover:underline hover:text-tertiary-fixed transition-colors duration-150" onclick="showToast('Feature coming soon', 'info'); return false;">उपयोग की शर्तें / Terms of Service</a>
 <span class="text-outline">|</span>
-<a class="hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#">नागरिक चार्टर / Citizen Charter</a>
+<a class="hover:underline hover:text-tertiary-fixed transition-colors duration-150" onclick="showToast('Feature coming soon', 'info'); return false;">नागरिक चार्टर / Citizen Charter</a>
 <span class="text-outline">|</span>
-<a class="hover:underline hover:text-tertiary-fixed transition-colors duration-150" href="#">संपर्क करें / Contact Us</a>
+<a class="hover:underline hover:text-tertiary-fixed transition-colors duration-150" onclick="showToast('Feature coming soon', 'info'); return false;">संपर्क करें / Contact Us</a>
 </div>
 </div>
 </footer>
