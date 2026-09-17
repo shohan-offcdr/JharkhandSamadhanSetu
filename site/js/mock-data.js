@@ -12,51 +12,50 @@
  */
 
 const SEED_PROBLEMS = [
-  // Curated fallback only (2 items). Everything else on the student portal
-  // comes live from the API: POST /api/problems categorises, dedupes and
-  // prioritises each citizen grievance, and GET /api/problems?audience=student
-  // lists the result sorted by priorityScore.
   {
-    id: "JH-2024-10312",
-    title: "Kanke Water Pipeline Leakage causing road damage",
-    titleHi: "काँके पाइपलाइन रिसाव से सड़क क्षति",
+    id: "JH-2024-10001",
+    title: "Main water pipeline burst near Doranda Market",
     category: "Drinking Water & Sanitation",
-    district: "Ranchi",
-    block: "Kanke",
-    gramPanchayat: "Kanke GP",
-    pincode: "834006",
-    scaleOfImpact: "Specific Neighbourhood",
-    durationDays: 12,
-    description: "A major pipeline joint near the Kanke Dam road has been leaking continuously for the last 12 days, damaging the road surface and wasting large volumes of treated water.",
-    problemStatement: "A leaking pipeline joint near Kanke Dam road is wasting treated water and damaging the road — a live citizen grievance auto-categorised and prioritised by the API.",
-    enrichedDescription: "A major pipeline joint near the Kanke Dam road has been leaking continuously for the last 12 days, damaging the road surface and wasting large volumes of treated water.",
-    priorityLabel: "Critical",
-    priorityReasons: ["Scale: Specific Neighbourhood", "Pending 12 day(s)", "42 citizen reports"],
-    reportCount: 42,
-    priorityScore: 91,
-    status: "Verified",
-    createdAt: "2024-05-01",
+    district: "Ranchi", block: "Doranda", gramPanchayat: "Doranda GP", pincode: "834002",
+    scaleOfImpact: "Specific Neighbourhood", durationDays: 8,
+    description: "The main JJMB water pipeline near Doranda market has been leaking for 8 days. Around 200 households have no clean water supply. Women are collecting water from a pond 2km away.",
+    reportCount: 34, priorityScore: 88, status: "Pending Verification", createdAt: "2024-06-01"
   },
   {
-    id: "JH-2024-10276",
-    title: "No ambulance service reaching Simdega remote blocks",
-    titleHi: "सिमडेगा के सुदूर प्रखंडों में एम्बुलेंस सेवा उपलब्ध नहीं",
+    id: "JH-2024-10002",
+    title: "No electricity for 10 days after transformer failure",
+    category: "Electricity & JBVNL",
+    district: "Dhanbad", block: "Jharia", gramPanchayat: "Jharia GP", pincode: "828111",
+    scaleOfImpact: "Village", durationDays: 10,
+    description: "The 100KVA distribution transformer in Jharia ward 7 burnt on June 3rd. JBVNL has not replaced it. 300+ households including a primary school and health sub-centre are without power.",
+    reportCount: 51, priorityScore: 92, status: "Verified", createdAt: "2024-06-03"
+  },
+  {
+    id: "JH-2024-10003",
+    title: "Bridge on Karo River collapsed blocking 6 villages",
+    category: "Roads & Infrastructure",
+    district: "Simdega", block: "Bano", gramPanchayat: "Bano GP", pincode: "835223",
+    scaleOfImpact: "Multiple Villages", durationDays: 21,
+    description: "The kutcha bridge over Karo river collapsed 3 weeks ago during rains. 6 villages are completely cut off. Ambulance cannot reach. Students cannot attend school. Farmers cannot transport produce.",
+    reportCount: 89, priorityScore: 97, status: "Escalated", createdAt: "2024-05-20"
+  },
+  {
+    id: "JH-2024-10004",
+    title: "Primary Health Centre doctor absent for 2 months",
     category: "Health & Family Welfare",
-    district: "Simdega",
-    block: "Bano",
-    gramPanchayat: "Bano GP",
-    pincode: "835223",
-    scaleOfImpact: "Multiple Villages",
-    durationDays: 30,
-    description: "108 ambulance service does not reach several remote hamlets due to poor road connectivity, forcing patients to be carried on makeshift stretchers.",
-    problemStatement: "Remote hamlets in Bano block cannot access 108 ambulance service — a live citizen grievance auto-categorised and prioritised by the API.",
-    enrichedDescription: "108 ambulance service does not reach several remote hamlets due to poor road connectivity, forcing patients to be carried on makeshift stretchers.",
-    priorityLabel: "Critical",
-    priorityReasons: ["Scale: Multiple Villages", "Pending 30 day(s)", "63 citizen reports"],
-    reportCount: 63,
-    priorityScore: 97,
-    status: "Escalated",
-    createdAt: "2024-04-20",
+    district: "Gumla", block: "Bharno", gramPanchayat: "Bharno GP", pincode: "835207",
+    scaleOfImpact: "Village", durationDays: 60,
+    description: "The only MBBS doctor at Bharno PHC has not reported for duty for 2 months. Pregnant women and seriously ill patients travel 40km to Gumla district hospital. One maternal death reported last month.",
+    reportCount: 42, priorityScore: 95, status: "Pending Verification", createdAt: "2024-04-15"
+  },
+  {
+    id: "JH-2024-10005",
+    title: "Mid-day meal not served for 3 weeks at Govt school",
+    category: "Education",
+    district: "Bokaro", block: "Chandankiyari", gramPanchayat: "Chandankiyari GP", pincode: "829201",
+    scaleOfImpact: "Specific Neighbourhood", durationDays: 21,
+    description: "Rajkiya Madhya Vidyalaya Chandankiyari has not served mid-day meals for 3 weeks due to funds not released. 180 children from BPL families depend on this meal. Attendance has dropped sharply.",
+    reportCount: 17, priorityScore: 74, status: "Verified", createdAt: "2024-05-25"
   },
 ];
 

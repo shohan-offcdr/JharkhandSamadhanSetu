@@ -1023,7 +1023,7 @@
 
   async function loadProblems() {
     try {
-      allProblems = await API.getProblemsFromServer({ sortBy: 'priority' });
+      allProblems = API.getProblems(); // Use localStorage instead of server
       applyFilters();
     } catch (error) {
       document.getElementById('problems-tbody').innerHTML = `<tr><td colspan="9" class="p-6 text-center text-error">${error.message || 'Could not load grievances'}</td></tr>`;

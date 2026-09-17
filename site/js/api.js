@@ -249,10 +249,11 @@ const API = {
   // Placeholder categorizer - swap for real AI call later.
   fakeCategorize(text) {
     const t = text.toLowerCase();
-    if (t.includes("water") || t.includes("pipeline") || t.includes("pani") || t.includes("jal")) return "Drinking Water & Sanitation";
-    if (t.includes("electric") || t.includes("transformer") || t.includes("bijli")) return "Electricity & JBVNL";
-    if (t.includes("hospital") || t.includes("ambulance") || t.includes("health")) return "Health & Family Welfare";
-    if (t.includes("road") || t.includes("bridge")) return "Roads & Infrastructure";
+    if (t.includes("water") || t.includes("pipeline") || t.includes("pani") || t.includes("jal") || t.includes("drinking")) return "Drinking Water & Sanitation";
+    if (t.includes("electric") || t.includes("transformer") || t.includes("bijli") || t.includes("power") || t.includes("electricity")) return "Electricity & JBVNL";
+    if (t.includes("hospital") || t.includes("ambulance") || t.includes("health") || t.includes("doctor") || t.includes("medical") || t.includes("phc")) return "Health & Family Welfare";
+    if (t.includes("road") || t.includes("bridge") || t.includes("infrastructure") || t.includes("kutcha") || t.includes("pothole")) return "Roads & Infrastructure";
+    if (t.includes("school") || t.includes("education") || t.includes("mid-day") || t.includes("midday") || t.includes("student") || t.includes("teacher") || t.includes("classroom")) return "Education";
     return "Other";
   },
 
