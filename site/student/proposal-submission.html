@@ -792,6 +792,12 @@ The edge module performs Fast Fourier Transforms (FFT) and transient peak cross-
 <script src="../js/api.js"></script>
 <script src="../js/shared.js"></script>
 <script>
-  requireRole('student', 'login.html');
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof requireRole === 'function') {
+      requireRole('student', 'login.html');
+    } else {
+      window.location.href = 'login.html';
+    }
+  });
 </script>
 </body></html>

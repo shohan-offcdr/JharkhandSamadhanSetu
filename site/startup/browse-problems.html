@@ -662,7 +662,13 @@
 <script src="../js/api.js"></script>
 <script src="../js/shared.js"></script>
 <script>
-  requireRole('startup', 'login.html');
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof requireRole === 'function') {
+      requireRole('startup', 'login.html');
+    } else {
+      window.location.href = 'login.html';
+    }
+  });
 
   const browseForm = document.getElementById('problemBrowseForm');
   const browseDistrict = document.getElementById('search-district');

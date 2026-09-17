@@ -893,7 +893,13 @@
 <script src="../js/api.js"></script>
 <script src="../js/shared.js"></script>
 <script>
-  requireRole('government', 'login.html');
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof requireRole === 'function') {
+      requireRole('government', 'login.html');
+    } else {
+      window.location.href = 'login.html';
+    }
+  });
 
   // ---- Render real citizen-submitted problems into the triage table ----
   function statusBadgeClasses(status) {

@@ -13,7 +13,8 @@
       "surface": "#F8FAFC", "card-bg": "#FFFFFF", "border": "#E2E8F0",
       "charcoal": "#1E293B", "muted": "#64748B",
       "status-green": "#16A34A", "status-amber": "#D97706", "status-red": "#DC2626",
-    }}}} 
+    }}}
+</script>
 
 <style>
   body { background-color: #F8FAFC; color: #1E293B; font-family: 'Noto Sans', sans-serif; }
@@ -71,7 +72,15 @@
     </div>
   </div>
 </div>
-<script>requireRole('admin', 'login.html');</script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof requireRole === 'function') {
+      requireRole('admin', 'login.html');
+    } else {
+      window.location.href = 'login.html';
+    }
+  });
+</script>
 <script src="../js/mock-data.js"></script>
 <script src="../js/api.js"></script>
 <script src="../js/shared.js"></script>
@@ -96,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <td class="font-mono text-sm">${p.id}</td>
       <td class="font-medium">${p.title}</td>
       <td>${p.district}</td>
-      <td><span class="badge " class="badge">${p.priorityScore}</span></td>
+      <td><span class="badge">${p.priorityScore}</span></td>
       <td><span class="badge ${statusMap[p.status]||'badge-pending'}">${p.status}</span></td>
     </tr>`).join('');
   }

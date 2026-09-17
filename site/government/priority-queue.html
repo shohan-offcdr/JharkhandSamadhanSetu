@@ -790,7 +790,13 @@
 <script src="../js/api.js"></script>
 <script src="../js/shared.js"></script>
 <script>
-  requireRole('government', 'login.html');
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof requireRole === 'function') {
+      requireRole('government', 'login.html');
+    } else {
+      window.location.href = 'login.html';
+    }
+  });
 
   const priorityList = document.getElementById('livePriorityList');
   const prioritySearch = document.querySelector('input[placeholder*="Search by Grievance"]');

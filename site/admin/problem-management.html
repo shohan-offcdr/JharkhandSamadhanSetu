@@ -146,7 +146,15 @@ function bulkReject() {
 }
 document.addEventListener('DOMContentLoaded', renderTable);
 </script>
-<script>requireRole('admin', 'login.html');</script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof requireRole === 'function') {
+      requireRole('admin', 'login.html');
+    } else {
+      window.location.href = 'login.html';
+    }
+  });
+</script>
 <script src="../js/mock-data.js"></script>
 <script src="../js/api.js"></script>
 <script src="../js/shared.js"></script>
