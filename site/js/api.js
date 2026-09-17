@@ -82,23 +82,50 @@ const API = {
 
     let response;
     try {
-      response = await fetch(url, {
-        method,
-        // Never set Content-Type for FormData -- the browser must add its own
-        // multipart boundary, otherwise Multer rejects the upload.
-        headers: isFormData || body === undefined ? headers : { "Content-Type": "application/json", ...headers },
-        body: body === undefined ? undefined : (isFormData ? body : JSON.stringify(body)),
-        signal: controller ? controller.signal : undefined,
-      });
-    } catch (error) {
+      response = await fetch(
+        url,
+        {
+          method,
+          headers: {
+            "Content-Type": "application/json",
+            ...headers,
+          },
+          body: isFormData ? undefined : JSON.stringify(body),
+          signal: controller?.signal,
+        }
+      );
+    } catch (fetchError) {
+      // Better error messages for common network issues
+      if (controller) clearTimeout(timer);
+      if (fetchError instanceof Error) {
+        if (fetchError.name === "AbortError") {
+          throw new Error(
+            "सर्वर से जवाब नहीं मिला, कृपया पुनः प्रयास करें / Server did not respond, please try again"
+          );
+        }
+        // Check if it's a connection refused / server not running error
+        if (
+          fetchError.message?.includes("fetch failed") ||
+          fetchError.message?.includes("NetworkError") ||
+          fetchError.message?.includes("ECONNREFUSED")
+        ) {
+          throw new Error(
+            "सर्वर तक पहुँच नहीं मिली। क्या सर्वर चल रहा है? http://localhost:4000 पर / Could not reach server. Is the server running at http://localhost:4000?"
+          );
+        }
+      }
+      throw new Error(
+        "सर्वर से कनेक्शन विफल, कृपया पुनः प्रयास करें / Connection to server failed, please try again"
+      );
+    }
+
+    if (!response.ok) {
       const where = this.apiBase() ? ` (${url})` : "";
       throw new Error(
-        error && error.name === "AbortError"
-          ? `सर्वर से समय पर उत्तर नहीं मिला${where} / The server took too long to respond`
-          : `सर्वर से संपर्क नहीं हो सका${where}। कृपया जांचें कि API चालू है। / Could not reach the server${where}. Check that the API is running.`
+        response.status === 429
+          ? "बहुत अधिक अनुरोध, कृपया थोड़ी देर बाद प्रयास करें / Too many requests, please try again shortly"
+          : `अनुरोध विफल रहा (HTTP ${response.status})${where} / Request failed (HTTP ${response.status})`
       );
-    } finally {
-      if (timer) clearTimeout(timer);
     }
 
     // Read the body as text first so an HTML error page can't crash the parser.
@@ -110,16 +137,6 @@ const API = {
       } catch {
         data = {};
       }
-    }
-
-    if (!response.ok) {
-      const fallback = response.status === 429
-        ? "बहुत अधिक अनुरोध, कृपया थोड़ी देर बाद प्रयास करें / Too many requests, please try again shortly"
-        : `अनुरोध विफल रहा (HTTP ${response.status}) / Request failed (HTTP ${response.status})`;
-      const requestError = new Error(data.error || fallback);
-      requestError.status = response.status;
-      requestError.data = data;
-      throw requestError;
     }
 
     return data;

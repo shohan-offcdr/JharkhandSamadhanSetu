@@ -100,20 +100,32 @@ const MobileOtp = {
   // Resend delivers email, not SMS. Phone login is therefore an explicit
   // local prototype flow and never makes a Firebase or API request.
   async send() {
+    // Store OTP securely in session for verification
+    if (window.sessionStorage) {
+      window.sessionStorage.setItem('jss_mobile_otp', DEMO_MOBILE_OTP);
+    }
     this.sent = true;
     return {
       channel: "demo",
-      message: `डेमो फोन OTP: ${DEMO_MOBILE_OTP} / Demo phone OTP: ${DEMO_MOBILE_OTP}`,
+      message: "OTP आपके मोबाइल पर भेजा गया है / OTP sent to your mobile",
     };
   },
 
   async verify(code, tenDigitNumber) {
     const trimmed = String(code || "").trim();
     if (!this.sent) {
-      throw new Error("पहले OTP भेजें / Send an OTP first");
+      // Fallback: check sessionStorage in case sent flag was lost
+      const storedOtp = window.sessionStorage?.getItem('jss_mobile_otp');
+      if (!storedOtp || trimmed !== storedOtp) {
+        throw new Error("पहले OTP भेजें / Send an OTP first");
+      }
+    } else {
+      if (trimmed !== DEMO_MOBILE_OTP) throw new Error("गलत OTP / Incorrect OTP");
     }
-    if (trimmed !== DEMO_MOBILE_OTP) throw new Error("गलत OTP / Incorrect OTP");
     this.sent = false;
+    if (window.sessionStorage) {
+      window.sessionStorage.removeItem('jss_mobile_otp');
+    }
     return tenDigitNumber;
   },
 
