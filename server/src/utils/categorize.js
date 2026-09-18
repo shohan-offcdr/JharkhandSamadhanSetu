@@ -145,6 +145,26 @@ function generateSolutionId() {
   return `SL-${year}-${suffix}`;
 }
 
+// Same XX-YYYY-##### shape as the grievance/solution ids above, so every entity
+// the portals display reads the same way (JH-*, SL-*, UN-*, CSR-*, COL-*).
+function generateYearScopedId(prefix) {
+  const year = new Date().getFullYear();
+  const suffix = Math.floor(10000 + Math.random() * 89999);
+  return `${prefix}-${year}-${suffix}`;
+}
+
+function generateUniversityId() {
+  return generateYearScopedId("UN");
+}
+
+function generateEnterpriseId() {
+  return generateYearScopedId("CSR");
+}
+
+function generateCollaborationId() {
+  return generateYearScopedId("COL");
+}
+
 module.exports = {
   CATEGORY_VALUES,
   fakeCategorize,
@@ -157,5 +177,8 @@ module.exports = {
   priorityLabelFor,
   generateProblemId,
   generateSolutionId,
+  generateUniversityId,
+  generateEnterpriseId,
+  generateCollaborationId,
 };
 

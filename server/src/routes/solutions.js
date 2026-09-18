@@ -1,7 +1,9 @@
 const express = require("express");
 const Problem = require("../models/Problem");
 const Solution = require("../models/Solution");
+const { SOLUTION_STATUS } = require("../models/Solution");
 const { generateSolutionId } = require("../utils/categorize");
+const requireAccount = require("../middleware/requireAccount");
 const asyncHandler = require("../utils/asyncHandler");
 
 const router = express.Router();
@@ -57,15 +59,36 @@ router.post(
   })
 );
 
-// GET /api/solutions?problemId=JH-2026-XXXXX — solutions for one problem, newest first.
+// GET /api/solutions?problemId=JH-2026-XXXXX&studentId=&status= — solutions for
+// one problem / one partner, newest first.
 router.get(
   "/",
   asyncHandler(async (req, res) => {
     const filter = {};
     if (req.query.problemId) filter.problemId = cleanText(req.query.problemId, 40).toUpperCase();
+    if (req.query.studentId) filter.studentId = cleanText(req.query.studentId, 160);
     if (req.query.status) filter.status = cleanText(req.query.status, 40);
     const solutions = await Solution.find(filter).sort({ createdAt: -1 }).limit(200);
     res.json(solutions);
+  })
+);
+
+// PATCH /api/solutions/:id/status   body: { status }
+// The government review step: Submitted -> Under Review -> Shortlisted | Rejected.
+router.patch(
+  "/:id/status",
+  requireAccount("government", "admin"),
+  asyncHandler(async (req, res) => {
+    if (!SOLUTION_STATUS.includes(req.body.status)) {
+      return res.status(400).json({ error: `status must be one of: ${SOLUTION_STATUS.join(", ")}` });
+    }
+    const solution = await Solution.findOneAndUpdate(
+      { id: String(req.params.id || "").toUpperCase() },
+      { status: req.body.status },
+      { new: true }
+    );
+    if (!solution) return res.status(404).json({ error: "समाधान नहीं मिला / Solution not found" });
+    res.json(solution);
   })
 );
 

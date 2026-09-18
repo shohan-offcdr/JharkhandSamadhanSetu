@@ -43,7 +43,17 @@ connectDB()
     // index/schema mismatch (for example an older non-unique index blocking a
     // new unique one) would surface as an unhandled rejection and take the
     // process down. Here it is logged clearly and traffic keeps being served.
-    const models = [require("./models/Problem"), require("./models/Citizen"), require("./models/EmailOtp"), require("./models/Solution")];
+    const models = [
+      require("./models/Problem"),
+      require("./models/Citizen"),
+      require("./models/EmailOtp"),
+      require("./models/Solution"),
+      require("./models/Account"),
+      require("./models/University"),
+      require("./models/EnterpriseCsr"),
+      require("./models/StartupProfile"),
+      require("./models/Collaboration"),
+    ];
     Promise.all(
       models.map((model) =>
         model.init().catch((err) => {

@@ -87,10 +87,14 @@ const API = {
         {
           method,
           headers: {
-            "Content-Type": "application/json",
+            // For a FormData body the browser must set Content-Type itself: it
+            // has to append the multipart boundary, and a forced
+            // "application/json" header made the server see an empty upload.
+            ...(isFormData ? {} : { "Content-Type": "application/json" }),
+            ...this.authHeaders(),
             ...headers,
           },
-          body: isFormData ? undefined : JSON.stringify(body),
+          body: isFormData ? body : JSON.stringify(body),
           signal: controller?.signal,
         }
       );
@@ -145,6 +149,9 @@ const API = {
   // ---------- AUTH ----------
 
   // Fake login: accepts anything non-empty, stores a session.
+  // Still used by the student/admin portals (there is no credentials backend
+  // for those roles). The government and startup portals use
+  // loginWithPassword() below, which stores a signed token alongside.
   // LATER: replace body with a real fetch('/api/auth/login', ...)
   login(role, identifier) {
     const session = { role, identifier, loggedInAt: new Date().toISOString() };
@@ -156,12 +163,87 @@ const API = {
     return session;
   },
 
+  // Stores the session returned by POST /api/accounts/login|register.
+  setSession({ role, identifier, token, account }) {
+    const session = {
+      role: role || (account && account.role),
+      identifier: identifier || (account && account.identifier),
+      token,
+      account: account || null,
+      loggedInAt: new Date().toISOString(),
+    };
+    try {
+      localStorage.setItem("jss_session", JSON.stringify(session));
+    } catch (error) {
+      console.warn("[api] could not persist the session:", error.message);
+    }
+    return session;
+  },
+
+  // "Authorization: Bearer ..." for the routes that need a signed-in account.
+  // Returns {} when the session has no token (citizen/student sessions), so
+  // every existing call keeps working unchanged.
+  authHeaders() {
+    const session = this.getSession();
+    return session && session.token ? { Authorization: `Bearer ${session.token}` } : {};
+  },
+
+  async loginWithPassword(role, identifier, password) {
+    const result = await this.request("/accounts/login", {
+      method: "POST",
+      body: { role, identifier, password },
+    });
+    this.setSession({ role: result.account.role, identifier: result.account.identifier, token: result.token, account: result.account });
+    return result.account;
+  },
+
+  async registerAccount(payload) {
+    const result = await this.request("/accounts/register", { method: "POST", body: payload });
+    this.setSession({
+      role: result.account.role,
+      identifier: result.account.identifier,
+      token: result.token,
+      account: result.account,
+    });
+    return result.account;
+  },
+
+  async refreshAccount() {
+    const account = await this.request("/accounts/me");
+    const session = this.getSession();
+    if (session) this.setSession({ ...session, role: account.role, identifier: account.identifier, account });
+    return account;
+  },
+
+  async getAccounts(role) {
+    return this.request(`/accounts${role ? `?role=${encodeURIComponent(role)}` : ""}`);
+  },
+
+  // Update your own account details (name/designation/organisation/district/phone).
+  async updateAccount(patch) {
+    return this.request("/accounts/me", { method: "PATCH", body: patch });
+  },
+
   logout() {
     localStorage.removeItem("jss_session");
   },
 
   getSession() {
     return readJsonStorage(localStorage, "jss_session", null);
+  },
+
+  // The signed-in account (null for the token-less citizen/student sessions).
+  getAccount() {
+    const session = this.getSession();
+    return session && session.account ? session.account : null;
+  },
+
+  // Display name for the header pills: organisation, then name, then the id.
+  getDisplayName() {
+    const account = this.getAccount();
+    if (account) return account.organisation || account.name || account.identifier;
+    const session = this.getSession();
+    return session ? session.identifier : "";
   },
 
   // ---------- PROBLEMS (Grievances) ----------
@@ -302,6 +384,138 @@ const API = {
 
   clearDraft() {
     sessionStorage.removeItem("jss_draft_problem");
+  },
+
+  // Re-run the Grok/local enrichment on one grievance (government AI Analysis
+  // page). Requires an officer token.
+  async reanalyzeProblem(id) {
+    return this.request(`/problems/${encodeURIComponent(id)}/reanalyze`, { method: "POST" });
+  },
+
+  // ---------- SOLUTIONS ----------
+
+  // Any subset of { problemId, studentId, status }.
+  async getSolutions(filters = {}) {
+    const params = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) params.set(key, value);
+    });
+    const query = params.toString();
+    return this.request(`/solutions${query ? `?${query}` : ""}`);
+  },
+
+  // Officer review step: Submitted | Under Review | Shortlisted | Rejected.
+  async updateSolutionStatus(id, status) {
+    return this.request(`/solutions/${encodeURIComponent(id)}/status`, { method: "PATCH", body: { status } });
+  },
+
+  // ---------- STATS ----------
+
+  // Every number the government dashboards show (officer token required).
+  async getOverviewStats() {
+    return this.request("/stats/overview");
+  },
+
+  // Partner impact numbers. Officers may pass any partnerId; a partner always
+  // gets its own, whatever it asks for (the server ignores the query param).
+  async getImpactStats(partnerId) {
+    return this.request(`/stats/impact${partnerId ? `?partnerId=${encodeURIComponent(partnerId)}` : ""}`);
+  },
+
+  // ---------- UNIVERSITIES / CSR ENTERPRISES ----------
+
+  async getUniversities(filters = {}) {
+    const params = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) params.set(key, value);
+    });
+    const query = params.toString();
+    return this.request(`/universities${query ? `?${query}` : ""}`);
+  },
+
+  async updateUniversity(id, patch) {
+    return this.request(`/universities/${encodeURIComponent(id)}`, { method: "PATCH", body: patch });
+  },
+
+  async getEnterprises(filters = {}) {
+    const params = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) params.set(key, value);
+    });
+    const query = params.toString();
+    return this.request(`/enterprises${query ? `?${query}` : ""}`);
+  },
+
+  async updateEnterprise(id, patch) {
+    return this.request(`/enterprises/${encodeURIComponent(id)}`, { method: "PATCH", body: patch });
+  },
+
+  // ---------- STARTUP / ENTERPRISE PROFILES ----------
+
+  async getStartupProfiles(filters = {}) {
+    const params = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) params.set(key, value);
+    });
+    const query = params.toString();
+    return this.request(`/startups${query ? `?${query}` : ""}`);
+  },
+
+  // Returns null (instead of throwing) when the signed-in partner has not
+  // filled in a profile yet, so the Company Profile form can start empty.
+  async getStartupProfile(identifier) {
+    try {
+      return await this.request(`/startups/${encodeURIComponent(identifier)}`);
+    } catch (error) {
+      if (/HTTP 404/.test(error.message)) return null;
+      throw error;
+    }
+  },
+
+  async saveStartupProfile(identifier, profile) {
+    return this.request(`/startups/${encodeURIComponent(identifier)}`, { method: "PUT", body: profile });
+  },
+
+  async verifyStartupProfile(identifier, verified = true) {
+    return this.request(`/startups/${encodeURIComponent(identifier)}/verify`, { method: "PATCH", body: { verified } });
+  },
+
+  // ---------- COLLABORATIONS ----------
+
+  async getCollaborations(filters = {}) {
+    const params = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) params.set(key, value);
+    });
+    const query = params.toString();
+    return this.request(`/collaborations${query ? `?${query}` : ""}`);
+  },
+
+  async createCollaboration(payload) {
+    return this.request("/collaborations", { method: "POST", body: payload });
+  },
+
+  async updateCollaborationStage(id, stage, fundingCommitted) {
+    const body = { stage };
+    if (fundingCommitted !== undefined && fundingCommitted !== null && fundingCommitted !== "") {
+      body.fundingCommitted = fundingCommitted;
+    }
+    return this.request(`/collaborations/${encodeURIComponent(id)}/stage`, { method: "PATCH", body });
+  },
+
+  async addCollaborationMilestone(id, payload) {
+    return this.request(`/collaborations/${encodeURIComponent(id)}/milestones`, { method: "POST", body: payload });
+  },
+
+  async updateCollaborationMilestone(id, milestoneId, patch) {
+    return this.request(`/collaborations/${encodeURIComponent(id)}/milestones/${encodeURIComponent(milestoneId)}`, {
+      method: "PATCH",
+      body: patch,
+    });
+  },
+
+  async addCollaborationMessage(id, body) {
+    return this.request(`/collaborations/${encodeURIComponent(id)}/messages`, { method: "POST", body: { body } });
   },
 
   // ---------- STUDENT / STARTUP PROJECT TABLES ----------

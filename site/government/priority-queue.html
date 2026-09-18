@@ -220,27 +220,13 @@
 <label class="sr-only" for="district-select">Select District</label>
 <select class="w-full h-min-touch-target px-3 text-body-md font-body-md rounded-lg border border-outline-variant focus:border-primary-container focus:ring-1 focus:ring-primary-container bg-surface-container-lowest text-on-surface" id="district-select">
 <option selected="">All 24 Districts</option>
-<option>Ranchi</option>
-<option>West Singhbhum</option>
-<option>Palamu</option>
-<option>Dhanbad</option>
-<option>Khunti</option>
-<option>Latehar</option>
-<option>East Singhbhum</option>
-<option>Hazaribagh</option>
-<option>Bokaro</option>
 </select>
 </div>
 <!-- Category Filter -->
 <div class="md:col-span-2">
 <label class="sr-only" for="category-select">Select Category</label>
 <select class="w-full h-min-touch-target px-3 text-body-md font-body-md rounded-lg border border-outline-variant focus:border-primary-container focus:ring-1 focus:ring-primary-container bg-surface-container-lowest text-on-surface" id="category-select">
-<option selected="">All Departments</option>
-<option>Drinking Water (PHED)</option>
-<option>Rural Works (RWD)</option>
-<option>Health &amp; Family Welfare</option>
-<option>Energy &amp; JREDA</option>
-<option>Agriculture &amp; Irrigation</option>
+<option selected="">All Categories</option>
 </select>
 </div>
 <!-- Sort Filter -->
@@ -249,7 +235,7 @@
 <div class="relative">
 <select class="w-full h-min-touch-target pl-3 pr-8 text-body-md font-body-md rounded-lg border border-outline-variant focus:border-primary-container focus:ring-1 focus:ring-primary-container bg-surface-container-lowest text-on-surface appearance-none font-label-lg" id="sort-select">
 <option selected="">Sort: Computed Priority Score (Highest)</option>
-<option>Sort: SLA Time Left (Shortest)</option>
+<option>Sort: Most Recent</option>
 <option>Sort: Affected Population (Largest)</option>
 </select>
 <span class="material-symbols-outlined absolute right-2.5 top-3.5 text-on-surface-variant pointer-events-none text-xl" data-icon="swap_vert">swap_vert</span>
@@ -822,16 +808,45 @@
             <div class="w-14 h-14 rounded-lg bg-secondary text-on-secondary flex flex-col items-center justify-center shrink-0"><span class="text-label-sm">Rank</span><strong class="text-headline-sm">#${index + 1}</strong></div>
             <div><div class="flex flex-wrap gap-2 text-label-sm"><span class="font-mono font-semibold text-primary">${escapePriorityHtml(problem.id)}</span><span class="text-on-surface-variant">${escapePriorityHtml(problem.district)}</span><span class="text-on-surface-variant">${escapePriorityHtml(problem.category)}</span></div><h3 class="text-headline-sm font-headline-sm text-primary font-semibold mt-1">${escapePriorityHtml(problem.title)}</h3><p class="text-body-sm text-on-surface-variant mt-1 line-clamp-2">${escapePriorityHtml(problem.description)}</p></div>
           </div>
-          <div class="flex items-center gap-space-md shrink-0"><span class="px-3 py-1 rounded-full bg-warning-container text-on-warning-container font-semibold">${problem.priorityScore}/100</span><span class="text-body-sm text-on-surface-variant">${problem.reportCount || 1} reports</span><a class="text-secondary font-semibold hover:underline" href="problem-management.html">Manage</a></div>
+          <div class="flex items-center gap-space-md shrink-0"><span class="px-3 py-1 rounded-full bg-warning-container text-on-warning-container font-semibold">${problem.priorityScore}/100</span><span class="text-body-sm text-on-surface-variant">${problem.reportCount || 1} reports</span><a class="text-secondary font-semibold hover:underline" href="problem-management.html?id=${encodeURIComponent(problem.id)}">Manage</a></div>
         </div>
       </article>`).join('') : '<p class="p-6 text-center text-on-surface-variant">No matching grievances found.</p>';
   }
 
+  // Fill the two dropdowns from the grievances that actually exist, instead of
+  // the fixed option lists that used to include districts and "departments" no
+  // grievance was ever filed under (and whose default value filtered the whole
+  // queue away).
+  function populatePriorityFilters(problems) {
+    const districts = [...new Set(problems.map((problem) => problem.district).filter(Boolean))].sort();
+    const categories = [...new Set(problems.map((problem) => problem.category).filter(Boolean))].sort();
+
+    const districtValue = priorityDistrict.value;
+    priorityDistrict.innerHTML =
+      ['<option value="">All 24 Districts</option>'].concat(
+        districts.map((district) => `<option value="${escapePriorityHtml(district)}">${escapePriorityHtml(district)}</option>`)
+      ).join('');
+    priorityDistrict.value = districts.includes(districtValue) ? districtValue : '';
+
+    const categoryValue = priorityCategory.value;
+    priorityCategory.innerHTML =
+      ['<option value="">All Categories</option>'].concat(
+        categories.map((category) => `<option value="${escapePriorityHtml(category)}">${escapePriorityHtml(category)}</option>`)
+      ).join('');
+    priorityCategory.value = categories.includes(categoryValue) ? categoryValue : '';
+  }
+
+  setPanelState(priorityList, 'Loading the live priority queue…');
   API.getProblemsFromServer({ sortBy: 'priority' }).then((problems) => {
-    livePriorityProblems = problems;
+    livePriorityProblems = Array.isArray(problems) ? problems : [];
+    populatePriorityFilters(livePriorityProblems);
+    if (!livePriorityProblems.length) {
+      setPanelState(priorityList, 'No grievances have been submitted yet. Citizen submissions appear here automatically.');
+      return;
+    }
     renderPriorityQueue();
-  }).catch(() => {
-    priorityList.innerHTML = '<p class="p-6 text-center text-error">Could not load the live priority queue.</p>';
+  }).catch((error) => {
+    setPanelState(priorityList, error.message || 'Could not load the live priority queue.', 'error');
   });
   [prioritySearch, priorityDistrict, priorityCategory, prioritySort].forEach((control) => control.addEventListener('input', renderPriorityQueue));
   [priorityDistrict, priorityCategory, prioritySort].forEach((control) => control.addEventListener('change', renderPriorityQueue));

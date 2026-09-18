@@ -8,6 +8,12 @@ const problemRoutes = require("./routes/problems");
 const solutionRoutes = require("./routes/solutions");
 const authRoutes = require("./routes/auth");
 const citizenRoutes = require("./routes/citizens");
+const accountRoutes = require("./routes/accounts");
+const universityRoutes = require("./routes/universities");
+const enterpriseRoutes = require("./routes/enterprises");
+const startupRoutes = require("./routes/startups");
+const collaborationRoutes = require("./routes/collaborations");
+const statsRoutes = require("./routes/stats");
 
 const app = express();
 
@@ -100,6 +106,14 @@ app.use("/api/problems", problemRoutes);
 app.use("/api/solutions", solutionRoutes);
 app.use("/api/auth", otpLimiter, authRoutes);
 app.use("/api/citizens", citizenRoutes);
+// Account logins accept password guesses, so they share the tighter OTP budget
+// rather than the global one.
+app.use("/api/accounts", otpLimiter, accountRoutes);
+app.use("/api/universities", universityRoutes);
+app.use("/api/enterprises", enterpriseRoutes);
+app.use("/api/startups", startupRoutes);
+app.use("/api/collaborations", collaborationRoutes);
+app.use("/api/stats", statsRoutes);
 
 // 404 for unmatched API routes
 app.use("/api", (req, res) => {

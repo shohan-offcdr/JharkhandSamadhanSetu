@@ -15,6 +15,16 @@ function requireRole(roleOrRoles, loginPageRelPath) {
   const session = API.getSession();
   if (!session || !allowed.includes(session.role)) {
     window.location.href = loginPageRelPath;
+    return;
+  }
+
+  // The government and startup portals read their data from token-protected API
+  // routes. A session left over from the old password-less login has no token,
+  // so every request on the page would fail with 401 -- send the officer/partner
+  // back through the login form instead of rendering a page full of errors.
+  const tokenRoles = ["government", "startup"];
+  if (tokenRoles.includes(session.role) && !session.token) {
+    window.location.href = loginPageRelPath;
   }
 }
 
@@ -83,6 +93,54 @@ function showToast(message) {
   toast.style.opacity = "1";
   clearTimeout(toast._hideTimer);
   toast._hideTimer = setTimeout(() => { toast.style.opacity = "0"; }, 2200);
+}
+
+// ---------------------------------------------------------------
+// Shared render helpers for the API-backed (live) pages.
+//
+// Every government/startup page renders values that came from Mongo, so they
+// all need the same escaping, money/date formatting and loading/error states.
+// They live here instead of being copied into each page.
+// ---------------------------------------------------------------
+
+// Escapes a value before it is interpolated into an innerHTML template.
+function escapeHtml(value) {
+  return String(value === undefined || value === null ? "" : value).replace(
+    /[&<>"']/g,
+    (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[char])
+  );
+}
+
+// 1250000 -> "₹12.5 L", 12000000 -> "₹1.20 Cr", 9500 -> "₹9,500".
+function formatInr(amount) {
+  const value = Number(amount || 0);
+  if (!Number.isFinite(value) || value <= 0) return "₹0";
+  if (value >= 10000000) return `₹${(value / 10000000).toFixed(2)} Cr`;
+  if (value >= 100000) return `₹${(value / 100000).toFixed(1)} L`;
+  return `₹${Math.round(value).toLocaleString("en-IN")}`;
+}
+
+// "2024-06-10" / ISO timestamps -> "10 Jun 2024". Falls back to the raw string
+// so an unusual value (e.g. "Q3 2026") is shown rather than swallowed.
+function formatDate(value) {
+  if (!value) return "—";
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return String(value);
+  return parsed.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+}
+
+// Puts an honest loading/error/empty message inside a container, instead of
+// leaving the previous (or hardcoded) content on screen.
+function setPanelState(element, message, tone = "muted") {
+  if (!element) return;
+  const toneClass =
+    tone === "error" ? "text-error" : tone === "success" ? "text-[#166534]" : "text-on-surface-variant";
+  element.innerHTML = `<p class="p-6 text-center ${toneClass}">${escapeHtml(message)}</p>`;
+}
+
+// A consistent header for a table body that has nothing to show yet.
+function emptyTableRow(colSpan, message) {
+  return `<tr><td colspan="${Number(colSpan) || 1}" class="p-6 text-center text-on-surface-variant">${escapeHtml(message)}</td></tr>`;
 }
 
 // ---------------------------------------------------------------

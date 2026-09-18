@@ -252,12 +252,14 @@
 <div class="relative flex-1">
 <input class="w-full h-min-touch-target px-3 tracking-widest text-center font-mono bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface placeholder:text-outline font-body-md focus:border-primary-container focus:ring-2 focus:ring-primary-container/20" id="otp-token" maxlength="6" placeholder="000000" type="text"/>
 </div>
-<button class="h-min-touch-target px-4 bg-primary-container text-on-primary font-label-md text-label-md rounded-lg hover:bg-primary transition-colors duration-150 flex items-center gap-1.5 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary-container" type="button">
+<button class="h-min-touch-target px-4 bg-primary-container text-on-primary font-label-md text-label-md rounded-lg hover:bg-primary transition-colors duration-150 flex items-center gap-1.5 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary-container" id="btn-nic-otp" type="button">
 <span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
 <span>Generate NIC OTP</span>
 </button>
 </div>
 </div>
+<!-- Login failure / validation message -->
+<div class="hidden p-space-sm rounded-lg bg-error-container text-on-error-container font-body-sm text-body-sm border border-error/30" id="gov-login-error" role="alert"></div>
 <!-- Remember officer session -->
 <div class="flex items-center justify-between pt-space-xxs">
 <label class="flex items-center space-x-2.5 cursor-pointer">
@@ -334,16 +336,63 @@
 </div>
 </footer>
 <script>
-  document.getElementById('gov-login-form').addEventListener('submit', () => {
+  // Real sign-in: POST /api/accounts/login checks the password hash on the
+  // server and returns a signed token, which API.setSession stores. The old
+  // version accepted any non-empty values and never contacted the API.
+  document.getElementById('gov-login-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
     const officerId = document.getElementById('officer-id').value.trim();
     const password = document.getElementById('gov-password').value;
+    const errorBox = document.getElementById('gov-login-error');
+    const submitButton = document.getElementById('btn-gov-login');
+
+    const showError = (message) => {
+      if (!message) {
+        errorBox.textContent = '';
+        errorBox.classList.add('hidden');
+        return;
+      }
+      errorBox.textContent = message;
+      errorBox.classList.remove('hidden');
+    };
+
     if (!officerId || !password) {
-      showToast('कृपया सभी फ़ील्ड भरें / Please fill all fields');
+      showError('कृपया सभी फ़ील्ड भरें / Please fill all fields');
       return;
     }
-    API.login('government', officerId);
-    showToast('Login successful / लॉगिन सफल');
-    setTimeout(() => { window.location.href = 'overview-dashboard.html'; }, 500);
+
+    showError('');
+    submitButton.disabled = true;
+    submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+    try {
+      const account = await API.loginWithPassword('government', officerId, password);
+
+      // The department the officer picked is part of their profile, so it is
+      // saved against the account instead of being a display-only control.
+      const department = document.getElementById('dept-select');
+      const departmentLabel = department && department.value ? department.options[department.selectedIndex].text : '';
+      if (departmentLabel) {
+        try {
+          await API.updateAccount({ organisation: departmentLabel.trim(), district: account.district });
+        } catch (error) {
+          console.warn('[login] could not save the selected department:', error.message);
+        }
+      }
+
+      showToast(`लॉगिन सफल / Signed in as ${account.identifier}`);
+      setTimeout(() => { window.location.href = 'overview-dashboard.html'; }, 400);
+    } catch (error) {
+      showError(error.message || 'Login failed / लॉगिन विफल');
+    } finally {
+      submitButton.disabled = false;
+      submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+    }
+  });
+
+  // NIC OTP / 2FA token is not part of this demo deployment: say so instead of
+  // letting the button look broken.
+  document.getElementById('btn-nic-otp').addEventListener('click', () => {
+    showToast('इस डेमो में 2FA टोकन आवश्यक नहीं है / 2FA token is not required in this demo');
   });
 </script>
 <script src="../js/mock-data.js"></script>
