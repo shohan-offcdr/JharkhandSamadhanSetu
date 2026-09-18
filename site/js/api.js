@@ -13,13 +13,13 @@
  * Where the Express API lives.
  *
  * `window.JSS_API_BASE_URL` is an optional override that can be written either
- * as the service root ("https://api.example.com", "http://localhost:4000") or
- * with the "/api" suffix included ("https://api.example.com/api"). Both
+ * as the service root ("https://jharkhandsamadhansetu-server.onrender.com", "http://localhost:4000") or
+ * with the "/api" suffix included ("https://jharkhandsamadhansetu-server.onrender.com/api"). Both
  * spellings are accepted, because the base is read from several places in this
  * codebase and a deployment should only ever have to set it once.
  *
  * When it isn't set: pages opened straight from disk (file://) or from a local
- * dev host talk to http://<host>:4000, and a deployed page calls the API on its
+ * dev host talk to https://jharkhandsamadhansetu-server.onrender.com, and a deployed page calls the API on its
  * own origin ("/api/...").
  */
 function resolveApiBase() {
@@ -30,7 +30,7 @@ function resolveApiBase() {
   const localHost = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(hostname);
   const staticPreviewPort = ["3000", "4173", "5500", "8000", "8080"].includes(port);
   if (protocol === "file:" || localHost || staticPreviewPort) {
-    return `http://${hostname || "localhost"}:4000`;
+    return `https://jharkhandsamadhansetu-server.onrender.com`;
   }
   return ""; // same origin -- apiUrl() adds the "/api" prefix
 }
@@ -114,7 +114,7 @@ const API = {
           fetchError.message?.includes("ECONNREFUSED")
         ) {
           throw new Error(
-            "सर्वर तक पहुँच नहीं मिली। क्या सर्वर चल रहा है? http://localhost:4000 पर / Could not reach server. Is the server running at http://localhost:4000?"
+            "सर्वर तक पहुँच नहीं मिली। क्या सर्वर चल रहा है? https://jharkhandsamadhansetu-server.onrender.com पर / Could not reach server. Is the server running at https://jharkhandsamadhansetu-server.onrender.com?"
           );
         }
       }
