@@ -74,7 +74,10 @@ const API = {
    *  3. A hung request (e.g. an async route that threw before responding) left
    *     the button spinning forever, so now requests time out.
    */
-  async request(path, { method = "GET", body, timeoutMs = 20000, headers = {} } = {}) {
+  async request(path, { method = "GET", body, timeoutMs, headers = {} } = {}) {
+    // 20s default; calls that ship large bodies (e.g. photo uploads) pass a
+    // larger timeoutMs explicitly.
+    timeoutMs = timeoutMs || (typeof FormData !== "undefined" && body instanceof FormData ? 120000 : 20000);
     const url = this.apiUrl(path);
     const isFormData = typeof FormData !== "undefined" && body instanceof FormData;
     const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
@@ -125,6 +128,18 @@ const API = {
 
     if (!response.ok) {
       const where = this.apiBase() ? ` (${url})` : "";
+      // The server always answers errors as { error: "..." } JSON, and that
+      // message is the only thing that tells the citizen HOW to fix the
+      // request (too big / wrong type / missing field). Parse it before the
+      // generic fallback so the real reason reaches the toast.
+      let serverMessage = "";
+      try {
+        const problem = await response.clone().json();
+        if (problem && typeof problem.error === "string") serverMessage = problem.error;
+      } catch {
+        // non-JSON error body: fall through to the generic message
+      }
+      if (serverMessage) throw new Error(serverMessage);
       throw new Error(
         response.status === 429
           ? "बहुत अधिक अनुरोध, कृपया थोड़ी देर बाद प्रयास करें / Too many requests, please try again shortly"
@@ -324,7 +339,10 @@ const API = {
     const files = Array.isArray(fileOrFiles) ? fileOrFiles : [fileOrFiles];
     files.filter(Boolean).forEach((file) => formData.append("photos", file));
 
-    const result = await this.request("/upload/grievance-photos", { method: "POST", body: formData });
+    // Photo evidence comes from phones on slow rural connections and the API
+    // runs on a host with cold starts, so the generic 20s budget is too tight.
+    // Give the multipart body a full 120 seconds.
+    const result = await this.request("/upload/grievance-photos", { method: "POST", body: formData, timeoutMs: 120000 });
     return result.files || [];
   },
 
