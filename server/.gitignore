@@ -1,6 +1,9 @@
 node_modules/
 .env
 .env.local
+.env.production
+.env.staging
 npm-debug.log
-README.md
-.env.example
+logs/
+*.log
+# NOTE: .env.example IS committed - it's a template with placeholder values

@@ -363,8 +363,10 @@ async function seed() {
   );
   console.log("[seed] demo logins (password is reset on every seed run):");
   SEED_ACCOUNTS.forEach((account) => {
-    console.log(`[seed]   ${account.role.padEnd(10)} ${account.identifier} / ${account.password}`);
+    // SECURITY: Never log the actual password, just indicate credentials exist
+    console.log(`[seed]   ${account.role.padEnd(10)} ${account.identifier} / <password-set>`);
   });
+  console.log("[seed] Check server/.env or the account record for the current password.");
   process.exit(0);
 }
 
