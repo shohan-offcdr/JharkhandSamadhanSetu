@@ -61,6 +61,17 @@ connectDB()
         })
       )
     ).then(() => console.log("[db] indexes verified"));
+
+    // Recover any pending AI analyses from before a server restart.
+    // Without this, problems submitted before a crash/restarte stay "pending" forever.
+    const { recoverPendingAnalyses } = require("./services/analysisQueue");
+    recoverPendingAnalyses({ limit: 50 })
+      .then((count) => {
+        if (count > 0) {
+          console.log(`[analysis-queue] recovered ${count} pending analysis job(s) on boot`);
+        }
+      })
+      .catch((err) => console.error("[analysis-queue] recovery failed:", err.message));
     server.on("error", (err) => {
       if (err.code === "EADDRINUSE") {
         console.error(`[server] Port ${PORT} is already in use. Stop the existing server before starting another one.`);

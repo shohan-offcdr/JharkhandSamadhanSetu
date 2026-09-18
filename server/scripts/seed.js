@@ -88,11 +88,16 @@ const SEED_PROBLEMS = [
 // Demo logins for the staffed portals. Re-running the seed resets these
 // passwords, which is intentional: a fresh clone needs a way in, and the values
 // are printed at the end of the run.
+//
+// SECURITY: Use environment variables to override defaults in any environment.
+// Never use these defaults in production. Set SEED_GOVERNMENT_PASSWORD and
+// SEED_STARTUP_PASSWORD in your .env file before running seed.
 const SEED_ACCOUNTS = [
   {
     role: "government",
     identifier: "officer@jharkhand.gov.in",
-    password: "jharkhand2026",
+    // Allow override via env var; default is for development only
+    password: process.env.SEED_GOVERNMENT_PASSWORD || "Jharkhand@2026!",
     name: "Nodal Officer (IAS)",
     designation: "Nodal Officer",
     organisation: "Department of Administrative Reforms & Public Grievances",
@@ -101,7 +106,8 @@ const SEED_ACCOUNTS = [
   {
     role: "startup",
     identifier: "partner@example.com",
-    password: "partner2026",
+    // Allow override via env var; default is for development only
+    password: process.env.SEED_STARTUP_PASSWORD || "Partner@2026!",
     name: "CCL Innovation Lab",
     designation: "Head - Innovation Lab",
     organisation: "Central Coalfields Ltd.",
@@ -366,7 +372,9 @@ async function seed() {
     // SECURITY: Never log the actual password, just indicate credentials exist
     console.log(`[seed]   ${account.role.padEnd(10)} ${account.identifier} / <password-set>`);
   });
-  console.log("[seed] Check server/.env or the account record for the current password.");
+  console.log("[seed] Default passwords are for development only.");
+  console.log("[seed] To use custom passwords, set SEED_GOVERNMENT_PASSWORD and SEED_STARTUP_PASSWORD in server/.env");
+  console.log("[seed] Remember to change default passwords after first login in any environment.");
   process.exit(0);
 }
 
