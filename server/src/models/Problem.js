@@ -74,7 +74,10 @@ const problemSchema = new mongoose.Schema(
     // 'local_rules') and whether all AI providers failed over ('failed_fallback').
     // Read from server via GET /api/problems — never from the browser.
     analysisStatus: { type: String, enum: ANALYSIS_STATUS_VALUES, default: "pending" },
-    aiProviderUsed: { type: String, enum: ["grok", "gemini", "local_rules"], default: "local_rules" },
+    // "pending" is written by POST /api/problems while the background analysis
+    // job is queued (see services/analysisQueue.js) — it must be an allowed
+    // value or every new submission fails validation.
+    aiProviderUsed: { type: String, enum: ["grok", "gemini", "local_rules", "pending"], default: "local_rules" },
     // ---- Feature 1: AI priority factor extraction -------------------------
     // Structured factors extracted by Grok (validated against
     // services/aiFactors.js before they are ever written) or, on any failure, by

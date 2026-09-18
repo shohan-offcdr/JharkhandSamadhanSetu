@@ -1,6 +1,11 @@
 const express = require("express");
+// `priorityTierFor` lives in utils/categorize. models/Problem does not re-export
+// it — destructuring it from there silently yields `undefined`, and the first
+// POST /api/problems call then died with "TypeError: priorityTierFor is not a
+// function" (HTTP 500 on every citizen submission).
 const Problem = require("../models/Problem");
-const { STATUS_VALUES, priorityTierFor } = require("../models/Problem");
+const { STATUS_VALUES } = require("../models/Problem");
+const { priorityTierFor } = require("../utils/categorize");
 const { similarityScore, generateProblemId, prioritize } = require("../utils/categorize");
 const { analyzeGrievance } = require("../services/aiAnalyzer");
 const { enqueueProblemAnalysis } = require("../services/analysisQueue");
@@ -214,7 +219,9 @@ router.post(
           $inc: { reportCount: 1 },
           $addToSet: { mergedIds: base.title },
           $set: {
-            duplicateOf: duplicate.candidate.id,
+            // Note: duplicateOf is deliberately NOT set here. The original
+            // problem is the merge TARGET — pointing its duplicateOf at itself
+            // (which the old code did) wrote confusing self-referencing data.
             similarity: Number(duplicate.score.toFixed(2)),
             priorityScore,
             finalPriorityScore: priorityScore,

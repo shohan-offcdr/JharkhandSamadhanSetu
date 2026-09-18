@@ -78,6 +78,20 @@ app.get("/api/ready", (req, res) => {
   res.status(ready ? 200 : 503).json({ ready, checks });
 });
 
+// Which build is actually running. Render injects RENDER_GIT_COMMIT on every
+// deploy; locally it falls back to "unknown". Without this there was no way to
+// tell a stale deployment apart from a code bug (the grievance-500 was exactly
+// that ambiguity).
+app.get("/api/version", (req, res) => {
+  res.json({
+    service: "jss-server",
+    commit: process.env.RENDER_GIT_COMMIT || process.env.GIT_COMMIT || "unknown",
+    node: process.version,
+    bootedAt: new Date(Date.now() - process.uptime() * 1000).toISOString(),
+    time: new Date().toISOString(),
+  });
+});
+
 // Rate limits are applied *after* the health checks on purpose: a load balancer
 // polling /api/health every few seconds must not be able to rate-limit itself.
 const globalLimiter = rateLimit({
