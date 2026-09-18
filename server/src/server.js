@@ -35,8 +35,8 @@ connectDB()
     };
 
     server = app.listen(PORT, () => {
-      console.log(`jss-server listening on https://jharkhandsamadhansetu-server.onrender.com`);
-      console.log(`Health check: https://jharkhandsamadhansetu-server.onrender.com/api/health`);
+      console.log(`jss-server listening on https://jharkhandsamadhansetu.onrender.com`);
+      console.log(`Health check: https://jharkhandsamadhansetu.onrender.com/api/health`);
     });
 
     // Build/verify indexes explicitly. Mongoose does this automatically, but an
