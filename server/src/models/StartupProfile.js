@@ -29,7 +29,14 @@ const startupProfileSchema = new mongoose.Schema(
     website: { type: String, trim: true, maxlength: 300 },
     contactEmail: { type: String, trim: true, lowercase: true },
     contactPhone: { type: String, trim: true },
-    verified: { type: Boolean, default: false },
+    // Feature 2: structured profile object — the matching-engine input.
+    profile: {
+      interests: { type: [String], default: [] },
+      sectors: { type: [String], default: [] },
+      stage: { type: String, trim: true, maxlength: 60 },
+      capacity: { type: String, trim: true, maxlength: 120 },
+      pastProjects: { type: [String], default: [] },
+    },
     pastProjects: [
       {
         title: { type: String, trim: true },

@@ -12,6 +12,7 @@ const accountRoutes = require("./routes/accounts");
 const universityRoutes = require("./routes/universities");
 const enterpriseRoutes = require("./routes/enterprises");
 const startupRoutes = require("./routes/startups");
+const matchesRoutes = require("./routes/matches");
 const collaborationRoutes = require("./routes/collaborations");
 const statsRoutes = require("./routes/stats");
 
@@ -112,6 +113,7 @@ app.use("/api/accounts", otpLimiter, accountRoutes);
 app.use("/api/universities", universityRoutes);
 app.use("/api/enterprises", enterpriseRoutes);
 app.use("/api/startups", startupRoutes);
+app.use("/api/matches", matchesRoutes);
 app.use("/api/collaborations", collaborationRoutes);
 app.use("/api/stats", statsRoutes);
 

@@ -1,8 +1,10 @@
 const express = require("express");
 const Problem = require("../models/Problem");
-const { STATUS_VALUES } = require("../models/Problem");
-const { similarityScore, generateProblemId } = require("../utils/categorize");
+const { STATUS_VALUES, priorityTierFor } = require("../models/Problem");
+const { similarityScore, generateProblemId, prioritize } = require("../utils/categorize");
 const { analyzeGrievance } = require("../services/aiAnalyzer");
+const { enqueueProblemAnalysis } = require("../services/analysisQueue");
+const { mergeAiFactors, aiFactorsFromLocalRules } = require("../services/aiFactors");
 const asyncHandler = require("../utils/asyncHandler");
 
 const router = express.Router();
@@ -55,11 +57,11 @@ router.get(
       ];
     }
 
-    const sort = sortBy === "priority" ? { priorityScore: -1 } : { createdAt: -1 };
+    const sort = sortBy === "priority" ? { finalPriorityScore: -1 } : { createdAt: -1 };
     const query = Problem.find(filter).sort(sort).limit(500);
     if (audience === "student") {
       query.select(
-        "id title titleHi problemStatement enrichedDescription description category categoryConfidence district block priorityScore priorityLabel priorityReasons reportCount similarity duplicateOf status photos createdAt analysisVersion"
+        "id title titleHi problemStatement enrichedDescription description category categoryConfidence district block priorityScore priorityLabel priorityTier finalPriorityScore priorityReasons reportCount similarity duplicateOf status photos createdAt analysisVersion"
       );
     }
     const problems = await query;
@@ -149,15 +151,20 @@ router.post(
       priorityLabel: analysis.priorityLabel,
       priorityReasons: analysis.priorityReasons,
       aiMeta: analysis.aiMeta,
-      analysisStatus: analysis.analysisStatus || "ok",
-      aiProviderUsed: analysis.aiProviderUsed || "local_rules",
+      // Feature 1: respond immediately with 'pending' — the AI factor extraction
+      // runs as a background job (analysisQueue.js) so the citizen is not left
+      // waiting on a phone connection for a Grok round-trip.
+      analysisStatus: "pending",
+      aiProviderUsed: "pending",
       visibleToStudents: true,
       status: "Pending Verification",
       reportCount: 1,
       createdAt: new Date().toISOString().slice(0, 10),
     };
     base.priorityScore = analysis.priorityScore;
+    base.finalPriorityScore = analysis.priorityScore; // mirrors until AI factors arrive
     base.analysisVersion = analysis.analysisVersion;
+    base.priorityTier = analysis.priorityLabel ? priorityTierFor(analysis.priorityScore) : "low";
 
     const candidates = await Problem.find({ district: new RegExp(`^${escapeRegExp(analysis.district)}$`, "i"), category: base.category }).limit(100);
     const duplicate = candidates
@@ -168,13 +175,54 @@ router.post(
       .sort((a, b) => b.score - a.score)[0];
 
     if (duplicate && duplicate.score >= 0.45) {
-      const priorityScore = Math.min(100, Math.max(base.priorityScore, Number(duplicate.candidate.priorityScore || 0) + 5));
+      // Feature 1 de-dup guard: when this submission is a near-duplicate of an
+      // existing problem, skip a fresh AI call and inherit/average the existing
+      // problem's aiFactors instead — saves API cost on repeat reports of the same
+      // issue (which is a *signal*, not noise: the duplicate volume itself feeds
+      // the "reports" term in the priority formula).
+      const baseFactors = duplicate.candidate.aiFactors || {};
+      const localFactors = duplicate.candidate.aiFactors
+        ? aiFactorsFromLocalRules({
+            title: base.title,
+            description: base.description,
+            scaleOfImpact: base.scaleOfImpact,
+            durationDays: base.durationDays,
+            reportCount: 1,
+            photoCount: base.photos.length,
+            category: base.category,
+          })
+        : {};
+      const mergedFactors = mergeAiFactors(baseFactors, localFactors, duplicate.candidate.reportCount, 1);
+      // Feature 1 de-dup guard: when this submission is a near-duplicate of an
+      // existing problem, skip a fresh AI call and inherit/average the existing
+      // problem's aiFactors instead — saves API cost on repeat reports of the same
+      // issue (which is a *signal*, not noise: the duplicate volume itself feeds
+      // the "reports" term in the priority formula).
+      const effectiveReportCount = duplicate.candidate.reportCount + 1;
+      const scoring = prioritize({
+        scaleOfImpact: base.scaleOfImpact,
+        durationDays: base.durationDays,
+        reportCount: effectiveReportCount,
+        photoCount: base.photos.length,
+        category: base.category,
+        aiFactors: mergedFactors,
+      });
+      const priorityScore = Math.min(100, scoring.score);
       const updated = await Problem.findOneAndUpdate(
         { _id: duplicate.candidate._id },
         {
           $inc: { reportCount: 1 },
           $addToSet: { mergedIds: base.title },
-          $set: { duplicateOf: duplicate.candidate.id, priorityScore, similarity: Number(duplicate.score.toFixed(2)) },
+          $set: {
+            duplicateOf: duplicate.candidate.id,
+            similarity: Number(duplicate.score.toFixed(2)),
+            priorityScore,
+            finalPriorityScore: priorityScore,
+            priorityTier: priorityTierFor(priorityScore),
+            aiFactors: mergedFactors,
+            aiProviderUsed: mergedFactors.source === "llm" ? duplicate.candidate.aiProviderUsed : "local_rules",
+            analysisStatus: duplicate.candidate.analysisStatus === "pending" ? "failed_fallback" : duplicate.candidate.analysisStatus,
+          },
         },
         { new: true }
       );
@@ -186,6 +234,10 @@ router.post(
     for (let attempt = 0; attempt < 3; attempt++) {
       try {
         const problem = await Problem.create({ ...base, id: generateProblemId() });
+        // Feature 1: kick off the AI factor extraction as a background job so the
+        // 201 response goes out immediately. At current volume a simple in-process
+        // queue (analysisQueue.js) is fine; replace with BullMQ if volume grows.
+        enqueueProblemAnalysis(problem.id);
         return res.status(201).json(problem);
       } catch (err) {
         if (err.code === 11000 && attempt < 2) continue; // duplicate id, retry

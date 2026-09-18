@@ -1,8 +1,24 @@
 const mongoose = require("mongoose");
+const { priorityTierFor } = require("../utils/categorize");
 
 const STATUS_VALUES = ["Pending Verification", "Verified", "Escalated", "Rejected", "Resolved"];
 
 const PRIORITY_LABELS = ["Critical", "High", "Medium", "Low"];
+
+// Lowercase tier used for the Student Portal badge and for machine-readable
+// sorting/filtering (priorityLabel stays the human sentence-case label the
+// existing dashboards already render).
+const PRIORITY_TIERS = ["low", "medium", "high", "critical"];
+
+// Feature 1 lifecycle. 'pending' = queued for AI factor extraction, 'done' = the
+// provider answered and the factors were validated, 'failed_fallback' = the
+// factors came from Local Rules instead (provider down / rate-limited / not
+// configured / off-spec JSON). 'ok' is kept in the enum because rows written
+// before Feature 1 (and the classification path in POST /:id/reanalyze) use it.
+const ANALYSIS_STATUS_VALUES = ["pending", "done", "failed_fallback", "ok"];
+
+const EVIDENCE_QUALITY_VALUES = ["none", "weak", "moderate", "strong"];
+const AI_FACTOR_SOURCE_VALUES = ["llm", "local_rules", "inherited"];
 
 const problemSchema = new mongoose.Schema(
   {
@@ -57,8 +73,38 @@ const problemSchema = new mongoose.Schema(
     // Which provider actually served the analysis ('grok' | 'gemini' |
     // 'local_rules') and whether all AI providers failed over ('failed_fallback').
     // Read from server via GET /api/problems — never from the browser.
-    analysisStatus: { type: String, enum: ["ok", "failed_fallback"], default: "ok" },
+    analysisStatus: { type: String, enum: ANALYSIS_STATUS_VALUES, default: "pending" },
     aiProviderUsed: { type: String, enum: ["grok", "gemini", "local_rules"], default: "local_rules" },
+    // ---- Feature 1: AI priority factor extraction -------------------------
+    // Structured factors extracted by Grok (validated against
+    // services/aiFactors.js before they are ever written) or, on any failure, by
+    // Local Rules. `source` records which, so a fallback is never mistaken for a
+    // model answer.
+    aiFactors: {
+      urgencyScore: { type: Number, min: 0, max: 100, default: 0 },
+      estimatedAffectedPeople: { type: Number, min: 0, default: 0 },
+      categoryRiskConfidence: { type: Number, min: 0, max: 1, default: 0 },
+      evidenceQuality: { type: String, enum: EVIDENCE_QUALITY_VALUES, default: "none" },
+      riskTags: { type: [String], default: [] },
+      source: { type: String, enum: AI_FACTOR_SOURCE_VALUES, default: "local_rules" },
+      provider: { type: String },
+      model: { type: String },
+    },
+    // The score the AI factors alone justify (no citizen duration/reports/photo).
+    aiPriorityScore: { type: Number, min: 0, max: 100, default: 0 },
+    // The authoritative score: the deterministic formula fed with the citizen
+    // inputs AND (where they are sparse) the AI factors. priorityScore mirrors
+    // this value so the existing dashboards keep working unchanged.
+    finalPriorityScore: { type: Number, min: 0, max: 100 },
+    priorityTier: { type: String, enum: PRIORITY_TIERS },
+    analyzedAt: { type: Date },
+    // ---- Feature 2: matching engine ---------------------------------------
+    // Vector embedding of (title + description + category). `select: false` keeps
+    // 1536 floats out of every list response; matching queries ask for it
+    // explicitly with .select("+embedding").
+    embedding: { type: [Number], default: undefined, select: false },
+    embeddingModel: { type: String, index: true },
+    embeddedAt: { type: Date },
     // Student portal only lists visible problems. Auto-approved on AI analysis
     // so new grievances appear immediately; moderators can hide via status route.
     visibleToStudents: { type: Boolean, default: true },
@@ -69,7 +115,23 @@ const problemSchema = new mongoose.Schema(
 );
 
 problemSchema.index({ visibleToStudents: 1, priorityScore: -1 });
+problemSchema.index({ visibleToStudents: 1, finalPriorityScore: -1 });
 problemSchema.index({ category: 1, district: 1 });
+
+// Keeps the derived priority fields populated on every path that uses .save().
+// finalPriorityScore is authoritative when a caller sets it (the AI analysis
+// pipeline does); otherwise it inherits priorityScore so legacy writes and the
+// /reanalyze route can never leave a row without a tier. updateOne/findOneAndUpdate
+// bypass this hook, so those call sites set both fields explicitly.
+problemSchema.pre("save", function syncPriorityDerivatives(next) {
+  if (this.finalPriorityScore === undefined || this.finalPriorityScore === null) {
+    this.finalPriorityScore = Number(this.priorityScore) || 0;
+  }
+  if (!this.priorityTier) {
+    this.priorityTier = priorityTierFor(this.finalPriorityScore);
+  }
+  next();
+});
 
 problemSchema.set("toJSON", {
   transform: (doc, ret) => {
@@ -82,4 +144,7 @@ problemSchema.set("toJSON", {
 module.exports = mongoose.model("Problem", problemSchema);
 module.exports.STATUS_VALUES = STATUS_VALUES;
 module.exports.PRIORITY_LABELS = PRIORITY_LABELS;
+module.exports.PRIORITY_TIERS = PRIORITY_TIERS;
+module.exports.ANALYSIS_STATUS_VALUES = ANALYSIS_STATUS_VALUES;
+module.exports.EVIDENCE_QUALITY_VALUES = EVIDENCE_QUALITY_VALUES;
 

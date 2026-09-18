@@ -12,7 +12,7 @@
  * normalized aiFactors shape.
  */
 const {
-  analyzeProblem,
+  analyzeProblem: localAnalyzeProblem,
   normalizeDedupKey,
   priorityLabelFor,
   buildAnalysisPrompt,
@@ -20,6 +20,9 @@ const {
   validateAiFactors,
 } = require("./analyzeHelpers");
 const { aiConfig, isAiConfigured } = require("./aiConfig");
+const { aiFactorsFromLocalRules, sanitizeAiFactors, validateAiFactors: validateFactorSchema } = require("./aiFactors");
+const { prioritize, priorityTierFor, aiOnlyPriorityScore } = require("../utils/categorize");
+const aiMetrics = require("./aiMetrics");
 const circuitBreaker = require("./circuitBreaker");
 const grokProvider = require("./providers/grokProvider");
 const geminiProvider = require("./providers/geminiProvider");
@@ -43,7 +46,7 @@ function providerFor(name) {
 }
 
 function fallbackAnalysis(input) {
-  const local = analyzeProblem(input);
+  const local = localAnalyzeProblem(input);
   const text = `${input.title || ""} ${input.description || ""}`.trim();
   return {
     category: local.category,
@@ -157,8 +160,166 @@ async function analyzeGrievance(input) {
   }
 }
 
+// =====================================================================
+// FEATURE 1: AI priority factor extraction (analyzeProblem)
+// =====================================================================
+// Runs OFF the request path (see services/analysisQueue.js): POST /api/problems
+// saves with analysisStatus='pending' and answers immediately; this function
+// then fills in aiFactors / aiPriorityScore / finalPriorityScore / priorityTier.
+//
+// Unlike analyzeGrievance() above — which classifies and rewrites — this path has
+// a deliberately narrow contract: extract the five aiFactors, nothing else. A
+// small contract means the JSON can be validated strictly, which means a bad
+// model answer can never become a stored number.
+
+const ANALYSIS_FEATURE = "problem_analysis";
+const ANALYZE_TIMEOUT_MS_DEFAULT = 8000;
+
+function analyzeTimeoutMs() {
+  const configured = Number(process.env.AI_ANALYZE_TIMEOUT_MS);
+  return Number.isFinite(configured) && configured > 0 ? configured : ANALYZE_TIMEOUT_MS_DEFAULT;
+}
+
+/**
+ * Defence in depth for the queue: even if an adapter ignored its own timeout
+ * option, one hung request must not stall every later job. 8s is deliberately
+ * below the 20s frontend timeout and below the 15s AI_TIMEOUT_MS used by the
+ * classification chain, because nothing here is blocking a citizen.
+ */
+function withTimeout(promise, ms, label) {
+  let timer;
+  const timeout = new Promise((resolve, reject) => {
+    timer = setTimeout(() => reject(providerError("grok", "timeout", 408, `${label} timed out after ${ms}ms`)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+}
+
+// Accepts a Mongoose document or a plain object: the queue passes a document,
+// the reanalyze route and tests may pass either.
+function analysisInputFrom(problem = {}) {
+  return {
+    title: problem.title,
+    description: problem.description,
+    district: problem.district,
+    block: problem.block,
+    category: problem.category,
+    scaleOfImpact: problem.scaleOfImpact,
+    durationDays: problem.durationDays,
+    reportCount: problem.reportCount,
+    photoCount: Array.isArray(problem.photos) ? problem.photos.length : Number(problem.photoCount || 0),
+  };
+}
+
+/**
+ * NEVER throws — same contract as analyzeGrievance().
+ *
+ * A grievance must still be saved, ranked and shown when Grok is down,
+ * rate-limited, misconfigured, or answers with JSON that does not match the
+ * aiFactors schema. Every one of those outcomes degrades to the Local Rules
+ * factors with analysisStatus='failed_fallback' and is counted in
+ * services/aiMetrics.js, so the fallback rate is visible in the logs and at
+ * GET /api/stats/ai-metrics.
+ */
+async function analyzeProblem(problem) {
+  const input = analysisInputFrom(problem);
+  const startedAt = Date.now();
+  const timeoutMs = analyzeTimeoutMs();
+
+  let factors;
+  let analysisStatus;
+  let fallbackReason = null;
+
+  if (!isAiConfigured("grok")) {
+    // Not a crash — just an unmetered deployment. Labelled honestly so the admin
+    // view can tell "no key configured" apart from "the provider is failing".
+    factors = sanitizeAiFactors(aiFactorsFromLocalRules(input), { source: "local_rules" });
+    analysisStatus = "failed_fallback";
+    fallbackReason = "ai_not_configured";
+    aiMetrics.recordAiCall({
+      feature: ANALYSIS_FEATURE,
+      provider: "local_rules",
+      ok: false,
+      latencyMs: 0,
+      fallbackUsed: true,
+      errorType: fallbackReason,
+      error: "XAI_API_KEY / AI_API_KEY is not set",
+    });
+  } else {
+    try {
+      const raw = await withTimeout(
+        grokProvider.extractPriorityFactors(input, { timeoutMs }),
+        timeoutMs,
+        "Grok factor extraction"
+      );
+      // The adapter validates too; re-checking here means a future adapter — or a
+      // stubbed one in tests — can never slip an unvalidated payload into Mongo.
+      validateFactorSchema(raw);
+      factors = sanitizeAiFactors(raw, { source: "llm", provider: "grok", model: aiConfig().model });
+      analysisStatus = "done";
+      aiMetrics.recordAiCall({
+        feature: ANALYSIS_FEATURE,
+        provider: "grok",
+        ok: true,
+        latencyMs: Date.now() - startedAt,
+      });
+    } catch (err) {
+      const errorType = (err && err.errorType) || (/timed out/i.test((err && err.message) || "") ? "timeout" : "other");
+      factors = sanitizeAiFactors(aiFactorsFromLocalRules(input), { source: "local_rules" });
+      analysisStatus = "failed_fallback";
+      fallbackReason = errorType;
+      console.warn(
+        `[ai] Grok factor extraction failed (${errorType}) after ${Date.now() - startedAt}ms — using Local Rules factors: ${
+          err && err.message
+        }`
+      );
+      aiMetrics.recordAiCall({
+        feature: ANALYSIS_FEATURE,
+        provider: "grok",
+        ok: false,
+        latencyMs: Date.now() - startedAt,
+        fallbackUsed: true,
+        errorType,
+        error: err && err.message,
+      });
+    }
+  }
+
+  const { localCategory, scalePopulationHint, ...storedFactors } = factors;
+  const category = input.category || localCategory;
+
+  // The same pure formula as before, now fed the AI factors as additional INPUTS
+  // (weights untouched — see utils/categorize.js).
+  const scoring = prioritize({ ...input, category, aiFactors: storedFactors });
+  const finalPriorityScore = scoring.score;
+
+  return {
+    aiFactors: storedFactors,
+    aiPriorityScore: aiOnlyPriorityScore({ category, aiFactors: storedFactors }),
+    finalPriorityScore,
+    // Kept in step so every existing dashboard/sort that reads priorityScore
+    // shows the same number the tier badge is derived from.
+    priorityScore: finalPriorityScore,
+    priorityTier: priorityTierFor(finalPriorityScore),
+    priorityLabel: priorityLabelFor(finalPriorityScore),
+    priorityReasons: scoring.reasons,
+    factorBreakdown: { ...scoring.factors, scalePopulationHint },
+    analysisStatus,
+    fallbackReason,
+    analyzedAt: new Date(),
+    provider: storedFactors.provider || "local_rules",
+    model: storedFactors.model || null,
+    latencyMs: Date.now() - startedAt,
+  };
+}
+
+
 module.exports = {
   analyzeGrievance,
+  // Feature 1 entry point (background job) + its helpers.
+  analyzeProblem,
+  analysisInputFrom,
+  analyzeTimeoutMs,
+  ANALYSIS_FEATURE,
   isAiConfigured,
   aiConfig,
   buildAnalysisPrompt,
