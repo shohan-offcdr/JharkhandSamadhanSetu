@@ -193,6 +193,8 @@
 <span class="font-body-md text-body-md text-on-surface select-none">Remember this device for 30 days</span>
 </label>
 </div>
+<!-- Login failure / validation message -->
+<div class="hidden p-space-sm rounded-lg bg-error-container text-on-error-container font-body-sm text-body-sm border border-error/30" id="startup-login-error" role="alert"></div>
 <!-- Primary Action CTA -->
 <div class="pt-space-xs">
 <button class="w-full min-h-min-touch-target bg-secondary hover:bg-[#8C5F1F] active:scale-[0.99] text-on-secondary rounded-lg font-label-lg text-label-lg font-semibold flex items-center justify-center gap-space-xs transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary" id="btn-startup-login" type="submit">
@@ -247,16 +249,46 @@
 </div>
 </footer>
 <script>
-  document.getElementById('startup-login-form').addEventListener('submit', () => {
+  // Real sign-in: POST /api/accounts/login checks the password hash on the
+  // server and returns a signed token, which API.loginWithPassword stores in the
+  // session. The old version called API.login(), which wrote a token-less
+  // session -- and requireRole() sends any startup session without a token back
+  // to this page, so the dashboard bounced straight back to the login form.
+  document.getElementById('startup-login-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
     const email = document.getElementById('work-email').value.trim();
     const password = document.getElementById('password').value;
+    const errorBox = document.getElementById('startup-login-error');
+    const submitButton = document.getElementById('btn-startup-login');
+
+    const showError = (message) => {
+      if (!message) {
+        errorBox.textContent = '';
+        errorBox.classList.add('hidden');
+        return;
+      }
+      errorBox.textContent = message;
+      errorBox.classList.remove('hidden');
+    };
+
     if (!email || !password) {
-      showToast('Please fill all fields');
+      showError('कृपया सभी फ़ील्ड भरें / Please fill all fields');
       return;
     }
-    API.login('startup', email);
-    showToast('Login successful');
-    setTimeout(() => { window.location.href = 'dashboard.html'; }, 500);
+
+    showError('');
+    submitButton.disabled = true;
+    submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+    try {
+      const account = await API.loginWithPassword('startup', email, password);
+      showToast(`लॉगिन सफल / Signed in as ${account.identifier}`);
+      setTimeout(() => { window.location.href = 'dashboard.html'; }, 400);
+    } catch (error) {
+      showError(error.message || 'Login failed / लॉगिन विफल');
+    } finally {
+      submitButton.disabled = false;
+      submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+    }
   });
 </script>
 <script src="../js/mock-data.js"></script>

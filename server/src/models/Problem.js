@@ -54,6 +54,11 @@ const problemSchema = new mongoose.Schema(
       model: { type: String },
       analyzedAt: { type: Date },
     },
+    // Which provider actually served the analysis ('grok' | 'gemini' |
+    // 'local_rules') and whether all AI providers failed over ('failed_fallback').
+    // Read from server via GET /api/problems — never from the browser.
+    analysisStatus: { type: String, enum: ["ok", "failed_fallback"], default: "ok" },
+    aiProviderUsed: { type: String, enum: ["grok", "gemini", "local_rules"], default: "local_rules" },
     // Student portal only lists visible problems. Auto-approved on AI analysis
     // so new grievances appear immediately; moderators can hide via status route.
     visibleToStudents: { type: Boolean, default: true },

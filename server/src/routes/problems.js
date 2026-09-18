@@ -149,6 +149,8 @@ router.post(
       priorityLabel: analysis.priorityLabel,
       priorityReasons: analysis.priorityReasons,
       aiMeta: analysis.aiMeta,
+      analysisStatus: analysis.analysisStatus || "ok",
+      aiProviderUsed: analysis.aiProviderUsed || "local_rules",
       visibleToStudents: true,
       status: "Pending Verification",
       reportCount: 1,
@@ -219,6 +221,8 @@ router.post(
     problem.priorityLabel = analysis.priorityLabel;
     problem.priorityReasons = analysis.priorityReasons;
     problem.analysisVersion = analysis.analysisVersion;
+    problem.analysisStatus = analysis.analysisStatus || "ok";
+    problem.aiProviderUsed = analysis.aiProviderUsed || "local_rules";
     if (analysis.aiMeta) problem.aiMeta = analysis.aiMeta;
     await problem.save();
     res.json(problem);
